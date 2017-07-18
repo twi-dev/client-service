@@ -1,23 +1,20 @@
-import fetch from "isomorphic-fetch"
+import fetch from "whatwg-fetch"
 
 import {printAST, HTTPFetchNetworkInterface} from "apollo-client"
 
-import toFormData from "frontend/helper/util/toFormData"
+import toFormData from "core/helper/util/toFormData"
 
 class FormDataHTTPFetchNetworkInterface extends HTTPFetchNetworkInterface {
   constructor(options) {
-    super(options.url, options)
+    const url = options.url || options.uri
+
+    super(url, options)
   }
 
   fetchFromRemoteEndpoint({request, options}) {
-    // Transform variables obj to FormData
-    const body = toFormData(request.variables, "variables")
+    const endpoint = this._uri
 
-    // Add specific GraphQL fields
-    body.append("operationName", request.operationName)
-    body.append("query", printAST(request.query))
-
-    return fetch(this._uri, {
+    options = {
       ...this._opts,
       ...options,
       method: "POST",
@@ -26,17 +23,25 @@ class FormDataHTTPFetchNetworkInterface extends HTTPFetchNetworkInterface {
       headers: {
         Accept: "*/*",
         ...options.headers,
-      },
-      body
-    })
-  }
-
-  setCookieHeader = cookie => {
-    if (!this._opts.headers) {
-      this._opts.headers = {}
+      }
     }
 
-    this._opts.headers.Cookie = cookie
+    // Transform variables obj to FormData
+    const body = toFormData(request.variables, "variables")
+
+    // if (body instanceof FormData) {
+    //   // Add specific GraphQL fields
+    //   body.append("operationName", request.operationName)
+    //   body.append("query", printAST(request.query))
+    // } else {}
+
+    // Add specific GraphQL fields
+    body.append("operationName", request.operationName)
+    body.append("query", printAST(request.query))
+
+    return fetch(endpoint, {
+      ...options, body
+    })
   }
 }
 
