@@ -13,7 +13,6 @@ import objectIterator from "iterator/objectIterator"
  */
 function toFormData(obj, rootKey) {
   const fd = new FormData()
-  // let haveFiles = false
 
   /**
    * Append object fields to FormData instance
