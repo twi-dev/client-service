@@ -29,12 +29,6 @@ class FormDataHTTPFetchNetworkInterface extends HTTPFetchNetworkInterface {
     // Transform variables obj to FormData
     const body = toFormData(request.variables, "variables")
 
-    // if (body instanceof FormData) {
-    //   // Add specific GraphQL fields
-    //   body.append("operationName", request.operationName)
-    //   body.append("query", printAST(request.query))
-    // } else {}
-
     // Add specific GraphQL fields
     body.append("operationName", request.operationName)
     body.append("query", printAST(request.query))

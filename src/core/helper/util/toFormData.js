@@ -11,7 +11,7 @@ import objectIterator from "iterator/objectIterator"
  *
  * @return FormData instance
  */
-function toFormData(obj, rootKey) {
+function toFormData(obj, root) {
   const fd = new FormData()
 
   /**
@@ -34,7 +34,7 @@ function toFormData(obj, rootKey) {
     }
   }
 
-  append(rootKey, obj)
+  append(root, obj)
   return fd
 }
 

@@ -1,16 +1,20 @@
 {
   "plugins": [
-    "ava"
+    "react"
   ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "modules": true,
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "pragma": "h"
+    }
+  },
   "extends": [
-    "@octetstream",
-    "plugin:ava/recommended"
-  ],
-  "rules": {
-    "ava/no-ignored-test-files": ["error", {
-      "files": [
-        "src/test/unit/**/*.{js,jsx}"
-      ]
-    }]
-  }
+    "airbnb",
+    "@octetstream"
+  ]
 }
