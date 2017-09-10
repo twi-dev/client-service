@@ -3,19 +3,36 @@ const join = require("path").join
 
 const ROOT = join(__dirname, "..", "..")
 
-function readLoaders(env) {
-  const LOADERS_ROOT = join(__dirname, "..", "loader")
-  const list = readdirSync(LOADERS_ROOT)
+function mapDir(path, fn) {
+  const dir = readdirSync(path)
 
-  const loaders = []
+  const res = []
 
-  for (const name of list) {
-    const initializer = require(join(LOADERS_ROOT, name))
+  for (const file of dir) {
+    const ref = fn(require(join(path, file)), file)
 
-    loaders.push(initializer(env))
+    if (ref != null) {
+      res.push(ref)
+    }
   }
 
+  return res
+}
+
+function readLoaders(env) {
+  const LOADERS_ROOT = join(__dirname, "..", "loader")
+
+  const loaders = mapDir(LOADERS_ROOT, initializer => initializer(env))
+
   return loaders
+}
+
+function readPlugins(env) {
+  const PLUGINS_ROOT = join(__dirname, "..", "plugin")
+
+  const plugins = mapDir(PLUGINS_ROOT, initializer => initializer(env))
+
+  return plugins
 }
 
 const configure = env => ({
@@ -32,6 +49,7 @@ const configure = env => ({
       join(ROOT, "src")
     ]
   },
+  plugins: readPlugins(env),
   module: {
     rules: readLoaders(env)
   },
