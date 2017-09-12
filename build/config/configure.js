@@ -62,7 +62,8 @@ const configure = env => ({
   },
   output: {
     path: join(ROOT, "static", "assets"),
-    filename: "js/[name]-[hash].js"
+    filename: "js/[name]-[hash].js",
+    publicPath: "/assets/"
   }
 })
 
