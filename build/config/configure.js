@@ -47,7 +47,11 @@ const configure = env => ({
     modules: [
       "node_modules",
       join(ROOT, "src")
-    ]
+    ],
+    alias: {
+      react: "preact-compat",
+      "react-dom": "preact-compat",
+    },
   },
   plugins: readPlugins(env),
   module: {
@@ -55,10 +59,16 @@ const configure = env => ({
   },
   devServer: {
     hot: true,
-    compress: true
+    hotOnly: true,
+    compress: true,
+    port: 1338,
+    contentBase: join(ROOT, "static"),
+    historyApiFallback: {
+      index: "view/container.html"
+    }
   },
   entry: {
-    common: join(ROOT, "src", "core", "base", "main.js")
+    common: join(ROOT, "src", "core", "base", "main.jsx")
   },
   output: {
     path: join(ROOT, "static", "assets"),
