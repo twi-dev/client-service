@@ -11,10 +11,16 @@
   "settings": {
     "react": {
       "pragma": "h"
+    },
+    "import/resolver": {
+      "babel-module": {}
     }
   },
   "extends": [
     "airbnb",
     "@octetstream"
-  ]
+  ],
+  "rules": {
+    "import/no-unresolved": 0
+  }
 }

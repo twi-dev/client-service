@@ -1,7 +1,9 @@
 const extract = require("extract-text-webpack-plugin").extract
+const autoprefixer = require("autoprefixer")
 
 const css = ({dev}) => ({
-  test: /\.sss$/,
+  test: /\.(sss|css)$/,
+  exclude: /node_modules/,
   use: extract({
     fallback: "style-loader",
     use: [
@@ -20,7 +22,7 @@ const css = ({dev}) => ({
           parser: "sugarss",
           sourceMap: dev === false,
           plugins: [
-            "autoprefixer"
+            autoprefixer
           ]
         }
       }

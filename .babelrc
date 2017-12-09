@@ -1,13 +1,25 @@
 {
   "presets": [
-    "preact"
+    ["@babel/preset-react", {
+      "pragma": "h"
+    }]
   ],
   "plugins": [
-    "transform-async-to-generator",
-    "transform-decorators-legacy",
-    "transform-class-properties",
+    "@babel/transform-runtime",
+    "@babel/proposal-decorators",
+    "@babel/proposal-class-properties",
+    "@babel/proposal-async-generator-functions",
+    "@babel/proposal-nullish-coalescing-operator",
+    "@babel/proposal-optional-catch-binding",
+    "@babel/proposal-optional-chaining",
+    "@babel/proposal-export-namespace",
+    "@babel/proposal-export-default",
+    "@babel/transform-modules-commonjs",
+    "@babel/transform-async-to-generator",
+    ["@babel/proposal-object-rest-spread", {
+      "useBuiltIns": true
+    }],
     ["module-resolver", {
-      "cwd": ".",
       "root": ["src"]
     }]
   ]
