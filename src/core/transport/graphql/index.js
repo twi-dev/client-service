@@ -1,13 +1,12 @@
 import Client from "apollo-client"
 
-import Transport from "./network-interface/FormDataHTTPFetchNetworkInterface"
+import {InMemoryCache} from "apollo-cache-inmemory"
 
-const networkInterface = new Transport({
-  url: "http://localhost:1337/graphql", // tmp
-})
+import HttpLink from "./link/HttpLink"
 
-const client = new Client({
-  networkInterface
-})
+const link = new HttpLink({uri: "http://localhost:1337/graphql"})
+const cache = new InMemoryCache()
+
+const client = new Client({link, cache})
 
 export default client
