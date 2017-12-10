@@ -1,10 +1,14 @@
 .DS_Store
 node_modules
+coverage
 yarn-error.log
 
-config/**/*.yml
-!config/**/default.yml
+/config/**/*.yml
+/config/**/default.yml
 
-static/assets/js/**/*.js
-static/assets/css/**/*.css
-static/view/**
+/static/assets/js/**/*.js
+/static/assets/css/**/*.css
+/static/view/**
+/test
+/core
+/module

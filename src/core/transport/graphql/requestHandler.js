@@ -1,9 +1,12 @@
-import fetch from "whatwg-fetch"
+import "whatwg-fetch"
+
 import omit from "lodash/omit"
 import serialize from "@octetstream/object-to-form-data"
 
 import {Observable, ApolloLink} from "apollo-link"
 import {print} from "graphql/language/printer"
+
+import processResponse from "./processResponse"
 
 const assign = Object.assign
 
@@ -51,11 +54,7 @@ function requestHandler(options = {}) {
     function onResponsed(resoponse) {
       operation.setContext({resoponse})
 
-      if (resoponse.status >= 300) {
-        return Promise.reject(new Error(`Network error: ${resoponse.status}`))
-      }
-
-      return resoponse.json()
+      return processResponse(resoponse)
     }
 
     function onFulfilled(result) {
@@ -77,7 +76,6 @@ function requestHandler(options = {}) {
       method: "POST",
       headers: {
         accept: "*/*",
-        "content-type": "multipart/form-data",
         ...headers
       },
       credentials,

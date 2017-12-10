@@ -4,7 +4,7 @@ import requestHandler from "./requestHandler"
 
 class HttpLink extends ApolloLink {
   constructor(options = {}) {
-    super(requestHandler(options))
+    super(requestHandler(options).request)
   }
 }
 
