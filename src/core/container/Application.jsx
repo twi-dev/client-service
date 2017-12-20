@@ -1,9 +1,14 @@
 import {h} from "preact"
+import {BrowserRouter} from "react-router-dom"
+
+import router from "core/router"
 
 import "./style/application.sss"
 
-// import {BrowserRouter as Router} from "react-router-dom"
-
-const Application = () => <div>Application main container will be here</div>
+const Application = () => (
+  <BrowserRouter>
+    <div>Hello!</div>
+  </BrowserRouter>
+)
 
 export default Application

@@ -6,6 +6,7 @@
   ],
   "plugins": [
     "@babel/transform-runtime",
+    "@babel/syntax-dynamic-import",
     "@babel/proposal-decorators",
     "@babel/proposal-class-properties",
     "@babel/proposal-async-generator-functions",

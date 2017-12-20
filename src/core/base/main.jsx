@@ -13,7 +13,7 @@ function init() {
 if (module.hot) {
   require("preact/devtools") // Inject Preact dev tools
 
-  module.hot.accept("../container/Application", init)
+  module.hot.accept(["../container/Application"], init)
 }
 
 // Init the application

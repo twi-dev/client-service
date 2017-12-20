@@ -4,6 +4,4 @@ const dev = name !== "production"
 const test = name === "test"
 const debug = name === "debug"
 
-module.exports = require("./config/configure")({
-  dev, test, debug, name
-})
+module.exports = require("./config")({dev, test, debug, name})

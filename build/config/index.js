@@ -20,7 +20,7 @@ function mapDir(path, fn) {
 }
 
 function readLoaders(env) {
-  const LOADERS_ROOT = join(__dirname, "..", "loader")
+  const LOADERS_ROOT = join(__dirname, "loader")
 
   const loaders = mapDir(LOADERS_ROOT, initializer => initializer(env))
 
@@ -28,7 +28,7 @@ function readLoaders(env) {
 }
 
 function readPlugins(env) {
-  const PLUGINS_ROOT = join(__dirname, "..", "plugin")
+  const PLUGINS_ROOT = join(__dirname, "plugin")
 
   const plugins = mapDir(PLUGINS_ROOT, initializer => initializer(env))
 
@@ -67,6 +67,7 @@ const configure = env => ({
       index: "view/container.html"
     }
   },
+  context: join(ROOT, "src"),
   entry: {
     common: join(ROOT, "src", "core", "base", "main.jsx")
   },
@@ -74,6 +75,9 @@ const configure = env => ({
     path: join(ROOT, "static", "assets"),
     filename: "js/[name]-[hash].js",
     publicPath: "/assets/"
+  },
+  node: {
+    __dirname: true
   }
 })
 
