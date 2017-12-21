@@ -24,7 +24,7 @@ class AsyncRoute extends Component {
     if (isFunction(component)) {
       component = component()
     } else if (isString(component)) {
-      component = import(`view/${component}`)
+      component = import(`module/${component}`)
     }
 
     Promise.resolve(component)

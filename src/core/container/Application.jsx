@@ -8,7 +8,7 @@ import "./style/application.sss"
 const Application = () => (
   <BrowserRouter>
     <Switch>
-      {routes.map(props => <Route {...{...props, exact: true}} />)}
+      {routes.map(props => <Route exact {...props} />)}
 
       <Route component={() => <div>404</div>} />
     </Switch>
