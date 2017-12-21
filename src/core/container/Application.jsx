@@ -1,13 +1,15 @@
 import {h} from "preact"
-import {BrowserRouter} from "react-router-dom"
+import {BrowserRouter, Switch, Route} from "react-router-dom"
 
-import router from "core/router"
+import routes from "core/router"
 
 import "./style/application.sss"
 
 const Application = () => (
   <BrowserRouter>
-    <div>Hello!</div>
+    <Switch>
+      {routes.map(({path, component}) => <Route {...{path, component}} />)}
+    </Switch>
   </BrowserRouter>
 )
 

@@ -1,4 +1,4 @@
-import {h, Component} from "preact"
+import {h, Component, createElement} from "preact"
 import {string, func, oneOfType} from "prop-types"
 
 import isFunction from "lodash/isFunction"
@@ -24,10 +24,11 @@ class AsyncRoute extends Component {
     if (isFunction(component)) {
       component = component()
     } else if (isString(component)) {
-      component = import(`${component}`)
+      component = import(`view/${component}`)
     }
 
     Promise.resolve(component)
+      .then(module => Promise.resolve(module.default))
       .then(this.__onComponentLoaded)
       .catch(console.error) // TODO: Make a true-way application errors
   }
@@ -37,7 +38,9 @@ class AsyncRoute extends Component {
   render() {
     const {isReady, component} = this.state
 
-    return <div>{isReady ? component : "Loading..."}</div>
+    return isReady
+      ? createElement(component, this.props)
+      : <div>Loading...</div>
   }
 }
 

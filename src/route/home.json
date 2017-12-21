@@ -1,0 +1,6 @@
+[
+  {
+    "path": "/",
+    "component": "foo/Foo"
+  }
+]
