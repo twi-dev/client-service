@@ -4,7 +4,9 @@ import {Switch, Route} from "react-router-dom"
 
 const Router = ({routes}) => (
   <Switch>
-    {routes.map(props => <Route {...props} />)}
+    {routes.map(props => <Route exact {...props} />)}
+
+    <Route component={() => <div>404</div>} />
   </Switch>
 )
 
