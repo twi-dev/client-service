@@ -13,7 +13,9 @@ const css = ({dev}) => ({
           modules: true,
           camelCase: true,
           minimize: dev === false,
-          localIdentName: "[name]__[local]___[hash:base64:12]"
+          localIdentName: dev
+            ? "[name]__[local]___[hash:base64:12]"
+            : "[hash:base64:12]"
         }
       },
       {
