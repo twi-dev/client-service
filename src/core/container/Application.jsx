@@ -8,9 +8,11 @@ import "./style/application.sss"
 import Router from "./Router"
 
 const Application = () => (
-  <BrowserRouter>
-    <Router {...{routes}} />
-  </BrowserRouter>
+  <div>
+    <BrowserRouter>
+      <Router {...{routes}} />
+    </BrowserRouter>
+  </div>
 )
 
 export default Application

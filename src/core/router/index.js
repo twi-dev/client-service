@@ -16,14 +16,15 @@ function extractRoute(prev, filename) {
   // Add a prefix
   const res = []
   for (const route of config) {
-    route.component = `${prefix}/${route.component}`
+    const component = asyncRouteDecorator(omit({
+      route, component: `${prefix}/${route.component}`
+    }, "path"))
 
-    const component = asyncRouteDecorator(omit(route, "path"))
     const path = prefix === "home"
       ? `/${route.path.replace(/^\//, "")}`
       : `/${prefix}/${route.path.replace(/^\//, "")}`
 
-    res.push({path, component})
+    res.push({path, component, filename})
   }
 
   prev.push(...res)

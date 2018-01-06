@@ -6,7 +6,7 @@ let root
 function init() {
   const Application = require("core/container/Application").default
 
-  root = render(<Application />, container, root)
+  root = render(<Application />, container)
 }
 
 // Enable HRM for Preact
