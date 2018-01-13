@@ -1,7 +1,6 @@
 const extract = require("extract-text-webpack-plugin").extract
 
 const cssnext = require("postcss-cssnext")
-const nested = require("postcss-nested")
 
 const getLocalName = dev => ([
   dev ? "[name]__[local]___" : null,
@@ -35,8 +34,7 @@ const css = ({dev}) => ({
                   "last 2 years"
                 ]
               }
-            }),
-            nested()
+            })
           ]
         }
       }
