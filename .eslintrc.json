@@ -21,6 +21,10 @@
     "@octetstream"
   ],
   "rules": {
-    "import/no-unresolved": 0
+    "import/no-unresolved": 0,
+
+    "react/no-unknown-property": [2, {
+      "ignore": ["class"]
+    }]
   }
 }

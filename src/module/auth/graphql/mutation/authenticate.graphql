@@ -1,0 +1,7 @@
+mutation Authenticate($credentials: AuthInput!) {
+  authenticate(credentials: $credentials) {
+    expiresIn
+    accessToken
+    refreshToken
+  }
+}

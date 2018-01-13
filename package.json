@@ -10,7 +10,7 @@
     "babel:watch": "node_modules/.bin/babel src -w -d .",
     "m": "yarn make",
     "w": "yarn watch",
-    "lint": "node_modules/.bin/eslint build src"
+    "lint": "lint-staged"
   },
   "ava": {
     "files": [
@@ -36,6 +36,7 @@
     "@babel/plugin-transform-async-to-generator": "^7.0.0-beta.36",
     "@babel/plugin-transform-modules-commonjs": "^7.0.0-beta.36",
     "@babel/plugin-transform-runtime": "^7.0.0-beta.36",
+    "@babel/preset-env": "^7.0.0-beta.36",
     "@babel/preset-react": "^7.0.0-beta.36",
     "@babel/runtime": "^7.0.0-beta.36",
     "@octetstream/eslint-config": "2.1.0",
@@ -58,13 +59,20 @@
     "html-webpack-harddisk-plugin": "0.1.0",
     "html-webpack-plugin": "2.30.1",
     "husky": "0.14.3",
-    "lint-staged": "6.0.0",
+    "lint-staged": "^6.0.0",
     "postcss": "6.0.15",
+    "postcss-autoreset": "^2.0.1",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-flexbugs-fixes": "^3.2.0",
     "postcss-loader": "2.0.10",
+    "postcss-nested": "^3.0.0",
+    "postcss-normalize": "^4.0.0",
+    "postcss-use": "^2.3.0",
     "react-hot-loader": "3.1.3",
     "rimraf": "^2.6.2",
     "style-loader": "0.19.1",
-    "stylelint": "8.4.0",
+    "stylelint": "^8.4.0",
+    "stylelint-config-recommended": "^2.0.1",
     "sugarss": "1.0.1",
     "webpack": "3.10.0",
     "webpack-dev-server": "2.9.7"
@@ -80,16 +88,17 @@
     "graphql": "0.12.3",
     "graphql-tag": "^2.6.1",
     "lodash": "4.17.4",
+    "lost-grid": "^5.1.6",
     "mobx": "^3.4.1",
     "mobx-react": "^4.3.5",
     "mobx-state-tree": "1.3.1",
     "nanoid": "^1.0.1",
     "normalize.css": "7.0.0",
-    "react-router": "4.2.0",
     "object-path": "0.11.4",
     "preact": "8.2.7",
     "preact-compat": "3.17.0",
     "prop-types": "15.6.0",
+    "react-router": "4.2.0",
     "react-router-dom": "4.2.2",
     "whatwg-fetch": "2.0.3"
   }

@@ -1,5 +1,12 @@
 const extract = require("extract-text-webpack-plugin").extract
-const autoprefixer = require("autoprefixer")
+
+const cssnext = require("postcss-cssnext")
+const nested = require("postcss-nested")
+
+const getLocalName = dev => ([
+  dev ? "[name]__[local]___" : null,
+  "[hash:base64:12]"
+]).join("")
 
 const css = ({dev}) => ({
   test: /\.(sss|css)$/,
@@ -13,9 +20,7 @@ const css = ({dev}) => ({
           modules: true,
           camelCase: true,
           minimize: dev === false,
-          localIdentName: dev
-            ? "[name]__[local]___[hash:base64:12]"
-            : "[hash:base64:12]"
+          localIdentName: getLocalName(dev)
         }
       },
       {
@@ -24,7 +29,14 @@ const css = ({dev}) => ({
           parser: "sugarss",
           sourceMap: dev === false,
           plugins: [
-            autoprefixer
+            cssnext({
+              autoprefixer: {
+                browsers: [
+                  "last 2 years"
+                ]
+              }
+            }),
+            nested()
           ]
         }
       }
