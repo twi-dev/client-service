@@ -3,12 +3,12 @@ import {BrowserRouter} from "react-router-dom"
 
 import routes from "core/router"
 
-import "./style/application.sss"
+import {container} from "./style/application.sss"
 
 import Router from "./Router"
 
 const Application = () => (
-  <div>
+  <div class={container}>
     <BrowserRouter>
       <Router {...{routes}} />
     </BrowserRouter>

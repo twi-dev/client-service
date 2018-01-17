@@ -1,0 +1,8 @@
+server:
+  host: localhost
+  port: 2319
+  https: true
+  wss: true
+graphql:
+  endpoint: graphql
+  subscriptions: graphql/subscriptions

@@ -1,9 +1,12 @@
 @use postcss-nested
 
-/*@lost flexbox flex*/
-
-:root
-  --foo: green
+@lost flexbox flex
 
 .container
-  background: var(--foo)
+  lost-center: 512px
+  lost-align: middle-center
+  width: 512px
+
+.title
+  width: 100%
+  lost-align: center

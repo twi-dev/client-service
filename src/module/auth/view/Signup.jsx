@@ -1,5 +1,5 @@
 import {h} from "preact"
 
-const Home = () => <div>Signin page</div>
+const Home = () => <div>Signup page</div>
 
 export default Home
