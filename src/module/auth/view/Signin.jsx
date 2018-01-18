@@ -1,10 +1,12 @@
 import {h} from "preact"
 
-import {container, title} from "../style/login.sss"
+import {container, box, title} from "../style/form.sss"
 
 const Home = () => (
   <div class={container}>
-    <div class={title}>Signin</div>
+    <div class={box}>
+      <div class={title}>Signin</div>
+    </div>
   </div>
 )
 

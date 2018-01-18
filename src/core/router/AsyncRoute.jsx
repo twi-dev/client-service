@@ -6,7 +6,12 @@ import isString from "lodash/isString"
 
 class AsyncRoute extends Component {
   static propTypes = {
-    component: oneOfType([string, func]).isRequired
+    component: oneOfType([string, func]).isRequired,
+    onError: func // FIXME: Make it REQUIRED
+  }
+
+  static defaultProps = {
+    onError: console.error
   }
 
   constructor(...args) {
@@ -30,7 +35,7 @@ class AsyncRoute extends Component {
     Promise.resolve(component)
       .then(module => Promise.resolve(module.default))
       .then(this.__onComponentLoaded)
-      .catch(console.error) // TODO: Make a true-way application errors
+      .catch(this.props.onError)
   }
 
   __onComponentLoaded = component => this.setState({component, isReady: true})
