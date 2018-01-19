@@ -10,8 +10,8 @@
     "babel:watch": "node_modules/.bin/babel src -w -d .",
     "m": "yarn make",
     "w": "yarn watch",
-    "lint": "node_modules/.bin/lint-staged",
-    "precommit": "yarn lint"
+    "staged": "node_modules/.bin/lint-staged",
+    "precommit": "yarn staged"
   },
   "ava": {
     "files": [
