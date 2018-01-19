@@ -1,10 +1,10 @@
 import {h} from "preact"
-import {object} from "prop-types"
+import {instanceOf} from "prop-types"
 
 const ApplicationError = ({error}) => <div>{error}</div>
 
 ApplicationError.propTypes = {
-  error: object // eslint-disable-line
+  error: instanceOf(Error).isRequired
 }
 
 export default ApplicationError

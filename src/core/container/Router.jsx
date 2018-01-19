@@ -14,10 +14,12 @@ const Router = ({routes}) => (
 )
 
 Router.propTypes = {
-  routes: arrayOf(shape({
-    path: string.isRequired,
-    component: element.isRequired
-  })).isRequired
+  routes: arrayOf(
+    shape({
+      path: string.isRequired,
+      component: element.isRequired
+    }).isRequired
+  ).isRequired
 }
 
 export default Router
