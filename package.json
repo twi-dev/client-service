@@ -10,7 +10,8 @@
     "babel:watch": "node_modules/.bin/babel src -w -d .",
     "m": "yarn make",
     "w": "yarn watch",
-    "lint": "lint-staged"
+    "lint": "node_modules/.bin/lint-staged",
+    "precommit": "yarn lint"
   },
   "ava": {
     "files": [
@@ -23,18 +24,9 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.38",
     "@babel/core": "^7.0.0-beta.38",
-    "@babel/plugin-proposal-async-generator-functions": "^7.0.0-beta.38",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.38",
-    "@babel/plugin-proposal-decorators": "^7.0.0-beta.38",
-    "@babel/plugin-proposal-export-default": ">=7.0.0-beta.32 <= 7.0.0",
-    "@babel/plugin-proposal-export-namespace": ">=7.0.0-beta.32 <= 7.0.0",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.0.0-beta.38",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.38",
-    "@babel/plugin-proposal-optional-catch-binding": "^7.0.0-beta.38",
-    "@babel/plugin-proposal-optional-chaining": "^7.0.0-beta.38",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.38",
-    "@babel/plugin-transform-async-to-generator": "^7.0.0-beta.38",
-    "@babel/plugin-transform-modules-commonjs": "^7.0.0-beta.38",
     "@babel/plugin-transform-runtime": "^7.0.0-beta.38",
     "@babel/preset-env": "^7.0.0-beta.38",
     "@babel/preset-react": "^7.0.0-beta.38",
@@ -58,7 +50,7 @@
     "favicons-webpack-plugin": "0.0.7",
     "html-webpack-harddisk-plugin": "0.1.0",
     "html-webpack-plugin": "2.30.1",
-    "husky": "0.14.3",
+    "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
     "lost": "^8.2.0",
     "postcss": "6.0.16",
