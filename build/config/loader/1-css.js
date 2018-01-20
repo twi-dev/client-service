@@ -1,6 +1,7 @@
 const extract = require("extract-text-webpack-plugin").extract
 
 const cssnext = require("postcss-cssnext")
+const use = require("postcss-use")
 const lost = require("lost")
 
 const getLocalName = dev => ([
@@ -29,6 +30,10 @@ const css = ({dev}) => ({
           parser: "sugarss",
           sourceMap: dev === false,
           plugins: [
+            use({
+              resolveFromFile: true,
+              modules: "*"
+            }),
             lost(),
             cssnext({
               autoprefixer: {

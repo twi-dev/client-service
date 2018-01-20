@@ -1,3 +1,4 @@
 {
+  "build/**/*.{js,jsx}": "node_modules/.bin/eslint --fix",
   "src/**/*.{js,jsx}": "node_modules/.bin/eslint --fix"
 }
