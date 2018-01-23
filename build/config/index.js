@@ -11,7 +11,7 @@ function mapDir(path, fn) {
   for (const file of dir) {
     const ref = fn(require(join(path, file)), file)
 
-    if (ref != null) {
+    if (ref) {
       res.push(ref)
     }
   }
