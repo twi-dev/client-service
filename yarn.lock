@@ -266,6 +266,12 @@
     "@babel/helper-function-name" "7.0.0-beta.38"
     "@babel/plugin-syntax-class-properties" "7.0.0-beta.38"
 
+"@babel/plugin-proposal-decorators@^7.0.0-beta.38":
+  version "7.0.0-beta.38"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.0.0-beta.38.tgz#888903d395d902b763c4833e2bbf2f3d67e8155b"
+  dependencies:
+    "@babel/plugin-syntax-decorators" "7.0.0-beta.38"
+
 "@babel/plugin-proposal-object-rest-spread@7.0.0-beta.38", "@babel/plugin-proposal-object-rest-spread@^7.0.0-beta.38":
   version "7.0.0-beta.38"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-object-rest-spread/-/plugin-proposal-object-rest-spread-7.0.0-beta.38.tgz#4c9bee9cd4d905bf7531a722daf430183282c000"
@@ -292,6 +298,10 @@
 "@babel/plugin-syntax-class-properties@7.0.0-beta.38":
   version "7.0.0-beta.38"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-class-properties/-/plugin-syntax-class-properties-7.0.0-beta.38.tgz#e06a9bf6446611d78dfc71f84cddfe9219fb2829"
+
+"@babel/plugin-syntax-decorators@7.0.0-beta.38":
+  version "7.0.0-beta.38"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-decorators/-/plugin-syntax-decorators-7.0.0-beta.38.tgz#902cdc212cd3a6b10f9b1ed681a7fea0f5c87f65"
 
 "@babel/plugin-syntax-dynamic-import@^7.0.0-beta.38":
   version "7.0.0-beta.38"
@@ -1505,7 +1515,7 @@ babel-plugin-minify-type-constructors@^0.1.2:
   dependencies:
     babel-helper-is-void-0 "^0.1.1"
 
-babel-plugin-module-resolver@3.0.0:
+babel-plugin-module-resolver@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-module-resolver/-/babel-plugin-module-resolver-3.0.0.tgz#a2fe5b97f7b809a8bbac18beada0a94d45987c63"
   dependencies:
@@ -6255,6 +6265,12 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.1, mkdirp@~0.5.0, mkdi
   dependencies:
     minimist "0.0.8"
 
+mobx-preact@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/mobx-preact/-/mobx-preact-1.1.0.tgz#b1538e5e890b65ef6d4dc2cd98b575579d51f74c"
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+
 mobx-react@^4.3.5:
   version "4.3.5"
   resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-4.3.5.tgz#76853f2f2ef4a6f960c374bcd9f01e875929c04c"
@@ -6766,6 +6782,16 @@ p-locate@^2.0.0:
 p-map@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/p-map/-/p-map-1.1.1.tgz#05f5e4ae97a068371bc2a5cc86bfbdbc19c4ae7a"
+
+p-reduce@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/p-reduce/-/p-reduce-1.0.0.tgz#18c2b0dd936a4690a529f8231f58a0fdb6a47dfa"
+
+p-waterfall@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/p-waterfall/-/p-waterfall-1.0.0.tgz#7ed94b3ceb3332782353af6aae11aa9fc235bb00"
+  dependencies:
+    p-reduce "^1.0.0"
 
 package-hash@^1.2.0:
   version "1.2.0"

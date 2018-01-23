@@ -1,5 +1,7 @@
 import {h} from "preact"
 
+import User from "common/model/user/User"
+
 import Form from "module/auth/common/component/Form"
 
 const Signin = () => (
@@ -8,5 +10,17 @@ const Signin = () => (
     <input type="password" placeholder="Password..." />
   </Form>
 )
+
+Signin.getInitialProps = async () => ({
+  user: User.create({
+    id: "123",
+    login: "OctetStream",
+    role: "ROOT",
+    status: "ACTIVE",
+    dates: {
+      registeredAt: new Date()
+    }
+  })
+})
 
 export default Signin

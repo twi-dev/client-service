@@ -3,15 +3,15 @@ import {types} from "mobx-state-tree"
 import UserContacts from "./UserContacts"
 import UserDates from "./UserDates"
 
-const {model, string} = types
+const {model, string, identifier, optional} = types
 
 const schema = {
-  id: string,
+  id: identifier(),
   login: string,
   role: string,
   status: string,
   dates: UserDates,
-  contacs: UserContacts
+  contacs: optional(UserContacts, {})
 }
 
 const User = model("User", schema)

@@ -1,8 +1,8 @@
 import {createElement} from "preact"
 
-import AsyncRoute from "./AsyncRoute"
+import ViewLoader from "./ViewLoader"
 
-const asyncRouteDecorator = options => props => createElement(AsyncRoute, {
+const asyncRouteDecorator = options => props => createElement(ViewLoader, {
   ...props, ...options
 }, props.children)
 
