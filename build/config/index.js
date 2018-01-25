@@ -42,7 +42,7 @@ const configure = env => ({
   },
   resolve: {
     extensions: [
-      ".js", ".jsx", "json"
+      ".jsx", ".js", "json"
     ],
     modules: [
       "node_modules",

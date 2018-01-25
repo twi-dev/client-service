@@ -39,6 +39,7 @@
     "babel-eslint": "^8.2.1",
     "babel-loader": "8.0.0-beta.0",
     "babel-plugin-module-resolver": "^3.0.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.12",
     "babili-webpack-plugin": "0.1.2",
     "css-loader": "0.28.9",
     "enzyme": "3.3.0",

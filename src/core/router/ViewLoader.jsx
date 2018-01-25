@@ -5,6 +5,8 @@ import isFunction from "lodash/isFunction"
 import isString from "lodash/isString"
 import waterfall from "p-waterfall"
 
+import PageLoader from "common/component/Loader/Page"
+
 import connect from "core/model/connect"
 
 class ViewLoader extends Component {
@@ -59,9 +61,7 @@ class ViewLoader extends Component {
   render(props) {
     const {isReady, component} = this.state
 
-    return isReady
-      ? createElement(component, props)
-      : <div>Loading...</div>
+    return h(isReady ? component : PageLoader, props)
   }
 }
 
