@@ -5,21 +5,21 @@ import Form from "module/auth/common/component/Form"
 
 import LoginModel from "./LoginModel"
 
-const Login = ({auth: {login, password, updateTextField}}) => (
+const Login = ({auth: {login, password, updateLogin, updatePassword}}) => (
   <Form title="Login" buttonText="Sign in">
     <input
       type="text"
       name="login"
       placeholder="Email or login..."
       value={login}
-      onInput={updateTextField}
+      onInput={updateLogin}
     />
     <input
       type="password"
       name="password"
       placeholder="Password..."
       value={password}
-      onInput={updateTextField}
+      onInput={updatePassword}
     />
   </Form>
 )

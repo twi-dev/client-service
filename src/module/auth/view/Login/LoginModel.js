@@ -1,5 +1,7 @@
 import {types} from "mobx-state-tree"
 
+import updateTextField from "common/model/action/updateTextField"
+
 const {model, optional, string} = types
 
 const schema = {
@@ -8,11 +10,8 @@ const schema = {
 }
 
 const actions = self => ({
-  updateTextField({target: {name, value}}) {
-    if (name in self) {
-      self[name] = String(value)
-    }
-  }
+  updateLogin: updateTextField(self),
+  updatePassword: updateTextField(self)
 })
 
 const Login = model("Login", schema).actions(actions)
