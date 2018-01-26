@@ -2,6 +2,8 @@ import {types} from "mobx-state-tree"
 
 import updateTextField from "common/model/action/updateTextField"
 
+// import authenticate from "./authenticate.graphql"
+
 const {model, optional, string} = types
 
 const schema = {
@@ -11,7 +13,11 @@ const schema = {
 
 const actions = self => ({
   updateLogin: updateTextField(self),
-  updatePassword: updateTextField(self)
+  updatePassword: updateTextField(self),
+  // authenticate() {},
+  // execAuth() {},
+  // onAuthFailed() {},
+  // onAuthGranted() {}
 })
 
 const Login = model("Login", schema).actions(actions)

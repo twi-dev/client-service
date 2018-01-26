@@ -1,6 +1,6 @@
 [
   {
     "path": "/",
-    "component": "view/Home"
+    "component": "page/Home"
   }
 ]
