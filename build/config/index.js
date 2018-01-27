@@ -22,7 +22,9 @@ function mapDir(path, fn) {
 function readLoaders(env) {
   const LOADERS_ROOT = join(__dirname, "loader")
 
-  const loaders = mapDir(LOADERS_ROOT, initializer => initializer(env))
+  const loaders = mapDir(LOADERS_ROOT, initializer => initializer(env, {
+    root: ROOT
+  }))
 
   return loaders
 }
@@ -30,7 +32,9 @@ function readLoaders(env) {
 function readPlugins(env) {
   const PLUGINS_ROOT = join(__dirname, "plugin")
 
-  const plugins = mapDir(PLUGINS_ROOT, initializer => initializer(env))
+  const plugins = mapDir(PLUGINS_ROOT, initializer => initializer(env, {
+    root: ROOT
+  }))
 
   return plugins
 }

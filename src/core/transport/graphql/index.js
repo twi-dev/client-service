@@ -1,11 +1,13 @@
 import Client from "apollo-client"
 
-import {InMemoryCache} from "apollo-cache-inmemory"
+import {InMemoryCache as Cache} from "apollo-cache-inmemory"
+
+import {api} from "config"
 
 import HttpLink from "./HttpLink"
 
-const link = new HttpLink({uri: "http://localhost:2319/graphql"})
-const cache = new InMemoryCache()
+const link = new HttpLink({uri: api.uri})
+const cache = new Cache()
 
 const client = new Client({link, cache})
 

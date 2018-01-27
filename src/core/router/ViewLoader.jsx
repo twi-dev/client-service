@@ -1,4 +1,4 @@
-import {h, Component, createElement} from "preact"
+import {h, Component} from "preact"
 import {string, func, oneOfType} from "prop-types"
 
 import isFunction from "lodash/isFunction"
