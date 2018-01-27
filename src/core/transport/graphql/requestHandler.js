@@ -83,6 +83,7 @@ function requestHandler(options = {}) {
       body
     }
 
+    // Make a request
     waterfall([onResponsed, onFulfilled], fetcher(uri, requestOptions))
       .catch(onRejected)
   }))

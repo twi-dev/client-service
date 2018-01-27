@@ -5,8 +5,11 @@
     }],
     ["@babel/env", {
       "modules": false,
+      "exclude": [
+        "transform-regenerator"
+      ],
       "targets": {
-        "browsers": ["last 2 versions", "not ie 11"]
+        "browsers": ["last 2 versions"]
       }
     }]
   ],
