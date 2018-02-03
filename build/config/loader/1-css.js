@@ -1,15 +1,16 @@
-const extract = require("extract-text-webpack-plugin").extract
+const {extract} = require("extract-text-webpack-plugin")
 
 const cssnext = require("postcss-cssnext")
 const use = require("postcss-use")
 const lost = require("lost")
+const atImport = require("postcss-import")
 
 const getLocalName = dev => ([
   dev ? "[name]__[local]___" : null,
   "[hash:base64:12]"
 ]).join("")
 
-const css = ({dev}) => ({
+const css = ({dev}, options) => ({
   test: /\.(sss|css)$/,
   exclude: /node_modules/,
   use: extract({
@@ -35,6 +36,10 @@ const css = ({dev}) => ({
               modules: "*"
             }),
             lost(),
+            atImport({
+              root: options.root,
+              path: "src"
+            }),
             cssnext({
               autoprefixer: {
                 browsers: [

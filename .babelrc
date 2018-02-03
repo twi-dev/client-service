@@ -5,11 +5,9 @@
     }],
     ["@babel/env", {
       "modules": false,
-      "exclude": [
-        "transform-regenerator"
-      ],
+      "exclude": ["transform-regenerator"],
       "targets": {
-        "browsers": ["last 2 versions"]
+        "browsers": ["last 2 versions", "chrome > 54"]
       }
     }]
   ],
