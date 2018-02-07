@@ -73,7 +73,9 @@ const configure = env => ({
   },
   context: join(ROOT, "src"),
   entry: {
-    common: join(ROOT, "src", "core", "base", "main.jsx")
+    common: [
+      join(ROOT, "src", "core", "base", "main.jsx")
+    ]
   },
   output: {
     path: join(ROOT, "static", "assets"),

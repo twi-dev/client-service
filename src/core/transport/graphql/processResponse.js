@@ -3,9 +3,7 @@ async function processResponse(resoponse) {
     throw new Error(`Network error: ${resoponse.status}`)
   }
 
-  const body = await resoponse.json()
-
-  return body
+  return resoponse.json()
 }
 
 export default processResponse

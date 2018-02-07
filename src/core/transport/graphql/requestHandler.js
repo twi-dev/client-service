@@ -7,6 +7,7 @@ import serialize from "@octetstream/object-to-form-data"
 import {Observable, ApolloLink} from "apollo-link"
 import {print} from "graphql/language/printer"
 
+import hasFiles from "./hasFiles"
 import processResponse from "./processResponse"
 
 const assign = Object.assign
@@ -43,14 +44,14 @@ function requestHandler(options = {}) {
     }
 
     if (includeExtensions || httpOptions.includeExtensions) {
-      body.append("extensions", extensions)
+      body.extensions = extensions
     }
 
     if (httpOptions.includeQuery) {
       body.query = print(query)
     }
 
-    body = serialize(body)
+    body = hasFiles(body) ? serialize(body) : JSON.stringify(body)
 
     function onResponsed(resoponse) {
       operation.setContext({resoponse})

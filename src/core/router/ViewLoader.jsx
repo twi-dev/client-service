@@ -2,7 +2,6 @@ import {h, Component} from "preact"
 import {string, func, oneOfType} from "prop-types"
 
 import isFunction from "lodash/isFunction"
-import isString from "lodash/isString"
 import waterfall from "p-waterfall"
 
 import PageLoader from "common/component/Loader/Page"
@@ -29,19 +28,13 @@ class ViewLoader extends Component {
   }
 
   componentWillMount() {
-    let component = this.props.component
-
-    if (isFunction(component)) {
-      component = component()
-    } else if (isString(component)) {
-      component = import(`module/${component}`)
-    }
+    const component = this.props.component
 
     waterfall([
       this.__onComponentLoaded,
       this.__onComponentReceived,
       this.__onComponentReady
-    ], Promise.resolve(component)).catch(this.props.onError)
+    ], import(`module/${component}`)).catch(this.props.onError)
   }
 
   __onComponentLoaded = module => Promise.resolve(module.default || module)

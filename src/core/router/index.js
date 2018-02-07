@@ -2,7 +2,7 @@ import {extname, basename} from "path"
 
 import omit from "lodash/omit"
 
-import asyncRouteDecorator from "./asyncRouteDecorator"
+import withAsyncRoute from "./withAsyncRoute"
 
 const ctx = require.context("../../route", true, /\.(jsx?|json)$/)
 
@@ -16,7 +16,7 @@ function extractRoute(prev, filename) {
   // Add a prefix
   const res = []
   for (const route of config) {
-    const component = asyncRouteDecorator(omit({
+    const component = withAsyncRoute(omit({
       route, component: `${prefix}/${route.component}`
     }, "path"))
 
