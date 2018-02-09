@@ -12,7 +12,12 @@ import processResponse from "./processResponse"
 
 const assign = Object.assign
 
-const defaults = {fetch}
+const defaults = {
+  fetch,
+  headers: {
+    accept: "*/*"
+  }
+}
 
 const defaultHTTPOptions = {
   includeQuery: true,
@@ -51,7 +56,15 @@ function requestHandler(options = {}) {
       body.query = print(query)
     }
 
-    body = hasFiles(body) ? serialize(body) : JSON.stringify(body)
+    if (hasFiles(body)) {
+      body = serialize(body)
+
+      headers.accept = "*/*"
+    } else {
+      body = JSON.stringify(body)
+
+      headers["content-type"] = "application/json"
+    }
 
     function onResponsed(resoponse) {
       operation.setContext({resoponse})
@@ -74,18 +87,10 @@ function requestHandler(options = {}) {
       observer.error(err)
     }
 
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        accept: "*/*",
-        ...headers
-      },
-      credentials,
-      body
-    }
+    const params = {headers, credentials, body, method: "POST"}
 
-    // Make a request
-    waterfall([onResponsed, onFulfilled], fetcher(uri, requestOptions))
+    // Make a request with FormData or JSON body.
+    waterfall([onResponsed, onFulfilled], fetcher(uri, params))
       .catch(onRejected)
   }))
 }
