@@ -1,4 +1,4 @@
-import objectIterator from "core/helper/iterator/objectIterator"
+import iterator from "core/helper/iterator/objectIterator"
 
 import isPlainObject from "lodash/isPlainObject"
 
@@ -7,7 +7,7 @@ const isArray = Array.isArray
 function hasFiles(iterable) {
   let res = false
 
-  for (const value of objectIterator(iterable)) {
+  for (const value of iterator(iterable)) {
     if (isPlainObject(value) || isArray(value)) {
       hasFiles(value)
     } else if (value instanceof File || value instanceof FileList) {
