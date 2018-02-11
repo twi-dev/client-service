@@ -75,6 +75,7 @@
     "postcss-normalize": "4.0.0",
     "postcss-simple-vars": "4.1.0",
     "postcss-use": "2.3.0",
+    "react-svg-loader": "^2.1.0",
     "rimraf": "2.6.2",
     "style-loader": "0.20.1",
     "stylelint": "8.4.0",

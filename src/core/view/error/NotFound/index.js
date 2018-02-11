@@ -1,1 +1,1 @@
-module.exports = require("./NotFound").default
+export {default} from "./NotFound"
