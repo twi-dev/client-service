@@ -1,16 +1,27 @@
 import {h} from "preact"
+import {observer} from "mobx-preact"
 import {PropTypes as types, element, arrayOf} from "prop-types"
 
 import preventDefault from "core/helper/decorator/preventDefault"
 
-import form, {container, body, buttonPrimary} from "./form.sss"
+import Footer from "../Footer"
+import Link from "../Link"
+import Button from "../Button"
+
+import form, {container, body, content} from "./form.sss"
 
 const Form = ({title, buttonText, children}) => (
   <div class={container}>
     <form class={body} onSubmit={preventDefault()}>
       <div class={form.title}>{title}</div>
-      <div>{children}</div>
-      <button class={buttonPrimary}>{buttonText}</button>
+      <div class={content}>
+        {children}
+        <Button>{buttonText}</Button>
+        <Footer>
+          <Link href to="/auth/signup">Have no account yet?</Link>
+          <Link href to="/auth/recover">Forgot your password?</Link>
+        </Footer>
+      </div>
     </form>
   </div>
 )
@@ -21,4 +32,4 @@ Form.propTypes = {
   children: arrayOf(element.isRequired).isRequired
 }
 
-export default Form
+export default observer(Form)

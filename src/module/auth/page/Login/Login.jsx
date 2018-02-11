@@ -2,22 +2,25 @@ import {h} from "preact"
 import {shape, func, string} from "prop-types"
 
 import Form from "module/auth/common/component/Form"
+import Input from "module/auth/common/component/Input"
 
 import LoginModel from "./LoginModel"
 
 const Login = ({auth: {login, password, updateLogin, updatePassword}}) => (
   <Form title="Login" buttonText="Sign in">
-    <input
-      type="text"
+    <Input
+      type="email"
       name="login"
       placeholder="Email or login..."
+      autocomplete="username email"
       value={login}
       onInput={updateLogin}
     />
-    <input
+    <Input
       type="password"
       name="password"
       placeholder="Password..."
+      autocomplete="current-password"
       value={password}
       onInput={updatePassword}
     />
