@@ -7,7 +7,7 @@ import Input from "module/auth/common/component/Input"
 import LoginModel from "./LoginModel"
 
 const Login = ({auth: {login, password, updateLogin, updatePassword}}) => (
-  <Form title="Login" buttonText="Sign in">
+  <Form buttonText="Log in">
     <Input
       type="email"
       name="login"
