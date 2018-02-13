@@ -3,8 +3,16 @@
 .container
   width: 100%
   padding: 4px 0
+  float: left
+  box-sizing: border-box
 
   a
     &, &:hover, &:visited &:active
       color: #653089
       text-decoration: none
+
+@media screen and (width >= 900px)
+  .container
+    width: 300px
+    text-align: left
+    padding: 4px 20px
