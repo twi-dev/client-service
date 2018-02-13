@@ -6,23 +6,23 @@ import Input from "module/auth/common/component/Input"
 
 import LoginModel from "./LoginModel"
 
-const Login = ({auth: {login, password, updateLogin, updatePassword}}) => (
+const Login = ({auth}) => (
   <Form buttonText="Log in">
     <Input
       type="email"
       name="login"
       placeholder="Email or login..."
       autocomplete="username email"
-      value={login}
-      onInput={updateLogin}
+      value={auth.login}
+      onInput={auth.updateLogin}
     />
     <Input
       type="password"
       name="password"
       placeholder="Password..."
-      autocomplete="current-password"
-      value={password}
-      onInput={updatePassword}
+      autocomplete="off"
+      value={auth.password}
+      onInput={auth.updatePassword}
     />
   </Form>
 )
