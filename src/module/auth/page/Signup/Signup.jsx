@@ -31,7 +31,7 @@ const Login = ({auth}) => (
         autocomplete="off"
         class={field}
         value={auth.email}
-        onInput={auth.updateLogin}
+        onInput={auth.updateEmail}
       />
       <Input
         type="password"
@@ -54,7 +54,9 @@ Login.propTypes = {
   auth: shape({
     login: string,
     password: string,
-    updateTextField: func.isRequired
+    updateLogin: func.isRequired,
+    updateEmail: func.isRequired,
+    updatePassword: func.isRequired,
   }).isRequired
 }
 

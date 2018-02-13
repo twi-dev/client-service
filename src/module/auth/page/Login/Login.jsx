@@ -8,7 +8,7 @@ import Fields from "module/auth/common/component/Form/Fields"
 import Button from "module/auth/common/component/Form/Button"
 import Footer from "module/auth/common/component/Form/Footer"
 
-import LoginModel from "./LoginModel"
+import Model from "./LoginModel"
 
 const Login = ({auth}) => (
   <Form>
@@ -38,16 +38,17 @@ const Login = ({auth}) => (
   </Form>
 )
 
+Login.getInitialProps = async () => ({
+  auth: Model.create({})
+})
+
 Login.propTypes = {
   auth: shape({
     login: string,
     password: string,
-    updateTextField: func.isRequired
+    updateLogin: func.isRequired,
+    updatePassword: func.isRequired,
   }).isRequired
 }
-
-Login.getInitialProps = async () => ({
-  auth: LoginModel.create({})
-})
 
 export default Login
