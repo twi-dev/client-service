@@ -1,4 +1,5 @@
 import {h} from "preact"
+import {Link} from "react-router-dom"
 
 import {container, content, image} from "./not-found.sss"
 
@@ -11,7 +12,10 @@ const NotFound = () => (
         <Image />
       </div>
       <div>
-        Page Not Found
+        There are no books out there, princess!
+      </div>
+      <div>
+        <Link href to="/">Let‘s go back home?</Link>
       </div>
     </div>
   </div>
