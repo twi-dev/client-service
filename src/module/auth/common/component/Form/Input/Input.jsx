@@ -17,7 +17,7 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
-  class: null
+  class: undefined
 }
 
 export default Input

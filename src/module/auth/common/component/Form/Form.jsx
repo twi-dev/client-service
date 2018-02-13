@@ -8,7 +8,7 @@ import preventDefault from "core/helper/decorator/preventDefault"
 
 import {container, body, content} from "./form.sss"
 
-const Form = ({buttonText, buttonClass, children, ...props}) => (
+const Form = ({buttonText, children, ...props}) => (
   <div class={cn(container, props.class)}>
     <form class={body} onSubmit={preventDefault()}>
       <div class={content}>
@@ -20,14 +20,12 @@ const Form = ({buttonText, buttonClass, children, ...props}) => (
 
 Form.propTypes = {
   class: types.string,
-  buttonClass: types.string,
   buttonText: types.string.isRequired,
   children: arrayOf(element.isRequired).isRequired
 }
 
 Form.defaultProps = {
-  class: null,
-  buttonClass: null
+  class: undefined
 }
 
 export default observer(Form)

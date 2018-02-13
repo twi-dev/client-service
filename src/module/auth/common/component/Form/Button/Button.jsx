@@ -17,7 +17,7 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
-  class: null
+  class: undefined
 }
 
 export default Button

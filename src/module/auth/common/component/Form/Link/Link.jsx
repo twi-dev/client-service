@@ -18,7 +18,7 @@ Link.propTypes = {
 }
 
 Link.defaultProps = {
-  class: null
+  class: undefined
 }
 
 export default Link
