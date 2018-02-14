@@ -2,7 +2,7 @@ import {h} from "preact"
 import {string, element, arrayOf, shape} from "prop-types"
 import {Switch, Route} from "react-router-dom"
 
-import NotFound from "core/view/error/NotFound"
+import NotFound from "common/page/error/http/NotFound"
 
 const Router = ({routes}) => (
   <Switch>

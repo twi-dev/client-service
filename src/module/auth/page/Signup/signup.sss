@@ -1,5 +1,7 @@
 @use postcss-simple-vars
+@use postcss-nested
 
+$fieldWidth: 240px
 $buttonWidth: 246px
 
 @media screen and (width >= 1000px)
@@ -9,12 +11,18 @@ $buttonWidth: 246px
     width: 1000px
 
   .field
-    width: 240px
+    width: $fieldWidth
 
   .button
     width: $buttonWidth
 
   .link
-    width: $buttonWidth
-    float: right
-    text-align: center
+    &-login
+      width: $fieldWidth
+      float: left
+      text-align: left
+
+    &-recover
+      width: $buttonWidth
+      float: right
+      text-align: center

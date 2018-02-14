@@ -1,4 +1,5 @@
 import {h} from "preact"
+import {observer} from "mobx-preact"
 import {PropTypes as types} from "prop-types"
 
 import cn from "classnames"
@@ -20,4 +21,4 @@ Input.defaultProps = {
   class: undefined
 }
 
-export default Input
+export default observer(Input)

@@ -1,10 +1,11 @@
 import {h, Component} from "preact"
 import {string, func, oneOfType} from "prop-types"
 
+import omit from "lodash/omit"
 import isFunction from "lodash/isFunction"
 import waterfall from "p-waterfall"
 
-import PageLoader from "common/component/Loader/Page"
+import Loader from "common/component/Loader/Page"
 
 import connect from "core/model/connect"
 
@@ -46,7 +47,9 @@ class ViewLoader extends Component {
 
     const onFulfilled = initials => resolve(connect(initials)(component))
 
-    Promise.resolve(component.getInitialProps()).then(onFulfilled, reject)
+    const ctx = omit(this.props, ["route", "component"])
+
+    Promise.resolve(component.getInitialProps(ctx)).then(onFulfilled, reject)
   })
 
   __onComponentReady = component => this.setState({component, isReady: true})
@@ -54,7 +57,7 @@ class ViewLoader extends Component {
   render(props) {
     const {isReady, component} = this.state
 
-    return h(isReady ? component : PageLoader, props)
+    return h(isReady ? component : Loader, props)
   }
 }
 

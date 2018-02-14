@@ -1,0 +1,3 @@
+mutation Recover($email: Email!) {
+  authRecoverPassword(email: $email)
+}
