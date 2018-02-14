@@ -6,7 +6,7 @@ import cn from "classnames"
 import {container} from "./fragment.sss"
 
 /**
- * Just a fragment hack using just a "div" with inherit styles
+ * Just a fragment hack using a "div" with inherit styles
  */
 const Fragment = ({children, ...props}) => (
   <div class={cn(container, props.class)}>
