@@ -1,0 +1,3 @@
+mutation RecoverConfirm($email: Email!) {
+  authRecoverConfirm(email: $email)
+}
