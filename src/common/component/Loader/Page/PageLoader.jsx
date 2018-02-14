@@ -1,5 +1,13 @@
 import {h} from "preact"
 
-const PageLoader = () => <div>Loading...</div>
+import Fragment from "common/component/Fragment"
+import Title from "common/component/Title"
+
+const PageLoader = () => (
+  <Fragment>
+    <Title title="Loading..." />
+    Loading...
+  </Fragment>
+)
 
 export default PageLoader
