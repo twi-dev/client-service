@@ -1,5 +1,5 @@
 import {h} from "preact"
-import {string, element, arrayOf, shape} from "prop-types"
+import {string, func, arrayOf, shape} from "prop-types"
 import {Switch, Route} from "react-router-dom"
 
 import NotFound from "common/page/error/http/NotFound"
@@ -17,7 +17,7 @@ Router.propTypes = {
   routes: arrayOf(
     shape({
       path: string.isRequired,
-      component: element.isRequired
+      component: func.isRequired
     }).isRequired
   ).isRequired
 }

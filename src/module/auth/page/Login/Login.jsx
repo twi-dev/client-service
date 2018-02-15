@@ -13,10 +13,12 @@ import Footer from "module/auth/common/component/Form/Footer"
 
 import Model from "./LoginModel"
 
+import {container} from "./login.sss"
+
 const Login = ({auth}) => (
   <Fragment>
     <Title title="Login" />
-    <Form>
+    <Form class={container}>
       <Fields>
         <Input
           type="email"

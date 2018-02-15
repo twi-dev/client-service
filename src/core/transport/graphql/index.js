@@ -1,1 +1,1 @@
-export {default} from "./client"
+export {default, query, mutate, watch} from "./client"

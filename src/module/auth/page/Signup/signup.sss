@@ -1,14 +1,17 @@
 @use postcss-simple-vars
 @use postcss-nested
 
-$fieldWidth: 240px
+$containerWidth: 1000px
 $buttonWidth: 246px
+$fieldWidth: 240px
 
-@media screen and (width >= 1000px)
+@custom-media --formDesktop (width >= 1000px)
+
+@media (--formDesktop)
   .container
-    lost-center: 1000px
+    lost-center: $containerWidth
 
-    width: 1000px
+    width: $containerWidth
 
   .field
     width: $fieldWidth

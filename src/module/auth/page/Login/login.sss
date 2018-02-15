@@ -1,0 +1,18 @@
+@use postcss-simple-vars
+@use postcss-nested
+
+@lost flexbox flex
+
+$containerWidth: 900px
+$fieldWidth: 300px
+
+@custom-media --formDesktop (width >= 900px)
+
+@media (--formDesktop)
+  .container
+    lost-center: $containerWidth
+
+    width: $containerWidth
+
+  .field
+    width: $fieldWidth

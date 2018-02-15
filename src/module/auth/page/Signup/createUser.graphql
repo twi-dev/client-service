@@ -1,4 +1,4 @@
-mutation CreateUser($user: CreateUserInput!) {
+mutation CreateUser($user: UserInput!) {
   createUser(user: $user) {
     refreshToken {
       type
