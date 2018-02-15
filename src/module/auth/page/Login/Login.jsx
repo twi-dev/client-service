@@ -1,4 +1,4 @@
-import {h} from "preact"
+import {h, Component} from "preact"
 import {shape, func, string} from "prop-types"
 
 import Fragment from "common/component/Fragment"
@@ -11,52 +11,67 @@ import Fields from "module/auth/common/component/Form/Fields"
 import Button from "module/auth/common/component/Form/Button"
 import Footer from "module/auth/common/component/Form/Footer"
 
-import Model from "./LoginModel"
+import Model from "./Model"
 
 import {container} from "./login.sss"
 
-const Login = ({auth}) => (
-  <Fragment>
-    <Title title="Login" />
-    <Form class={container}>
-      <Fields>
-        <Input
-          type="email"
-          name="login"
-          placeholder="Email or login..."
-          autocomplete="username email"
-          value={auth.login}
-          onInput={auth.updateLogin}
-        />
-        <Input
-          type="password"
-          name="password"
-          placeholder="Password..."
-          autocomplete="off"
-          value={auth.password}
-          onInput={auth.updatePassword}
-        />
-        <Button>Log in</Button>
-      </Fields>
-      <Footer>
-        <Link href to="/auth/signup">Have no account yet?</Link>
-        <Link href to="/auth/recover">Forgot your password?</Link>
-      </Footer>
-    </Form>
-  </Fragment>
-)
+class Login extends Component {
+  static getInitialProps = async () => ({
+    auth: Model.create({})
+  })
 
-Login.getInitialProps = async () => ({
-  auth: Model.create({})
-})
+  static propTypes = {
+    auth: shape({
+      login: string,
+      password: string,
+      updateLogin: func.isRequired,
+      updatePassword: func.isRequired,
+    }).isRequired,
+    history: shape({
+      push: func.isRequired
+    }).isRequired
+  }
 
-Login.propTypes = {
-  auth: shape({
-    login: string,
-    password: string,
-    updateLogin: func.isRequired,
-    updatePassword: func.isRequired,
-  }).isRequired
+  __login = () => {
+    this.props.auth.authenticate()
+      .then(() => this.props.history.push("/"))
+      .catch(console.error)
+  }
+
+  render() {
+    const {auth} = this.props
+
+    return (
+      <Fragment>
+        <Title title="Login" />
+        <Form class={container} onSubmit={this.__login}>
+          <Fields>
+            <Input
+              type="email"
+              name="login"
+              placeholder="Email or login..."
+              autocomplete="username email"
+              value={auth.login}
+              onInput={auth.updateLogin}
+            />
+            <Input
+              type="password"
+              name="password"
+              placeholder="Password..."
+              autocomplete="off"
+              value={auth.password}
+              onInput={auth.updatePassword}
+            />
+            <Button>Log in</Button>
+          </Fields>
+          <Footer>
+            <Link href to="/auth/signup">Have no account yet?</Link>
+            <Link href to="/auth/recover">Forgot your password?</Link>
+          </Footer>
+        </Form>
+      </Fragment>
+    )
+  }
 }
 
 export default Login

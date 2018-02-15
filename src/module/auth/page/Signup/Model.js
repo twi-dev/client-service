@@ -2,9 +2,7 @@ import {types, flow} from "mobx-state-tree"
 
 import {mutate} from "core/transport/graphql"
 
-import db from "core/db"
-import filter from "core/helper/iterator/objectFilter"
-import map from "core/helper/iterator/objectMapToArrayTasks"
+import saveTokens from "core/auth/saveTokens"
 import updateTextField from "common/model/action/updateTextField"
 
 import createUser from "./createUser.graphql"
@@ -36,11 +34,7 @@ const actions = self => ({
       }
     })
 
-    const tokens = filter(
-      res.data.createUser, (_, key) => key === "__typename"
-    )
-
-    yield Promise.all(map(tokens, (token, name) => db.setItem(name, token)))
+    yield saveTokens(res.data.createUser)
   })
 })
 

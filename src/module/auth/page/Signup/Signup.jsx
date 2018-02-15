@@ -11,7 +11,7 @@ import Fields from "module/auth/common/component/Form/Fields"
 import Button from "module/auth/common/component/Form/Button"
 import Footer from "module/auth/common/component/Form/Footer"
 
-import Model from "./SignupModel"
+import Model from "./Model"
 
 import {container, field, button, linkLogin, linkRecover} from "./signup.sss"
 
@@ -33,7 +33,7 @@ class Login extends Component {
     }).isRequired
   }
 
-  __login = () => {
+  __signup = () => {
     this.props.auth.signup()
       .then(() => this.props.history.push("/"))
       .catch(console.error)
@@ -45,7 +45,7 @@ class Login extends Component {
     return (
       <Fragment>
         <Title title="Signup" />
-        <Form class={container} onSubmit={this.__login}>
+        <Form class={container} onSubmit={this.__signup}>
           <Fields>
             <Input
               type="text"

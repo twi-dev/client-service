@@ -1,6 +1,8 @@
-import {types} from "mobx-state-tree"
+import {types, flow} from "mobx-state-tree"
 
-import client from "core/transport/graphql"
+import {mutate} from "core/transport/graphql"
+
+import saveTokens from "core/auth/saveTokens"
 import updateTextField from "common/model/action/updateTextField"
 
 import authenticate from "./authenticate.graphql"
@@ -15,12 +17,21 @@ const schema = {
 const actions = self => ({
   updateLogin: updateTextField(self),
   updatePassword: updateTextField(self),
-  authenticate(cb) {
+
+  authenticate: flow(function* () {
     const {login, password} = self
 
-    client.query({query: authenticate, variables: {login, password}})
-      .then(cb)
-  }
+    const res = yield mutate({
+      query: authenticate,
+      variables: {
+        credentials: {
+          login, password
+        }
+      }
+    })
+
+    yield saveTokens(res.data.authenticate)
+  })
 })
 
 const Login = model("Login", schema).actions(actions)
