@@ -1,5 +1,7 @@
 import {h, Component} from "preact"
 
+import isFunction from "lodash/isFunction"
+
 const withErrorHandler = errorComponent => Target => {
   const name = Target.displayName || Target.name || "Unknown"
 
@@ -23,6 +25,10 @@ const withErrorHandler = errorComponent => Target => {
         ...this.props, onError: this.__onError
       })
     }
+  }
+
+  if (isFunction(Target.getInitialProps)) {
+    ErrorHandler.getInitialProps = Target.getInitialProps
   }
 
   return ErrorHandler

@@ -3,6 +3,7 @@ import {h, Component} from "preact"
 import {func} from "prop-types"
 
 import waterfall from "p-waterfall"
+import isFunction from "lodash/isFunction"
 
 import db from "core/db"
 import saveTokens from "core/auth/saveTokens"
@@ -14,8 +15,8 @@ import refresh from "./refreshAccessToken.gql"
 const withAuth = Target => {
   const name = Target.displayName || Target.name || "Unknown"
 
-  class AuthGate extends Component {
-    static displayName = `${AuthGate.name}(${name})`
+  class Auth extends Component {
+    static displayName = `${Auth.name}(${name})`
 
     static propTypes = {
       onError: func.isRequired
@@ -78,8 +79,6 @@ const withAuth = Target => {
     __onSuccess = () => void this.setState({isSuccess: true})
 
     render() {
-      console.log(this.props)
-
       if (!this.state.isSuccess) {
         return <div>Authenticate....</div>
       }
@@ -88,7 +87,11 @@ const withAuth = Target => {
     }
   }
 
-  return AuthGate
+  if (isFunction(Target.getInitialProps)) {
+    Auth.getInitialProps = Target.getInitialProps
+  }
+
+  return Auth
 }
 
 export default withAuth
