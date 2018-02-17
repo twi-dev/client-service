@@ -21,6 +21,7 @@ class Login extends Component {
   })
 
   static propTypes = {
+    onError: func.isRequired,
     auth: shape({
       login: string,
       password: string,
@@ -35,7 +36,7 @@ class Login extends Component {
   __login = () => {
     this.props.auth.authenticate()
       .then(() => this.props.history.push("/"))
-      .catch(console.error)
+      .catch(this.props.onError)
   }
 
   render() {
@@ -62,7 +63,7 @@ class Login extends Component {
               value={auth.password}
               onInput={auth.updatePassword}
             />
-            <Button>Log in</Button>
+            <Button disabled={!auth.isValid}>Log in</Button>
           </Fields>
           <Footer>
             <Link href to="/auth/signup">Have no account yet?</Link>

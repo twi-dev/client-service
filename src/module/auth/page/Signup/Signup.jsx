@@ -75,7 +75,7 @@ class Login extends Component {
               value={auth.password}
               onInput={auth.updatePassword}
             />
-            <Button class={button}>Sign up</Button>
+            <Button class={button} disabled={!auth.isValid}>Sign up</Button>
           </Fields>
           <Footer>
             <Link class={linkLogin} href to="/auth/login">

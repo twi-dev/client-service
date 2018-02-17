@@ -34,7 +34,15 @@ const actions = self => ({
   })
 })
 
-const Login = model("Login", schema).actions(actions)
+const views = self => ({
+  get isValid() {
+    const {login, password} = self
+
+    return !!(String(login) && String(password))
+  }
+})
+
+const Login = model("Login", schema).actions(actions).views(views)
 
 export default Login
 export {schema}
