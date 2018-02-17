@@ -1,0 +1,7 @@
+mutation AuthTefreshToken($refreshToken: String!) {
+  refreshAccessToken(refreshToken: $refreshToken) {
+    type
+    expires
+    payload
+  }
+}
