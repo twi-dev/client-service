@@ -17,14 +17,11 @@ DefaultError.propTypes = {
   error: instanceOf(Error).isRequired
 }
 
+@withErrorHandler(DefaultError)
 class ViewLoader extends Component {
   static propTypes = {
     component: oneOfType([string, func]).isRequired,
-    onError: func // FIXME: Make it REQUIRED
-  }
-
-  static defaultProps = {
-    onError: console.error
+    onError: func.isRequired // FIXME: Make it REQUIRED
   }
 
   constructor(...args) {
