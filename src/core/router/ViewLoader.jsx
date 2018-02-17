@@ -47,7 +47,7 @@ class ViewLoader extends Component {
 
   __onComponentReceived = component => new Promise((resolve, reject) => {
     if (!isFunction(component.getInitialProps)) {
-      return resolve(component)
+      return resolve(withErrorHandler(DefaultError)(component))
     }
 
     const onFulfilled = initials => resolve(
