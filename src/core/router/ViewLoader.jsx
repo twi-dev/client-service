@@ -1,13 +1,21 @@
 import {h, Component} from "preact"
-import {string, func, oneOfType} from "prop-types"
+import {string, func, oneOfType, instanceOf} from "prop-types"
 
 import omit from "lodash/omit"
+import compose from "lodash/fp/compose"
 import isFunction from "lodash/isFunction"
 import waterfall from "p-waterfall"
 
 import Loader from "common/component/Loader/Page"
 
+import withErrorHandler from "core/error/withErrorHandler"
 import connect from "core/model/connect"
+
+const DefaultError = ({error}) => <div>{String(error)}</div>
+
+DefaultError.propTypes = {
+  error: instanceOf(Error).isRequired
+}
 
 class ViewLoader extends Component {
   static propTypes = {
@@ -45,7 +53,9 @@ class ViewLoader extends Component {
       return resolve(component)
     }
 
-    const onFulfilled = initials => resolve(connect(initials)(component))
+    const onFulfilled = initials => resolve(
+      compose(withErrorHandler(DefaultError), connect(initials))(component)
+    )
 
     const ctx = omit(this.props, ["route", "component"])
 
@@ -57,7 +67,7 @@ class ViewLoader extends Component {
   render(props) {
     const {isReady, component} = this.state
 
-    return h(isReady ? component : Loader, props)
+    return h(isReady ? component : Loader, omit(props, "onError"))
   }
 }
 

@@ -13,12 +13,14 @@ const connect = models => Target => {
 
   const name = Target.displayName || Target.name || "Unknown"
 
-  const Connect = props => h(
+  const Connect = props => (
     // Render mobx-react Provier with given models instances.
-    Provider, models,
+    h(
+      Provider, models,
 
-    // Connect Target component with models, subscribe and render.
-    h(compose(inject(mapModelsToProps), observer)(Target), props)
+      // Connect Target component with models, subscribe and render.
+      h(compose(inject(mapModelsToProps), observer)(Target), props)
+    )
   )
 
   Connect.displayName = `${Connect.name}(${name})`

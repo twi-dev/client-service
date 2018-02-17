@@ -5,7 +5,7 @@ import {mutate} from "core/transport/graphql"
 import saveTokens from "core/auth/saveTokens"
 import updateTextField from "common/model/action/updateTextField"
 
-import createUser from "./createUser.graphql"
+import createUser from "./createUser.gql"
 
 const {model, optional, string} = types
 
@@ -20,7 +20,7 @@ const actions = self => ({
   updateEmail: updateTextField(self),
   updatePassword: updateTextField(self),
 
-  signup: flow(function* () {
+  createUser: flow(function* () {
     const {login, email, password} = self
 
     const res = yield mutate({

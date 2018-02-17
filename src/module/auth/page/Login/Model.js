@@ -5,7 +5,7 @@ import {mutate} from "core/transport/graphql"
 import saveTokens from "core/auth/saveTokens"
 import updateTextField from "common/model/action/updateTextField"
 
-import authenticate from "./authenticate.graphql"
+import authenticate from "./authenticate.gql"
 
 const {model, optional, string} = types
 

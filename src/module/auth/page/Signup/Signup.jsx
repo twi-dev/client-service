@@ -13,7 +13,7 @@ import Footer from "module/auth/common/component/Form/Footer"
 
 import Model from "./Model"
 
-import {container, field, button, linkLogin, linkRecover} from "./signup.sss"
+import {container, field, button, linkLogin} from "./signup.sss"
 
 class Login extends Component {
   static getInitialProps = async () => ({
@@ -21,6 +21,7 @@ class Login extends Component {
   })
 
   static propTypes = {
+    onError: func.isRequired,
     auth: shape({
       login: string,
       password: string,
@@ -34,9 +35,9 @@ class Login extends Component {
   }
 
   __signup = () => {
-    this.props.auth.signup()
+    this.props.auth.createUser()
       .then(() => this.props.history.push("/"))
-      .catch(console.error)
+      .catch(this.props.onError)
   }
 
   render() {
@@ -74,14 +75,11 @@ class Login extends Component {
               value={auth.password}
               onInput={auth.updatePassword}
             />
-            <Button class={button}>Log in</Button>
+            <Button class={button}>Sign up</Button>
           </Fields>
           <Footer>
             <Link class={linkLogin} href to="/auth/login">
               Already have an account?
-            </Link>
-            <Link class={linkRecover} href to="/auth/recover">
-              Forgot your password?
             </Link>
           </Footer>
         </Form>
