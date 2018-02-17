@@ -10,6 +10,7 @@ import saveTokens from "core/auth/saveTokens"
 
 import {mutate} from "core/transport/graphql"
 
+import isTokenExpired from "./isTokenExpired"
 import refresh from "./refreshAccessToken.gql"
 
 const withAuth = Target => {
@@ -32,7 +33,7 @@ const withAuth = Target => {
       }
 
       waterfall([
-        this.__isTokenExpired,
+        isTokenExpired,
         this.__tryRefreshToken,
         this.__onSuccess
       ]).catch(this.__onError)
@@ -44,16 +45,7 @@ const withAuth = Target => {
         : this.props.onError(error)
     )
 
-    __isTokenExpired = async () => {
-      const token = await db.getItem("accessToken")
-
-      const now = new Date()
-      const expires = new Date(token.expires)
-
-      return now.getTime() >= expires.getTime()
-    }
-
-    __tryRefreshToken = async isExpired => {
+    __tryRefreshToken = async (isExpired = true) => {
       if (!isExpired) {
         return
       }
