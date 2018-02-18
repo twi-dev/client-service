@@ -1,0 +1,17 @@
+query GetViewer {
+  viewer {
+    id
+    login
+    dates {
+      registeredAt
+    }
+    role
+    status
+    contacts {
+      fb
+      twitter
+      vk
+    }
+    email
+  }
+}
