@@ -1,12 +1,13 @@
 import {h, Component} from "preact"
 import {func} from "prop-types"
+import {observer} from "mobx-preact"
 import {Redirect} from "react-router-dom"
 
 import isFunction from "lodash/isFunction"
 
 import Loader from "common/component/Loader/Page"
 import isAccessExpired from "core/auth/isTokenExpired"
-import db from "core/db"
+import db from "core/db/tokens"
 
 const withRedirect = Target => {
   class AuthRedirect extends Component {
@@ -41,7 +42,7 @@ const withRedirect = Target => {
         return <Redirect to="/" />
       }
 
-      return <Target {...this.props} />
+      return h(observer(Target), this.props)
     }
   }
 

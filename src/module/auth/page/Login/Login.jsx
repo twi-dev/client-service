@@ -51,10 +51,10 @@ class Login extends Component {
         <Form class={container} onSubmit={this.__login}>
           <Fields>
             <Input
-              type="email"
+              type="text"
               name="login"
               placeholder="Email or login..."
-              autocomplete="username email"
+              autocomplete="username"
               value={auth.login}
               onInput={auth.updateLogin}
             />

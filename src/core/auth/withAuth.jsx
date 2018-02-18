@@ -1,11 +1,12 @@
 // UNAUTHORIZED_EXCEPTION
 import {h, Component} from "preact"
 import {func} from "prop-types"
+import {observer} from "mobx-preact"
 
 import waterfall from "p-waterfall"
 import isFunction from "lodash/isFunction"
 
-import db from "core/db"
+import db from "core/db/tokens"
 import saveTokens from "core/auth/saveTokens"
 
 import {mutate} from "core/transport/graphql"
@@ -75,7 +76,7 @@ const withAuth = Target => {
         return <div>Authenticate....</div>
       }
 
-      return h(Target, this.props)
+      return h(observer(Target), this.props)
     }
   }
 

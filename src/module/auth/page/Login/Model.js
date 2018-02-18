@@ -22,7 +22,7 @@ const actions = self => ({
     const {login, password} = self
 
     const res = yield mutate({
-      query: authenticate,
+      mutation: authenticate,
       variables: {
         credentials: {
           login, password

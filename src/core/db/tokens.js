@@ -1,5 +1,5 @@
 import createConnection from "./createConnection"
 
-const db = createConnection("internals")
+const db = createConnection("tokens")
 
 export default db

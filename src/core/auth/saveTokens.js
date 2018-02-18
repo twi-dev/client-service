@@ -1,6 +1,6 @@
 import map from "core/helper/iterator/objectMapToArrayTasks"
 import filter from "core/helper/iterator/objectFilter"
-import db from "core/db"
+import db from "core/db/tokens"
 
 /**
  * @return {Promise}
