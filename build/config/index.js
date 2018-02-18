@@ -55,7 +55,7 @@ const configure = env => ({
     alias: {
       react: "preact-compat",
       "react-dom": "preact-compat",
-    },
+    }
   },
   plugins: readPlugins(env),
   module: {

@@ -1,0 +1,11 @@
+query GetUser($login: Login!) {
+  user(login: $login) {
+    id
+    login
+    dates {
+      registeredAt
+    }
+    role
+    status
+  }
+}
