@@ -1,7 +1,7 @@
 import {h, render} from "preact"
 
 // Imprort global styles
-import "common/style/main.sss"
+import "./main.sss"
 
 const container = document.querySelector("#twi-root")
 
