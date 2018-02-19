@@ -1,5 +1,5 @@
 import {h, Component} from "preact"
-import {string, func, oneOfType, instanceOf} from "prop-types"
+import {string, func, oneOfType} from "prop-types"
 
 import omit from "lodash/omit"
 import compose from "lodash/fp/compose"
@@ -7,17 +7,12 @@ import isFunction from "lodash/isFunction"
 import waterfall from "p-waterfall"
 
 import Loader from "common/component/Loader/Page"
+import ApplicationError from "core/page/error/Application"
 
 import withErrorHandler from "core/error/withErrorHandler"
 import connect from "core/model/connect"
 
-const DefaultError = ({error}) => <div>{String(error)}</div>
-
-DefaultError.propTypes = {
-  error: instanceOf(Error).isRequired
-}
-
-@withErrorHandler(DefaultError)
+@withErrorHandler(ApplicationError)
 class ViewLoader extends Component {
   static propTypes = {
     component: oneOfType([string, func]).isRequired,
@@ -47,11 +42,11 @@ class ViewLoader extends Component {
 
   __onComponentReceived = component => new Promise((resolve, reject) => {
     if (!isFunction(component.getInitialProps)) {
-      return resolve(withErrorHandler(DefaultError)(component))
+      return resolve(withErrorHandler(ApplicationError)(component))
     }
 
     const onFulfilled = initials => resolve(
-      compose(withErrorHandler(DefaultError), connect(initials))(component)
+      compose(withErrorHandler(ApplicationError), connect(initials))(component)
     )
 
     const ctx = omit(this.props, ["route", "component"])
