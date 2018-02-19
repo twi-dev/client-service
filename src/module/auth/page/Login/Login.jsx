@@ -56,7 +56,7 @@ class Login extends Component {
               placeholder="Email or login..."
               autocomplete="username"
               value={auth.login}
-              onInput={auth.updateLogin}
+              onInput={auth.updateTextField}
             />
             <Input
               type="password"
@@ -64,7 +64,7 @@ class Login extends Component {
               placeholder="Password..."
               autocomplete="off"
               value={auth.password}
-              onInput={auth.updatePassword}
+              onInput={auth.updateTextField}
             />
             <Button disabled={!auth.isValid}>Log in</Button>
           </Fields>

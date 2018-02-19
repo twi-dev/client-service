@@ -58,7 +58,7 @@ class Login extends Component {
               autocomplete="off"
               class={field}
               value={auth.login}
-              onInput={auth.updateLogin}
+              onInput={auth.updateTextField}
             />
             <Input
               type="email"
@@ -67,7 +67,7 @@ class Login extends Component {
               autocomplete="off"
               class={field}
               value={auth.email}
-              onInput={auth.updateEmail}
+              onInput={auth.updateTextField}
             />
             <Input
               type="password"
@@ -76,7 +76,7 @@ class Login extends Component {
               autocomplete="off"
               class={field}
               value={auth.password}
-              onInput={auth.updatePassword}
+              onInput={auth.updateTextField}
             />
             <Button class={button} disabled={!auth.isValid}>Sign up</Button>
           </Fields>

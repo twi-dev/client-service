@@ -15,8 +15,7 @@ const schema = {
 }
 
 const actions = self => ({
-  updateLogin: updateTextField(self),
-  updatePassword: updateTextField(self),
+  updateTextField: updateTextField(self),
 
   authenticate: flow(function* () {
     const {login, password} = self
