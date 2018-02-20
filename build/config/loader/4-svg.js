@@ -16,6 +16,25 @@ const svg = () => ({
       options: {
         jsx: true
       }
+    },
+    {
+      loader: "svgo-loader",
+      options: {
+        plugins: [
+          {
+            convertColors: {
+              shorthex: true
+            }
+          },
+          {
+            removeComments: true
+          },
+          {
+            // Should be FALSE because of "viewBox" needed for image scale
+            removeViewBox: false
+          }
+        ]
+      }
     }
   ]
 })

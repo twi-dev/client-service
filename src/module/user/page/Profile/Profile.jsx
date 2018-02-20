@@ -3,11 +3,19 @@ import {objectOf, string} from "prop-types"
 
 import {query} from "core/transport/graphql"
 
+import Title from "common/component/Title"
+import Fragment from "common/component/Fragment"
+
 import Model from "common/model/store/user/User"
 
 import getUser from "./user.gql"
 
-const Profile = ({user}) => <div>{JSON.stringify(user)}</div>
+const Profile = ({user}) => (
+  <Fragment>
+    <Title title={`${user.login}'s Profile`} />
+    <div>{JSON.stringify(user)}</div>
+  </Fragment>
+)
 
 Profile.getInitialProps = async ({match}) => {
   const {login} = match.params
