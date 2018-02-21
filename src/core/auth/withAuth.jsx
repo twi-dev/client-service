@@ -36,7 +36,6 @@ const withAuth = Target => {
       waterfall([
         isTokenExpired,
         this.__tryRefreshToken,
-        this.__onSuccess
       ]).catch(this.__onError)
     }
 
@@ -48,7 +47,7 @@ const withAuth = Target => {
 
     __tryRefreshToken = async (isExpired = true) => {
       if (!isExpired) {
-        return
+        return void this.__setState({isSuccess: true})
       }
 
       const refreshToken = await db.getItem("refreshToken")
@@ -67,9 +66,9 @@ const withAuth = Target => {
       const accessToken = res.data.refreshAccessToken
 
       await saveTokens({accessToken})
-    }
 
-    __onSuccess = () => void this.setState({isSuccess: true})
+      this.__setState({isSuccess: true})
+    }
 
     render() {
       if (!this.state.isSuccess) {

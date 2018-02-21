@@ -6,7 +6,7 @@ import compose from "lodash/fp/compose"
 import isFunction from "lodash/isFunction"
 import waterfall from "p-waterfall"
 
-import Loader from "common/component/Loader/Page"
+import Loading from "common/component/Loading/Page"
 import ApplicationError from "core/page/error/Application"
 
 import withErrorHandler from "core/error/withErrorHandler"
@@ -59,7 +59,7 @@ class ViewLoader extends Component {
   render(props) {
     const {isReady, component} = this.state
 
-    return h(isReady ? component : Loader, omit(props, "onError"))
+    return h(isReady ? component : Loading, omit(props, "onError"))
   }
 }
 

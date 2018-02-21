@@ -27,7 +27,8 @@ function extractRoute(prev, filename) {
     res.push({path, component, filename})
   }
 
-  prev.push(...res)
+  // Add home route on top
+  prefix === "home" ? prev.unshift(...res) : prev.push(...res)
 
   return prev
 }

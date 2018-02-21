@@ -7,7 +7,7 @@ const container = document.querySelector("#twi-root")
 
 let root
 function init() {
-  const Application = require("core/container/Application").default
+  const Application = require("./Application").default
 
   root = render(<Application />, container, root)
 }
@@ -16,7 +16,7 @@ function init() {
 if (module.hot) {
   require("preact/devtools") // Inject Preact dev tools
 
-  module.hot.accept(["../container/Application"], init)
+  module.hot.accept(["./Application"], init)
 }
 
 // Init the application
