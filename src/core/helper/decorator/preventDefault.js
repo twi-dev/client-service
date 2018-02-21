@@ -1,7 +1,8 @@
 import isFunction from "lodash/isFunction"
+import debounce from "lodash/debounce"
 
-const prevent = fn => event => void event.preventDefault(void fn(event))
+const decorate = fn => event => event.preventDefault(void debounce(fn)(event))
 
-const preventDefault = fn => prevent(isFunction(fn) ? fn : () => {})
+const preventDefault = fn => decorate(isFunction(fn) ? fn : () => {})
 
 export default preventDefault
