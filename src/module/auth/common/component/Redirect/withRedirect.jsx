@@ -5,7 +5,7 @@ import {Redirect} from "react-router-dom"
 
 import isFunction from "lodash/isFunction"
 
-import Loader from "common/component/Loader/Page"
+import Loading from "common/component/Loading/Page"
 import isAccessExpired from "core/auth/isTokenExpired"
 import db from "core/db/tokens"
 
@@ -35,7 +35,7 @@ const withRedirect = Target => {
       const {isChecked, isExpired} = this.state
 
       if (!isChecked) {
-        return <Loader />
+        return <Loading />
       }
 
       if (!isExpired) {
