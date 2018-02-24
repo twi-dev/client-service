@@ -16,5 +16,4 @@ const schema = {
 
 const User = model("User", schema)
 
-export {schema}
 export default User

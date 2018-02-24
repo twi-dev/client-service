@@ -44,4 +44,3 @@ const views = self => ({
 const Login = model("Login", schema).actions(actions).views(views)
 
 export default Login
-export {schema}

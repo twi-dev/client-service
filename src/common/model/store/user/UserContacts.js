@@ -11,5 +11,4 @@ const schema = {
 
 const User = model("UserContacts", schema)
 
-export {schema}
 export default User

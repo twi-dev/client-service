@@ -11,5 +11,4 @@ const schema = {
 
 const CommonDates = model("CommonDates", schema)
 
-export {schema}
 export default CommonDates
