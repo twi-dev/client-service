@@ -10,7 +10,7 @@ import createUser from "./createUser.gql"
 const {model, optional, string} = types
 
 const schema = {
-  login: optional(string, ""),
+  username: optional(string, ""),
   email: optional(string, ""),
   password: optional(string, "")
 }
@@ -19,7 +19,8 @@ const actions = self => ({
   updateTextField: updateTextField(self),
 
   createUser: flow(function* () {
-    const {login, email, password} = self
+    const {email, password} = self
+    const login = self.username
 
     const res = yield mutate({
       mutation: createUser,
@@ -38,9 +39,9 @@ const actions = self => ({
 
 const views = self => ({
   get isValid() {
-    const {login, email, password} = self
+    const {username, email, password} = self
 
-    return !!(String(login) && String(email) && String(password))
+    return !!(String(username) && String(email) && String(password))
   }
 })
 

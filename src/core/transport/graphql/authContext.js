@@ -3,7 +3,7 @@ import {setContext} from "apollo-link-context"
 import capitalize from "lodash/capitalize"
 import isEmpty from "lodash/isEmpty"
 
-import db from "core/db"
+import db from "core/db/tokens"
 
 const assign = Object.assign
 

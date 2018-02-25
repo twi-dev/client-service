@@ -10,7 +10,7 @@ import authenticate from "./authenticate.gql"
 const {model, optional, string} = types
 
 const schema = {
-  login: optional(string, ""),
+  username: optional(string, ""),
   password: optional(string, "")
 }
 
@@ -18,7 +18,8 @@ const actions = self => ({
   updateTextField: updateTextField(self),
 
   authenticate: flow(function* () {
-    const {login, password} = self
+    const login = self.username
+    const password = self.password
 
     const res = yield mutate({
       mutation: authenticate,
@@ -35,9 +36,9 @@ const actions = self => ({
 
 const views = self => ({
   get isValid() {
-    const {login, password} = self
+    const {username, password} = self
 
-    return !!(String(login) && String(password))
+    return !!(String(username) && String(password))
   }
 })
 

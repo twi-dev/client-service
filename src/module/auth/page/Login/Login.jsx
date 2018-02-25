@@ -20,16 +20,14 @@ import {container} from "./login.sss"
 @withRedirect
 class Login extends Component {
   static getInitialProps = async () => ({
-    auth: Model.create({})
+    login: Model.create({})
   })
 
   static propTypes = {
     onError: func.isRequired,
-    auth: shape({
+    login: shape({
       login: string,
       password: string,
-      updateLogin: func.isRequired,
-      updatePassword: func.isRequired,
     }).isRequired,
     history: shape({
       push: func.isRequired
@@ -37,13 +35,14 @@ class Login extends Component {
   }
 
   __login = () => {
-    this.props.auth.authenticate()
+    this.props.login.authenticate()
       .then(() => this.props.history.push("/"))
       .catch(this.props.onError)
   }
 
   render() {
-    const {auth} = this.props
+    const {login} = this.props
+    const {username, password} = login
 
     return (
       <Fragment>
@@ -52,21 +51,21 @@ class Login extends Component {
           <Fields>
             <Input
               type="text"
-              name="login"
-              placeholder="Email or login..."
+              name="username"
+              placeholder="Login..."
               autocomplete="username"
-              value={auth.login}
-              onInput={auth.updateTextField}
+              value={username}
+              onInput={login.updateTextField}
             />
             <Input
               type="password"
               name="password"
               placeholder="Password..."
               autocomplete="off"
-              value={auth.password}
-              onInput={auth.updateTextField}
+              value={password}
+              onInput={login.updateTextField}
             />
-            <Button disabled={!auth.isValid}>Log in</Button>
+            <Button disabled={!login.isValid}>Log in</Button>
           </Fields>
           <Footer>
             <Link href to="/auth/signup">Have no account yet?</Link>

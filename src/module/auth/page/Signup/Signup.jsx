@@ -20,12 +20,12 @@ import {container, field, button, linkLogin} from "./signup.sss"
 @withRedirect
 class Login extends Component {
   static getInitialProps = async () => ({
-    auth: Model.create({})
+    signup: Model.create({})
   })
 
   static propTypes = {
     onError: func.isRequired,
-    auth: shape({
+    signup: shape({
       login: string,
       password: string,
       updateLogin: func.isRequired,
@@ -38,13 +38,14 @@ class Login extends Component {
   }
 
   __signup = () => {
-    this.props.auth.createUser()
+    this.props.signup.createUser()
       .then(() => this.props.history.push("/"))
       .catch(this.props.onError)
   }
 
   render() {
-    const {auth} = this.props
+    const {signup} = this.props
+    const {username, email, password} = signup
 
     return (
       <Fragment>
@@ -53,12 +54,12 @@ class Login extends Component {
           <Fields>
             <Input
               type="text"
-              name="login"
+              name="username"
               placeholder="Login..."
               autocomplete="off"
               class={field}
-              value={auth.login}
-              onInput={auth.updateTextField}
+              value={username}
+              onInput={signup.updateTextField}
             />
             <Input
               type="email"
@@ -66,8 +67,8 @@ class Login extends Component {
               placeholder="Email..."
               autocomplete="off"
               class={field}
-              value={auth.email}
-              onInput={auth.updateTextField}
+              value={email}
+              onInput={signup.updateTextField}
             />
             <Input
               type="password"
@@ -75,10 +76,10 @@ class Login extends Component {
               placeholder="Password..."
               autocomplete="off"
               class={field}
-              value={auth.password}
-              onInput={auth.updateTextField}
+              value={password}
+              onInput={signup.updateTextField}
             />
-            <Button class={button} disabled={!auth.isValid}>Sign up</Button>
+            <Button class={button} disabled={!signup.isValid}>Sign up</Button>
           </Fields>
           <Footer>
             <Link class={linkLogin} href to="/auth/login">
