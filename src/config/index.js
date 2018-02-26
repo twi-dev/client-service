@@ -4,7 +4,12 @@ const concat = require("core/helper/util/concat").default
 
 const defaults = require("../../config/default.yaml")
 
-const envSpecific = require(`../../config/${process.env.NODE_ENV}.yaml`)
+let envSpecific
+try {
+  envSpecific = require(`../../config/${process.env.NODE_ENV}.yaml`)
+} catch (_) {
+  envSpecific = {}
+}
 
 const env = {
   name: process.env.NODE_ENV,

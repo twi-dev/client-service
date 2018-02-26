@@ -16,6 +16,9 @@
     "@babel/syntax-dynamic-import",
     "@babel/proposal-decorators",
     "@babel/proposal-class-properties",
+    "@babel/proposal-optional-catch-binding",
+    "@babel/proposal-nullish-coalescing-operator",
+    "@babel/proposal-optional-chaining",
     ["@babel/proposal-object-rest-spread", {
       "useBuiltIns": true,
     }],
