@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 import Fragment from "common/component/Fragment"
 import Title from "common/component/Title"
 
-import {container, content, image} from "./not-found.sss"
+import {container, content, image, message, code} from "./not-found.sss"
 
 import Image from "./not-found.svg"
 
@@ -16,12 +16,13 @@ const NotFound = () => (
         <div class={image}>
           <Image />
         </div>
-        <div>
-          There are no books out there, princess!
+        <div class={message}>
+          <div>There are no books out there, princess!</div>
+          <div>
+            <Link href to="/">Let‘s go back home?</Link>
+          </div>
         </div>
-        <div>
-          <Link href to="/">Let‘s go back home?</Link>
-        </div>
+        <div class={code}>404</div>
       </div>
     </div>
   </Fragment>
