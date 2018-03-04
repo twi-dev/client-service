@@ -1,6 +1,6 @@
 [
   {
-    "path": "/:login",
+    "path": "/@:login",
     "component": "page/Profile"
   }
 ]

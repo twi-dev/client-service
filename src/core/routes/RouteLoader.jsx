@@ -13,10 +13,10 @@ import withErrorHandler from "core/error/withErrorHandler"
 import connect from "core/model/connect"
 
 @withErrorHandler(ApplicationError)
-class ViewLoader extends Component {
+class RouteLoader extends Component {
   static propTypes = {
     component: oneOfType([string, func]).isRequired,
-    onError: func.isRequired // FIXME: Make it REQUIRED
+    onError: func.isRequired
   }
 
   constructor(...args) {
@@ -42,11 +42,18 @@ class ViewLoader extends Component {
 
   __onComponentReceived = component => new Promise((resolve, reject) => {
     if (!isFunction(component.getInitialProps)) {
-      return resolve(withErrorHandler(ApplicationError)(component))
+      return resolve(
+        compose([
+          withErrorHandler(ApplicationError),
+        ])(component)
+      )
     }
 
     const onFulfilled = initials => resolve(
-      compose(withErrorHandler(ApplicationError), connect(initials))(component)
+      compose([
+        withErrorHandler(ApplicationError),
+        connect(initials)
+      ])(component)
     )
 
     const ctx = omit(this.props, ["route", "component"])
@@ -63,4 +70,4 @@ class ViewLoader extends Component {
   }
 }
 
-export default ViewLoader
+export default RouteLoader

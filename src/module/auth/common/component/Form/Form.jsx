@@ -19,14 +19,13 @@ const Form = ({children, onSubmit, ...props}) => (
 )
 
 Form.propTypes = {
-  onSubmit: func,
   class: types.string,
+  onSubmit: func.isRequired,
   children: arrayOf(element.isRequired).isRequired
 }
 
 Form.defaultProps = {
   class: undefined,
-  onSubmit: ev => console.log(ev)
 }
 
 export default observer(Form)

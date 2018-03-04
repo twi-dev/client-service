@@ -1,6 +1,6 @@
 [
   {
     "path": "/",
-    "component": "page/Home"
+    "component": "page/Feed"
   }
 ]

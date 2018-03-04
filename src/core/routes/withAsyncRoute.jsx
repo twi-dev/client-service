@@ -1,9 +1,9 @@
 import {h} from "preact"
 
-import ViewLoader from "./ViewLoader"
+import RouteLoader from "./RouteLoader"
 
 const withAsyncRoute = options => props => (
-  h(ViewLoader, {
+  h(RouteLoader, {
     ...props, ...options
   }, props.children)
 )

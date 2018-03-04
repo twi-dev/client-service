@@ -3,11 +3,11 @@ import {h} from "preact"
 import Fragment from "common/component/Fragment"
 import Title from "common/component/Title"
 
-const Home = () => (
+const Feed = () => (
   <Fragment>
     <Title title="Stories Feed" />
-    <div>Home page. The application includes dynamic routes, YAY!</div>
+    <div>Stories feed page.</div>
   </Fragment>
 )
 
-export default Home
+export default Feed
