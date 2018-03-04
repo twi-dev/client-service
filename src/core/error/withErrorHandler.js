@@ -2,7 +2,7 @@ import {h, Component} from "preact"
 
 import isFunction from "lodash/isFunction"
 
-// import NotFound from "core/page/error/Http/NotFound"
+import NotFound from "core/page/error/Http/NotFound"
 
 const withErrorHandler = errorComponent => Target => {
   const name = Target.displayName || Target.name || "Unknown"
@@ -29,6 +29,12 @@ const withErrorHandler = errorComponent => Target => {
         return h(Target, {
           ...this.props, onError: this.__onError
         })
+      }
+
+      // A lil hack. Maybe... Hope I'll find a better way to handle
+      // GraphQL errors over HTTP
+      if (error.graphQLErrors[0].code === "HTTP_NOT_FOUND_EXCEPTION") {
+        return h(NotFound)
       }
 
       return h(errorComponent, {error})
