@@ -19,7 +19,7 @@ const NotFound = () => (
         <div class={message}>
           <div>There are no books out there, princess!</div>
           <div>
-            <Link href to="/">Let‘s go back home?</Link>
+            <Link href to="/">Let‘s heading home?</Link>
           </div>
         </div>
         <div class={code}>404</div>

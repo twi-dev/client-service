@@ -1,18 +1,15 @@
 // UNAUTHORIZED_EXCEPTION
 import {h, Component} from "preact"
-import {func} from "prop-types"
+import {func, shape, string} from "prop-types"
 import {observer} from "mobx-preact"
 
-import waterfall from "p-waterfall"
 import isFunction from "lodash/isFunction"
 
 import db from "core/db/tokens"
-import saveTokens from "core/auth/saveTokens"
 
-import {mutate} from "core/transport/graphql"
+import AuthTokenPayload from "./model/AuthTokenPayload"
 
-import isTokenExpired from "./isTokenExpired"
-import refresh from "./refreshAccessToken.gql"
+const assign = Object.assign
 
 const withAuth = Target => {
   const name = Target.displayName || Target.name || "Unknown"
@@ -21,60 +18,68 @@ const withAuth = Target => {
     static displayName = `${Auth.name}(${name})`
 
     static propTypes = {
+      onError: func.isRequired,
+      auth: shape({
+        accessToken: shape({
+          payload: string.isRequired,
+          type: string.isRequired
+        }),
+        refreshToken: shape({
+          payload: string.isRequired,
+          type: string.isRequired
+        })
+      })
+    }
+
+    static defaultProps = {
+      auth: {
+        accessToken: null,
+        refreshToken: null
+      }
+    }
+
+    static async getInitialProps(...args) {
+      let props = {}
+
+      const accessToken = await db.getItem("accessToken")
+      const refreshToken = await db.getItem("refreshToken")
+
+      const auth = AuthTokenPayload.create({accessToken, refreshToken})
+
+      if (auth.isAccessExpired) {
+        await auth.refreshAccessToken()
+      }
+
+      if (isFunction(Target.getInitialProps)) {
+        props = assign({}, await Target.getInitialProps(...args))
+      }
+
+      return assign({}, props, {auth})
+    }
+
+    static propTypes = {
       onError: func.isRequired
     }
 
-    state = {
-      isSuccess: false
-    }
-
     componentWillMount() {
-      if (this.state.isSuccess) {
-        return
-      }
-
-      waterfall([
-        isTokenExpired,
-        this.__tryRefreshToken,
-      ]).catch(this.__onError)
+      // NOTE: 600000 = each 10 minutes.
+      this.__timer = setInterval(this.__refreshAccessOnTimer, 600000)
     }
 
-    __onError = error => (
-      error.code === "UNAUTHORIZED_EXCEPTION"
-        ? console.error(error)
-        : this.props.onError(error)
-    )
-
-    __tryRefreshToken = async (isExpired = true) => {
-      if (!isExpired) {
-        return void this.__setState({isSuccess: true})
+    componentWillUnmount() {
+      if (this.__timer) {
+        clearInterval(this.__timer)
       }
+    }
 
-      const refreshToken = await db.getItem("refreshToken")
+    __timer = null
 
-      if (refreshToken) {
-        throw new Error("No refresh token found. Need to authenticate first.")
-      }
-
-      const res = await mutate({
-        mutation: refresh,
-        variables: {
-          refreshToken: refreshToken.payload
-        }
-      })
-
-      const accessToken = res.data.refreshAccessToken
-
-      await saveTokens({accessToken})
-
-      this.__setState({isSuccess: true})
+    __refreshAccessOnTimer = () => {
+      this.props.auth.refreshAccessToken()
+        .catch(this.props.onError)
     }
 
     render() {
-      if (!this.state.isSuccess) {
-        return <div>Authenticate....</div>
-      }
-
       return h(observer(Target), this.props)
     }
   }
