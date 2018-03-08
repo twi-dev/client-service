@@ -1,44 +1,28 @@
 import {h, Component} from "preact"
-import {func} from "prop-types"
+import {shape, bool} from "prop-types"
 import {observer} from "mobx-preact"
 import {Redirect} from "react-router-dom"
 
 import isFunction from "lodash/isFunction"
 
-import Loading from "common/component/Loading/Page"
-import isAccessExpired from "core/auth/isTokenExpired"
-import db from "core/db/tokens"
+import withAuth from "core/auth/withAuth"
 
 const withRedirect = Target => {
   class AuthRedirect extends Component {
     static propTypes = {
-      onError: func.isRequired
+      auth: shape({
+        isAccessExpired: bool
+      })
     }
 
-    state = {
-      isChecked: false,
-      isExpired: true
+    static defaultProps = {
+      auth: {
+        isAccessExpired: true
+      }
     }
-
-    componentWillMount() {
-      this.__areTokensExpired()
-        .then(this.__onFulfilled).catch(this.props.onError)
-    }
-
-    __areTokensExpired = async () => (
-      !!((await isAccessExpired()) && !(await db.getItem("refreshToken")))
-    )
-
-    __onFulfilled = isExpired => this.setState({isExpired, isChecked: true})
 
     render() {
-      const {isChecked, isExpired} = this.state
-
-      if (!isChecked) {
-        return <Loading />
-      }
-
-      if (!isExpired) {
+      if (!this.props.auth.isAccessExpired) {
         return <Redirect to="/" />
       }
 
@@ -50,7 +34,7 @@ const withRedirect = Target => {
     AuthRedirect.getInitialProps = Target.getInitialProps
   }
 
-  return AuthRedirect
+  return withAuth(AuthRedirect)
 }
 
 export default withRedirect

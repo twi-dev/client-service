@@ -5,21 +5,17 @@ import isPlainObject from "lodash/isPlainObject"
 const isArray = Array.isArray
 
 function hasFiles(iterable) {
-  let res = false
-
   for (const value of iterator(iterable)) {
     if (isPlainObject(value) || isArray(value)) {
-      hasFiles(value)
+      if (hasFiles(value)) {
+        return true
+      }
     } else if (value instanceof File || value instanceof FileList) {
-      return res = true
-    }
-
-    if (res === true) {
-      break
+      return true
     }
   }
 
-  return res
+  return false
 }
 
 export default hasFiles
