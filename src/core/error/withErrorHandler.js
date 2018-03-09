@@ -37,7 +37,10 @@ const withErrorHandler = errorComponent => Target => {
 
       // A lil hack. Maybe... Hope I'll find a better way to handle
       // GraphQL errors over HTTP
-      if (error.graphQLErrors[0].code === "HTTP_NOT_FOUND_EXCEPTION") {
+      if (
+        error.graphQLErrors &&
+        error.graphQLErrors[0].code === "HTTP_NOT_FOUND_EXCEPTION"
+      ) {
         return h(NotFound)
       }
 

@@ -67,6 +67,12 @@ const configure = env => ({
       }
     }
   },
+  resolveLoader: {
+    modules: [
+      "node_modules",
+      join(__dirname, "..", "loader")
+    ]
+  },
   resolve: {
     extensions: [
       ".jsx", ".mjs", ".js", "json"
