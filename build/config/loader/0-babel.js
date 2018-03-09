@@ -1,5 +1,5 @@
 const babel = () => ({
-  test: /\.jsx?$/,
+  test: /\.(m?js|jsx)$/,
   exclude: /node_modules/,
   loader: "babel-loader",
   options: {
