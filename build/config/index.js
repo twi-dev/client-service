@@ -40,6 +40,7 @@ function readPlugins(env) {
 }
 
 const configure = env => ({
+  mode: env.dev ? "development" : "production",
   devtool: env.dev ? "eval-source-map" : false,
   performance: {
     hints: env.dev ? false : "error",
@@ -48,9 +49,27 @@ const configure = env => ({
     maxEntrypointSize: 320000,
     maxAssetSize: 320000
   },
+  optimization: {
+    minimize: false,
+    runtimeChunk: {
+      name: "runtime"
+    },
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+        commons: {
+          test: /\.jsx?/,
+          chunks: "all",
+          minChunks: 2,
+          name: "vendor",
+          enforce: true
+        }
+      }
+    }
+  },
   resolve: {
     extensions: [
-      ".jsx", ".js", "json"
+      ".jsx", ".mjs", ".js", "json"
     ],
     modules: [
       "node_modules",
@@ -67,12 +86,12 @@ const configure = env => ({
   },
   devServer: {
     hot: true,
-    hotOnly: true,
     compress: true,
     port: 1338,
     contentBase: join(ROOT, "static"),
     historyApiFallback: {
-      index: "view/container.html"
+      index: "view/container.html",
+      disableDotRule: true
     }
   },
   context: join(ROOT, "src"),
