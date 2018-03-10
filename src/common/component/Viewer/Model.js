@@ -1,15 +1,13 @@
 import {types} from "mobx-state-tree"
 
-import {schema as user} from "common/model/store/user/User"
+import User from "common/model/store/user/User"
 
-const {model, string} = types
+const {string} = types
 
 const schema = {
-  ...user,
   email: string
 }
 
-const Viewer = model("Viewer", schema)
+const Viewer = User.named("Viewer").props(schema)
 
-export {schema}
 export default Viewer

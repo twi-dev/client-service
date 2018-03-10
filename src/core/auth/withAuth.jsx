@@ -46,7 +46,7 @@ const withAuth = Target => {
 
       const auth = AuthTokenPayload.create({accessToken, refreshToken})
 
-      if (auth.isAccessExpired) {
+      if (auth.isAccessExpired && auth.refreshToken) {
         await auth.refreshAccessToken()
       }
 
@@ -82,10 +82,6 @@ const withAuth = Target => {
     render() {
       return h(observer(Target), this.props)
     }
-  }
-
-  if (isFunction(Target.getInitialProps)) {
-    Auth.getInitialProps = Target.getInitialProps
   }
 
   return Auth

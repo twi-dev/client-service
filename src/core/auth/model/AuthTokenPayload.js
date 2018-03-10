@@ -13,7 +13,7 @@ const {model, maybe} = types
 
 const schema = {
   accessToken: maybe(AuthAccessToken),
-  refreshToken: AuthrefreshToken
+  refreshToken: maybe(AuthrefreshToken)
 }
 
 const actions = self => ({

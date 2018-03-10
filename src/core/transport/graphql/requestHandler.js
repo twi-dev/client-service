@@ -28,7 +28,7 @@ function requestHandler(options = {}) {
   options = assign({}, defaults, options)
 
   const fetcher = options.fetch
-  const {includeExtensions, headers} = options
+  const {includeExtensions} = options
 
   let uri = options.uri
 
@@ -41,6 +41,8 @@ function requestHandler(options = {}) {
     const {operationName, query, variables, extensions} = operation
 
     const credentials = ctx.credentials || options.credentials
+
+    const headers = assign({}, options.headers, ctx.headers)
 
     let body = {operationName, variables}
 

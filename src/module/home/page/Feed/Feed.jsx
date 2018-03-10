@@ -3,6 +3,8 @@ import {h} from "preact"
 import Fragment from "common/component/Fragment"
 import Title from "common/component/Title"
 
+import withLayout from "common/component/Layout/withLayout"
+
 const Feed = () => (
   <Fragment>
     <Title title="Stories Feed" />
@@ -10,4 +12,4 @@ const Feed = () => (
   </Fragment>
 )
 
-export default Feed
+export default withLayout(Feed)
