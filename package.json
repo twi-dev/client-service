@@ -99,6 +99,7 @@
     "apollo-link": "1.2.1",
     "apollo-link-context": "1.0.7",
     "apollo-link-error": "1.0.7",
+    "awaity": "^0.0.30",
     "classnames": "2.2.5",
     "date-fns": "1.29.0",
     "graphql": "0.13.1",
