@@ -106,6 +106,7 @@
     "graphql": "0.13.1",
     "localforage": "1.6.0",
     "lodash": "4.17.5",
+    "lodash-decorators": "^4.5.0",
     "mobx": "4.1.0",
     "mobx-preact": "2.0.0",
     "mobx-state-tree": "2.0.1",
