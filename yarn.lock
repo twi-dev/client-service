@@ -7047,10 +7047,6 @@ mobx-state-tree@2.0.3:
   dependencies:
     mobx "^4.0.2"
 
-mobx@4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-4.1.1.tgz#7ce7ef92b22e85271d1fc274a124d7fa32fcceeb"
-
 mobx@^4.0.2:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/mobx/-/mobx-4.1.0.tgz#e4a9679cdafbe215b20e32ef93a7031845b3f1af"
