@@ -305,7 +305,7 @@
     "@babel/helper-plugin-utils" "7.0.0-beta.44"
     "@babel/plugin-syntax-decorators" "7.0.0-beta.44"
 
-"@babel/plugin-proposal-do-expressions@^7.0.0-beta.44":
+"@babel/plugin-proposal-do-expressions@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-do-expressions/-/plugin-proposal-do-expressions-7.0.0-beta.44.tgz#c88f2ef16388b27e039a941cbb0fd7e6dc8d85a3"
   dependencies:
@@ -792,9 +792,9 @@
   dependencies:
     sprintf-js "1.1.1"
 
-"@octetstream/object-to-form-data@0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@octetstream/object-to-form-data/-/object-to-form-data-0.3.1.tgz#8daae3267f30c09c1f0ee3d63ba93493a6bd733d"
+"@octetstream/object-to-form-data@0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@octetstream/object-to-form-data/-/object-to-form-data-0.4.0.tgz#2bb31b8470585ebbfc766e15c0b309ac8111a3b9"
   dependencies:
     lodash.isplainobject "4.0.6"
 
@@ -1369,7 +1369,7 @@ ava@0.25.0:
     unique-temp-dir "^1.0.0"
     update-notifier "^2.3.0"
 
-awaity@^1.0.0:
+awaity@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/awaity/-/awaity-1.0.0.tgz#f219a40fcaab6fd72f482ed958656ebc92254489"
 
@@ -6562,7 +6562,7 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash-decorators@^5.0.0:
+lodash-decorators@5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/lodash-decorators/-/lodash-decorators-5.0.0.tgz#daf8e6888a7831e6d4088db0ed39ecdc11ec85e5"
   dependencies:
