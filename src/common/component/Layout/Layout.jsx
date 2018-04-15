@@ -1,18 +1,15 @@
 import {h} from "preact"
 import {element, arrayOf} from "prop-types"
 
-import Fragment from "common/component/Fragment"
+import Menu from "./Menu"
 
-import Header from "./Header"
+import {container, content} from "./layout.sss"
 
 const Layout = ({children, ...props}) => (
-  <Fragment>
-    <Header {...props} />
-
-    {children}
-
-    <div>Shortcuts</div>
-  </Fragment>
+  <div class={container}>
+    <Menu {...props} />
+    <div class={content}>{children}</div>
+  </div>
 )
 
 Layout.propTypes = {

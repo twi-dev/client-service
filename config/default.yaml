@@ -6,3 +6,4 @@ server:
 graphql:
   endpoint: graphql
   subscriptions: graphql/subscriptions
+rewrites: null

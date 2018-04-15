@@ -2,6 +2,8 @@ import {extname, basename} from "path"
 
 import omit from "lodash/omit"
 
+import {rewrites} from "config"
+
 import withAsyncRoute from "./withAsyncRoute"
 
 const ctx = require.context("../../route", true, /\.(jsx?|json)$/)
@@ -23,6 +25,10 @@ function extractRoute(prev, filename) {
     const path = prefix === "home"
       ? `/${route.path.replace(/^\//, "")}`
       : `/${prefix}/${route.path.replace(/^\//, "")}`
+
+    if (path in rewrites) {
+      res.unshift({path: rewrites[path], component, filename})
+    }
 
     res.push({path, component, filename})
   }
