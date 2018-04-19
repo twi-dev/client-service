@@ -316,6 +316,13 @@
     "@babel/helper-plugin-utils" "7.0.0-beta.44"
     "@babel/plugin-syntax-optional-chaining" "7.0.0-beta.44"
 
+"@babel/plugin-proposal-pipeline-operator@^7.0.0-beta.44":
+  version "7.0.0-beta.44"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-pipeline-operator/-/plugin-proposal-pipeline-operator-7.0.0-beta.44.tgz#233041e3cf11fd108044e3cf40ac6ae4645725b8"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-beta.44"
+    "@babel/plugin-syntax-pipeline-operator" "7.0.0-beta.44"
+
 "@babel/plugin-proposal-unicode-property-regex@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-unicode-property-regex/-/plugin-proposal-unicode-property-regex-7.0.0-beta.44.tgz#5efb0ddbe6635b4cb6674e961a16c28cef3cdb7f"
@@ -381,6 +388,12 @@
 "@babel/plugin-syntax-optional-chaining@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-optional-chaining/-/plugin-syntax-optional-chaining-7.0.0-beta.44.tgz#3e41156dc1cc94b1b6cc21cfb96e50dda4ad9986"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-beta.44"
+
+"@babel/plugin-syntax-pipeline-operator@7.0.0-beta.44":
+  version "7.0.0-beta.44"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-pipeline-operator/-/plugin-syntax-pipeline-operator-7.0.0-beta.44.tgz#ab5af2743b05a542abab74d1d52a0fbd76889770"
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.44"
 
@@ -7019,7 +7032,7 @@ ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
-ms@^2.0.0:
+ms@^2.0.0, ms@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
 

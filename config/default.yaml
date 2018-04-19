@@ -1,3 +1,5 @@
+app:
+  name: Twilight's Library
 server:
   host: localhost
   port: 2319
@@ -6,4 +8,9 @@ server:
 graphql:
   endpoint: graphql
   subscriptions: graphql/subscriptions
+
+router:
+  home: "home"
+
+# DEPRECATED
 rewrites: null

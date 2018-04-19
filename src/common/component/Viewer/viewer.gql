@@ -1,6 +1,7 @@
 query GetViewer {
   viewer {
     id
+    email
     login
     dates {
       registeredAt
@@ -12,6 +13,5 @@ query GetViewer {
       twitter
       vk
     }
-    email
   }
 }

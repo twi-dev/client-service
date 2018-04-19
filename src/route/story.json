@@ -1,0 +1,10 @@
+[
+  {
+    "path": "/new",
+    "component": "page/New"
+  },
+  {
+    "path": "/:slug",
+    "component": "page/Details"
+  }
+]
