@@ -1,10 +1,12 @@
 import {basename, join} from "path"
 
-// import loadable from "react-loadable"
+import loadable from "react-loadable"
 import isPlainObject from "lodash/isPlainObject"
 import isEmpty from "lodash/isEmpty"
 import merge from "lodash/merge"
 import find from "lodash/find"
+
+import Loading from "common/component/Loading/Page"
 
 import config from "config"
 import iterator from "core/helper/iterator/objectIterator"
@@ -35,7 +37,11 @@ class Router {
     }
 
     const path = join("/", prefix, route.path.replace(/^\//, ""))
-    const component = require(`module/${prefix}/${route.component}`).default
+
+    const component = loadable({
+      loader: () => import(`module/${prefix}/${route.component}`),
+      loading: Loading
+    })
 
     return assign({}, route, {path, component})
   }

@@ -1,7 +1,5 @@
-import prefetch from "core/hoc/prefetch"
-import connect from "core/model/connect"
+import loadPage from "core/hoc/loadPage"
 
-export default prefetch(() => import("./New"), {
-  beforeLoad: () => ({state: {foo: "Foo"}}),
-  beforeRender: (Target, props) => connect(props.state)(Target)
+export default loadPage({
+  component: () => import("./New")
 })

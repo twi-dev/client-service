@@ -12,6 +12,7 @@ import ApplicationError from "core/page/error/Application"
 import withErrorHandler from "core/error/withErrorHandler"
 import connect from "core/model/connect"
 
+// DEPRECATED
 @withErrorHandler(ApplicationError)
 class RouteLoader extends Component {
   static propTypes = {

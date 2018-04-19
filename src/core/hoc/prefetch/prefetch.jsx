@@ -23,6 +23,8 @@ const defaults = {
   }
 }
 
+// !! DEPRECATED !! //
+
 /**
  * Load component chunk from server
  *
