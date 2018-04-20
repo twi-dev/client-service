@@ -1,6 +1,8 @@
 const readdirSync = require("fs").readdirSync
 const join = require("path").join
 
+const {devServer = {}} = require("../../package.json")
+
 const ROOT = join(__dirname, "..", "..")
 
 function mapDir(path, fn) {
@@ -54,18 +56,18 @@ const configure = env => ({
     runtimeChunk: {
       name: "runtime"
     },
-    splitChunks: {
-      cacheGroups: {
-        default: false,
-        commons: {
-          test: /\.jsx?/,
-          chunks: "all",
-          minChunks: 2,
-          name: "vendor",
-          enforce: true
-        }
-      }
-    }
+    // splitChunks: {
+    //   cacheGroups: {
+    //     default: false,
+    //     commons: {
+    //       test: /\.jsx?/,
+    //       chunks: "all",
+    //       minChunks: 2,
+    //       name: "vendor",
+    //       enforce: true
+    //     }
+    //   }
+    // }
   },
   resolveLoader: {
     modules: [
@@ -93,7 +95,7 @@ const configure = env => ({
   devServer: {
     hot: true,
     compress: true,
-    port: 1338,
+    port: devServer.port || 1339,
     contentBase: join(ROOT, "static"),
     historyApiFallback: {
       index: "view/container.html",

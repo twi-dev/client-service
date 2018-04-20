@@ -13,7 +13,7 @@ import getUser from "./user.gql"
 const Profile = ({user}) => (
   <Fragment>
     <Title title={user.login} />
-    <div>{JSON.stringify(user)}</div>
+    <div>{user.login}</div>
   </Fragment>
 )
 

@@ -4,6 +4,7 @@ import {func, shape, string} from "prop-types"
 import {observer} from "mobx-preact"
 
 import isFunction from "lodash/isFunction"
+import ms from "ms"
 
 import db from "core/db/tokens"
 
@@ -62,8 +63,7 @@ const withAuth = Target => {
     }
 
     componentWillMount() {
-      // NOTE: 600000 = each 10 minutes.
-      this.__timer = setInterval(this.__refreshAccessOnTimer, 600000)
+      this.__timer = setInterval(this.__refreshAccessOnTimer, ms("10m"))
     }
 
     componentWillUnmount() {

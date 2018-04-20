@@ -8,6 +8,7 @@ import withAsyncRoute from "./withAsyncRoute"
 
 const ctx = require.context("../../route", true, /\.(jsx?|json)$/)
 
+// DEPRECATED
 function extractRoute(prev, filename) {
   const ext = extname(filename)
   const prefix = basename(filename, ext)

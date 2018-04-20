@@ -3,7 +3,9 @@ import {Switch, Route} from "react-router-dom"
 
 import NotFound from "core/page/error/Http/NotFound"
 
-import routes from "./createRoutes"
+import getRoutes from "./getRoutes"
+
+const routes = getRoutes()
 
 const Routes = () => (
   <Switch>

@@ -1,6 +1,10 @@
 import {h, Component} from "preact"
 
+import isFunction from "lodash/isFunction"
+
 import {query} from "core/transport/graphql"
+
+import isAuthenticated from "core/auth/isAuthenticated"
 
 import Model from "./Model"
 
@@ -11,6 +15,16 @@ const assign = Object.assign
 const withViewer = Target => {
   class Viewer extends Component {
     static async getInitialProps(...args) {
+      if (!(await isAuthenticated())) {
+        if (isFunction(Target.getInitialProps)) {
+          return {
+            ...(await Target.getInitialProps(...args)), viewer: null
+          }
+        }
+
+        return {viewer: null}
+      }
+
       const res = await query({query: getViewer})
 
       const viewer = Model.create(res.data.viewer)
