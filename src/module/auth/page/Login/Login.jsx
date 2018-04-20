@@ -11,13 +11,13 @@ import Fields from "module/auth/common/component/Form/Fields"
 import Button from "module/auth/common/component/Form/Button"
 import Footer from "module/auth/common/component/Form/Footer"
 
-// import withRedirect from "module/auth/common/component/Redirect"
+import withRedirect from "module/auth/common/component/Redirect"
 
 import Model from "./Model"
 
 import {container} from "./login.sss"
 
-// @withRedirect
+@withRedirect
 class Login extends Component {
   static getInitialProps = async () => ({
     login: Model.create({})
