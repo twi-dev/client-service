@@ -5,6 +5,7 @@ import loadable from "react-loadable"
 import connect from "core/model/connect"
 import Loading from "common/component/Loading/Page"
 
+// TODO: Add error handling
 const loadPage = ({delay, timeout, ...loaders} = {}) => loadable.Map({
   loader: loaders,
   loading: Loading,

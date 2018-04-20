@@ -31,12 +31,15 @@ class Router {
     return isPlainObject(conf) ? [conf] : conf
   }
 
-  __setRoute = (route, prefix = "") => {
+  __setRoute = (route, prefix) => {
     if (!isPlainObject(route)) {
       throw new TypeError("Ruote config must be an object.")
     }
 
-    const path = join("/", prefix, route.path.replace(/^\//, ""))
+    let path = route.path
+    if (prefix !== this.__config.home) {
+      path = join("/", prefix, path.replace(/^\//, ""))
+    }
 
     const component = loadable({
       loader: () => import(`module/${prefix}/${route.component}`),
