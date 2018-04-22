@@ -17,6 +17,11 @@ const assign = Object.assign
 
 const router = config.router || {}
 
+const LoadingProcess = loadingProcess({
+  onLoading: Loading,
+  onError: errorHandler()
+})
+
 class Router {
   constructor() {
     this.__ctx = require.context("../../route", true, /\.json$/)
@@ -45,7 +50,7 @@ class Router {
 
     const component = loadable({
       loader: () => import(`module/${prefix}/${route.component}`),
-      loading: loadingProcess({onLoading: Loading, onError: errorHandler()})
+      loading: LoadingProcess
     })
 
     return assign({}, route, {path, component})

@@ -33,7 +33,7 @@ const errorHandler = matchErrors => {
   }
 
   ErrorHandler.propTypes = {
-    error: instanceOf(Error)
+    error: instanceOf(Error).isRequired
   }
 
   return ErrorHandler

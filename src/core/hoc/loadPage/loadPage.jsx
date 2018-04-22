@@ -8,12 +8,16 @@ import Loading from "common/component/Loading/Page"
 import loadingProcess from "../loadingProcess"
 import errorHandler from "../errorHandler"
 
-// TODO: Add error handling
+const LoadingProcess = loadingProcess({
+  onLoading: Loading,
+  onError: errorHandler()
+})
+
 const loadPage = ({delay, timeout, ...loaders} = {}) => loadable.Map({
   delay,
   timeout,
   loader: loaders,
-  loading: loadingProcess({onLoading: Loading, onError: errorHandler()}),
+  loading: LoadingProcess,
   render({component, state}, props) {
     if (component.default) {
       component = component.default
