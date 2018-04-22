@@ -9,6 +9,8 @@ import find from "lodash/find"
 import Loading from "common/component/Loading/Page"
 
 import config from "config"
+import loadingProcess from "core/hoc/loadingProcess"
+import errorHandler from "core/hoc/errorHandler"
 import iterator from "core/helper/iterator/objectIterator"
 
 const assign = Object.assign
@@ -43,7 +45,7 @@ class Router {
 
     const component = loadable({
       loader: () => import(`module/${prefix}/${route.component}`),
-      loading: Loading
+      loading: loadingProcess({onLoading: Loading, onError: errorHandler()})
     })
 
     return assign({}, route, {path, component})

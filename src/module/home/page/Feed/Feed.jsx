@@ -6,7 +6,6 @@ import Fragment from "common/component/Fragment"
 import Title from "common/component/Title"
 
 import withLayout from "common/component/Layout/withLayout"
-import withViewer from "common/component/Viewer/withViewer"
 
 const Feed = () => (
   <Fragment>
@@ -15,4 +14,4 @@ const Feed = () => (
   </Fragment>
 )
 
-export default compose([withViewer, withLayout])(Feed)
+export default compose([withLayout])(Feed)

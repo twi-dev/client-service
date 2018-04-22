@@ -3,10 +3,6 @@ import {shape, bool} from "prop-types"
 import {observer} from "mobx-preact"
 import {Redirect} from "react-router-dom"
 
-import isFunction from "lodash/isFunction"
-
-import withAuth from "core/auth/withAuth"
-
 const withRedirect = Target => {
   class AuthRedirect extends Component {
     static propTypes = {
@@ -16,13 +12,13 @@ const withRedirect = Target => {
     }
 
     static defaultProps = {
-      auth: {
-        isAccessExpired: true
-      }
+      auth: null
     }
 
     render() {
-      if (!this.props.auth.isAccessExpired) {
+      const {auth} = this.props
+
+      if (!auth || !auth.isAccessExpired) {
         return <Redirect to="/" />
       }
 
@@ -30,11 +26,7 @@ const withRedirect = Target => {
     }
   }
 
-  if (isFunction(Target.getInitialProps)) {
-    AuthRedirect.getInitialProps = Target.getInitialProps
-  }
-
-  return withAuth(AuthRedirect)
+  return AuthRedirect
 }
 
 export default withRedirect
