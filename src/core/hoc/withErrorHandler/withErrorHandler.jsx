@@ -7,7 +7,7 @@ const assign = Object.assign
 /**
  * Inject errorHandler component to the Target
  *
- * @param {function} Target
+ * @param {Component} Target
  *
  * @return {Component}
  */
