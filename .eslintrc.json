@@ -24,6 +24,8 @@
   "rules": {
     "react/no-unknown-property": [2, {
       "ignore": ["class"]
-    }]
+    }],
+
+    "no-unused-expressions": 0
   }
 }

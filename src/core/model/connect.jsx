@@ -2,6 +2,7 @@ import {h} from "preact"
 import {Provider, observer, inject} from "mobx-preact"
 
 import compose from "lodash/fp/compose"
+import isFunction from "lodash/isFunction"
 
 const mapModelsToProps = stores => ({...stores})
 
@@ -16,7 +17,7 @@ const connect = models => Target => {
   const Connect = props => (
     // Render mobx-react Provier with given models instances.
     h(
-      Provider, models,
+      Provider, isFunction(models) ? models() : models,
 
       // Connect Target component with models, subscribe and render.
       h(compose(inject(mapModelsToProps), observer)(Target), props)

@@ -1,8 +1,7 @@
 import {h} from "preact"
 
-import loadable from "react-loadable"
-
 import connect from "core/model/connect"
+import loadable from "core/hoc/loadable"
 import Loading from "common/component/Loading/Page"
 
 import loadingProcess from "../loadingProcess"
@@ -13,21 +12,17 @@ const LoadingProcess = loadingProcess({
   onError: errorHandler()
 })
 
-const loadPage = ({delay, timeout, ...loaders} = {}) => loadable.Map({
-  delay,
+const loadPage = ({delay, timeout, ...loaders} = {}) => loadable({
+  delay: delay || 300,
   timeout,
-  loader: loaders,
+  loaders,
   loading: LoadingProcess,
   render({component, state}, props) {
-    if (component.default) {
-      component = component.default
-    }
-
     if (state) {
       component = connect(state)(component)
     }
 
-    return h(component || component, props)
+    return h(component, props)
   }
 })
 

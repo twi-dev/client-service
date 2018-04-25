@@ -316,7 +316,7 @@
     "@babel/helper-plugin-utils" "7.0.0-beta.44"
     "@babel/plugin-syntax-optional-chaining" "7.0.0-beta.44"
 
-"@babel/plugin-proposal-pipeline-operator@^7.0.0-beta.44":
+"@babel/plugin-proposal-pipeline-operator@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-pipeline-operator/-/plugin-proposal-pipeline-operator-7.0.0-beta.44.tgz#233041e3cf11fd108044e3cf40ac6ae4645725b8"
   dependencies:
@@ -5027,7 +5027,7 @@ grouped-queue@^0.3.3:
   dependencies:
     lodash "^4.17.2"
 
-halogen@^0.2.0:
+halogen@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/halogen/-/halogen-0.2.0.tgz#1c65a99a9352e6bf02f41beb7081852fce7e7473"
   dependencies:
@@ -7017,7 +7017,7 @@ mobx-state-tree@2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-2.0.4.tgz#3aa20925d399f4bd0b6049d3a6725c8e137452d4"
 
-mobx@^4.2.0:
+mobx@4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/mobx/-/mobx-4.2.0.tgz#ee0b0a4f3da2f4776225046ab208ac329a4841d4"
 
@@ -7036,7 +7036,7 @@ ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
-ms@^2.0.0, ms@^2.1.1:
+ms@2.1.1, ms@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
 
@@ -7317,6 +7317,10 @@ object-copy@^0.1.0:
     define-property "^0.2.5"
     kind-of "^3.0.3"
 
+object-deep-from-entries@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/object-deep-from-entries/-/object-deep-from-entries-0.3.0.tgz#b15f9035daa2dfe22f91763873eba820a06c3211"
+
 object-inspect@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.5.0.tgz#9d876c11e40f485c79215670281b767488f9bfe3"
@@ -7540,7 +7544,7 @@ p-map@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/p-map/-/p-map-1.2.0.tgz#e4e94f311eabbc8633a1e79908165fca26241b6b"
 
-p-reduce@^1.0.0:
+p-reduce@1.0.0, p-reduce@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-reduce/-/p-reduce-1.0.0.tgz#18c2b0dd936a4690a529f8231f58a0fdb6a47dfa"
 
@@ -8796,7 +8800,7 @@ react-intersection-observer@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-3.0.3.tgz#3df67f413c36c28b02426e7fdbf9670790fb50ab"
 
-react-lazy-images@^0.9.0:
+react-lazy-images@0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/react-lazy-images/-/react-lazy-images-0.9.0.tgz#3191c01123367837af83f0a9bc96ae7b86ad28c6"
   dependencies:

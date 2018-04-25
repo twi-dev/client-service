@@ -56,18 +56,9 @@ const configure = env => ({
     runtimeChunk: {
       name: "runtime"
     },
-    // splitChunks: {
-    //   cacheGroups: {
-    //     default: false,
-    //     commons: {
-    //       test: /\.jsx?/,
-    //       chunks: "all",
-    //       minChunks: 2,
-    //       name: "vendor",
-    //       enforce: true
-    //     }
-    //   }
-    // }
+    splitChunks: {
+      chunks: "all"
+    }
   },
   resolveLoader: {
     modules: [

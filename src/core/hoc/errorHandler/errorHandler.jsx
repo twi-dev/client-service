@@ -3,9 +3,7 @@ import {instanceOf} from "prop-types"
 
 import isFunction from "lodash/isFunction"
 
-// TODO: Move to an external module
-// NOTE: This one wll be default ApplicationError component
-const ApplicationError = error => <div>{String(error)}</div>
+import ApplicationError from "core/page/error/ApplicationError"
 
 /**
  * Match errors using a given function.

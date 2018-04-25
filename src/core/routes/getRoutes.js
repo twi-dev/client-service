@@ -1,12 +1,12 @@
 import {basename, join} from "path"
 
-import loadable from "react-loadable"
 import isPlainObject from "lodash/isPlainObject"
 import isEmpty from "lodash/isEmpty"
 import merge from "lodash/merge"
 import find from "lodash/find"
 
 import Loading from "common/component/Loading/Page"
+import loadable from "core/hoc/loadable"
 
 import config from "config"
 import loadingProcess from "core/hoc/loadingProcess"
@@ -49,8 +49,9 @@ class Router {
     }
 
     const component = loadable({
-      loader: () => import(`module/${prefix}/${route.component}`),
-      loading: LoadingProcess
+      loaders: () => import(`module/${prefix}/${route.component}`),
+      loading: LoadingProcess,
+      delay: process.env.NODE_ENV !== "production" ? 400 : null
     })
 
     return assign({}, route, {path, component})
