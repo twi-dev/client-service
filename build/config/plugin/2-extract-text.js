@@ -1,9 +1,8 @@
-const ExtractText = require("extract-text-webpack-plugin")
+const ExtractText = require("mini-css-extract-plugin")
 
-const extractText = ({dev}) => new ExtractText({
+const extractText = ({dev}) => dev ? null : new ExtractText({
   filename: "css/[name]-[hash].css",
-  disable: dev,
-  allChunks: true
+  chunkFilename: "css/[name]-[hash].css"
 })
 
 module.exports = extractText

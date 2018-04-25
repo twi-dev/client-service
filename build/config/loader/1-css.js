@@ -1,4 +1,5 @@
-const {extract} = require("extract-text-webpack-plugin")
+// const {extract} = require("extract-text-webpack-plugin")
+const {loader} = require("mini-css-extract-plugin")
 
 const cssnext = require("postcss-cssnext")
 const use = require("postcss-use")
@@ -13,45 +14,43 @@ const getLocalName = dev => ([
 const css = ({dev}, options) => ({
   test: /\.(sss|css)$/,
   exclude: /node_modules/,
-  use: extract({
-    fallback: "style-loader",
-    use: [
-      {
-        loader: "css-loader",
-        options: {
-          modules: true,
-          camelCase: true,
-          minimize: dev === false,
-          localIdentName: getLocalName(dev)
-        }
-      },
-      {
-        loader: "postcss-loader",
-        options: {
-          parser: "sugarss",
-          sourceMap: dev === false,
-          plugins: [
-            use({
-              resolveFromFile: true,
-              modules: "*"
-            }),
-            lost(),
-            atImport({
-              root: options.root,
-              path: "src"
-            }),
-            cssnext({
-              autoprefixer: {
-                browsers: [
-                  "last 2 years"
-                ]
-              }
-            })
-          ]
-        }
+  use: [
+    dev ? "style-loader" : loader,
+    {
+      loader: "css-loader",
+      options: {
+        modules: true,
+        camelCase: true,
+        minimize: dev === false,
+        localIdentName: getLocalName(dev)
       }
-    ]
-  })
+    },
+    {
+      loader: "postcss-loader",
+      options: {
+        parser: "sugarss",
+        sourceMap: dev === false,
+        plugins: [
+          use({
+            resolveFromFile: true,
+            modules: "*"
+          }),
+          lost(),
+          atImport({
+            root: options.root,
+            path: "src"
+          }),
+          cssnext({
+            autoprefixer: {
+              browsers: [
+                "last 2 years"
+              ]
+            }
+          })
+        ]
+      }
+    }
+  ]
 })
 
 module.exports = css
