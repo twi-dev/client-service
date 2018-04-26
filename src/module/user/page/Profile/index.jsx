@@ -1,6 +1,5 @@
 import loadPage from "core/hoc/loadPage"
 
-import resolve from "core/helper/util/requireDefault"
 import session from "core/auth/decorator/session"
 import User from "common/model/store/user/User"
 
@@ -11,7 +10,7 @@ const LoadablePage = loadPage({
     user: await getUser(match.params.login) |> User.create
   }),
 
-  component: async () => await import("./Profile") |> resolve
+  component: () => import("./Profile")
 })
 
 export default LoadablePage
