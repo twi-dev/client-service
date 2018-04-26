@@ -7,9 +7,11 @@ import Loading from "common/component/Loading/Page"
 import loadingProcess from "../loadingProcess"
 import errorHandler from "../errorHandler"
 
+import matchErrors from "./matchErrors"
+
 const LoadingProcess = loadingProcess({
   onLoading: Loading,
-  onError: errorHandler()
+  onError: errorHandler(matchErrors)
 })
 
 const loadPage = ({delay, timeout, ...loaders} = {}) => loadable({

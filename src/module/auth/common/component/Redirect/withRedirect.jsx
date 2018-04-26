@@ -6,19 +6,19 @@ import {Redirect} from "react-router-dom"
 const withRedirect = Target => {
   class AuthRedirect extends Component {
     static propTypes = {
-      auth: shape({
+      session: shape({
         isAccessExpired: bool
       })
     }
 
     static defaultProps = {
-      auth: null
+      session: null
     }
 
     render() {
-      const {auth} = this.props
+      const {session} = this.props
 
-      if (!auth || !auth.isAccessExpired) {
+      if (session && !session.isAccessExpired) {
         return <Redirect to="/" />
       }
 

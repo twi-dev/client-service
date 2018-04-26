@@ -14,10 +14,10 @@
   "plugins": [
     "@babel/transform-runtime",
     "@babel/syntax-dynamic-import",
+    "@babel/proposal-class-properties",
     ["@babel/proposal-decorators", {
       "legacy": true
     }],
-    "@babel/proposal-class-properties",
     "@babel/proposal-optional-catch-binding",
     "@babel/proposal-do-expressions",
     "@babel/proposal-nullish-coalescing-operator",

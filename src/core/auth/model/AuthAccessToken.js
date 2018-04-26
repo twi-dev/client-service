@@ -1,26 +1,20 @@
 import {types} from "mobx-state-tree"
 
+import toDate from "date-fns/toDate"
+
 import AuthTokenMinimal from "./AuthTokenMinimal"
 
 const schema = {
   expires: types.Date
 }
 
-const preProcessSnapshot = snapshot => {
-  if (!snapshot) {
-    return snapshot
-  }
-
-  const expires = snapshot.expires
-
-  return {
-    ...snapshot, expires: expires ? new Date(expires) : expires
-  }
-}
+const before = ({expires, ...snapshot} = {}) => ({
+  ...snapshot, expires: expires ? toDate(expires) : expires
+})
 
 const AuthAccessToken = AuthTokenMinimal
   .named("AuthAccessToken")
   .props(schema)
-  .preProcessSnapshot(preProcessSnapshot)
+  .preProcessSnapshot(before)
 
 export default AuthAccessToken

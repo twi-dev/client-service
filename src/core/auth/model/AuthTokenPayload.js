@@ -5,7 +5,7 @@ import {mutate} from "core/transport/graphql"
 import AuthAccessToken from "./AuthAccessToken"
 import AuthrefreshToken from "./AuthRefreshToken"
 
-import refreshAccessToken from "./refreshAccessToken.gql"
+import refreshAccessToken from "../graphql/mutation/refreshAccessToken.gql"
 
 import saveTokens from "../helper/saveTokens"
 

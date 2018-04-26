@@ -1,28 +1,17 @@
 import loadPage from "core/hoc/loadPage"
 
-import {query} from "core/transport/graphql"
-
+import resolve from "core/helper/util/requireDefault"
+import session from "core/auth/decorator/session"
 import User from "common/model/store/user/User"
 
-import getUser from "./user.gql"
+import getUser from "./getUser"
 
 const LoadablePage = loadPage({
-  state: async ({match}) => {
-    const login = match.params.login
+  @session state: async ({match}) => ({
+    user: await getUser(match.params.login) |> User.create
+  }),
 
-    const res = await query({
-      query: getUser,
-      variables: {
-        login
-      }
-    })
-
-    const user = User.create(res.data.user)
-
-    return {user}
-  },
-
-  component: () => import("./Profile")
+  component: async () => await import("./Profile") |> resolve
 })
 
 export default LoadablePage
