@@ -1,8 +1,12 @@
 import loadPage from "core/hoc/loadPage"
+import session from "core/auth/decorator/session"
 
 import Model from "./Model"
 
-export default loadPage({
-  state: () => Promise.resolve({signup: Model.create({})}),
+const LoadablePage = loadPage({
+  @session state: () => Promise.resolve({signup: Model.create({})}),
+
   component: () => import("./Signup")
 })
+
+export default LoadablePage

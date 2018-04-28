@@ -2,7 +2,7 @@ import {types, flow} from "mobx-state-tree"
 
 import {mutate} from "core/transport/graphql"
 
-import saveTokens from "core/auth/saveTokens"
+import saveTokens from "core/auth/helper/saveTokens"
 import updateTextField from "common/model/action/updateTextField"
 
 import createUser from "./createUser.gql"
