@@ -1,0 +1,15 @@
+query GetStory($slug: String!) {
+  story(slug: $slug) {
+    id
+    title
+    description
+    slug
+    publisher {
+      login
+    }
+    dates {
+      createdAt
+      updatedAt
+    }
+  }
+}
