@@ -67,6 +67,7 @@ const configure = env => ({
     ]
   },
   resolve: {
+    mainFields: ["main", "module"],
     extensions: [
       ".jsx", ".mjs", ".js", ".json"
     ],
