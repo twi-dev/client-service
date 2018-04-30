@@ -1,13 +1,9 @@
 import {types, flow} from "mobx-state-tree"
 
-import {mutate} from "core/transport/graphql"
-
 import AuthAccessToken from "./AuthAccessToken"
 import AuthrefreshToken from "./AuthRefreshToken"
 
-import refreshAccessToken from "../graphql/mutation/refreshAccessToken.gql"
-
-import saveTokens from "../helper/saveTokens"
+import refreshAccessToken from "../graphql/mutation/refreshAccessToken"
 
 const {model, maybe} = types
 
@@ -18,16 +14,7 @@ const schema = {
 
 const actions = self => ({
   refreshAccessToken: flow(function* () {
-    const res = yield mutate({
-      mutation: refreshAccessToken,
-      variables: {
-        refreshToken: self.refreshToken.payload
-      }
-    })
-
-    const accessToken = res.data.refreshAccessToken
-
-    yield saveTokens({accessToken})
+    const accessToken = yield refreshAccessToken(self.refreshToken)
 
     self.accessToken = AuthAccessToken.create(accessToken)
   })

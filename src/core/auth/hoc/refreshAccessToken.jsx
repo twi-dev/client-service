@@ -1,14 +1,13 @@
 import {h, Component} from "preact"
 import {shape} from "prop-types"
-import {inject, observer} from "mobx-preact"
+import {observer} from "mobx-preact"
 
 import ms from "ms"
 
 const refreshAccessToken = Target => {
   const name = Target.displayName || Target.name || "Unknown"
 
-  @inject("session") @observer
-  class RefreshAccessToken extends Component {
+  @observer class RefreshAccessToken extends Component {
     static displayName = `RefreshAccessToken(${name})`
 
     static propTypes = {
