@@ -14,7 +14,7 @@ const schema = {
 
 const actions = self => ({
   refreshAccessToken: flow(function* () {
-    const accessToken = yield refreshAccessToken(self.refreshToken)
+    const accessToken = yield refreshAccessToken(self.refreshToken.payload)
 
     self.accessToken = AuthAccessToken.create(accessToken)
   })
