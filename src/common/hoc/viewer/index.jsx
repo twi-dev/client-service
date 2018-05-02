@@ -17,10 +17,11 @@ const LoadingProcess = loadingProcess({
 const hoc = () => import("./viewer")
 
 const loadableViewer = Target => loadable({
+  delay: 300,
   loading: LoadingProcess,
   loaders: {viewer, hoc},
 
-  render: ({loaded}, props) => (
+  render: (loaded, props) => (
     h(loaded.hoc(Target) |> connect(loaded.viewer), props)
   )
 })
