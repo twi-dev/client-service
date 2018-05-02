@@ -4,6 +4,7 @@ import isFunction from "lodash/isFunction"
 
 import NotFound from "core/page/error/Http/NotFound"
 
+// DEPRECATED
 const withErrorHandler = errorComponent => Target => {
   const name = Target.displayName || Target.name || "Unknown"
 

@@ -6,15 +6,20 @@ import connect from "core/model/connect"
 
 import ApplicationError from "core/page/error/ApplicationError"
 
+import Model from "./Model"
 import Loading from "./component/Loading"
 import viewer from "./graphql/query/getViewer"
 
 const LoadingProcess = loadingProcess({
   onLoading: Loading,
+
+  // TODO: Replace with AuthosizationError or ForbiddenError
   onError: ApplicationError
 })
 
 const hoc = () => import("./viewer")
+
+const createViewer = state => ({viewer: state ? Model.create(state) : null})
 
 const loadableViewer = Target => loadable({
   delay: 300,
@@ -22,7 +27,7 @@ const loadableViewer = Target => loadable({
   loaders: {viewer, hoc},
 
   render: (loaded, props) => (
-    h(loaded.hoc(Target) |> connect(loaded.viewer), props)
+    h(loaded.hoc(Target) |> connect(loaded.viewer |> createViewer), props)
   )
 })
 
