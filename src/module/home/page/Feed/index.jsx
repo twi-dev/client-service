@@ -9,7 +9,7 @@ const LoadablePage = loadPage({
   @session state: () => ({}),
 
   component: async () => (
-    await import("./Feed") |> resolve |> refresh |> viewer
+    await import("./Feed") |> resolve |> viewer |> refresh
   )
 })
 
