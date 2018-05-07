@@ -1,7 +1,5 @@
 import {h} from "preact"
 
-import compose from "lodash/fp/compose"
-
 import Fragment from "common/component/Fragment"
 import Title from "common/component/Title"
 
@@ -14,4 +12,4 @@ const Feed = () => (
   </Fragment>
 )
 
-export default compose([withLayout])(Feed)
+export default withLayout(Feed)

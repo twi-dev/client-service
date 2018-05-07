@@ -75,7 +75,7 @@ const loadable = (options = {}) => {
         ? [[loadedSymbol, loaders]]
         : entries(loaders)
 
-      this.__loadParallel(tasks)
+      this.__runParallel(tasks)
         .then(this.__onFulfilled).catch(this.__onRejected)
     }
 
@@ -97,7 +97,7 @@ const loadable = (options = {}) => {
 
     __afterTimeout = () => this.setState({timedOut: true})
 
-    __loadParallel = tasks => {
+    __runParallel = tasks => {
       tasks = tasks
         .map(
           ([key, fn]) => Promise.resolve(fn(this.props)).then(res => [key, res])
@@ -106,7 +106,7 @@ const loadable = (options = {}) => {
       return Promise.all(tasks)
     }
 
-    // __loadSerial = tasks => {}
+    // __runSerial = tasks => {}
 
     __onFulfilled = loaded => this.setState({loaded, isLoaded: true})
 
