@@ -1,15 +1,19 @@
 import {types} from "mobx-state-tree"
 
-const {model, identifier, string} = types
+import CommonDates from "common/model/store/misc/CommonDates"
 
-// TODO:
-// Move to common scope of this module (story)
-// and rename to StoryMinimal.
+import StoryMinimal from "../../../common/model/StoryMinimal"
+
+const {identifier, string} = types
+
 const schema = {
   id: identifier(),
-  title: string
+  dates: CommonDates,
+
+  // Maybe I need to make links contain also a story title?
+  slug: string
 }
 
-const Story = model("Story", schema)
+const Story = StoryMinimal.named("Story").props(schema)
 
 export default Story
