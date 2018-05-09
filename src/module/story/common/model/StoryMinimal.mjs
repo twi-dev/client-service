@@ -10,7 +10,9 @@ const schema = {
 }
 
 const actions = self => ({
-  updateTextField: updateTextField(self)
+  updateTextField: updateTextField(self),
+
+  resetTitle: () => void (self.title = "")
 })
 
 const StoryMinimal = model("StoryMinimal", schema).actions(actions)
