@@ -2,6 +2,7 @@ import {h, Component} from "preact"
 import {func, string} from "prop-types"
 import {observer} from "mobx-preact"
 
+import DocumentTitle from "common/component/Title"
 import Input from "common/component/EnhancedTextField/Input"
 
 import {container} from "./title.sss"
@@ -15,40 +16,60 @@ import {container} from "./title.sss"
   static propTypes = {
     title: string.isRequired,
     resetTitle: func,
-    onInput: func
+    onInput: func,
+    onBlur: func
   }
 
   static defaultProps = {
     onInput: () => {},
-    resetTitle: () => {}
+    resetTitle: () => {},
+    onBlur: () => {}
   }
 
-  componentDidMount = () => this.base.focus()
+  componentDidMount = () => this.__inputRef.focus()
+
+  setRef = ref => {
+    if (ref) {
+      this.__inputRef = ref.base
+    }
+  }
 
   selectFilledInputOnFocues = () => {
     if (this.props.title) {
-      this.base.select()
+      this.__inputRef.select()
     }
   }
 
   resetTitle = () => {
     this.props.resetTitle()
 
-    this.base.blur()
+    this.__inputRef.blur()
+  }
+
+  blur = () => {
+    this.__inputRef.blur()
+
+    this.props.onBlur()
   }
 
   render() {
     return (
-      <Input
-        placeholder="Enter a story title"
-        name="title"
-        class={container}
-        value={this.props.title}
-        onInput={this.props.onInput}
-        onFocus={this.selectFilledInputOnFocues}
-        onEsc={this.resetTitle}
-        autocomplete="off"
-      />
+      <div>
+        {this.props.title && <DocumentTitle title={this.props.title} />}
+
+        <Input
+          placeholder="Enter a story title"
+          name="title"
+          class={container}
+          value={this.props.title}
+          onInput={this.props.onInput}
+          onFocus={this.selectFilledInputOnFocues}
+          onEsc={this.resetTitle}
+          onEnter={this.blur}
+          ref={this.setRef}
+          autocomplete="off"
+        />
+      </div>
     )
   }
 }
