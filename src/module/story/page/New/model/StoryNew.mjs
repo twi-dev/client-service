@@ -25,8 +25,8 @@ const actions = self => ({
 
 // const views = self => ({})
 
-const before = ({title = "", description = "", ...snapshot}) => ({
-  ...snapshot, title, description
+const before = ({title, description, ...snapshot}) => ({
+  ...snapshot, title: title || "", description: description || ""
 })
 
 const StoryNew = StoryMinimal.named("StoryNew")

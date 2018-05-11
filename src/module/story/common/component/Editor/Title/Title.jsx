@@ -5,7 +5,7 @@ import {observer} from "mobx-preact"
 import DocumentTitle from "common/component/Title"
 import Input from "common/component/EnhancedTextField/Input"
 
-import {container} from "./title.sss"
+import {container, field} from "./title.sss"
 
 /**
  * An editor component for story title
@@ -54,13 +54,13 @@ import {container} from "./title.sss"
 
   render() {
     return (
-      <div>
+      <div class={container}>
         {this.props.title && <DocumentTitle title={this.props.title} />}
 
         <Input
           placeholder="Enter a story title"
           name="title"
-          class={container}
+          class={field}
           value={this.props.title}
           onInput={this.props.onInput}
           onFocus={this.selectFilledInputOnFocues}
