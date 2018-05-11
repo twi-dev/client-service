@@ -1,8 +1,10 @@
 import {h, Component} from "preact"
 import {shape} from "prop-types"
 import {observer} from "mobx-preact"
+import {computed} from "mobx"
 
-import TitleEditor from "./Title"
+import TitleEditor from "./TitleEditor"
+import DescriptionEditor from "./DescriptionEditor"
 
 import {container} from "./editor.sss"
 
@@ -13,6 +15,10 @@ import {container} from "./editor.sss"
     story: shape({}).isRequired
   }
 
+  @computed get story() {
+    return this.props.story
+  }
+
   render() {
     const {title, resetTitle, updateTextField: onInput} = this.props.story
 
@@ -20,7 +26,10 @@ import {container} from "./editor.sss"
       <div class={container}>
         <TitleEditor {...{title, onInput, resetTitle}} />
 
-        <div>StoryEditor</div>
+        <DescriptionEditor
+          description={this.story.description}
+          onInput={this.story.updateTextField}
+        />
       </div>
     )
   }

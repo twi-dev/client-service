@@ -9,7 +9,7 @@ import {container} from "./fragment.sss"
  * Just a fragment hack using "div" with inherit styles
  */
 const Fragment = ({children, ...props}) => (
-  <div class={cn(container, props.class)}>
+  <div {...props} class={cn(container, props.class)}>
     {children}
   </div>
 )

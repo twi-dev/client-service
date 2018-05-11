@@ -1,6 +1,8 @@
 import {h, Component} from "preact"
 import {func} from "prop-types"
 
+import isFunction from "lodash/isFunction"
+
 import getName from "core/helper/component/getName"
 
 const assign = Object.assign
@@ -13,24 +15,32 @@ const enhanceTextField = Target => {
 
     static propTypes = {
       onEnter: func,
-      onEsc: func
+      onEsc: func,
+      onKeyPress: func,
+      onKeyUp: func
     }
 
     static defaultProps = {
-      onEnter: () => {},
-      onEsc: () => {}
+      onEnter: null,
+      onEsc: null,
+      onKeyPress: () => {},
+      onKeyUp: () => {}
     }
 
-    onEnter = event => {
-      if (event.key.toLowerCase() === "enter") {
-        this.props.onEnter(event)
+    onEnter = e => {
+      if (isFunction(this.props.onEnter) && e.key.toLowerCase() === "enter") {
+        return void this.props.onEnter(e)
       }
+
+      this.props.onKeyPress(e)
     }
 
-    onEsc = event => {
-      if (event.key.toLowerCase() === "escape") {
-        this.props.onEsc(event)
+    onEsc = e => {
+      if (isFunction(this.props.onEsc) && e.key.toLowerCase() === "escape") {
+        return void this.props.onEsc(e)
       }
+
+      this.props.onKeyUp(e)
     }
 
     render() {

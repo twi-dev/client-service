@@ -2,15 +2,15 @@ import {h, Component} from "preact"
 import {func, string} from "prop-types"
 import {observer} from "mobx-preact"
 
-import DocumentTitle from "common/component/Title"
-import Input from "common/component/EnhancedTextField/Input"
+import Title from "common/component/Title"
+import TextArea from "common/component/EnhancedTextField/TextAreaWithAutoSize"
 
-import {container, field} from "./title.sss"
+import {container, field} from "./title-editor.sss"
 
 /**
  * An editor component for story title
  */
-@observer class Title extends Component {
+@observer class TitleEditor extends Component {
   static displayName = "StoryTitleEditor"
 
   static propTypes = {
@@ -26,28 +26,28 @@ import {container, field} from "./title.sss"
     onBlur: () => {}
   }
 
-  componentDidMount = () => this.__inputRef.focus()
+  componentDidMount = () => this.__input.focus()
 
   setRef = ref => {
     if (ref) {
-      this.__inputRef = ref.base
+      this.__input = ref.base
     }
   }
 
   selectFilledInputOnFocues = () => {
     if (this.props.title) {
-      this.__inputRef.select()
+      this.__input.select()
     }
   }
 
   resetTitle = () => {
     this.props.resetTitle()
 
-    this.__inputRef.blur()
+    this.__input.blur()
   }
 
   blur = () => {
-    this.__inputRef.blur()
+    this.__input.blur()
 
     this.props.onBlur()
   }
@@ -55,9 +55,9 @@ import {container, field} from "./title.sss"
   render() {
     return (
       <div class={container}>
-        {this.props.title && <DocumentTitle title={this.props.title} />}
+        {this.props.title && <Title title={this.props.title} />}
 
-        <Input
+        <TextArea
           placeholder="Enter a story title"
           name="title"
           class={field}
@@ -68,10 +68,11 @@ import {container, field} from "./title.sss"
           onEnter={this.blur}
           ref={this.setRef}
           autocomplete="off"
+          maxRows={2}
         />
       </div>
     )
   }
 }
 
-export default Title
+export default TitleEditor
