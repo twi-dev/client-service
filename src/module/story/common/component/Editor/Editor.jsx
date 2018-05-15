@@ -1,5 +1,5 @@
 import {h, Component} from "preact"
-import {shape} from "prop-types"
+import {shape, string, func} from "prop-types"
 import {observer} from "mobx-preact"
 import {computed} from "mobx"
 
@@ -12,7 +12,11 @@ import {container} from "./editor.sss"
   static displayName = "StoryEditor"
 
   static propTypes = {
-    story: shape({}).isRequired
+    story: shape({
+      title: string,
+      description: string,
+      updateTextField: func.isRequired
+    }).isRequired
   }
 
   @computed get story() {

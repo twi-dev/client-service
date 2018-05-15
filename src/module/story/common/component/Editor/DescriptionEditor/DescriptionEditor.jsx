@@ -27,6 +27,7 @@ import {field} from "./description-editor.sss"
         class={field}
         onInput={this.props.onInput}
         value={this.props.description}
+        rows={6}
       />
     )
   }
