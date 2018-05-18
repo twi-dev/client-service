@@ -7,7 +7,7 @@ import getName from "core/helper/component/getName"
 
 const assign = Object.assign
 
-const mapModelsToProps = stores => ({...stores})
+const mapModelsToProps = models => assign({}, models)
 
 /**
  * Connect MobX State Tree stores with Preact component.
