@@ -4,6 +4,7 @@ import AuthTokenPayload from "../model/AuthTokenPayload"
 
 const assign = Object.assign
 
+// TODO: Move to a HOC
 const setSession = (target, key, descriptor) => {
   const initializer = descriptor.initializer
 
@@ -26,7 +27,7 @@ const setSession = (target, key, descriptor) => {
 
     const state = await initializer().apply(this, args)
 
-    return assign({}, state, {session})
+    return assign({}, state, session)
   }
 
   return descriptor

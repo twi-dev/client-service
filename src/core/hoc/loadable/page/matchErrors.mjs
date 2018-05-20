@@ -1,6 +1,10 @@
 import NotFound from "core/page/error/Http/NotFound"
 
 const matchErrors = error => {
+  if (!error.graphQLErrors) {
+    return null
+  }
+
   const [err] = error.graphQLErrors
 
   if (err.code === "HTTP_NOT_FOUND_EXCEPTION" || err.status === 404) {

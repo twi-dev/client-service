@@ -9,7 +9,7 @@ const entries = Object.entries
 
 const resolve = obj => obj && "__esModule" in obj ? obj.default : obj
 
-const loadedSymbol = Symbol("loadedSymbol")
+const loadableSymbol = Symbol("loadable")
 
 const loadable = (options = {}) => {
   const {delay, timeout, loaders, loading, render} = options
@@ -72,7 +72,7 @@ const loadable = (options = {}) => {
       }
 
       const tasks = isFunction(loaders)
-        ? [[loadedSymbol, loaders]]
+        ? [[loadableSymbol, loaders]]
         : entries(loaders)
 
       this.__runParallel(tasks)
@@ -127,11 +127,11 @@ const loadable = (options = {}) => {
         return render(loaded, this.props)
       }
 
-      if (total === 1 && !(loadedSymbol in loaded)) {
+      if (total === 1 && !(loadableSymbol in loaded)) {
         return render(loaded, this.props)
       }
 
-      loaded = loaded[loadedSymbol]
+      loaded = loaded[loadableSymbol]
 
       if (render) {
         return render(loaded, this.props)

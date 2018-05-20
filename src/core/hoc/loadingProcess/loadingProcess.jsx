@@ -3,7 +3,9 @@ import {bool, instanceOf} from "prop-types"
 
 import isFunction from "lodash/isFunction"
 
-const loadingProcess = ({onLoading, onError} = {}) => {
+import TimeoutError from "./TimeoutError"
+
+const loadingProcess = ({onLoading, onError, onTimeout} = {}) => {
   if (process.env.NODE_ENV !== "production") {
     if (!isFunction(onLoading)) {
       throw new TypeError("onLoading component must be a function.")
@@ -14,14 +16,17 @@ const loadingProcess = ({onLoading, onError} = {}) => {
     }
   }
 
+  if (!isFunction(onTimeout)) {
+    onTimeout = TimeoutError
+  }
+
   function LoadingProcess({pastDelay, timedOut, error}) {
     if (error) {
       return h(onError, {error})
     }
 
-    // Make it configurable
     if (timedOut) {
-      return <div>Loading is taking a long time...</div>
+      return h(onTimeout, {error})
     }
 
     if (!pastDelay) {
