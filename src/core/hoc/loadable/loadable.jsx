@@ -3,17 +3,13 @@ import {h, Component} from "preact"
 import isNumber from "lodash/isNumber"
 import isFunction from "lodash/isFunction"
 import isPlainObject from "lodash/isPlainObject"
-import deepFromEntries from "object-deep-from-entries"
 
 import map from "core/helper/iterator/objectMap"
 import resolve from "core/helper/util/requireDefault"
 import runSerial from "core/helper/util/objectRunSerial"
 import runParallel from "core/helper/util/objectRunParallel"
 
-const entries = Object.entries
 const keys = Object.keys
-
-const loadableSymbol = Symbol("loadable")
 
 const loadable = (options = {}) => {
   const {delay, timeout, serial, loaders, loading, render} = options
