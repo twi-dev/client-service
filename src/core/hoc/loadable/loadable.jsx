@@ -108,18 +108,7 @@ const loadable = (options = {}) => {
 
     __afterTimeout = () => this.setState({timedOut: true})
 
-    __runParallel = tasks => {
-      tasks = tasks
-        .map(
-          ([key, fn]) => Promise.resolve(fn(this.props)).then(res => [key, res])
-        )
-
-      return Promise.all(tasks)
-    }
-
-    __onFulfilled = loaded => {
-      this.setState({loaded, isLoaded: true})
-    }
+    __onFulfilled = loaded => this.setState({loaded, isLoaded: true})
 
     __onRejected = error => this.setState({error})
 
