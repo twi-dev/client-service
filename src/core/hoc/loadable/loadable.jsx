@@ -5,14 +5,18 @@ import isFunction from "lodash/isFunction"
 import isPlainObject from "lodash/isPlainObject"
 import deepFromEntries from "object-deep-from-entries"
 
-const entries = Object.entries
+import map from "core/helper/iterator/objectMap"
+import resolve from "core/helper/util/requireDefault"
+import runSerial from "core/helper/util/objectRunSerial"
+import runParallel from "core/helper/util/objectRunParallel"
 
-const resolve = obj => obj && "__esModule" in obj ? obj.default : obj
+const entries = Object.entries
+const keys = Object.keys
 
 const loadableSymbol = Symbol("loadable")
 
 const loadable = (options = {}) => {
-  const {delay, timeout, loaders, loading, render} = options
+  const {delay, timeout, serial, loaders, loading, render} = options
 
   if (process.env.NODE_ENV !== "production") {
     if (!loaders) {
@@ -43,6 +47,13 @@ const loadable = (options = {}) => {
     if (timeout && !isNumber(timeout)) {
       throw new TypeError("Expected \"timeout\" option as a number.")
     }
+
+    if (keys(loadable).length > 1 && !isFunction(render)) {
+      throw new TypeError(
+        "You must resolve a bunch loaded content manually " +
+        "by using a custom renderer. So, \"render\" options required."
+      )
+    }
   }
 
   class Loadable extends Component {
@@ -52,7 +63,7 @@ const loadable = (options = {}) => {
       this.state = {
         pastDelay: false,
         timedOut: false,
-        loaded: [],
+        loaded: null,
         isLoaded: false,
         error: null
       }
@@ -71,12 +82,16 @@ const loadable = (options = {}) => {
         this.setState({timedOut: true})
       }
 
-      const tasks = isFunction(loaders)
-        ? [[loadableSymbol, loaders]]
-        : entries(loaders)
+      if (isFunction(loaders)) {
+        return loaders(this.props)
+          .then(resolve).then(this.__onFulfilled, this.__onRejected)
+      }
 
-      this.__runParallel(tasks)
-        .then(this.__onFulfilled).catch(this.__onRejected)
+      const resolver = serial === true ? runSerial : runParallel
+
+      resolver(loaders, this.props)
+        .then(loaded => map(loaded, resolve))
+        .then(this.__onFulfilled, this.__onRejected)
     }
 
     componentWillUnmount() {
@@ -106,38 +121,28 @@ const loadable = (options = {}) => {
       return Promise.all(tasks)
     }
 
-    // __runSerial = tasks => {}
-
-    __onFulfilled = loaded => this.setState({loaded, isLoaded: true})
+    __onFulfilled = loaded => {
+      this.setState({loaded, isLoaded: true})
+    }
 
     __onRejected = error => this.setState({error})
 
     render() {
-      const {pastDelay, timedOut, isLoaded, error} = this.state
+      const {pastDelay, timedOut, isLoaded, loaded, error} = this.state
 
       if (this.state.error || !this.state.isLoaded) {
         return h(loading, {error, pastDelay, timedOut, isLoaded})
       }
 
-      const total = this.state.loaded.length
-      let loaded = this.state.loaded
-        .map(([name, mod]) => [name, resolve(mod)]) |> deepFromEntries
+      if (isFunction(loaded)) {
+        return render ? render(loaded, this.props) : h(loaded, this.props)
+      }
 
-      if (total > 1) {
+      if (keys(loaded).length > 1) {
         return render(loaded, this.props)
       }
 
-      if (total === 1 && !(loadableSymbol in loaded)) {
-        return render(loaded, this.props)
-      }
-
-      loaded = loaded[loadableSymbol]
-
-      if (render) {
-        return render(loaded, this.props)
-      }
-
-      return h(loaded, this.props)
+      return render(loaded, this.props)
     }
   }
 

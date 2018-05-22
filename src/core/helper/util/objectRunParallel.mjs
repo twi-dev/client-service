@@ -13,7 +13,9 @@ const entries = Object.entries
 function objectRunParallel(object, ...args) {
   const tasks = entries(object)
 
-  const fulfill = ([key, task]) => task(...args).then(value => [key, value])
+  const fulfill = ([key, task]) => (
+    Promise.resolve(task(...args)).then(value => [key, value])
+  )
 
   return Promise.all(tasks.map(fulfill)).then(objectFromEntries)
 }

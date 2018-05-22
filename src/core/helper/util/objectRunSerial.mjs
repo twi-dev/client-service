@@ -2,7 +2,6 @@ import objectFromEntries from "object-deep-from-entries"
 
 const entries = Object.entries
 
-
 /**
  * Run tasks in object serially
  * @param {object} object
@@ -12,7 +11,7 @@ const entries = Object.entries
  */
 function objectSerial(object, ...args) {
   const fulfill = ([key, task]) => prev => (
-    task(...args).then(value => [...prev, [key, value]])
+    Promise.resolve(task(...args)).then(value => [...prev, [key, value]])
   )
 
   const reducer = (prev, next) => prev.then(fulfill(next))
