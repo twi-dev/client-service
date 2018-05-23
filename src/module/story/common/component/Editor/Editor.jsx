@@ -24,7 +24,7 @@ import {container} from "./editor.sss"
   }
 
   render() {
-    const {title, resetTitle, updateTextField: onInput} = this.props.story
+    const {title, resetTitle, updateTextField: onInput} = this.story
 
     return (
       <div class={container}>
