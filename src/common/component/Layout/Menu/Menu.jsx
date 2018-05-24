@@ -1,9 +1,14 @@
 import {h} from "preact"
+import {inject, connect} from "mobx-preact"
+
+import Logo from "./Logo"
 
 import {container} from "./menu.sss"
 
 const Menu = () => (
-  <div class={container}>Twi</div>
+  <div class={container}>
+    <Logo />
+  </div>
 )
 
-export default Menu
+export default Menu |> connect |> inject("viewer")

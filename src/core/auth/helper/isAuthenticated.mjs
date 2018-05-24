@@ -1,5 +1,4 @@
 import getTime from "date-fns/getTime"
-import ms from "ms"
 
 import db from "core/db/tokens"
 
@@ -29,7 +28,7 @@ async function isAuthenticated() {
 
   // accessToken must be actual, unless it will not be passed on the server.
   // So, check the espiration status.
-  return Boolean(expires >= (now - ms("2m")))
+  return Boolean(expires >= now) === false
 }
 
 export default isAuthenticated

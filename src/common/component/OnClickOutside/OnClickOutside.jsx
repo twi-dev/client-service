@@ -7,6 +7,8 @@ import Fragment from "common/component/Fragment"
 
 import {container} from "./on-click-outside.sss"
 
+const isArray = Array.isArray
+
 class OnClickOutside extends Component {
   static propTypes = {
     onClickOutside: func,
@@ -35,7 +37,7 @@ class OnClickOutside extends Component {
     }
   }
 
-  render() {
+  render({children}) {
     // TODO: Replace with Preact fragments when this will be released:
     //   https://github.com/developit/preact/pull/1080
     return (
@@ -45,7 +47,7 @@ class OnClickOutside extends Component {
         class={cn(container, this.props.class)}
         tabIndex={-1}
       >
-        {this.props.children}
+        {isArray(children) ? children[0] : children}
       </Fragment>
     )
   }

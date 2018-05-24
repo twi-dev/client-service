@@ -1,5 +1,5 @@
 import {h} from "preact"
-import {inject} from "mobx-preact"
+import {inject, connect} from "mobx-preact"
 import {element, arrayOf} from "prop-types"
 
 import Menu from "./Menu"
@@ -17,4 +17,4 @@ Layout.propTypes = {
   children: arrayOf(element.isRequired).isRequired
 }
 
-export default Layout |> inject("viewer")
+export default Layout |> connect |> inject("viewer")
