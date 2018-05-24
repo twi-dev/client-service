@@ -17,39 +17,33 @@ import {container, field} from "./title-editor.sss"
     title: string.isRequired,
     resetTitle: func,
     onInput: func,
-    onBlur: func
+    onEnter: func
   }
 
   static defaultProps = {
     onInput: () => {},
     resetTitle: () => {},
-    onBlur: () => {}
+    onEnter: () => {}
   }
 
-  componentDidMount = () => this.__input.focus()
+  componentDidMount = () => this.textarea.focus()
 
   setRef = ref => {
     if (ref) {
-      this.__input = ref.base
+      this.textarea = ref.base
     }
   }
 
-  selectFilledInputOnFocues = () => {
+  selectFilledInputOnFocue = () => {
     if (this.props.title) {
-      this.__input.select()
+      this.textarea.select()
     }
   }
 
   resetTitle = () => {
     this.props.resetTitle()
 
-    this.__input.blur()
-  }
-
-  blur = () => {
-    this.__input.blur()
-
-    this.props.onBlur()
+    this.textarea.blur()
   }
 
   render() {
@@ -63,9 +57,9 @@ import {container, field} from "./title-editor.sss"
           class={field}
           value={this.props.title}
           onInput={this.props.onInput}
-          onFocus={this.selectFilledInputOnFocues}
+          onFocus={this.selectFilledInputOnFocue}
           onEsc={this.resetTitle}
-          onEnter={this.blur}
+          onEnter={this.props.onEnter}
           ref={this.setRef}
           autocomplete="off"
           maxRows={2}

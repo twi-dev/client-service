@@ -3,6 +3,8 @@ import {shape, string, func} from "prop-types"
 import {observer} from "mobx-preact"
 import {computed} from "mobx"
 
+import preventDefault from "core/helper/decorator/preventDefault"
+
 import TitleEditor from "./TitleEditor"
 import DescriptionEditor from "./DescriptionEditor"
 
@@ -23,16 +25,43 @@ import {container} from "./editor.sss"
     return this.props.story
   }
 
+  setDescriptionRef = ref => {
+    if (ref) {
+      this.__description = ref.base
+    }
+  }
+
+  setTitleRef = ref => {
+    if (ref) {
+      this.__title = ref.textarea
+    }
+  }
+
+  switchToDescriptionField = () => void this.__description.focus()
+
+  switchToTitleField = () => {
+    if (!this.story.description) {
+      this.__title.focus()
+    }
+  }
+
   render() {
     const {title, resetTitle, updateTextField: onInput} = this.story
 
     return (
       <div class={container}>
-        <TitleEditor {...{title, onInput, resetTitle}} />
+        <TitleEditor
+          {...{title, onInput, resetTitle}}
+
+          ref={this.setTitleRef}
+          onEnter={preventDefault(this.switchToDescriptionField)}
+        />
 
         <DescriptionEditor
+          ref={this.setDescriptionRef}
           description={this.story.description}
           onInput={this.story.updateTextField}
+          onBackspace={this.switchToTitleField}
         />
       </div>
     )
