@@ -46,14 +46,12 @@ import {container} from "./editor.sss"
   }
 
   render() {
-    const {title, resetTitle, updateTextField: onInput} = this.story
-
     return (
       <div class={container}>
         <TitleEditor
-          {...{title, onInput, resetTitle}}
-
           ref={this.setTitleRef}
+          title={this.story.title}
+          onInput={this.story.updateTextField}
           onEnter={preventDefault(this.switchToDescriptionField)}
         />
 

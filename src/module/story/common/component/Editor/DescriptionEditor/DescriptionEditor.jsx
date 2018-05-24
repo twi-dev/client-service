@@ -12,14 +12,14 @@ import {field} from "./description-editor.sss"
   static propTypes = {
     description: string,
     onInput: func,
-    onKeyDown: func,
+    onKeyUp: func,
     onBackspace: func
   }
 
   static defaultProps = {
     description: "",
     onInput: () => {},
-    onKeyDown: () => {},
+    onKeyUp: () => {},
     onBackspace: () => {}
   }
 
@@ -28,7 +28,7 @@ import {field} from "./description-editor.sss"
       return void this.props.onBackspace(event)
     }
 
-    this.props.onKeyDown(event)
+    this.props.onKeyUp(event)
   }
 
   render() {
@@ -39,7 +39,7 @@ import {field} from "./description-editor.sss"
         class={field}
         onInput={this.props.onInput}
         value={this.props.description}
-        onKeyDown={this.onBackspace}
+        onKeyUp={this.onBackspace}
         rows={6}
       />
     )

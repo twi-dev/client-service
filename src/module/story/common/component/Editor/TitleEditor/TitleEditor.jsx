@@ -15,14 +15,12 @@ import {container, field} from "./title-editor.sss"
 
   static propTypes = {
     title: string.isRequired,
-    resetTitle: func,
     onInput: func,
     onEnter: func
   }
 
   static defaultProps = {
     onInput: () => {},
-    resetTitle: () => {},
     onEnter: () => {}
   }
 
@@ -40,11 +38,7 @@ import {container, field} from "./title-editor.sss"
     }
   }
 
-  resetTitle = () => {
-    this.props.resetTitle()
-
-    this.textarea.blur()
-  }
+  blur = () => this.textarea.blur()
 
   render() {
     return (
@@ -58,7 +52,7 @@ import {container, field} from "./title-editor.sss"
           value={this.props.title}
           onInput={this.props.onInput}
           onFocus={this.selectFilledInputOnFocue}
-          onEsc={this.resetTitle}
+          onEsc={this.blur}
           onEnter={this.props.onEnter}
           ref={this.setRef}
           autocomplete="off"
