@@ -1,22 +1,22 @@
-{
-  "presets": [
+module.exports = {
+  presets: [
     ["@babel/react", {
-      "pragma": "h"
+      pragma: "h"
     }],
     ["@babel/env", {
-      "modules": false,
-      "exclude": ["transform-regenerator"],
-      "targets": {
-        "browsers": ["last 2 years", "not dead"]
+      modules: false,
+      exclude: ["transform-regenerator"],
+      targets: {
+        browsers: ["last 2 years", "not dead"]
       }
     }]
   ],
-  "plugins": [
+  plugins: [
     "@babel/transform-runtime",
     "@babel/syntax-dynamic-import",
     "@babel/proposal-class-properties",
     ["@babel/proposal-decorators", {
-      "legacy": true
+      legacy: true
     }],
     "@babel/proposal-optional-catch-binding",
     "@babel/proposal-do-expressions",
@@ -24,15 +24,15 @@
     "@babel/proposal-pipeline-operator",
     "@babel/proposal-optional-chaining",
     ["@babel/proposal-object-rest-spread", {
-      "useBuiltIns": true,
+      useBuiltIns: true,
     }],
     ["module-resolver", {
-      "root": ["src"],
+      root: ["src"],
     }]
   ],
-  "env": {
-    "production": {
-      "plugins": ["transform-react-remove-prop-types"]
+  env: {
+    production: {
+      plugins: ["transform-react-remove-prop-types"]
     }
   }
 }
