@@ -14,7 +14,12 @@
       "pragma": "h"
     },
     "import/resolver": {
-      "babel-module": {}
+      "babel-module": {
+        "cwd": ".",
+        "root": [
+          "src"
+        ]
+      }
     }
   },
   "extends": [
@@ -24,6 +29,12 @@
   "rules": {
     "react/no-unknown-property": [2, {
       "ignore": ["class"]
+    }],
+
+    "jsx-a11y/anchor-is-valid": ["error", {
+      "components": ["Link"],
+      "specialLink": ["to", "hrefLeft", "hrefRight"],
+      "aspects": ["noHref", "invalidHref", "preferButton"]
     }],
 
     "no-unused-expressions": 0

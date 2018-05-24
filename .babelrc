@@ -27,7 +27,7 @@
       "useBuiltIns": true,
     }],
     ["module-resolver", {
-      "root": ["src"]
+      "root": ["src"],
     }]
   ],
   "env": {

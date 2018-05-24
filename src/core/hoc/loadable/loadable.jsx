@@ -4,6 +4,7 @@ import isNumber from "lodash/isNumber"
 import isFunction from "lodash/isFunction"
 import isPlainObject from "lodash/isPlainObject"
 
+import isNaN from "core/helper/util/isNaN"
 import map from "core/helper/iterator/objectMap"
 import resolve from "core/helper/util/requireDefault"
 import runSerial from "core/helper/util/objectRunSerial"
@@ -66,16 +67,14 @@ const loadable = (options = {}) => {
     }
 
     componentWillMount() {
-      if (delay && Number(delay) > 0) {
+      if (delay && (!isNaN(delay) && Number(delay) > 0)) {
         this.__delayTimer = setTimeout(this.__afterDelay, delay)
-      } else if (isNumber(delay)) {
+      } else {
         this.setState({pastDelay: true})
       }
 
       if (timeout && Number(timeout) > 0) {
         this.__timeoutTimer = setTimeout(this.__afterTimeout, timeout)
-      } else if (isNumber(timeout)) {
-        this.setState({timedOut: true})
       }
 
       if (isFunction(loaders)) {
