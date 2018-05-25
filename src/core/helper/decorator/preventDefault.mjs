@@ -1,8 +1,32 @@
 import isFunction from "lodash/isFunction"
-import debounce from "lodash/debounce"
 
-const decorate = fn => event => event.preventDefault(void debounce(fn)(event))
+const decorator = fn => function preventDefaultDecorator(event) {
+  if (!isFunction(fn)) {
+    fn = () => {}
+  }
 
-const preventDefault = fn => decorate(isFunction(fn) ? fn : () => {})
+  event.preventDefault()
+  fn.call(this, event)
+}
+
+function preventDefault(target, key, descriptor) {
+  if (isFunction(target) || arguments.length <= 1) {
+    return decorator(target)
+  }
+
+  if (isFunction(descriptor.initializer)) {
+    const init = descriptor.initializer
+
+    descriptor.initializer = function initializer() {
+      return decorator(init.call(this))
+    }
+  } else {
+    const fn = descriptor.value
+
+    descriptor.value = decorator(fn)
+  }
+
+  return descriptor
+}
 
 export default preventDefault

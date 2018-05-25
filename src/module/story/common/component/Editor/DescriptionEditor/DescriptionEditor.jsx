@@ -40,7 +40,6 @@ import {field} from "./description-editor.sss"
         onInput={this.props.onInput}
         value={this.props.description}
         onKeyUp={this.onBackspace}
-        rows={6}
       />
     )
   }

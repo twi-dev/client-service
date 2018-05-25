@@ -8,10 +8,8 @@ import getName from "core/helper/component/getName"
 const assign = Object.assign
 
 const enhanceTextField = Target => {
-  const name = getName(Target)
-
   class EnhanceTextField extends Component {
-    static displayName = `EnhanceTextField(${name})`
+    static displayName = `EnhanceTextField(${getName(Target)})`
 
     static propTypes = {
       onEnter: func,
@@ -43,10 +41,17 @@ const enhanceTextField = Target => {
       this.props.onKeyUp(e)
     }
 
+    setRef = ref => {
+      if (ref) {
+        this.field = ref.base
+      }
+    }
+
     render() {
       return h(Target, assign({}, this.props, {
         onKeyPress: this.onEnter,
-        onKeyUp: this.onEsc
+        onKeyUp: this.onEsc,
+        ref: this.setRef
       }))
     }
   }

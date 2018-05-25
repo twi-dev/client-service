@@ -14,9 +14,11 @@ module.exports = {
   plugins: [
     "@babel/transform-runtime",
     "@babel/syntax-dynamic-import",
-    "@babel/proposal-class-properties",
     ["@babel/proposal-decorators", {
       legacy: true
+    }],
+    ["@babel/proposal-class-properties", {
+      loose: true
     }],
     "@babel/proposal-optional-catch-binding",
     "@babel/proposal-do-expressions",

@@ -37,9 +37,9 @@ import {container} from "./editor.sss"
     }
   }
 
-  switchToDescriptionField = () => void this.__description.focus()
+  @preventDefault jumpToDescription = () => this.__description.focus()
 
-  switchToTitleField = () => {
+  jumpToTitle = () => {
     if (!this.story.description) {
       this.__title.focus()
     }
@@ -52,14 +52,14 @@ import {container} from "./editor.sss"
           ref={this.setTitleRef}
           title={this.story.title}
           onInput={this.story.updateTextField}
-          onEnter={preventDefault(this.switchToDescriptionField)}
+          onEnter={this.jumpToDescription}
         />
 
         <DescriptionEditor
           ref={this.setDescriptionRef}
           description={this.story.description}
           onInput={this.story.updateTextField}
-          onBackspace={this.switchToTitleField}
+          onBackspace={this.jumpToTitle}
         />
       </div>
     )
