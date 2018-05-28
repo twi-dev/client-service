@@ -2,7 +2,7 @@ import {h} from "preact"
 import {inject, connect} from "mobx-preact"
 import {element, arrayOf} from "prop-types"
 
-import Menu from "./Menu"
+import Menu from "common/component/SidebarMenu"
 
 import {container, content} from "./layout.sss"
 
