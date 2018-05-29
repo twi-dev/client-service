@@ -1,20 +1,38 @@
-import {h} from "preact"
-import {inject, connect} from "mobx-preact"
+import {h, Component} from "preact"
 import {element, arrayOf} from "prop-types"
 
 import Menu from "common/component/SidebarMenu"
 
+import DefaultMenu from "./DefaultMenu"
+
 import {container, content} from "./layout.sss"
 
-const Layout = ({children, ...props}) => (
-  <div class={container}>
-    <Menu {...props} />
-    <div class={content}>{children}</div>
-  </div>
-)
+class Layout extends Component {
+  static propTypes = {
+    children: arrayOf(element.isRequired).isRequired
+  }
 
-Layout.propTypes = {
-  children: arrayOf(element.isRequired).isRequired
+  get hasMenu() {
+    return !!this.menuContents
+  }
+
+  get menuContents() {
+    return this.props.children.find(({nodeName}) => nodeName === Menu)
+  }
+
+  get pageContent() {
+    return this.props.children.filter(({nodeName}) => nodeName !== Menu)
+  }
+
+  render() {
+    return (
+      <div class={container}>
+        {this.hasMenu ? this.menuContents : <DefaultMenu />}
+
+        <div class={content}>{this.pageContent}</div>
+      </div>
+    )
+  }
 }
 
-export default Layout |> connect |> inject("viewer")
+export default Layout

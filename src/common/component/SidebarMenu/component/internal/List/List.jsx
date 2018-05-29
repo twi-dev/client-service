@@ -4,7 +4,7 @@ import {arrayOf, element} from "prop-types"
 import {container} from "./menu-list.sss"
 
 const List = ({children}) => (
-  <ul class={container}>Foo</ul>
+  <ul class={container}>{children}</ul>
 )
 
 List.propTypes = {

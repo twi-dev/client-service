@@ -1,3 +1,5 @@
+import {parse} from "url"
+
 import {h, Component} from "preact"
 import {string, arrayOf, element, shape} from "prop-types"
 
@@ -5,7 +7,7 @@ import Link from "react-router-dom/Link"
 import withRouter from "react-router-dom/withRouter"
 import cn from "classnames"
 
-import {active} from "./menu-element.sss"
+import {container, active} from "./menu-element.sss"
 
 @withRouter class Element extends Component {
   static displayName = "MenuElement"
@@ -17,16 +19,16 @@ import {active} from "./menu-element.sss"
   }
 
   get isActive() {
-    return this.props.match.path === this.props.href
+    return this.props.match.path === parse(this.props.href).path
   }
 
   render() {
     return (
-      <div class={cn({[active]: this.isActive})}>
+      <li class={cn(container, {[active]: this.isActive})}>
         <Link to={this.props.href}>
           {this.props.children}
         </Link>
-      </div>
+      </li>
     )
   }
 }

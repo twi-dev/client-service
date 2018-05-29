@@ -9,7 +9,7 @@ const routes = getRoutes()
 
 const Routes = () => (
   <Switch>
-    {routes.map(props => <Route exact {...props} />)}
+    {routes.map(props => <Route {...props} />)}
 
     {/* Render 404 error when no page found */}
     <Route component={NotFound} />
