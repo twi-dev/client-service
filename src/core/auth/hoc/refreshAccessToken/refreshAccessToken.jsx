@@ -4,11 +4,11 @@ import {observer} from "mobx-preact"
 
 import ms from "ms"
 
-const refreshAccessToken = Target => {
-  const name = Target.displayName || Target.name || "Unknown"
+import getName from "core/helper/component/getName"
 
+const refreshAccessToken = Target => {
   @observer class RefreshAccessToken extends Component {
-    static displayName = `RefreshAccessToken(${name})`
+    static displayName = `RefreshAccessToken(${getName(Target)})`
 
     static propTypes = {
       session: shape({}).isRequired

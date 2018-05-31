@@ -138,6 +138,7 @@
     "react-loadable": "5.4.0",
     "react-router": "4.2.0",
     "react-router-dom": "4.2.2",
+    "react-spinners": "^0.3.2",
     "whatwg-fetch": "2.0.4"
   }
 }

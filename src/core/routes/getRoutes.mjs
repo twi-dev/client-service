@@ -51,7 +51,7 @@ class Router {
     const component = loadable({
       loaders: () => import(`module/${prefix}/${route.component}`),
       loading: LoadingProcess,
-      delay: process.env.NODE_ENV !== "production" ? 400 : null
+      delay: 300
     })
 
     return assign({}, route, {path, component})
@@ -117,4 +117,3 @@ class Router {
 const getRoutes = () => new Router().allowedRoutes()
 
 export default getRoutes
-export {Router}

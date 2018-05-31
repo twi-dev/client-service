@@ -10,18 +10,18 @@ import ApplicationError from "core/page/error/ApplicationError"
  * the function must return a component (as a function or class) or nullish
  * value when no errors matched. In this case ApplicationError will be returned.
  *
- * @param {function} matchErrors – errors matcher which is must return
- *   a component or nullish value
+ * @param {(err: Error) => Component} matcher – errors matcher which is
+ *   must return a component or nullish value
  *
  * @return {Component}
  */
-const errorHandler = matchErrors => {
+const errorHandler = matcher => {
   function ErrorHandler({error}) {
-    if (!isFunction(matchErrors)) {
+    if (!isFunction(matcher)) {
       return h(ApplicationError, {error})
     }
 
-    const Component = matchErrors(error)
+    const Component = matcher(error)
 
     if (!isFunction(Component)) {
       return h(ApplicationError, {error})

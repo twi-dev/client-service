@@ -1,9 +1,8 @@
 import {h} from "preact"
 
-import merge from "lodash/merge"
-
 import connect from "core/model/connect"
 import loadable from "core/hoc/loadable"
+import merge from "core/helper/util/objectFlatMerge"
 import runSerial from "core/helper/util/objectRunSerial"
 import runParallel from "core/helper/util/objectRunParallel"
 

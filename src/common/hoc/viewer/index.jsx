@@ -4,11 +4,11 @@ import session from "core/auth/hoc/session"
 import loadable from "core/hoc/loadable"
 import connect from "core/model/connect"
 import loadingProcess from "core/hoc/loadingProcess"
+import Loading from "common/component/Loading/Page"
 
 import ApplicationError from "core/page/error/ApplicationError"
 
 import Model from "./Model"
-import Loading from "./component/Loading"
 import getViewer from "./graphql/query/getViewer"
 
 const LoadingProcess = loadingProcess({

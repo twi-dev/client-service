@@ -1,7 +1,6 @@
 import merge from "core/helper/util/objectFlatMerge"
 
-// TODO: Move page loader here because of usage from the core
-import Loading from "common/component/Loading/Page"
+import Loading from "core/component/Loading"
 
 import stateful from "../statefulComponent"
 import loadingProcess from "../../loadingProcess"
