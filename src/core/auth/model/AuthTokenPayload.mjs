@@ -1,5 +1,7 @@
 import {types, flow} from "mobx-state-tree"
 
+import getTime from "date-fns/getTime"
+
 import AuthAccessToken from "./AuthAccessToken"
 import AuthrefreshToken from "./AuthRefreshToken"
 
@@ -28,10 +30,10 @@ const views = self => ({
       return true
     }
 
-    const now = new Date()
-    const expires = new Date(token.expires)
+    const now = Date.now()
+    const expires = getTime(token.expires)
 
-    return now.getTime() >= expires.getTime()
+    return now >= expires
   }
 })
 

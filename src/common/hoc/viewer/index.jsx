@@ -9,7 +9,7 @@ import ApplicationError from "core/page/error/ApplicationError"
 
 import Model from "./Model"
 import Loading from "./component/Loading"
-import viewer from "./graphql/query/getViewer"
+import getViewer from "./graphql/query/getViewer"
 
 const LoadingProcess = loadingProcess({
   onLoading: Loading,
@@ -19,6 +19,8 @@ const LoadingProcess = loadingProcess({
 })
 
 const hoc = () => import("./viewer")
+
+const viewer = () => getViewer()
 
 const createViewer = state => ({viewer: state ? Model.create(state) : null})
 

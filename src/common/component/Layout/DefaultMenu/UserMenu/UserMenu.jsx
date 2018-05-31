@@ -1,13 +1,12 @@
 import {h} from "preact"
 
 import Menu from "common/component/SidebarMenu"
-import Element from "common/component/SidebarMenu/Element"
+
+import Profile from "./Profile"
 
 const UserMenu = () => (
   <Menu>
-    <Element href="/">
-      User
-    </Element>
+    <Profile />
   </Menu>
 )
 

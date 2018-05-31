@@ -27,7 +27,7 @@ async function loadSession() {
 
   const session = Session.create({accessToken, refreshToken})
 
-  if (session.accessToken.isExpired) {
+  if (session.isAccessExpired) {
     await session.refreshAccessToken()
   }
 
