@@ -5,7 +5,11 @@ import {shape, func, bool} from "prop-types"
 import {container} from "./menu-footer.sss"
 
 const Footer = ({menu}) => (
-  <button class={container} onClick={menu.isOpen ? menu.close : menu.open}>
+  <button
+    class={container}
+    disabled={menu.isHidden}
+    onClick={menu.isOpen ? menu.close : menu.open}
+  >
     {menu.isOpen ? "-" : "+"}
   </button>
 )
@@ -13,6 +17,7 @@ const Footer = ({menu}) => (
 Footer.propTypes = {
   menu: shape({
     isOpen: bool.isRequired,
+    isHidden: bool.isRequired,
     open: func.isRequired,
     close: func.isRequired
   }).isRequired

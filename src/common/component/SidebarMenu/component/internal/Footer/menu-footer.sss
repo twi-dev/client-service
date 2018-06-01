@@ -1,3 +1,5 @@
+@use postcss-nested
+
 .container
   display: flex
   width: 100%
@@ -10,3 +12,9 @@
   cursor: pointer
   justify-content: center
   align-items: center
+
+  &:disabled
+    background: transparent
+    color: white
+    border: none
+    cursor: inherit
