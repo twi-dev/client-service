@@ -1,6 +1,8 @@
 import {h} from "preact"
-import {arrayOf, element} from "prop-types"
+import {arrayOf, shape, element} from "prop-types"
 import {inject, observer} from "mobx-preact"
+
+import cn from "classnames"
 
 import connect from "core/model/connect"
 
@@ -10,14 +12,14 @@ import Footer from "./component/internal/Footer"
 
 import Model from "./model/SidebarMenu"
 
-import {container} from "./sidebar-menu.sss"
+import {container, open} from "./sidebar-menu.sss"
 
 const isArray = Array.isArray
 
-const menu = () => ({menu: Model.create({})})
+const models = () => ({menu: Model.create({})})
 
-const SidebarMenu = ({children}) => (
-  <div class={container}>
+const SidebarMenu = ({menu, children}) => (
+  <div class={cn(container, {[open]: menu.isOpen})}>
     <Logo />
 
     {
@@ -35,11 +37,12 @@ const SidebarMenu = ({children}) => (
 )
 
 SidebarMenu.propTypes = {
-  children: arrayOf(element.isRequired)
+  children: arrayOf(element.isRequired),
+  menu: shape({}).isRequired
 }
 
 SidebarMenu.defaultProps = {
   children: null
 }
 
-export default SidebarMenu |> connect(menu) |> observer |> inject("viewer")
+export default SidebarMenu |> connect(models) |> observer |> inject("viewer")
