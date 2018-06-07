@@ -1,5 +1,3 @@
-import "whatwg-fetch"
-
 import omit from "lodash/omit"
 import waterfall from "p-waterfall"
 import serialize from "@octetstream/object-to-form-data"
