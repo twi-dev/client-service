@@ -1,4 +1,5 @@
-.container
-  outline: none
-  width: auto
-  height: auto
+@use postcss-nested
+
+.proxy
+  &:active, &:focus
+    outline: none
