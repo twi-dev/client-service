@@ -1,6 +1,8 @@
 import {h, Component} from "preact"
 import {func} from "prop-types"
 
+import omit from "lodash/omit"
+
 import getName from "core/helper/component/getName"
 
 const assign = Object.assign
@@ -46,7 +48,7 @@ const enhanceTextField = Target => {
     }
 
     render() {
-      return h(Target, assign({}, this.props, {
+      return h(Target, assign({}, omit(this.props, ["onEsc", "onEnter"]), {
         onKeyPress: this.onEnter,
         onKeyUp: this.onEsc,
         ref: this.setRef
