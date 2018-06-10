@@ -16,8 +16,8 @@ class OnClickOutside extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener("click", this.__handleClick, true)
-    document.addEventListener("touchstart", this.__handleClick, true)
+    document.addEventListener("click", this.__handler, true)
+    document.addEventListener("touchstart", this.__handler, true)
   }
 
   get children() {
@@ -25,12 +25,11 @@ class OnClickOutside extends Component {
   }
 
   componnetWillUnmount() {
-    document.removeEventListener("click", this.__handleClick, true)
-    document.removeEventListener("touchstart", this.__handleClick, true)
+    document.removeEventListener("click", this.__handler, true)
+    document.removeEventListener("touchstart", this.__handler, true)
   }
 
-
-  __handleClick = event => {
+  __handler = event => {
     if (this.base && !this.base.contains(document.activeElement)) {
       this.props.onClickOutside(event)
     }
