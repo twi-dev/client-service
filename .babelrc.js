@@ -4,11 +4,9 @@ module.exports = {
       pragma: "h"
     }],
     ["@babel/env", {
+      debug: process.env.NODE_ENV !== "production",
       modules: false,
       exclude: ["transform-regenerator"],
-      targets: {
-        browsers: ["last 2 years", "not dead"]
-      }
     }]
   ],
   plugins: [

@@ -19,8 +19,8 @@ const enhanceTextField = Target => {
     }
 
     static defaultProps = {
-      onEnter: null,
-      onEsc: null,
+      onEnter: () => {},
+      onEsc: () => {},
       onKeyPress: () => {},
       onKeyUp: () => {}
     }

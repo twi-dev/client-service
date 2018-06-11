@@ -1,7 +1,6 @@
-// const {extract} = require("extract-text-webpack-plugin")
 const {loader} = require("mini-css-extract-plugin")
 
-const cssnext = require("postcss-cssnext")
+const presetEnv = require("postcss-preset-env")
 const use = require("postcss-use")
 const lost = require("lost")
 const atImport = require("postcss-import")
@@ -40,13 +39,7 @@ const css = ({dev}, options) => ({
             root: options.root,
             path: "src"
           }),
-          cssnext({
-            autoprefixer: {
-              browsers: [
-                "last 2 years"
-              ]
-            }
-          })
+          presetEnv()
         ]
       }
     }
