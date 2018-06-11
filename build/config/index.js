@@ -1,5 +1,6 @@
 const readdirSync = require("fs").readdirSync
 const join = require("path").join
+
 const UglifyJS = require("uglifyjs-webpack-plugin")
 
 const {devServer = {}} = require("../../package.json")
@@ -62,6 +63,9 @@ const configure = env => ({
           keep_fnames: true,
           compress: {
             reduce_funcs: false
+          },
+          output: {
+            comments: false
           }
         }
       })
