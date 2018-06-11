@@ -1,5 +1,6 @@
 const readdirSync = require("fs").readdirSync
 const join = require("path").join
+const UglifyJS = require("uglifyjs-webpack-plugin")
 
 const {devServer = {}} = require("../../package.json")
 
@@ -52,7 +53,19 @@ const configure = env => ({
     maxAssetSize: 320000
   },
   optimization: {
-    minimize: false,
+    minimize: !env.dev,
+    minimizer: [
+      new UglifyJS({
+        test: /\.(m?js|jsx)$/,
+        parallel: true,
+        uglifyOptions: {
+          keep_fnames: true,
+          compress: {
+            reduce_funcs: false
+          }
+        }
+      })
+    ],
     runtimeChunk: {
       name: "runtime"
     },
