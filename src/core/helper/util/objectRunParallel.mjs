@@ -10,14 +10,16 @@ const entries = Object.entries
  *
  * @return {Promise<object>}
  */
-function objectRunParallel(object, ...args) {
-  const tasks = entries(object)
+const objectRunParallel = (src, ...args) => new Promise((resolve, reject) => {
+  const tasks = entries(src)
 
-  const fulfill = ([key, task]) => (
+  const step = ([key, task]) => (
     Promise.resolve(task(...args)).then(value => [key, value])
   )
 
-  return Promise.all(tasks.map(fulfill)).then(objectFromEntries)
-}
+  const onResult = res => res |> objectFromEntries |> resolve
+
+  Promise.all(tasks.map(step)).then(onResult).catch(reject)
+})
 
 export default objectRunParallel

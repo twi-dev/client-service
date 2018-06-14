@@ -9,16 +9,24 @@ const entries = Object.entries
  *
  * @return {Promise<object>}
  */
-function objectSerial(object, ...args) {
+const objectRunSerial = (src, ...args) => new Promise((resolve, reject) => {
+  const tasks = entries(src)
+
   const fulfill = ([key, task]) => prev => (
     Promise.resolve(task(...args)).then(value => [...prev, [key, value]])
   )
 
-  const reducer = (prev, next) => prev.then(fulfill(next))
+  const step = (prev, next) => Promise.resolve(prev).then(fulfill(next))
 
-  const tasks = entries(object)
+  const onResult = res => res |> objectFromEntries |> resolve
 
-  return tasks.reduce(reducer, Promise.resolve([])).then(objectFromEntries)
-}
+  if (tasks.length <= 1) {
+    const [task] = tasks
 
-export default objectSerial
+    return step([], task)
+  }
+
+  tasks.reduce(step, []).then(onResult).catch(reject)
+})
+
+export default objectRunSerial

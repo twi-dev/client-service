@@ -60,11 +60,12 @@ const configure = env => ({
         test: /\.(m?js|jsx)$/,
         parallel: true,
         uglifyOptions: {
-          keep_fnames: true,
+          // keep_fnames: true,
           compress: {
             reduce_funcs: false
           },
           output: {
+            ecma: 6,
             comments: false
           }
         }

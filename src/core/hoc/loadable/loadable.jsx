@@ -45,7 +45,7 @@ const loadable = (options = {}) => {
       throw new TypeError("Expected \"timeout\" option as a number.")
     }
 
-    if (keys(loadable).length > 1 && !isFunction(render)) {
+    if (keys(loaders).length > 1 && !isFunction(render)) {
       throw new TypeError(
         "You must resolve a bunch loaded content manually " +
         "by using a custom renderer. So, \"render\" options required."
