@@ -3,15 +3,15 @@ import iterator from "core/helper/iterator/objectIterator"
 const isArray = Array.isArray
 
 /**
- * Merge all sources objects with first given object. From left to the right.
+ * Merge all objects into the first one.
  *
- * @param {object} object
+ * @param {object} target
  * @param {object[]} ...sources
  *
  * @return {object}
  */
-function objectFlatMerge(object, ...sources) {
-  object || (object = {})
+function objectFlatMerge(target, ...sources) {
+  target || (target = {})
 
   while (true) {
     if (sources.length === 0) {
@@ -21,18 +21,18 @@ function objectFlatMerge(object, ...sources) {
     const source = sources.shift()
 
     // Ignore all nullish values and array-like objects
-    if (source == null || isArray(object)) {
+    if (source == null || isArray(target)) {
       continue
     }
 
     for (const [key, value] of iterator(source).entries()) {
       if (value != null) {
-        object[key] = value
+        target[key] = value
       }
     }
   }
 
-  return object
+  return target
 }
 
 export default objectFlatMerge
