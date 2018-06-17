@@ -1,5 +1,7 @@
 import {h} from "preact"
 
-const NewStory = () => <div>Story details</div>
+const Details = () => <div>Story details</div>
 
-export default NewStory
+Details.displayName = "StoryDetails"
+
+export default Details

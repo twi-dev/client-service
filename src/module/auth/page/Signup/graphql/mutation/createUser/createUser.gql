@@ -1,5 +1,5 @@
-mutation Authenticate($credentials: AuthInput!) {
-  authenticate(credentials: $credentials) {
+mutation CreateUser($user: UserInput!) {
+  createUser(user: $user) {
     refreshToken {
       type
       payload

@@ -1,16 +1,18 @@
 import {query} from "core/transport/graphql"
 
-import story from "./story.gql"
+import getData from "core/helper/graphql/getData"
+
+import storyQuery from "./story.gql"
 
 async function getStory(slug) {
-  const res = await query({
-    query: story,
+  const options = {
+    query: storyQuery,
     variables: {
       slug
     }
-  })
+  }
 
-  return res.data.story
+  return await query(options) |> getData("story")
 }
 
 export default getStory

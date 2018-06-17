@@ -1,13 +1,13 @@
 import {types, flow} from "mobx-state-tree"
 
-import {mutate} from "core/transport/graphql"
-
 import saveTokens from "core/auth/helper/saveTokens"
 import updateTextField from "common/model/action/updateTextField"
 
-import createUser from "./createUser.gql"
+import createUser from "./graphql/mutation/createUser"
 
 const {model, optional, string} = types
+
+const LOGIN_PATTERN = /[a-z0-9-_.]+/i
 
 const schema = {
   username: optional(string, ""),
@@ -20,24 +20,20 @@ const actions = self => ({
 
   createUser: flow(function* () {
     const {email, password} = self
+
     const login = self.username
 
-    const res = yield mutate({
-      mutation: createUser,
-      variables: {
-        user: {
-          login,
-          email,
-          password
-        }
-      }
-    })
+    const tokens = yield createUser({login, email, password})
 
-    yield saveTokens(res.data.createUser)
+    yield saveTokens(tokens)
   })
 })
 
 const views = self => ({
+  get isValidLogin() {
+    return LOGIN_PATTERN.test(self.username)
+  },
+
   get isValid() {
     const {username, email, password} = self
 

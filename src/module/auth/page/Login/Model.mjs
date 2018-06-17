@@ -1,11 +1,9 @@
 import {types, flow} from "mobx-state-tree"
 
-import {mutate} from "core/transport/graphql"
-
 import saveTokens from "core/auth/helper/saveTokens"
 import updateTextField from "common/model/action/updateTextField"
 
-import authenticate from "./authenticate.gql"
+import authenticate from "./graphql/mutation/authenticate"
 
 const {model, optional, string} = types
 
@@ -21,16 +19,9 @@ const actions = self => ({
     const login = self.username
     const password = self.password
 
-    const res = yield mutate({
-      mutation: authenticate,
-      variables: {
-        credentials: {
-          login, password
-        }
-      }
-    })
+    const tokens = yield authenticate({login, password})
 
-    yield saveTokens(res.data.authenticate)
+    yield saveTokens(tokens)
   })
 })
 
