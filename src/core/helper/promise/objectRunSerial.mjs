@@ -1,7 +1,5 @@
 import objectFromEntries from "object-deep-from-entries"
 
-import deprecate from "./deprecate"
-
 const entries = Object.entries
 
 /**
@@ -32,4 +30,3 @@ const objectRunSerial = (src, ...args) => new Promise((resolve, reject) => {
 })
 
 export default objectRunSerial
-  |> deprecate("objectRunSerial moved to ../promise/objectRunSerial")

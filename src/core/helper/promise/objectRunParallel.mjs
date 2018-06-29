@@ -1,7 +1,5 @@
 import objectFromEntries from "object-deep-from-entries"
 
-import deprecate from "./deprecate"
-
 const entries = Object.entries
 
 /**
@@ -25,4 +23,3 @@ const objectRunParallel = (src, ...args) => new Promise((resolve, reject) => {
 })
 
 export default objectRunParallel
-  |> deprecate("objectRunParallel moved to ../promise/objectRunParallel")

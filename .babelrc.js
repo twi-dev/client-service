@@ -4,7 +4,7 @@ module.exports = {
       pragma: "h"
     }],
     ["@babel/env", {
-      debug: process.env.NODE_ENV !== "production",
+      debug: process.env.NODE_ENV !== "debug",
       modules: false,
       exclude: ["transform-regenerator"],
     }]
