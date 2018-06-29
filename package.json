@@ -103,6 +103,7 @@
     "apollo-link": "1.2.2",
     "apollo-link-context": "1.0.8",
     "apollo-link-error": "1.1.0",
+    "apollo-link-form-data": "^0.3.1",
     "awaity": "1.0.0",
     "classnames": "2.2.6",
     "date-fns": "2.0.0-alpha.7",

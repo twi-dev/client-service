@@ -1,3 +1,4 @@
+// DEPRECATED
 import iterator from "core/helper/iterator/objectIterator"
 
 import isPlainObject from "lodash/isPlainObject"

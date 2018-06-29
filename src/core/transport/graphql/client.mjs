@@ -2,17 +2,16 @@ import Client from "apollo-client"
 
 import {ApolloLink} from "apollo-link"
 import {InMemoryCache as Cache} from "apollo-cache-inmemory"
+import {createFormDataLink} from "apollo-link-form-data"
 
 import {api} from "config"
-
-import Link from "./HttpLink"
 
 import authContext from "./authContext"
 import errorContext from "./errorContext"
 
-const link = ApolloLink.from([
-  errorContext, authContext, new Link({uri: api.uri})
-])
+const formDataLink = createFormDataLink({uri: api.uri})
+
+const link = ApolloLink.from([errorContext, authContext, formDataLink])
 
 const cache = new Cache()
 

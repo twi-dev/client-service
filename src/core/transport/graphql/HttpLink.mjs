@@ -1,3 +1,4 @@
+// DEPRECATED
 import {ApolloLink} from "apollo-link"
 
 import requestHandler from "./requestHandler"
