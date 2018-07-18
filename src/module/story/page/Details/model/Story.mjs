@@ -7,7 +7,7 @@ import StoryMinimal from "../../../common/model/StoryMinimal"
 const {identifier, string} = types
 
 const schema = {
-  id: identifier(),
+  id: identifier,
   dates: CommonDates,
 
   // Maybe I need to make links contain also a story title?

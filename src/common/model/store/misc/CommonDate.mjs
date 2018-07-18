@@ -8,7 +8,7 @@ const schema = {
   raw: types.Date
 }
 
-const before = ({raw} = {}) => ({raw: raw ? toDate(raw) : null})
+const before = ({raw} = {}) => ({raw: raw ? toDate(raw) : undefined})
 
 const CommonDate = model("CommonDate", schema).preProcessSnapshot(before)
 

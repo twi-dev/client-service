@@ -1,6 +1,6 @@
 import {h} from "preact"
 import {observer} from "mobx-preact"
-import {PropTypes as types, func, element, arrayOf} from "prop-types"
+import {string, func, element, arrayOf} from "prop-types"
 
 import cn from "classnames"
 
@@ -19,7 +19,7 @@ const Form = ({children, onSubmit, ...props}) => (
 )
 
 Form.propTypes = {
-  class: types.string,
+  class: string,
   onSubmit: func.isRequired,
   children: arrayOf(element.isRequired).isRequired
 }
@@ -28,4 +28,4 @@ Form.defaultProps = {
   class: undefined,
 }
 
-export default observer(Form)
+export default Form |> observer

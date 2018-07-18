@@ -9,7 +9,7 @@ const actions = self => ({
   submit: flow(function* submit() {
     // TODO: This mutation needs some changes on the server
     //   1. I need to make chapters optional
-    //   2. Also, a story without any chapters will be forced as draft.
+    //   2. Also, a story without any chapters will be always marked as draft.
     const {title, description, chapters, characters, genres} = self
 
     let isDraft = self.isDraft

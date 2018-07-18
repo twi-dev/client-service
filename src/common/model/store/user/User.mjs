@@ -6,7 +6,7 @@ import UserDates from "./UserDates"
 const {model, string, identifier, optional} = types
 
 const schema = {
-  id: identifier(),
+  id: identifier,
   login: string,
   role: string,
   status: string,
