@@ -12,6 +12,7 @@ query GetViewer {
       fb
       twitter
       vk
+      email
     }
   }
 }

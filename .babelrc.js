@@ -4,7 +4,6 @@ module.exports = {
       pragma: "h"
     }],
     ["@babel/env", {
-      debug: process.env.NODE_ENV !== "debug",
       modules: false,
       exclude: ["transform-regenerator"],
     }]
@@ -18,10 +17,12 @@ module.exports = {
     ["@babel/proposal-class-properties", {
       loose: true
     }],
+    ["@babel/proposal-pipeline-operator", {
+      proposal: "minimal"
+    }],
     "@babel/proposal-optional-catch-binding",
     "@babel/proposal-do-expressions",
     "@babel/proposal-nullish-coalescing-operator",
-    "@babel/proposal-pipeline-operator",
     "@babel/proposal-optional-chaining",
     ["@babel/proposal-object-rest-spread", {
       useBuiltIns: true,

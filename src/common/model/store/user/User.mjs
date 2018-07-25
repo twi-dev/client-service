@@ -11,7 +11,7 @@ const schema = {
   role: string,
   status: string,
   dates: UserDates,
-  contacs: optional(UserContacts, {})
+  contacts: optional(UserContacts, {})
 }
 
 const User = model("User", schema)

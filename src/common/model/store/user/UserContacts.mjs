@@ -1,14 +1,17 @@
 import {types} from "mobx-state-tree"
 
-const {model, maybe, string, array} = types
+const {model, maybeNull, string} = types
 
 const schema = {
-  vk: maybe(string),
-  fb: maybe(string),
-  twitter: maybe(string),
-  email: maybe(array(string))
+  vk: maybeNull(string),
+  fb: maybeNull(string),
+  twitter: maybeNull(string),
+  email: maybeNull(string),
+  telegram: maybeNull(string)
 }
 
-const User = model("UserContacts", schema)
+const before = ({...snapshot}) => snapshot
+
+const User = model("UserContacts", schema).preProcessSnapshot(before)
 
 export default User
