@@ -1,4 +1,4 @@
-import React, {Component} from "react"
+import React, {Component, Children} from "react"
 import {element, arrayOf} from "prop-types"
 
 import Menu from "common/component/SidebarMenu"
@@ -6,6 +6,8 @@ import Menu from "common/component/SidebarMenu"
 import DefaultMenu from "./DefaultMenu"
 
 import {container, content} from "./layout.sss"
+
+const toArray = Children.toArray
 
 class Layout extends Component {
   static propTypes = {
@@ -17,11 +19,11 @@ class Layout extends Component {
   }
 
   get menuContents() {
-    return this.props.children.find(({type}) => type === Menu)
+    return toArray(this.props.children).find(({type}) => type === Menu)
   }
 
   get pageContent() {
-    return this.props.children.filter(({type}) => type !== Menu)
+    return toArray(this.props.children).filter(({type}) => type !== Menu)
   }
 
   render() {

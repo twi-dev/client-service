@@ -14,9 +14,9 @@ const refreshAccessToken = Target => {
       session: shape({}).isRequired
     }
 
-    componentWillMount = () => this.__updateToken()
+    componentDidMount = () => this.__updateToken()
 
-    componentDidUnmount = () => this.__removeTimer()
+    componentWillUnmount = () => this.__removeTimer()
 
     __timer = null
 

@@ -1,4 +1,4 @@
-import React, {Fragment} from "preact"
+import React, {Fragment} from "react"
 import {Link} from "react-router-dom"
 
 import Title from "common/component/Title"

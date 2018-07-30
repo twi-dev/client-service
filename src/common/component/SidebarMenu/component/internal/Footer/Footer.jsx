@@ -1,4 +1,4 @@
-import React from "preact"
+import React from "react"
 
 import {inject, observer} from "mobx-react"
 import {shape, func, bool} from "prop-types"

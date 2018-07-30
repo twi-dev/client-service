@@ -1,4 +1,4 @@
-import React, {Fragment} from "preact"
+import React, {Fragment} from "react"
 import {shape} from "prop-types"
 
 import Title from "common/component/Title"

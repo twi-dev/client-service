@@ -11,7 +11,7 @@ const target = document.querySelector("#twi-root")
 // Init the application
 render(createElement(Application), target)
 
-// Enable HRM for Preact
+// Enable HRM
 if (module.hot) {
   module.hot.accept()
 }
