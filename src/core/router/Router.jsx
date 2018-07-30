@@ -1,4 +1,5 @@
 import React from "react"
+import nanoid from "nanoid"
 
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 
@@ -11,7 +12,7 @@ const routes = getRoutes()
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      {routes.map(props => <Route {...props} />)}
+      {routes.map(props => <Route key={nanoid()} {...props} />)}
 
       {/* Render 404 error when no page found */}
       <Route component={NotFound} />

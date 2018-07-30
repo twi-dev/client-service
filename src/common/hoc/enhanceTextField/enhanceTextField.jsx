@@ -1,4 +1,4 @@
-import {createElement as h, Component} from "preact"
+import {createElement as h, Component} from "react"
 import {func} from "prop-types"
 
 import omit from "lodash/omit"
