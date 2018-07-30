@@ -1,8 +1,8 @@
-import {h} from "preact"
-import {arrayOf, shape, element} from "prop-types"
-import {inject, observer} from "mobx-preact"
-
+import React from "react"
 import cn from "classnames"
+
+import {arrayOf, shape, element} from "prop-types"
+import {inject, observer} from "mobx-react"
 
 import connect from "core/model/connect"
 
@@ -19,7 +19,7 @@ const isArray = Array.isArray
 const models = () => ({menu: Model.create({})})
 
 const SidebarMenu = ({menu, children}) => (
-  <div class={cn(container, {[open]: menu.isOpen})}>
+  <div className={cn(container, {[open]: menu.isOpen})}>
     <Logo />
 
     {

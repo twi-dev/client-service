@@ -10,9 +10,6 @@ module.exports = {
     }
   },
   settings: {
-    react: {
-      pragma: "h"
-    },
     "import/resolver": {
       "babel-module": {
         cwd: __dirname,
@@ -27,10 +24,6 @@ module.exports = {
     "@octetstream"
   ],
   rules: {
-    "react/no-unknown-property": [2, {
-      ignore: ["class"]
-    }],
-
     "jsx-a11y/anchor-is-valid": ["error", {
       components: ["Link"],
       specialLink: ["to", "hrefLeft", "hrefRight"],

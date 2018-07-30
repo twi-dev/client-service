@@ -1,4 +1,4 @@
-import {h} from "preact"
+import {createElement as h} from "react"
 import {instanceOf} from "prop-types"
 
 import isFunction from "lodash/isFunction"

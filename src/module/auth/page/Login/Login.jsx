@@ -1,7 +1,6 @@
-import {h, Component} from "preact"
+import React, {Component, Fragment} from "react"
 import {shape, func, string} from "prop-types"
 
-import Fragment from "common/component/Fragment"
 import Title from "common/component/Title"
 
 import Form from "module/auth/common/component/Form"
@@ -10,18 +9,11 @@ import Link from "module/auth/common/component/Form/Link"
 import Fields from "module/auth/common/component/Form/Fields"
 import Button from "module/auth/common/component/Form/Button"
 import Footer from "module/auth/common/component/Form/Footer"
-
 import withRedirect from "module/auth/common/hoc/withRedirect"
-
-import Model from "./Model"
 
 import {container} from "./login.sss"
 
 @withRedirect class Login extends Component {
-  static getInitialProps = async () => ({
-    login: Model.create({})
-  })
-
   static propTypes = {
     onError: func.isRequired,
     login: shape({

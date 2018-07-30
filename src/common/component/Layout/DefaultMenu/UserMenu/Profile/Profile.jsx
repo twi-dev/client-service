@@ -1,5 +1,6 @@
-import {h} from "preact"
-import {inject, observer} from "mobx-preact"
+import React from "react"
+
+import {inject, observer} from "mobx-react"
 import {shape, string} from "prop-types"
 
 import Element from "common/component/SidebarMenu/Element"

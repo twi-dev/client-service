@@ -1,8 +1,8 @@
 import {parse} from "query-string"
 
-import {h, Component} from "preact"
+import React, {createElement as h, Component} from "react"
 import {shape, string, bool} from "prop-types"
-import {observer} from "mobx-preact"
+import {observer} from "mobx-react"
 import {Redirect} from "react-router-dom"
 
 const withRedirect = Target => {

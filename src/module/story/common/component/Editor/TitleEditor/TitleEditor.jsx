@@ -1,6 +1,6 @@
-import {h, Component} from "preact"
+import React, {Component} from "react"
 import {func, string} from "prop-types"
-import {observer} from "mobx-preact"
+import {observer} from "mobx-react"
 
 import Title from "common/component/Title"
 import TextArea from "common/component/EnhancedTextField/TextAreaWithAutoSize"
@@ -42,7 +42,7 @@ import {container, field} from "./title-editor.sss"
 
   render() {
     return (
-      <div class={container}>
+      <div className={container}>
         {this.props.title && <Title title={this.props.title} />}
 
         <TextArea

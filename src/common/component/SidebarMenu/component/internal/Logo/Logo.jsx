@@ -1,9 +1,9 @@
-import {h} from "preact"
-import {observer, inject} from "mobx-preact"
-import {shape} from "prop-types"
-
-import Link from "react-router-dom/Link"
+import React from "react"
 import cn from "classnames"
+import Link from "react-router-dom/Link"
+
+import {observer, inject} from "mobx-react"
+import {shape} from "prop-types"
 
 import LogoIcon from "common/svg/layout/logo.svg"
 
@@ -12,7 +12,7 @@ import Text from "./Text"
 import {container, open} from "./logo.sss"
 
 const Logo = ({menu}) => (
-  <Link to="/" class={cn(container, {[open]: menu.isOpen})}>
+  <Link to="/" className={cn(container, {[open]: menu.isOpen})}>
     <LogoIcon />
     <Text />
   </Link>

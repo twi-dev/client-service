@@ -1,5 +1,5 @@
-import {h} from "preact"
-import {Provider, observer, inject} from "mobx-preact"
+import {createElement as h} from "react"
+import {Provider, observer, inject} from "mobx-react"
 
 import isFunction from "lodash/isFunction"
 

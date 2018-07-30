@@ -1,26 +1,26 @@
-import {h} from "preact"
-import {PropTypes as types, element, oneOfType} from "prop-types"
-
+import React from "react"
 import cn from "classnames"
 import omit from "lodash/omit"
+
+import {PropTypes as types, element, oneOfType} from "prop-types"
 
 import {container, primary} from "./button.sss"
 
 const Button = ({children, ...props}) => (
-  <div class={cn(container, props.class)}>
-    <button {...(omit(props, ["class", "className"]))} class={primary}>
+  <div className={cn(container, props.className)}>
+    <button {...(omit(props, "className"))} className={primary}>
       {children}
     </button>
   </div>
 )
 
 Button.propTypes = {
-  class: types.string,
+  className: types.string,
   children: oneOfType([types.string.isRequired, element.isRequired]).isRequired
 }
 
 Button.defaultProps = {
-  class: undefined
+  className: undefined
 }
 
 export default Button

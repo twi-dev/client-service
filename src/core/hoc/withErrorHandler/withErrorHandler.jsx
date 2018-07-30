@@ -1,4 +1,4 @@
-import {h} from "preact"
+import {h} from "react"
 
 import errorHandler from "../errorHandler"
 

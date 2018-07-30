@@ -1,6 +1,6 @@
-import {h, Component} from "preact"
+import React, {Component} from "react"
 import {shape, string, func} from "prop-types"
-import {observer} from "mobx-preact"
+import {observer} from "mobx-react"
 import {computed} from "mobx"
 
 import preventDefault from "core/helper/decorator/preventDefault"
@@ -47,7 +47,7 @@ import {container} from "./editor.sss"
 
   render() {
     return (
-      <div class={container}>
+      <div className={container}>
         <TitleEditor
           ref={this.setTitleRef}
           title={this.story.title}

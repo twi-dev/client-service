@@ -1,6 +1,5 @@
-import {h} from "preact"
+import React, {Fragment} from "react"
 
-import Fragment from "common/component/Fragment"
 import Title from "common/component/Title"
 
 const Recover = () => (

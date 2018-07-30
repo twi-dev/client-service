@@ -1,19 +1,18 @@
-import {h} from "preact"
-import {BrowserRouter} from "react-router-dom"
+import React from "react"
 
-import Routes from "core/routes"
+import {hot} from "react-hot-loader"
 
+import Router from "core/router"
 import Title from "common/component/Title"
 
 import {container} from "./application.sss"
 
 const Application = () => (
-  <div class={container}>
+  <div className={container}>
     <Title />
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
+
+    <Router />
   </div>
 )
 
-export default Application
+export default Application |> hot(module)

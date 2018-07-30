@@ -1,14 +1,13 @@
-import {h} from "preact"
+import React, {Fragment} from "preact"
 import {shape} from "prop-types"
 
 import Title from "common/component/Title"
-import Fragment from "common/component/Fragment"
-
 import Layout from "common/component/Layout"
 
 const Profile = ({user}) => (
   <Fragment>
     <Title title={user.login} />
+
     <Layout>
       <div>{user.login}</div>
     </Layout>

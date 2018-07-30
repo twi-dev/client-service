@@ -1,4 +1,4 @@
-import {h} from "preact"
+import React from "react"
 
 import Element from "common/component/SidebarMenu/Element"
 

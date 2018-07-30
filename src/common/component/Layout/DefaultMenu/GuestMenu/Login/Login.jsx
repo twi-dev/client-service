@@ -1,4 +1,4 @@
-import {h} from "preact"
+import React from "react"
 import {shape, string} from "prop-types"
 
 import withRouter from "react-router-dom/withRouter"

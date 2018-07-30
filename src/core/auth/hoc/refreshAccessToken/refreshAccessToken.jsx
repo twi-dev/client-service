@@ -1,6 +1,6 @@
-import {h, Component} from "preact"
+import {createElement, Component} from "react"
 import {shape} from "prop-types"
-import {observer} from "mobx-preact"
+import {observer} from "mobx-react"
 
 import ms from "ms"
 
@@ -35,7 +35,7 @@ const refreshAccessToken = Target => {
     }
 
     render(props) {
-      return h(Target, props)
+      return createElement(Target, props)
     }
   }
 

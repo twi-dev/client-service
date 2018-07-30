@@ -1,5 +1,5 @@
-import {h, Component} from "preact"
-import {observer} from "mobx-preact"
+import React, {Component} from "react"
+import {observer} from "mobx-react"
 import {func, string} from "prop-types"
 
 import TextArea from "common/component/EnhancedTextField/TextAreaWithAutoSize"

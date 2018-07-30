@@ -1,4 +1,4 @@
-import {h} from "preact"
+import {createElement as h} from "react"
 
 import loadingProcess from "core/hoc/loadingProcess"
 import loadable from "core/hoc/loadable"

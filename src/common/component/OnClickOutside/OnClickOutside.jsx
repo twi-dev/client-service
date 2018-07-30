@@ -1,4 +1,4 @@
-import {cloneElement, Component} from "preact"
+import {cloneElement, Component} from "react"
 import {element, func} from "prop-types"
 
 import cn from "classnames"

@@ -1,12 +1,13 @@
-import {h} from "preact"
-import {inject, observer} from "mobx-preact"
+import React from "preact"
+
+import {inject, observer} from "mobx-react"
 import {shape, func, bool} from "prop-types"
 
 import {container} from "./menu-footer.sss"
 
 const Footer = ({menu}) => (
   <button
-    class={container}
+    className={container}
     disabled={menu.isHidden}
     onClick={menu.isOpen ? menu.close : menu.open}
   >

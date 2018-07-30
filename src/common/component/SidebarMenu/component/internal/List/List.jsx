@@ -1,10 +1,11 @@
-import {h} from "preact"
+import React from "react"
+
 import {arrayOf, element} from "prop-types"
 
 import {container} from "./menu-list.sss"
 
 const List = ({children}) => (
-  <ul class={container}>{children}</ul>
+  <ul className={container}>{children}</ul>
 )
 
 List.propTypes = {
