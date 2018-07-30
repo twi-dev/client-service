@@ -1,4 +1,4 @@
-import {h, Component} from "preact"
+import React, {Component} from "react"
 import {element, arrayOf} from "prop-types"
 
 import Menu from "common/component/SidebarMenu"
@@ -17,19 +17,19 @@ class Layout extends Component {
   }
 
   get menuContents() {
-    return this.props.children.find(({nodeName}) => nodeName === Menu)
+    return this.props.children.find(({type}) => type === Menu)
   }
 
   get pageContent() {
-    return this.props.children.filter(({nodeName}) => nodeName !== Menu)
+    return this.props.children.filter(({type}) => type !== Menu)
   }
 
   render() {
     return (
-      <div class={container}>
+      <div className={container}>
         {this.hasMenu ? this.menuContents : <DefaultMenu />}
 
-        <div class={content}>{this.pageContent}</div>
+        <div className={content}>{this.pageContent}</div>
       </div>
     )
   }

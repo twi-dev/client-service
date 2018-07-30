@@ -1,8 +1,7 @@
-import {h, Component} from "preact"
+import React, {Component, Fragment} from "react"
 import {instanceOf} from "prop-types"
 
 import Title from "common/component/Title"
-import Fragment from "common/component/Fragment"
 
 import {container, stack} from "./application-error.sss"
 
@@ -19,13 +18,13 @@ class ApplicationError extends Component {
     return (
       <Fragment>
         <Title title="Aw, snap!" />
-        <div class={container}>
+        <div className={container}>
           {
             do {
               if (process.env.NODE_ENV === "production") {
                 <div>
                   <h4>{error.message}</h4>
-                  <div class={stack}>{String(error.stack)}</div>
+                  <div className={stack}>{String(error.stack)}</div>
                 </div>
               } else {
                 <div>

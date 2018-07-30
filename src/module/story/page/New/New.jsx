@@ -1,7 +1,6 @@
-import {h} from "preact"
+import React, {Fragment} from "react"
 import {shape} from "prop-types"
 
-import Fragment from "common/component/Fragment"
 import Title from "common/component/Title"
 import Layout from "common/component/Layout"
 

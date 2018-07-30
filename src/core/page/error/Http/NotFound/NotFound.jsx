@@ -1,9 +1,7 @@
-import {h} from "preact"
+import React, {Fragment} from "preact"
 import {Link} from "react-router-dom"
 
-import Fragment from "common/component/Fragment"
 import Title from "common/component/Title"
-
 import ApplicationError from "core/page/error/ApplicationError"
 
 import {container, content, image, message, code} from "./not-found.sss"
@@ -15,18 +13,19 @@ class NotFound extends ApplicationError {
     return (
       <Fragment>
         <Title title="Page Not Found" />
-        <div class={container}>
-          <div class={content}>
-            <div class={image}>
+
+        <div className={container}>
+          <div className={content}>
+            <div className={image}>
               <Image />
             </div>
-            <div class={message}>
+            <div className={message}>
               <div>There are no books out there, princess!</div>
               <div>
                 <Link href to="/">Let‘s head home?</Link>
               </div>
             </div>
-            <div class={code}>404</div>
+            <div className={code}>404</div>
           </div>
         </div>
       </Fragment>

@@ -1,4 +1,4 @@
-import {h} from "preact"
+import {createElement as h} from "react"
 
 import getName from "core/helper/component/getName"
 

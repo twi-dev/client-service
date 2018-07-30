@@ -1,4 +1,4 @@
-import {h, Component} from "preact"
+import {createElement as h, Component} from "react"
 
 import isNumber from "lodash/isNumber"
 import isFunction from "lodash/isFunction"
@@ -66,6 +66,8 @@ const loadable = (options = {}) => {
       }
     }
 
+    // FIXME: This life cycle method is depreacated,
+    //   so I need to move this logic to component's constructor
     componentWillMount() {
       if (delay && (!isNaN(delay) && Number(delay) > 0)) {
         this.__delayTimer = setTimeout(this.__afterDelay, delay)

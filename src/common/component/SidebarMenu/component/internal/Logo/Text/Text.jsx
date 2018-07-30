@@ -1,15 +1,15 @@
-import {h} from "preact"
-import {observer, inject} from "mobx-preact"
-import {shape} from "prop-types"
-
+import React from "react"
 import cn from "classnames"
+
+import {observer, inject} from "mobx-react"
+import {shape} from "prop-types"
 
 import {app} from "config"
 
 import {container, open} from "./text.sss"
 
 const Text = ({menu}) => (
-  <div class={cn(container, {[open]: menu.isOpen})}>
+  <div className={cn(container, {[open]: menu.isOpen})}>
     {app.name}
   </div>
 )

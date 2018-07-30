@@ -1,23 +1,17 @@
-import {h, render} from "preact"
+import {createElement} from "react"
+import {render} from "react-dom"
 
 // Imprort global styles
 import "./main.sss"
 
-const container = document.querySelector("#twi-root")
+import Application from "./Application"
 
-let root
-function init() {
-  const Application = require("./Application").default
+const target = document.querySelector("#twi-root")
 
-  root = render(<Application />, container, root)
-}
+// Init the application
+render(createElement(Application), target)
 
 // Enable HRM for Preact
 if (module.hot) {
-  require("preact/devtools") // Inject Preact dev tools
-
-  module.hot.accept(["./Application"], init)
+  module.hot.accept()
 }
-
-// Init the application
-init()

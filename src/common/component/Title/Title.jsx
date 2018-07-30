@@ -1,15 +1,15 @@
-import {h} from "preact"
-import {PropTypes as types} from "prop-types"
-
+import React from "react"
 import Helmet from "react-helmet"
 import isString from "lodash/isString"
+
+import {string} from "prop-types"
 
 import {app} from "config"
 
 const Title = ({title}) => <Helmet {...{title}} />
 
 Title.propTypes = {
-  title: types.string
+  title: string
 }
 
 Title.defaultProps = {

@@ -1,7 +1,7 @@
-import {h} from "preact"
-import {Link} from "react-router-dom"
+import React, {Fragment} from "preact"
 
-import Fragment from "common/component/Fragment"
+import {Link} from "react-router-dom/Link"
+
 import Title from "common/component/Title"
 
 import {container, content, image} from "./not-found.sss"
@@ -11,9 +11,9 @@ import Image from "./not-found.svg"
 const NotFound = () => (
   <Fragment>
     <Title title="Page Not Found" />
-    <div class={container}>
-      <div class={content}>
-        <div class={image}>
+    <div className={container}>
+      <div className={content}>
+        <div className={image}>
           <Image />
         </div>
         <div>

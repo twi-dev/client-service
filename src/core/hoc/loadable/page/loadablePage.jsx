@@ -1,5 +1,4 @@
 import merge from "core/helper/util/objectFlatMerge"
-
 import Loading from "core/component/Loading"
 
 import stateful from "../statefulComponent"

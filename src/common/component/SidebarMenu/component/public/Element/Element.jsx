@@ -1,11 +1,11 @@
 import {parse} from "url"
 
-import {h, Component} from "preact"
-import {string, arrayOf, element, shape} from "prop-types"
-
+import React, {Component} from "react"
 import Link from "react-router-dom/Link"
 import withRouter from "react-router-dom/withRouter"
 import cn from "classnames"
+
+import {string, arrayOf, element, shape} from "prop-types"
 
 import {container, active} from "./menu-element.sss"
 
@@ -24,7 +24,7 @@ import {container, active} from "./menu-element.sss"
 
   render() {
     return (
-      <li class={cn(container, {[active]: this.isActive})}>
+      <li className={cn(container, {[active]: this.isActive})}>
         <Link to={this.props.href}>
           {this.props.children}
         </Link>

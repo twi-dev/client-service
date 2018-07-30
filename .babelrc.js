@@ -1,8 +1,6 @@
 module.exports = {
   presets: [
-    ["@babel/react", {
-      pragma: "h"
-    }],
+    "@babel/react",
     ["@babel/env", {
       modules: false,
       exclude: ["transform-regenerator"],
@@ -11,6 +9,7 @@ module.exports = {
   plugins: [
     "@babel/transform-runtime",
     "@babel/syntax-dynamic-import",
+    "react-hot-loader/babel",
     ["@babel/proposal-decorators", {
       legacy: true
     }],

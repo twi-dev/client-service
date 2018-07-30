@@ -1,4 +1,4 @@
-import {h} from "preact"
+import {createElement as h} from "react"
 
 import connect from "core/model/connect"
 import loadable from "core/hoc/loadable"

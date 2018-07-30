@@ -92,11 +92,7 @@ const configure = env => ({
     modules: [
       "node_modules",
       join(ROOT, "src")
-    ],
-    alias: {
-      react: "preact-compat",
-      "react-dom": "preact-compat",
-    }
+    ]
   },
   plugins: readPlugins(env),
   module: {

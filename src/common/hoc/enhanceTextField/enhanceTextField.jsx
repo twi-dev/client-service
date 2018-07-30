@@ -1,4 +1,4 @@
-import {h, Component} from "preact"
+import {createElement as h, Component} from "preact"
 import {func} from "prop-types"
 
 import omit from "lodash/omit"
@@ -41,6 +41,7 @@ const enhanceTextField = Target => {
       this.props.onKeyUp(event)
     }
 
+    // This method is deprecated, ude React.createRef instead
     setRef = ref => {
       if (ref) {
         this.field = ref.base

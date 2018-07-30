@@ -1,4 +1,4 @@
-import {h} from "preact"
+import {createElement as h} from "react"
 
 import session from "core/auth/hoc/session"
 import loadable from "core/hoc/loadable"

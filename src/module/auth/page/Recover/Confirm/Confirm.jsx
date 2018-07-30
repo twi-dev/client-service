@@ -1,4 +1,4 @@
-import {h} from "preact"
+import {createElement as h} from "react"
 import {bool} from "prop-types"
 
 // import client from "core/transport/graphql"

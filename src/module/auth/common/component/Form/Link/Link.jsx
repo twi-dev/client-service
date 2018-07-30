@@ -1,24 +1,24 @@
-import {h} from "preact"
-import {Link as RouterLink} from "react-router-dom"
-import {PropTypes as types} from "prop-types"
-
+import React from "react"
 import cn from "classnames"
 import omit from "lodash/omit"
+import RouterLink from "react-router-dom/Link"
+
+import {PropTypes as types} from "prop-types"
 
 import {container} from "./link.sss"
 
 const Link = props => (
-  <div class={cn(container, props.class)}>
-    <RouterLink {...{...omit(props, ["class", "className"])}} />
+  <div className={cn(container, props.className)}>
+    <RouterLink {...{...omit(props, "className")}} />
   </div>
 )
 
 Link.propTypes = {
-  class: types.string
+  className: types.string
 }
 
 Link.defaultProps = {
-  class: undefined
+  className: undefined
 }
 
 export default Link

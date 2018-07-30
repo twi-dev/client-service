@@ -1,6 +1,6 @@
-import {h} from "preact"
+import {createElement as h} from "react"
+import {inject, observer} from "mobx-react"
 import {shape} from "prop-types"
-import {inject, observer} from "mobx-preact"
 
 import GuestMenu from "./GuestMenu"
 import UserMenu from "./UserMenu"
