@@ -99,6 +99,7 @@ const configure = env => ({
     rules: readLoaders(env)
   },
   devServer: {
+    open: env.dev,
     hot: true,
     compress: true,
     port: devServer.port || 1339,
