@@ -42,7 +42,7 @@ import {field} from "./description-editor.sss"
       <TextArea
         name="description"
         placeholder="Write the story description here"
-        class={field}
+        className={field}
         onInput={this.props.onInput}
         value={this.props.description}
         onKeyUp={this.onBackspace}

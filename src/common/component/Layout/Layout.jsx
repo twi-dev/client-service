@@ -1,5 +1,5 @@
 import React, {Component, Children} from "react"
-import {element, arrayOf} from "prop-types"
+import {string, element, arrayOf, oneOfType} from "prop-types"
 
 import Menu from "common/component/SidebarMenu"
 
@@ -11,7 +11,9 @@ const toArray = Children.toArray
 
 class Layout extends Component {
   static propTypes = {
-    children: arrayOf(element.isRequired).isRequired
+    children: oneOfType([
+      string, element, arrayOf(element.isRequired)
+    ]).isRequired
   }
 
   get hasMenu() {

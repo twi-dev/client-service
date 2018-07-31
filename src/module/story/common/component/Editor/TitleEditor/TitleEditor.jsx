@@ -46,7 +46,7 @@ import {container, field} from "./title-editor.sss"
         <TextArea
           placeholder="Enter a story title"
           name="title"
-          class={field}
+          className={field}
           value={this.props.title}
           onInput={this.props.onInput}
           onFocus={this.selectFilledInputOnFocue}

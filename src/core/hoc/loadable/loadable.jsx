@@ -91,6 +91,10 @@ const loadable = (options = {}) => {
         .then(this.__onFulfilled, this.__onRejected)
     }
 
+    componentDidMount() {
+      this.__mounted = true
+    }
+
     componentWillUnmount() {
       if (this.__delayTimer) {
         clearTimeout(this.__delayTimer)
@@ -99,17 +103,28 @@ const loadable = (options = {}) => {
       if (this.__timeoutTimer) {
         clearTimeout(this.__timeoutTimer)
       }
+
+      this.__mounted = false
     }
 
     __delayTimer = null
 
     __timeoutTimer = null
 
+    __mounted = false
+
     __afterDelay = () => this.setState({pastDelay: true})
 
     __afterTimeout = () => this.setState({timedOut: true})
 
-    __onFulfilled = loaded => this.setState({loaded, isLoaded: true})
+    __onFulfilled = loaded => {
+      // FIXME: Replace this hacky way to fix error by using cancelable Promise
+      // eslint-disable-next-line
+      // See: https://medium.com/@benlesh/promise-cancellation-is-dead-long-live-promise-cancellation-c6601f1f5082
+      if (this.__mounted) {
+        this.setState({loaded, isLoaded: true})
+      }
+    }
 
     __onRejected = error => this.setState({error})
 
