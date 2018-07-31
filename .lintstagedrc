@@ -1,5 +1,6 @@
 {
-  "build/**/*.{js,jsx}": "node_modules/.bin/eslint --fix",
-  "src/**/*.{js,jsx}": "node_modules/.bin/eslint --fix",
+  "build/**/*.js": "node_modules/.bin/eslint --fix",
+  "server/**/*.js": "node_modules/.bin/eslint --fix",
+  "src/**/*.{js,jsx,mjs}": "node_modules/.bin/eslint --fix",
   "src/**/*.sss": "node_modules/.bin/stylelint --fix"
 }

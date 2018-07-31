@@ -1,3 +1,7 @@
+/**
+ * A tiny static web server that allow to test Twi's client application
+ * on your local machine manually. **Do not use it in production!**
+ */
 const {join} = require("path")
 const {createReadStream} = require("fs")
 
