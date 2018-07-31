@@ -4,7 +4,7 @@ import getData from "core/helper/graphql/getData"
 
 import addStoryMutation from "./addStory"
 
-async function addStory(story) {
+function addStory(story) {
   const options = {
     mutation: addStoryMutation,
     variables: {
@@ -12,7 +12,7 @@ async function addStory(story) {
     }
   }
 
-  return await mutate(options) |> getData("addStory")
+  return mutate(options).then(getData("addStory"))
 }
 
 export default addStory

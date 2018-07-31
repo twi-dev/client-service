@@ -4,7 +4,7 @@ import getData from "core/helper/graphql/getData"
 
 import storyQuery from "./story.gql"
 
-async function getStory(slug) {
+function story(slug) {
   const options = {
     query: storyQuery,
     variables: {
@@ -12,7 +12,7 @@ async function getStory(slug) {
     }
   }
 
-  return await query(options) |> getData("story")
+  return query(options).then(getData("story"))
 }
 
-export default getStory
+export default story

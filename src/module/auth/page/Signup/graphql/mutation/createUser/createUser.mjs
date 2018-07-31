@@ -4,7 +4,7 @@ import getData from "core/helper/graphql/getData"
 
 import createUserMutation from "./createUser.gql"
 
-async function createUser(user) {
+function createUser(user) {
   const options = {
     mutation: createUserMutation,
     variables: {
@@ -12,7 +12,7 @@ async function createUser(user) {
     }
   }
 
-  return await mutate(options) |> getData("createUser")
+  return mutate(options).then(getData("createUser"))
 }
 
 export default createUser

@@ -10,7 +10,7 @@ const saveToken = accessToken => (
   saveTokens({accessToken}).then(() => accessToken)
 )
 
-async function refreshAccessToken(refreshToken) {
+function refreshAccessToken(refreshToken) {
   const params = {
     mutation: refreshMutation,
     variables: {
