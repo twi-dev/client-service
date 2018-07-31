@@ -17,9 +17,7 @@ const cache = new Cache()
 
 const client = new Client({link, cache})
 
-const query = client.query
-const mutate = client.mutate
-const watch = client.watchQuery
+const {query, mutate, watchQuery} = client
 
-export {query, mutate, watch}
+export {query, mutate, watchQuery, watchQuery as watch}
 export default client
