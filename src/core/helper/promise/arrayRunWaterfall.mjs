@@ -1,5 +1,3 @@
-import deprecate from "./deprecate"
-
 const isArray = Array.isArray
 
 /**
@@ -31,6 +29,4 @@ function arrayWaterfall(tasks, initial) {
   return tasks.reduce(step, initial)
 }
 
-export default arrayWaterfall |> deprecate(
-  "Method was moved to ../promise/arrayWaterfall"
-)
+export default arrayWaterfall
