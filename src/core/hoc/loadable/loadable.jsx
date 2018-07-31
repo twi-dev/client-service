@@ -84,9 +84,9 @@ const loadable = (options = {}) => {
           .then(resolve).then(this.__onFulfilled, this.__onRejected)
       }
 
-      const resolver = serial === true ? runSerial : runParallel
+      const run = serial === true ? runSerial : runParallel
 
-      resolver(loaders, this.props)
+      run(loaders, this.props)
         .then(loaded => map(loaded, resolve))
         .then(this.__onFulfilled, this.__onRejected)
     }

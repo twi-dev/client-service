@@ -1,28 +1,31 @@
-import {createElement as h, Component} from "react"
-import {func} from "prop-types"
+import {createElement, Component} from "react"
+import {func, shape} from "prop-types"
 
 import omit from "lodash/omit"
 
 import getName from "core/helper/component/getName"
+import forward from "core/hoc/forwardRef"
 
 const assign = Object.assign
 
 const enhanceTextField = Target => {
-  class EnhanceTextField extends Component {
+  @forward class EnhanceTextField extends Component {
     static displayName = `EnhanceTextField(${getName(Target)})`
 
     static propTypes = {
       onEnter: func,
       onEsc: func,
       onKeyPress: func,
-      onKeyUp: func
+      onKeyUp: func,
+      forwardedRef: shape({})
     }
 
     static defaultProps = {
       onEnter: () => {},
       onEsc: () => {},
       onKeyPress: () => {},
-      onKeyUp: () => {}
+      onKeyUp: () => {},
+      forwardedRef: null
     }
 
     onEnter = event => {
@@ -41,19 +44,16 @@ const enhanceTextField = Target => {
       this.props.onKeyUp(event)
     }
 
-    // This method is deprecated, ude React.createRef instead
-    setRef = ref => {
-      if (ref) {
-        this.field = ref.base
-      }
-    }
-
     render() {
-      return h(Target, assign({}, omit(this.props, ["onEsc", "onEnter"]), {
-        onKeyPress: this.onEnter,
-        onKeyUp: this.onEsc,
-        ref: this.setRef
-      }))
+      return createElement(
+        Target,
+
+        assign({}, omit(this.props, ["onEsc", "onEnter", "forwardedRef"]), {
+          onKeyPress: this.onEnter,
+          onKeyUp: this.onEsc,
+          ref: this.props.forwardedRef
+        })
+      )
     }
   }
 

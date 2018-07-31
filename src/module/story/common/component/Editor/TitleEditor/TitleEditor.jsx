@@ -1,9 +1,9 @@
-import React, {Component} from "react"
+import React, {Component, createRef} from "react"
 import {func, string} from "prop-types"
 import {observer} from "mobx-react"
 
 import Title from "common/component/Title"
-import TextArea from "common/component/EnhancedTextField/TextAreaWithAutoSize"
+import TextArea from "common/component/EnhancedTextField/TextArea"
 
 import {container, field} from "./title-editor.sss"
 
@@ -24,21 +24,19 @@ import {container, field} from "./title-editor.sss"
     onEnter: () => {}
   }
 
-  componentDidMount = () => this.textarea.focus()
+  componentDidMount = () => this.__ref.current?.focus()
 
-  setRef = ref => {
-    if (ref) {
-      this.textarea = ref.base
-    }
-  }
+  __ref = createRef()
 
   selectFilledInputOnFocue = () => {
     if (this.props.title) {
-      this.textarea.select()
+      this.__ref.current.select()
     }
   }
 
-  blur = () => this.textarea.blur()
+  focus = () => this.__ref.current.focus()
+
+  blur = () => this.__ref.current.blur()
 
   render() {
     return (
@@ -54,9 +52,8 @@ import {container, field} from "./title-editor.sss"
           onFocus={this.selectFilledInputOnFocue}
           onEsc={this.blur}
           onEnter={this.props.onEnter}
-          ref={this.setRef}
-          autocomplete="off"
-          maxRows={2}
+          ref={this.__ref}
+          autoComplete="off"
         />
       </div>
     )

@@ -1,4 +1,4 @@
-import React, {Component} from "react"
+import React, {Component, createRef} from "react"
 import {observer} from "mobx-react"
 import {func, string} from "prop-types"
 
@@ -31,6 +31,12 @@ import {field} from "./description-editor.sss"
     this.props.onKeyUp(event)
   }
 
+  focus = () => this.__ref.current.textarea.focus()
+
+  blur = () => this.__ref.current.textarea.blur()
+
+  __ref = createRef()
+
   render() {
     return (
       <TextArea
@@ -40,6 +46,7 @@ import {field} from "./description-editor.sss"
         onInput={this.props.onInput}
         value={this.props.description}
         onKeyUp={this.onBackspace}
+        ref={this.__ref}
       />
     )
   }

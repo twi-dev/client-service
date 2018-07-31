@@ -1,4 +1,4 @@
-import React, {Component} from "react"
+import React, {Component, createRef} from "react"
 import {shape, string, func} from "prop-types"
 import {observer} from "mobx-react"
 import {computed} from "mobx"
@@ -25,23 +25,17 @@ import {container} from "./editor.sss"
     return this.props.story
   }
 
-  setDescriptionRef = ref => {
-    if (ref) {
-      this.__description = ref.base
-    }
-  }
+  __titleRef = createRef()
 
-  setTitleRef = ref => {
-    if (ref) {
-      this.__title = ref.textarea
-    }
-  }
+  __descriptionRef = createRef()
 
-  @preventDefault jumpToDescription = () => this.__description.focus()
+  @preventDefault jumpToDescription = () => {
+    this.__descriptionRef.current.focus()
+  }
 
   jumpToTitle = () => {
     if (!this.story.description) {
-      this.__title.focus()
+      this.__titleRef.current.focus()
     }
   }
 
@@ -49,14 +43,14 @@ import {container} from "./editor.sss"
     return (
       <div className={container}>
         <TitleEditor
-          ref={this.setTitleRef}
+          ref={this.__titleRef}
           title={this.story.title}
           onInput={this.story.updateTextField}
           onEnter={this.jumpToDescription}
         />
 
         <DescriptionEditor
-          ref={this.setDescriptionRef}
+          ref={this.__descriptionRef}
           description={this.story.description}
           onInput={this.story.updateTextField}
           onBackspace={this.jumpToTitle}

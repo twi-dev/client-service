@@ -1,7 +1,7 @@
-import React from "react"
+import React, {forwardRef} from "react"
 
 import enhance from "common/hoc/enhanceTextField"
 
-const Input = props => <input {...props} />
+const Input = (props, ref) => <input {...{...props, ref}} />
 
-export default enhance(Input)
+export default Input |> forwardRef |> enhance

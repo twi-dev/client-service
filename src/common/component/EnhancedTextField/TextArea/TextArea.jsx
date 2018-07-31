@@ -1,7 +1,7 @@
-import React from "react"
+import React, {forwardRef} from "react"
 
 import enhance from "common/hoc/enhanceTextField"
 
-const TextArea = props => <textarea {...props} />
+const TextArea = (props, ref) => <textarea {...{...props, ref}} />
 
-export default enhance(TextArea)
+export default TextArea |> forwardRef |> enhance
