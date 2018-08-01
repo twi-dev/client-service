@@ -1,9 +1,9 @@
-const readdirSync = require("fs").readdirSync
-const join = require("path").join
+const {readdirSync} = require("fs")
+const {join} = require("path")
 
 const UglifyJS = require("uglifyjs-webpack-plugin")
 
-const {devServer = {}} = require("../../package.json")
+const getConfig = require("../helper/getConfig")
 
 const ROOT = join(__dirname, "..", "..")
 
@@ -102,7 +102,7 @@ const configure = env => ({
     open: env.dev,
     hot: true,
     compress: true,
-    port: devServer.port || 1339,
+    port: getConfig(env).client.port || 1339,
     contentBase: join(ROOT, "static"),
     historyApiFallback: {
       index: "view/container.html",

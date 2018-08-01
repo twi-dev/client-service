@@ -109,6 +109,7 @@
     "draft-js": "0.10.5",
     "graphql": "0.13.2",
     "halogen": "0.2.0",
+    "js-flock": "^3.5.3",
     "koa": "2.5.2",
     "koa-static": "5.0.0",
     "localforage": "1.7.2",

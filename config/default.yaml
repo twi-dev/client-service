@@ -1,5 +1,9 @@
 app:
   name: Twilight's Library
+client:
+  host: localhost
+  port: 1339
+  https: true
 server:
   host: localhost
   port: 2319
