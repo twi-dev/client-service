@@ -104,10 +104,7 @@ const configure = env => ({
     compress: true,
     port: getConfig(env).client.port || 1339,
     contentBase: join(ROOT, "static"),
-    historyApiFallback: {
-      index: "view/container.html",
-      disableDotRule: true
-    }
+    historyApiFallback: true
   },
   context: join(ROOT, "src"),
   entry: {

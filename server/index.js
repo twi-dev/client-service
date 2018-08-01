@@ -8,6 +8,10 @@ const {createReadStream} = require("fs")
 const Koa = require("koa")
 const serve = require("koa-static")
 
+const getConfig = require("../build/helper/getConfig")
+
+const config = getConfig({name: process.env.NODE_ENV || "development"})
+
 const koa = new Koa()
 
 function log(ctx, next) {
@@ -23,7 +27,7 @@ const serveApplication = (ctx, next) => {
 
   ctx.type = "text/html"
   ctx.body = createReadStream(
-    join(__dirname, "..", "static", "view", "container.html")
+    join(__dirname, "..", "static", "index.html")
   )
 }
 
@@ -36,4 +40,4 @@ koa
   .use(serve(join(__dirname, "..", "static")))
   .use(serveApplication)
   .on("error", onError)
-  .listen(3034, onListen)
+  .listen(config.client.port, onListen)

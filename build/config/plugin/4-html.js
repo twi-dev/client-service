@@ -3,7 +3,7 @@ const Html = require("html-webpack-plugin")
 const html = () => new Html({
   title: "Twi",
   template: "../view/container.html",
-  filename: "../view/container.html", // Realtive to "src" dir
+  filename: "../index.html", // Realtive to "src" dir. (Dest path)
   inject: "body",
   alwaysWriteToDisk: true
 })

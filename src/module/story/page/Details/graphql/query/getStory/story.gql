@@ -3,7 +3,10 @@ query GetStory($slug: String!) {
     id
     title
     description
-    slug
+    slug {
+      full
+      short
+    }
     publisher {
       login
     }
