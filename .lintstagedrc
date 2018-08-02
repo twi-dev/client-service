@@ -2,5 +2,9 @@
   "build/**/*.js": "node_modules/.bin/eslint --fix",
   "server/**/*.js": "node_modules/.bin/eslint --fix",
   "src/**/*.{js,jsx,mjs}": "node_modules/.bin/eslint --fix",
+  ".eslintrc.js": "node_modules/.bin/eslint --fix",
+  ".babelrc.js": "node_modules/.bin/eslint --fix",
+  ".postcssrc.js": "node_modules/.bin/eslint --fix",
+
   "src/**/*.sss": "node_modules/.bin/stylelint --fix"
 }
