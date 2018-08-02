@@ -15,7 +15,6 @@ const css = ({dev}) => ({
       options: {
         modules: true,
         camelCase: true,
-        minimize: dev === false,
         localIdentName: getLocalName(dev)
       }
     },
