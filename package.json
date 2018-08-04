@@ -77,6 +77,7 @@
     "postcss-nested": "3.0.0",
     "postcss-normalize": "6.0.0",
     "postcss-preset-env": "5.3.0",
+    "postcss-scss": "^2.0.0",
     "postcss-simple-vars": "4.1.0",
     "postcss-use": "3.0.0",
     "react-hot-loader": "4.3.4",
@@ -127,7 +128,7 @@
     "p-reduce": "1.0.0",
     "p-waterfall": "1.0.0",
     "prop-types": "15.6.2",
-    "query-string": "6.1.0",
+    "query-string": "^6.1.0",
     "react": "16.4.2",
     "react-autosize-textarea": "4.0.0",
     "react-dom": "16.4.2",
@@ -137,6 +138,7 @@
     "react-router": "4.3.1",
     "react-router-dom": "4.3.1",
     "react-spinners": "0.3.3",
-    "whatwg-fetch": "2.0.4"
+    "whatwg-fetch": "2.0.4",
+    "whatwg-url": "^6.5.0"
   }
 }

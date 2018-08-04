@@ -3,7 +3,7 @@ import {oneOfType, arrayOf, string, element} from "prop-types"
 
 import cn from "classnames"
 
-import {container} from "./button.sss"
+import {container} from "./button.scss"
 
 const Button = ({className, children, ...props}, ref) => (
   <button {...{...props, ref}} className={cn(container, className)}>

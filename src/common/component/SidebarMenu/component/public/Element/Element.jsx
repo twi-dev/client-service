@@ -1,11 +1,10 @@
+import React, {Component} from "react"
+import {string, oneOfType, arrayOf, element, shape} from "prop-types"
 import {parse} from "url"
 
-import React, {Component} from "react"
-import Link from "react-router-dom/Link"
 import withRouter from "react-router-dom/withRouter"
+import Link from "react-router-dom/Link"
 import cn from "classnames"
-
-import {string, arrayOf, element, shape} from "prop-types"
 
 import {container, active} from "./menu-element.sss"
 
@@ -14,8 +13,8 @@ import {container, active} from "./menu-element.sss"
 
   static propTypes = {
     href: string.isRequired,
-    children: arrayOf(element.isRequired).isRequired,
-    match: shape({path: string}).isRequired
+    match: shape({path: string}).isRequired,
+    children: oneOfType([string, element, arrayOf(element)]).isRequired
   }
 
   get isActive() {

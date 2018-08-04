@@ -5,7 +5,7 @@ import cn from "classnames"
 
 import Button from "../Button"
 
-import {container} from "./primary.sss"
+import {container} from "./primary.scss"
 
 const Primary = ({className, children, ...props}, ref) => (
   <Button {...{...props, ref}} className={cn(container, className)}>

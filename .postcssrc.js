@@ -1,8 +1,16 @@
 const {join} = require("path")
 
+// NOTE: This is used just for migration from SugarSS to SCSS
+const parsers = {
+  ".scss": "postcss-scss",
+  ".sss": "sugarss"
+}
+
+const getParser = extname => parsers[extname] || false
+
 module.exports = ({env, file}) => ({
   map: env !== "production",
-  parser: file.extname === ".sss" ? "sugarss" : false,
+  parser: getParser(file.extname),
   plugins: {
     "postcss-use": {
       resolveFromFile: true,

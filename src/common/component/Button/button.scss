@@ -1,0 +1,17 @@
+@use postcss-nested;
+
+.container {
+  background: white;
+  color: #653089;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: none;
+  padding: 12px 26px;
+  cursor: pointer;
+
+  &:disabled {
+    background: #e8e8e8;
+    color: black;
+    cursor: not-allowed;
+  }
+}
