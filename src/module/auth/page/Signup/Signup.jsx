@@ -11,7 +11,7 @@ import Button from "module/auth/common/component/Form/Button"
 import Footer from "module/auth/common/component/Form/Footer"
 import withRedirect from "module/auth/common/hoc/withRedirect"
 
-import {container, field, button, linkLogin} from "./signup.sss"
+import {container, field, button, linkLogin} from "./signup.scss"
 
 @withRedirect class Login extends Component {
   static propTypes = {

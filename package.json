@@ -1,5 +1,5 @@
 {
-  "name": "@twi-project/web-client",
+  "name": "@twi-project/client-service",
   "author": "Nick K.",
   "version": "0.1.0",
   "license": "MIT",
@@ -16,9 +16,6 @@
     "lint:stylelint": "node_modules/.bin/stylelint --fix",
     "staged": "node_modules/.bin/lint-staged",
     "precommit": "yarn staged"
-  },
-  "devServer": {
-    "port": 1339
   },
   "ava": {
     "files": [
@@ -77,7 +74,7 @@
     "postcss-nested": "3.0.0",
     "postcss-normalize": "6.0.0",
     "postcss-preset-env": "5.3.0",
-    "postcss-scss": "^2.0.0",
+    "postcss-scss": "2.0.0",
     "postcss-simple-vars": "4.1.0",
     "postcss-use": "3.0.0",
     "react-hot-loader": "4.3.4",
@@ -122,13 +119,12 @@
     "mobx-state-tree": "3.0.2",
     "ms": "2.1.1",
     "nanoid": "1.1.0",
-    "normalize.css": "8.0.0",
     "object-deep-from-entries": "0.3.0",
     "object-path": "0.11.4",
     "p-reduce": "1.0.0",
     "p-waterfall": "1.0.0",
     "prop-types": "15.6.2",
-    "query-string": "^6.1.0",
+    "query-string": "6.1.0",
     "react": "16.4.2",
     "react-autosize-textarea": "4.0.0",
     "react-dom": "16.4.2",
@@ -139,6 +135,6 @@
     "react-router-dom": "4.3.1",
     "react-spinners": "0.3.3",
     "whatwg-fetch": "2.0.4",
-    "whatwg-url": "^6.5.0"
+    "whatwg-url": "6.5.0"
   }
 }

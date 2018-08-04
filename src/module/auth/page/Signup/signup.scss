@@ -1,0 +1,32 @@
+@use postcss-simple-vars;
+@use postcss-nested;
+
+$containerWidth: 1000px;
+$buttonWidth: 246px;
+$fieldWidth: 240px;
+
+@custom-media --formDesktop (width >= 1000px);
+
+@media (--formDesktop) {
+  .container {
+    lost-center: $containerWidth;
+
+    width: $containerWidth;
+  }
+
+  .field {
+    width: $fieldWidth;
+  }
+
+  .button {
+    width: $buttonWidth;
+  }
+
+  .link {
+    &-login {
+      width: $fieldWidth;
+      float: left;
+      text-align: left;
+    }
+  }
+}

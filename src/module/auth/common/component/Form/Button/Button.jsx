@@ -4,7 +4,7 @@ import omit from "lodash/omit"
 
 import {PropTypes as types, element, oneOfType} from "prop-types"
 
-import {container, primary} from "./button.sss"
+import {container, primary} from "./button.scss"
 
 const Button = ({children, ...props}) => (
   <div className={cn(container, props.className)}>

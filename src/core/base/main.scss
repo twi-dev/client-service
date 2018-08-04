@@ -1,0 +1,21 @@
+@import-normalize;
+
+@use postcss-nested;
+
+html, body {
+  font: 14px Roboto; // stylelint-disable-line
+  -webkit-font-smoothing: antialiased;
+}
+
+button, textarea, input {
+  &:focus, &:active {
+    outline: none;
+  }
+}
+
+a {
+  &, &:hover, &:visited &:active {
+    color: #653089;
+    text-decoration: none;
+  }
+}

@@ -3,7 +3,7 @@ import {instanceOf} from "prop-types"
 
 import Title from "common/component/Title"
 
-import {container, stack} from "./application-error.sss"
+import {container, stack} from "./application-error.scss"
 
 class ApplicationError extends Component {
   componentDidMount() {

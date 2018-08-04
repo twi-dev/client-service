@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 import Title from "common/component/Title"
 import ApplicationError from "core/page/error/ApplicationError"
 
-import {container, content, image, message, code} from "./not-found.sss"
+import {container, content, image, message, code} from "./not-found.scss"
 
 import Image from "./not-found.svg"
 

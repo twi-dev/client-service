@@ -5,17 +5,17 @@ import isEmpty from "lodash/isEmpty"
 import merge from "lodash/merge"
 import find from "lodash/find"
 
-import Loading from "common/component/Loading/Page"
-import loadable from "core/hoc/loadable"
-
 import config from "config"
-import loadingProcess from "core/hoc/loadingProcess"
+import loadable from "core/hoc/loadable"
 import errorHandler from "core/hoc/errorHandler"
+import Loading from "common/component/Loading/Page"
+import loadingProcess from "core/hoc/loadingProcess"
 import iterator from "core/helper/iterator/objectIterator"
 
 const assign = Object.assign
-
 const router = config.router || {}
+
+// const EXTNAMES = [".json", ".js", ".mjs", ".jsx"]
 
 const LoadingProcess = loadingProcess({
   onLoading: Loading,
@@ -24,7 +24,7 @@ const LoadingProcess = loadingProcess({
 
 class Router {
   constructor() {
-    this.__ctx = require.context("../../route", true, /\.json$/)
+    this.__ctx = require.context("../../route", true, /\.(json|mjs|jsx?)$/)
     this.__config = merge({}, router, {home: "home"})
 
     this.__rewrites = []

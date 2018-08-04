@@ -2,7 +2,7 @@ import React from "react"
 
 import {element, arrayOf, oneOfType} from "prop-types"
 
-import {container} from "./footer.sss"
+import {container} from "./footer.scss"
 
 const Footer = ({children}) => <div className={container}>{children}</div>
 

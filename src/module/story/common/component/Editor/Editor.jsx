@@ -8,7 +8,7 @@ import preventDefault from "core/helper/decorator/preventDefault"
 import TitleEditor from "./TitleEditor"
 import DescriptionEditor from "./DescriptionEditor"
 
-import {container} from "./editor.sss"
+import {container} from "./editor.scss"
 
 @observer class Editor extends Component {
   static displayName = "StoryEditor"

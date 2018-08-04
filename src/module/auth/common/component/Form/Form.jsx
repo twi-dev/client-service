@@ -6,7 +6,7 @@ import {string, func, element, arrayOf} from "prop-types"
 
 import preventDefault from "core/helper/decorator/preventDefault"
 
-import {container, body, content} from "./form.sss"
+import {container, body, content} from "./form.scss"
 
 const Form = ({children, onSubmit, ...props}) => (
   <div className={cn(container, props.class)}>

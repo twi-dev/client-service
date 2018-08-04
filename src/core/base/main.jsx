@@ -2,7 +2,7 @@ import {createElement} from "react"
 import {render} from "react-dom"
 
 // Imprort global styles
-import "./main.sss"
+import "./main.scss"
 
 import Application from "./Application"
 

@@ -5,7 +5,7 @@ import {observer} from "mobx-react"
 import Title from "common/component/Title"
 import TextArea from "common/component/EnhancedTextField/TextArea"
 
-import {container, field} from "./title-editor.sss"
+import {container, field} from "./title-editor.scss"
 
 /**
  * An editor component for story title

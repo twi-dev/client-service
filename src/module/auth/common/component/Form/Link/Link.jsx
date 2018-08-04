@@ -5,7 +5,7 @@ import RouterLink from "react-router-dom/Link"
 
 import {PropTypes as types} from "prop-types"
 
-import {container} from "./link.sss"
+import {container} from "./link.scss"
 
 const Link = props => (
   <div className={cn(container, props.className)}>

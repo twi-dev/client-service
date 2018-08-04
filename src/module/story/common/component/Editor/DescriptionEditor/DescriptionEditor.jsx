@@ -4,7 +4,7 @@ import {func, string} from "prop-types"
 
 import TextArea from "common/component/EnhancedTextField/TextAreaWithAutoSize"
 
-import {field} from "./description-editor.sss"
+import {field} from "./description-editor.scss"
 
 @observer class DescriptionEditor extends Component {
   static displayName = "StoryDescriptionEditor"

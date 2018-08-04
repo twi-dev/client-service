@@ -5,7 +5,7 @@ import omit from "lodash/omit"
 import {observer} from "mobx-react"
 import {PropTypes as types, boolean} from "prop-types"
 
-import {container, warn} from "./input.sss"
+import {container, warn} from "./input.scss"
 
 // TODO: Don't forget to finish validation feature
 const Input = props => (
