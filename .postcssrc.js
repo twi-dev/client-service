@@ -1,8 +1,8 @@
 const {join} = require("path")
 
-module.exports = ({env}) => ({
+module.exports = ({env, file}) => ({
   map: env !== "production",
-  parser: "sugarss",
+  parser: file.extname === ".sss" ? "sugarss" : false,
   plugins: {
     "postcss-use": {
       resolveFromFile: true,
