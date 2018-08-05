@@ -1,4 +1,4 @@
-import NotFound from "core/page/error/Http/NotFound"
+import NotFound from "core/component/Error/NotFoundError"
 
 const matchErrors = error => {
   if (!error.graphQLErrors) {

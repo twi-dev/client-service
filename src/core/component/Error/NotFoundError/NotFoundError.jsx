@@ -2,11 +2,11 @@ import React, {Fragment} from "react"
 import {Link} from "react-router-dom"
 
 import Title from "common/component/Title"
-import ApplicationError from "core/page/error/ApplicationError"
+import ApplicationError from "core/component/Error/ApplicationError"
 
-import {container, content, image, message, code} from "./not-found.scss"
+import {container, content, image, message, code} from "./not-found-error.scss"
 
-import Image from "./not-found.svg"
+import Image from "./not-found-error.svg"
 
 class NotFound extends ApplicationError {
   render() {

@@ -3,7 +3,7 @@ import {bool, instanceOf} from "prop-types"
 
 import isFunction from "lodash/isFunction"
 
-import TimeoutError from "./TimeoutError"
+import TimeoutError from "core/component/Error/TimeoutError"
 
 const loadingProcess = ({onLoading, onError, onTimeout} = {}) => {
   if (process.env.NODE_ENV !== "production") {

@@ -2,7 +2,7 @@ import React from "react"
 
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 
-import NotFound from "core/page/error/Http/NotFound"
+import NotFoundError from "core/component/Error/NotFoundError"
 
 import getRoutes from "./getRoutes"
 
@@ -14,7 +14,7 @@ const Router = () => (
       {routes.map(params => <Route key={`route:${params.path}`} {...params} />)}
 
       {/* Render 404 error when no page found */}
-      <Route component={NotFound} />
+      <Route component={NotFoundError} />
     </Switch>
   </BrowserRouter>
 )

@@ -7,8 +7,8 @@ import find from "lodash/find"
 
 import config from "config"
 import loadable from "core/hoc/loadable"
+import Loading from "core/component/Loading"
 import errorHandler from "core/hoc/errorHandler"
-import Loading from "common/component/Loading/Page"
 import loadingProcess from "core/hoc/loadingProcess"
 import iterator from "core/helper/iterator/objectIterator"
 
@@ -22,6 +22,7 @@ const LoadingProcess = loadingProcess({
   onError: errorHandler()
 })
 
+// TODO: Improve the application code splitting.
 class Router {
   constructor() {
     this.__ctx = require.context("../../route", true, /\.(json|mjs|jsx?)$/)

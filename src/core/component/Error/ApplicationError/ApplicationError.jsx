@@ -7,24 +7,29 @@ import {container, stack} from "./application-error.scss"
 
 class ApplicationError extends Component {
   componentDidMount() {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(this.props.error)
+    if (process.env.NODE_ENV === "production") {
+      console.error(this.error.message)
+    } else {
+      console.error(this.error)
     }
   }
 
-  render() {
-    const {error} = this.props
+  get error() {
+    return this.props.error
+  }
 
+  render() {
     return (
       <Fragment>
         <Title title="Aw, snap!" />
+
         <div className={container}>
           {
             do {
-              if (process.env.NODE_ENV === "production") {
+              if (process.env.NODE_ENV !== "production") {
                 <div>
-                  <h4>{error.message}</h4>
-                  <div className={stack}>{String(error.stack)}</div>
+                  <h4>{this.error.message}</h4>
+                  <div className={stack}>{String(this.error.stack)}</div>
                 </div>
               } else {
                 <div>

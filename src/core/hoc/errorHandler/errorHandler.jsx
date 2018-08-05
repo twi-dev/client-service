@@ -3,7 +3,7 @@ import {instanceOf} from "prop-types"
 
 import isFunction from "lodash/isFunction"
 
-import ApplicationError from "core/page/error/ApplicationError"
+import ApplicationError from "core/component/Error/ApplicationError"
 
 /**
  * Match errors using a given function.
