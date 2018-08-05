@@ -3,10 +3,9 @@ import {createElement as h} from "react"
 import session from "core/auth/hoc/session"
 import loadable from "core/hoc/loadable"
 import connect from "core/model/connect"
+import Loading from "core/component/Loading"
 import loadingProcess from "core/hoc/loadingProcess"
-import Loading from "common/component/Loading/Page"
-
-import ApplicationError from "core/page/error/ApplicationError"
+import ApplicationError from "core/component/Error/ApplicationError"
 
 import Model from "./Model"
 import getViewer from "./graphql/query/getViewer"

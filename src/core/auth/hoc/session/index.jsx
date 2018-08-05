@@ -5,8 +5,8 @@ import loadable from "core/hoc/loadable"
 import connect from "core/model/connect"
 import db from "core/db/tokens"
 
-import Loading from "common/component/Loading/Page"
-import ApplicationError from "core/page/error/ApplicationError"
+import Loading from "core/component/Loading"
+import ApplicationError from "core/component/Error/ApplicationError"
 
 import Session from "../../model/AuthTokenPayload"
 import refreshAccessToken from "../refreshAccessToken"
