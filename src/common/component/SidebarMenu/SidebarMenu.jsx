@@ -12,7 +12,7 @@ import Footer from "./component/internal/Footer"
 
 import Model from "./model/SidebarMenu"
 
-import {container, open} from "./sidebar-menu.sss"
+import {container, open} from "./sidebar-menu.scss"
 
 const isArray = Array.isArray
 

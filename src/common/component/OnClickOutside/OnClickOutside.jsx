@@ -3,7 +3,7 @@ import {element, func} from "prop-types"
 
 import cn from "classnames"
 
-import {proxy} from "./on-click-outside.sss"
+import {proxy} from "./on-click-outside.scss"
 
 class OnClickOutside extends Component {
   static propTypes = {

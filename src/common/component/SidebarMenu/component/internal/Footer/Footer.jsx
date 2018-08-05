@@ -3,7 +3,7 @@ import React from "react"
 import {inject, observer} from "mobx-react"
 import {shape, func, bool} from "prop-types"
 
-import {container} from "./menu-footer.sss"
+import {container} from "./menu-footer.scss"
 
 const Footer = ({menu}) => (
   <button

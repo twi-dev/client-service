@@ -6,7 +6,7 @@ import withRouter from "react-router-dom/withRouter"
 import Link from "react-router-dom/Link"
 import cn from "classnames"
 
-import {container, active} from "./menu-element.sss"
+import {container, active} from "./menu-element.scss"
 
 @withRouter class Element extends Component {
   static displayName = "MenuElement"

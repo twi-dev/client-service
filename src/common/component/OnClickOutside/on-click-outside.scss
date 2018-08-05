@@ -1,0 +1,7 @@
+@use postcss-nested;
+
+.proxy {
+  &:active, &:focus {
+    outline: none;
+  }
+}

@@ -9,7 +9,7 @@ import LogoIcon from "common/svg/layout/logo.svg"
 
 import Text from "./Text"
 
-import {container, open} from "./logo.sss"
+import {container, open} from "./logo.scss"
 
 const Logo = ({menu}) => (
   <Link to="/" className={cn(container, {[open]: menu.isOpen})}>

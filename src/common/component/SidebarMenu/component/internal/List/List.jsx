@@ -2,7 +2,7 @@ import React from "react"
 
 import {arrayOf, element} from "prop-types"
 
-import {container} from "./menu-list.sss"
+import {container} from "./menu-list.scss"
 
 const List = ({children}) => (
   <ul className={container}>{children}</ul>

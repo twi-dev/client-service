@@ -5,7 +5,7 @@ import Menu from "common/component/SidebarMenu"
 
 import DefaultMenu from "./DefaultMenu"
 
-import {container, content} from "./layout.sss"
+import {container, content} from "./layout.scss"
 
 const toArray = Children.toArray
 

@@ -6,7 +6,7 @@ import {shape} from "prop-types"
 
 import {app} from "config"
 
-import {container, open} from "./text.sss"
+import {container, open} from "./text.scss"
 
 const Text = ({menu}) => (
   <div className={cn(container, {[open]: menu.isOpen})}>

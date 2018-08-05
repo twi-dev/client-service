@@ -4,7 +4,7 @@ import {string, bool} from "prop-types"
 import omit from "lodash/omit"
 import cn from "classnames"
 
-import {container} from "./input.sss"
+import {container} from "./input.scss"
 
 class Input extends Component {
   static propTypes = {
