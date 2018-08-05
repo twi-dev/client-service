@@ -6,5 +6,5 @@
   ".babelrc.js": "node_modules/.bin/eslint --fix",
   ".postcssrc.js": "node_modules/.bin/eslint --fix",
 
-  "src/**/*.sss": "node_modules/.bin/stylelint --fix"
+  "src/**/*.{scss,css}": "node_modules/.bin/stylelint --fix"
 }

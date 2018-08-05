@@ -6,7 +6,7 @@ const getLocalName = dev => ([
 ]).join("")
 
 const css = ({dev}) => ({
-  test: /\.(sss|css|scss)$/,
+  test: /\.s?css$/,
   exclude: /node_modules/,
   use: [
     dev ? "style-loader" : loader,
