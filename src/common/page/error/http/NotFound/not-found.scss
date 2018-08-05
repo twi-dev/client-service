@@ -1,0 +1,25 @@
+@use postcss-nested;
+
+@lost flexbox flex;
+
+.container {
+  lost-center: 300px;
+  lost-align: middle-center;
+
+  width: 300px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.content {
+  width: 100%;
+}
+
+.image {
+  width: 100%;
+
+  svg {
+    display: inline-block;
+    vertical-align: top;
+  }
+}

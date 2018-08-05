@@ -5,7 +5,7 @@ import {hot} from "react-hot-loader"
 import Router from "core/router"
 import Title from "common/component/Title"
 
-import {container} from "./application.sss"
+import {container} from "./application.scss"
 
 const Application = () => (
   <div className={container}>

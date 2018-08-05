@@ -4,7 +4,7 @@ import {Link} from "react-router-dom/Link"
 
 import Title from "common/component/Title"
 
-import {container, content, image} from "./not-found.sss"
+import {container, content, image} from "./not-found.scss"
 
 import Image from "./not-found.svg"
 
