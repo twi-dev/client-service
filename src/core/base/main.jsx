@@ -2,9 +2,9 @@ import {createElement} from "react"
 import {render} from "react-dom"
 
 // Imprort global styles
-import "./main.scss"
+import "core/base/main.scss"
 
-import Application from "./Application"
+import Application from "core/component/Application"
 
 const target = document.querySelector("#twi-root")
 
