@@ -61,9 +61,6 @@ const configure = env => ({
         parallel: true,
         uglifyOptions: {
           // keep_fnames: true,
-          compress: {
-            reduce_funcs: false
-          },
           output: {
             ecma: 6,
             comments: false
