@@ -60,7 +60,6 @@ const configure = env => ({
         test: /\.(m?js|jsx)$/,
         parallel: true,
         uglifyOptions: {
-          // keep_fnames: true,
           output: {
             ecma: 6,
             comments: false

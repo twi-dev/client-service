@@ -1,7 +1,12 @@
+const getConfig = require("./config")
+
 const name = process.env.NODE_ENV || "development"
 
-const dev = name !== "production"
-const test = name === "test"
-const debug = name === "debug"
+const createConfig = (env = name, argv) => getConfig({
+  dev: env !== "production",
+  debug: env === "debug",
+  test: env === "test",
+  name: env,
+}, argv)
 
-module.exports = require("./config")({dev, test, debug, name})
+module.exports = createConfig
