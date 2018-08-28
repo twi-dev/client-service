@@ -30,6 +30,9 @@ module.exports = {
       aspects: ["noHref", "invalidHref", "preferButton"]
     }],
 
-    "no-unused-expressions": 0
+    "no-unused-expressions": 0,
+
+    "react/destructuring-assignment": 0,
+    "react/button-has-type": 0
   }
 }
