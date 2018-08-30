@@ -87,13 +87,7 @@ const loadable = (options = {}) => {
     }
 
     componentWillUnmount() {
-      if (this.__delayTimer) {
-        clearTimeout(this.__delayTimer)
-      }
-
-      if (this.__timeoutTimer) {
-        clearTimeout(this.__timeoutTimer)
-      }
+      this.__cleanup()
 
       this.__mounted = false
     }
@@ -113,28 +107,44 @@ const loadable = (options = {}) => {
 
     __afterDelay = () => {
       if (this.__mounted) {
-        this.setState((pastDelay, ...state) => ({...state, pastDelay: true}))
+        this.setState(state => ({...state, pastDelay: true}))
       }
     }
 
     __afterTimeout = () => {
       if (this.__mounted) {
-        this.setState((timedOut, ...state) => ({...state, timedOut: true}))
+        this.setState(state => ({...state, timedOut: true}))
       }
     }
 
     __onFulfilled = loaded => {
       if (this.__mounted) {
-        this.setState({loaded, isLoaded: true})
+        this.setState(
+          state => ({...state, loaded, isLoaded: true}),
+
+          this.__cleanup
+        )
       }
     }
 
-    __onRejected = error => this.setState({error})
+    __onRejected = error => {
+      this.setState(state => ({...state, error}), this.__cleanup)
+    }
+
+    __cleanup = () => {
+      if (this.__delayTimer) {
+        clearTimeout(this.__delayTimer)
+      }
+
+      if (this.__timeoutTimer) {
+        clearTimeout(this.__timeoutTimer)
+      }
+    }
 
     render() {
       const {pastDelay, timedOut, isLoaded, loaded, error} = this.state
 
-      if (this.state.error || !this.state.isLoaded) {
+      if (error || !isLoaded) {
         return h(loading, {error, pastDelay, timedOut, isLoaded})
       }
 
