@@ -4,11 +4,10 @@ import isNumber from "lodash/isNumber"
 import isFunction from "lodash/isFunction"
 import isPlainObject from "lodash/isPlainObject"
 
-import isNaN from "core/helper/util/isNaN"
 import map from "core/helper/iterator/objectMap"
 import resolve from "core/helper/util/requireDefault"
-import runSerial from "core/helper/util/objectRunSerial"
-import runParallel from "core/helper/util/objectRunParallel"
+import runSerial from "core/helper/promise/objectRunSerial"
+import runParallel from "core/helper/promise/objectRunParallel"
 
 const keys = Object.keys
 
@@ -48,50 +47,42 @@ const loadable = (options = {}) => {
     if (keys(loaders).length > 1 && !isFunction(render)) {
       throw new TypeError(
         "You must resolve a bunch loaded content manually " +
-        "by using a custom renderer. So, \"render\" options required."
+        "by using a custom renderer. So, \"render\" option required."
       )
     }
   }
 
   class Loadable extends Component {
+    __delayTimer = null
+
+    __timeoutTimer = null
+
+    __mounted = false
+
     constructor() {
       super()
 
       this.state = {
-        pastDelay: false,
+        pastDelay: delay === 0,
         timedOut: false,
         loaded: null,
         isLoaded: false,
         error: null
       }
-    }
 
-    // FIXME: This life cycle method is depreacated,
-    //   so I need to move this logic to component's constructor
-    componentWillMount() {
-      if (delay && (!isNaN(delay) && Number(delay) > 0)) {
-        this.__delayTimer = setTimeout(this.__afterDelay, delay)
-      } else {
-        this.setState({pastDelay: true})
-      }
-
-      if (timeout && Number(timeout) > 0) {
-        this.__timeoutTimer = setTimeout(this.__afterTimeout, timeout)
-      }
-
-      if (isFunction(loaders)) {
-        return loaders(this.props)
-          .then(resolve).then(this.__onFulfilled, this.__onRejected)
-      }
-
-      const run = serial === true ? runSerial : runParallel
-
-      run(loaders, this.props)
-        .then(loaded => map(loaded, resolve))
-        .then(this.__onFulfilled, this.__onRejected)
+      // Start loading
+      this.__load()
     }
 
     componentDidMount() {
+      if (timeout > 0) {
+        this.__timeoutTimer = setTimeout(this.__afterTimeout, timeout)
+      }
+
+      if (delay > 0) {
+        this.__delayTimer = setTimeout(this.__afterDelay, delay)
+      }
+
       this.__mounted = true
     }
 
@@ -107,20 +98,32 @@ const loadable = (options = {}) => {
       this.__mounted = false
     }
 
-    __delayTimer = null
+    __load = () => {
+      if (isFunction(loaders)) {
+        return loaders(this.props)
+          .then(resolve).then(this.__onFulfilled, this.__onRejected)
+      }
 
-    __timeoutTimer = null
+      const run = serial === true ? runSerial : runParallel
 
-    __mounted = false
+      run(loaders, this.props)
+        .then(loaded => map(loaded, resolve))
+        .then(this.__onFulfilled, this.__onRejected)
+    }
 
-    __afterDelay = () => this.setState({pastDelay: true})
+    __afterDelay = () => {
+      if (this.__mounted) {
+        this.setState((pastDelay, ...state) => ({...state, pastDelay: true}))
+      }
+    }
 
-    __afterTimeout = () => this.setState({timedOut: true})
+    __afterTimeout = () => {
+      if (this.__mounted) {
+        this.setState((timedOut, ...state) => ({...state, timedOut: true}))
+      }
+    }
 
     __onFulfilled = loaded => {
-      // FIXME: Replace this hacky way to fix error by using cancelable Promise
-      // eslint-disable-next-line
-      // See: https://medium.com/@benlesh/promise-cancellation-is-dead-long-live-promise-cancellation-c6601f1f5082
       if (this.__mounted) {
         this.setState({loaded, isLoaded: true})
       }

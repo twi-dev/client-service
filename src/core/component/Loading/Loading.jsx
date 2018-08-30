@@ -1,6 +1,6 @@
 import React, {Fragment} from "react"
 
-import Spinner from "react-spinners/dist/spinners/SyncLoader"
+import Spinner from "react-spinners/SyncLoader"
 
 import Title from "common/component/Title"
 

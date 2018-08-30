@@ -31,6 +31,7 @@ module.exports = {
     }],
 
     "no-unused-expressions": 0,
+    "operator-linebreak": ["error", "after"],
 
     "react/destructuring-assignment": 0,
     "react/button-has-type": 0
