@@ -11,6 +11,13 @@ import runParallel from "core/helper/promise/objectRunParallel"
 
 const keys = Object.keys
 
+/**
+ * Allow to laod data and React components asynchronously
+ *
+ * @param {object} options
+ *
+ * @return {Loadable} – proxy component for loading data and other components
+ */
 const loadable = (options = {}) => {
   const {delay, timeout, serial, loaders, loading, render} = options
 
@@ -69,9 +76,6 @@ const loadable = (options = {}) => {
         isLoaded: false,
         error: null
       }
-
-      // Start loading
-      this.__load()
     }
 
     componentDidMount() {
@@ -84,6 +88,9 @@ const loadable = (options = {}) => {
       }
 
       this.__mounted = true
+
+      // Start loading
+      this.__load()
     }
 
     componentWillUnmount() {
