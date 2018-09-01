@@ -24,15 +24,15 @@ class OnClickOutside extends Component {
     return this.props.children[0]
   }
 
-  componnetWillUnmount() {
-    document.removeEventListener("click", this.__handler, true)
-    document.removeEventListener("touchstart", this.__handler, true)
-  }
-
   __handler = event => {
     if (this.base && !this.base.contains(document.activeElement)) {
       this.props.onClickOutside(event)
     }
+  }
+
+  componetWillUnmount() {
+    document.removeEventListener("click", this.__handler, true)
+    document.removeEventListener("touchstart", this.__handler, true)
   }
 
   render() {

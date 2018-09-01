@@ -7,7 +7,7 @@ import Loading from "core/component/Loading"
 import loadingProcess from "core/hoc/loadingProcess"
 import ApplicationError from "core/component/Error/ApplicationError"
 
-import Model from "./Model"
+import Model from "./model/Viewer"
 import getViewer from "./graphql/query/getViewer"
 
 const LoadingProcess = loadingProcess({
@@ -17,20 +17,20 @@ const LoadingProcess = loadingProcess({
   onError: ApplicationError
 })
 
-const hoc = () => import("./viewer")
-
-const viewer = () => getViewer()
-
 const createViewer = state => ({viewer: state ? Model.create(state) : null})
 
-const loadableViewer = Target => session(
+const loadableViewer = session(
   loadable({
     delay: 300,
     loading: LoadingProcess,
-    loaders: {viewer, hoc},
+    loaders: {
+      viewer: () => getViewer(),
 
-    render: (loaded, props) => (
-      h(loaded.hoc(Target) |> connect(loaded.viewer |> createViewer), props)
+      Component: () => import("./Viewer")
+    },
+
+    render: ({Component, viewer}, props) => (
+      h(Component |> connect(viewer |> createViewer), props)
     )
   })
 )

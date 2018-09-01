@@ -1,5 +1,4 @@
 import loadablePage from "core/hoc/loadable/page"
-import viewer from "common/hoc/viewer"
 
 import Model from "./Model"
 
@@ -11,4 +10,4 @@ const LoadablePage = loadablePage({
   }
 })
 
-export default LoadablePage |> viewer
+export default LoadablePage

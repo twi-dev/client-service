@@ -5,15 +5,16 @@ import {BrowserRouter, Switch, Route} from "react-router-dom"
 import NotFoundError from "core/component/Error/NotFoundError"
 
 import getRoutes from "./getRoutes"
+import ApplicationRoute from "./ApplicationRoute"
 
 const routes = getRoutes()
 
-const Router = () => (
+const ApplicationRouter = () => (
   <BrowserRouter>
     <Switch>
       {
         routes.map(({path, ...props}) => (
-          <Route {...{...props, path}} key={`key::(${path})`} />
+          <ApplicationRoute {...{...props, path}} key={`key::(${path})`} />
         ))
       }
 
@@ -23,4 +24,4 @@ const Router = () => (
   </BrowserRouter>
 )
 
-export default Router
+export default ApplicationRouter

@@ -2,15 +2,12 @@ import React, {Fragment} from "react"
 import {shape} from "prop-types"
 
 import Title from "common/component/Title"
-import Layout from "common/component/Layout"
 
 const Profile = ({user}) => (
   <Fragment>
     <Title title={user.login} />
 
-    <Layout>
-      <div>{user.login}</div>
-    </Layout>
+    <div>{user.login}</div>
   </Fragment>
 )
 

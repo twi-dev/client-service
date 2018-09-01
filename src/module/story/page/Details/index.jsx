@@ -1,7 +1,6 @@
 import router from "react-router-dom/withRouter"
 
 import loadablePage from "core/hoc/loadable/page"
-import viewer from "common/hoc/viewer"
 import create from "core/model/create"
 
 import Story from "./model/Story"
@@ -15,4 +14,4 @@ const LoadablePage = loadablePage({
   }
 })
 
-export default LoadablePage |> router |> viewer
+export default LoadablePage |> router

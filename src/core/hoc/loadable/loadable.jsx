@@ -1,9 +1,9 @@
 import {createElement as h, Component} from "react"
 
-import isNumber from "lodash/isNumber"
-import isFunction from "lodash/isFunction"
 import isPlainObject from "lodash/isPlainObject"
 
+import isNumber from "core/helper/is/number"
+import isFunction from "core/helper/is/function"
 import map from "core/helper/iterator/objectMap"
 import resolve from "core/helper/util/requireDefault"
 import runSerial from "core/helper/promise/objectRunSerial"

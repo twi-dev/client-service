@@ -14,11 +14,11 @@ const refreshAccessToken = Target => {
       session: shape({}).isRequired
     }
 
+    __timer = null
+
     componentDidMount = () => this.__updateToken()
 
     componentWillUnmount = () => this.__removeTimer()
-
-    __timer = null
 
     __updateToken = () => {
       const session = this.props.session
@@ -34,8 +34,8 @@ const refreshAccessToken = Target => {
       }
     }
 
-    render(props) {
-      return createElement(Target, props)
+    render() {
+      return createElement(Target, this.props)
     }
   }
 

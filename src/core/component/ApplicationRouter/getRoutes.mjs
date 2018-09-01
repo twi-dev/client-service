@@ -7,24 +7,14 @@ import find from "lodash/find"
 
 import config from "config"
 import resolve from "core/helper/util/requireDefault"
-// import loadable from "core/hoc/loadable"
-// import Loading from "core/component/Loading"
-// import errorHandler from "core/hoc/errorHandler"
-// import loadingProcess from "core/hoc/loadingProcess"
 import iterator from "core/helper/iterator/objectIterator"
 
 const assign = Object.assign
 const router = config.router || {}
 
-// const LoadingProcess = loadingProcess({
-//   onLoading: Loading,
-//   onError: errorHandler()
-// })
-
-// TODO: Improve application code splitting.
 class Router {
   constructor() {
-    this.__ctx = require.context("../../route", true, /\.(json|mjs|jsx?)$/)
+    this.__ctx = require.context("../../../route", true, /\.json$/)
     this.__config = merge({}, router, {home: "home"})
 
     this.__rewrites = []
