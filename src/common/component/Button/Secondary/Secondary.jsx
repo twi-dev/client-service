@@ -7,17 +7,17 @@ import forwardRef from "core/hoc/forwardRef"
 
 import Plain from "../Button"
 
-import {container} from "./primary.scss"
+import {container} from "./secondary.scss"
 
-const Primary = ({className, children, forwardedRef, ...props}) => (
+const Secondary = ({className, children, forwardedRef, ...props}) => (
   <Plain {...props} className={cn(container, className)} ref={forwardedRef}>
     {children}
   </Plain>
 )
 
-Primary.displayName = "PrimaryButton"
+Secondary.displayName = "SecondaryButton"
 
-Primary.propTypes = {
+Secondary.propTypes = {
   className: string,
   children: oneOfType([
     arrayOf(string), arrayOf(element),
@@ -26,8 +26,8 @@ Primary.propTypes = {
   forwardedRef: shape({}).isRequired
 }
 
-Primary.defaultProps = {
+Secondary.defaultProps = {
   className: null
 }
 
-export default Primary |> forwardRef
+export default Secondary |> forwardRef

@@ -8,10 +8,18 @@ const logErrors = Target => {
     static displayName = `LogErrors(${getName(Target)})`
 
     static propTypes = {
-      error: instanceOf(Error).isRequired
+      error: instanceOf(Error)
+    }
+
+    static defaultProps = {
+      error: null
     }
 
     componentDidMount() {
+      if (!this.error) {
+        return undefined
+      }
+
       if (process.env.NODE_ENV === "production") {
         console.error(this.error.message)
       } else {

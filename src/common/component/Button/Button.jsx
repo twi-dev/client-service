@@ -1,12 +1,14 @@
-import React, {forwardRef} from "react"
-import {oneOfType, arrayOf, string, element} from "prop-types"
+import React from "react"
+import {oneOfType, shape, arrayOf, string, element} from "prop-types"
 
 import cn from "classnames"
 
+import forwardRef from "core/hoc/forwardRef"
+
 import {container} from "./button.scss"
 
-const Button = ({className, children, ...props}, ref) => (
-  <button {...{...props, ref}} className={cn(container, className)}>
+const Button = ({className, children, forwardedRef, ...props}) => (
+  <button {...props} className={cn(container, className)} ref={forwardedRef}>
     {children}
   </button>
 )
@@ -17,7 +19,8 @@ Button.propTypes = {
   children: oneOfType([
     arrayOf(string), arrayOf(element),
     string, element
-  ]).isRequired
+  ]).isRequired,
+  forwardedRef: shape({}).isRequired,
 }
 
 Button.defaultProps = {
