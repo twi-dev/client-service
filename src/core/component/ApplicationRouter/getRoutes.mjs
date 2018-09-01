@@ -5,7 +5,8 @@ import isEmpty from "lodash/isEmpty"
 import merge from "lodash/merge"
 import find from "lodash/find"
 
-import config from "config"
+import config from "core/config"
+import isString from "core/helper/is/string"
 import resolve from "core/helper/util/requireDefault"
 import iterator from "core/helper/iterator/objectIterator"
 
@@ -39,6 +40,11 @@ class Router {
     }
 
     const component = resolve(require(`module/${prefix}/${route.component}`))
+
+    let layout = route.layout
+    if (isString(layout)) {
+      layout = resolve(require(`layout/${layout}`))
+    }
 
     return assign({}, route, {prefix, path, component})
   }
