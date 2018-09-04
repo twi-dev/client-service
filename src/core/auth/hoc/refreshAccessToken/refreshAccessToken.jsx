@@ -16,16 +16,19 @@ const refreshAccessToken = Target => {
 
     __timer = null
 
-    componentDidMount = () => this.__updateToken()
+    componentDidMount = () => this.__createUpdater()
 
     componentWillUnmount = () => this.__removeTimer()
 
     __updateToken = () => {
-      const session = this.props.session
-
-      if (session) {
-        this.__timer = setInterval(session.refreshAccessToken, ms("12m"))
+      if (this.props.session) {
+        this.props.session.refreshAccessToken()
+          .catch(console.error)
       }
+    }
+
+    __createUpdater = () => {
+      this.__timer = setInterval(this.__updateToken, ms("12m"))
     }
 
     __removeTimer = () => {
