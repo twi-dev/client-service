@@ -2,7 +2,7 @@ import React from "react"
 
 import {hot} from "react-hot-loader"
 
-import Viewer from "core/component/Viewer" // TODO: Move that hoc to the core
+import Viewer from "core/component/Viewer"
 
 import Router from "core/component/ApplicationRouter"
 import Title from "common/component/Title"

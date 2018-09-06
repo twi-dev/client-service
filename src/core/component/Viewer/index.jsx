@@ -1,6 +1,6 @@
 import {createElement as h} from "react"
 
-import session from "core/auth/hoc/session"
+import setSession from "core/auth/hoc/session"
 import loadable from "core/hoc/loadable"
 import connect from "core/model/connect"
 import Loading from "core/component/Loading"
@@ -17,14 +17,14 @@ const LoadingProcess = loadingProcess({
   onError: ApplicationError
 })
 
-const createViewer = state => ({viewer: state ? Model.create(state) : null})
+const createViewer = viewer => ({viewer: viewer ? Model.create(viewer) : null})
 
-const loadableViewer = session(
+const loadableViewer = setSession(
   loadable({
     delay: 300,
     loading: LoadingProcess,
     loaders: {
-      viewer: () => getViewer(),
+      viewer: ({session}) => session ? getViewer() : null,
 
       Component: () => import("./Viewer")
     },

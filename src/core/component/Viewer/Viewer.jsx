@@ -1,11 +1,7 @@
 import React, {Fragment} from "react"
 import {oneOfType, arrayOf, element, string} from "prop-types"
 
-const Viewer = ({children}) => (
-  <Fragment>
-    {children}
-  </Fragment>
-)
+const Viewer = ({children}) => <Fragment>{children}</Fragment>
 
 Viewer.propTypes = {
   children: oneOfType([

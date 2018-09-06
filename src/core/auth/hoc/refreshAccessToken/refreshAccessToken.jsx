@@ -18,7 +18,7 @@ const refreshAccessToken = Target => {
 
     componentDidMount = () => this.__createUpdater()
 
-    componentWillUnmount = () => this.__removeTimer()
+    componentWillUnmount = () => this.__cleanupUpdater()
 
     __updateToken = () => {
       if (this.props.session) {
@@ -31,7 +31,7 @@ const refreshAccessToken = Target => {
       this.__timer = setInterval(this.__updateToken, ms("12m"))
     }
 
-    __removeTimer = () => {
+    __cleanupUpdater = () => {
       if (this.__timer) {
         clearInterval(this.__timer)
       }
