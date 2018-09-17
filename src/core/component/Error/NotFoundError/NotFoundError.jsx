@@ -20,7 +20,7 @@ const NotFoundError = () => (
         <div className={message}>
           <div>There are no books out there, princess!</div>
           <div>
-            <Link href to="/">Let‘s head home?</Link>
+            <Link to="/">Let‘s head home?</Link>
           </div>
         </div>
         <div className={code}>404</div>

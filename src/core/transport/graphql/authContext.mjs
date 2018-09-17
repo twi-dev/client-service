@@ -5,18 +5,20 @@ import isEmpty from "lodash/isEmpty"
 
 import db from "core/db/tokens"
 
-const assign = Object.assign
-
 async function authContext(_, {headers}) {
   const token = await db.getItem("accessToken")
 
-  if (!isEmpty(token)) {
-    headers = assign({}, {
-      authorization: `${capitalize(token.type)} ${token.payload}`
-    })
+  if (isEmpty(token)) {
+    return {headers}
   }
 
-  return {headers}
+  return {
+    headers: {
+      ...headers,
+
+      authorization: `${capitalize(token.type)} ${token.payload}`
+    }
+  }
 }
 
 export default setContext(authContext)

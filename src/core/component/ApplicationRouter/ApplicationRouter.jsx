@@ -1,6 +1,6 @@
 import React from "react"
 
-import {BrowserRouter, Switch, Route} from "react-router-dom"
+import {BrowserRouter, Switch} from "react-router-dom"
 
 import NotFoundError from "core/component/Error/NotFoundError"
 
@@ -19,7 +19,7 @@ const ApplicationRouter = () => (
       }
 
       {/* Render 404 error when no page found */}
-      <Route component={NotFoundError} />
+      <ApplicationRoute layout={false} component={NotFoundError} />
     </Switch>
   </BrowserRouter>
 )
