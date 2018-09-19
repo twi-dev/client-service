@@ -23,11 +23,12 @@ Secondary.propTypes = {
     arrayOf(string), arrayOf(element),
     string, element
   ]).isRequired,
-  forwardedRef: shape({}).isRequired
+  forwardedRef: shape({})
 }
 
 Secondary.defaultProps = {
-  className: null
+  className: null,
+  forwardedRef: null
 }
 
 export default Secondary |> forwardRef

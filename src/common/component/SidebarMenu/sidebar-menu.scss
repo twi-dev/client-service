@@ -1,9 +1,8 @@
 @use postcss-nested;
 
 .container {
-  display: flex;
+  overflow: hidden;
   position: relative;
-  flex-direction: column;
   width: 50px;
   height: 100vh;
   background: #daade8;
@@ -20,7 +19,14 @@
   }
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: inherit;
+}
+
 .open {
-  width: 220px;
+  width: 300px;
   text-align: left;
 }

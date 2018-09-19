@@ -23,11 +23,12 @@ Primary.propTypes = {
     arrayOf(string), arrayOf(element),
     string, element
   ]).isRequired,
-  forwardedRef: shape({}).isRequired
+  forwardedRef: shape({})
 }
 
 Primary.defaultProps = {
-  className: null
+  className: null,
+  forwardedRef: null
 }
 
 export default Primary |> forwardRef

@@ -20,12 +20,13 @@ Button.propTypes = {
     arrayOf(string), arrayOf(element),
     string, element
   ]).isRequired,
-  forwardedRef: shape({}).isRequired,
+  forwardedRef: shape({})
 }
 
 Button.defaultProps = {
   type: "button",
-  className: null
+  className: null,
+  forwardedRef: null
 }
 
 export default Button |> forwardRef

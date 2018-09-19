@@ -1,0 +1,13 @@
+@use postcss-nested;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 100%;
+
+  svg {
+    width: inherit;
+  }
+}

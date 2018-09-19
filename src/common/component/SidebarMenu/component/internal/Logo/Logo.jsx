@@ -1,25 +1,28 @@
 import React from "react"
-import cn from "classnames"
 import Link from "react-router-dom/Link"
 
-import {observer, inject} from "mobx-react"
-import {shape} from "prop-types"
+import {app} from "config"
 
 import LogoIcon from "common/svg/layout/logo.svg"
 
-import Text from "./Text"
+import Element from "../Element"
+import Icon from "../Element/Icon"
+import Label from "../Element/Label"
 
-import {container, open} from "./logo.scss"
+import {container} from "./logo.scss"
 
-const Logo = ({menu}) => (
-  <Link to="/" className={cn(container, {[open]: menu.isOpen})}>
-    <LogoIcon />
-    <Text />
+const Logo = () => (
+  <Link to="/" className={container}>
+    <Element>
+      <Icon>
+        <LogoIcon />
+      </Icon>
+
+      <Label>
+        {app.name}
+      </Label>
+    </Element>
   </Link>
 )
 
-Logo.propTypes = {
-  menu: shape({}).isRequired
-}
-
-export default Logo |> observer |> inject("menu")
+export default Logo

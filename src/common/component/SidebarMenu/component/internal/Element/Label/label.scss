@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  width: calc(100% - 50px);
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.open {
+  opacity: 1
+}

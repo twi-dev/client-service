@@ -1,3 +1,4 @@
-# Browsers we're supporting in this project
+# List of supported browsers
+# You can get the whole list by running `npx browserlist` in project root directory
 last 2 years
 not dead

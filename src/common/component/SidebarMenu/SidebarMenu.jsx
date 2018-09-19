@@ -8,11 +8,11 @@ import connect from "core/model/connect"
 
 import Logo from "./component/internal/Logo"
 import List from "./component/internal/List"
-import Footer from "./component/internal/Footer"
+import Toggler from "./component/internal/Toggler"
 
 import Model from "./model/SidebarMenu"
 
-import {container, open} from "./sidebar-menu.scss"
+import {container, content, open} from "./sidebar-menu.scss"
 
 const isArray = Array.isArray
 
@@ -20,19 +20,21 @@ const models = () => ({menu: Model.create({})})
 
 const SidebarMenu = ({menu, children}) => (
   <div className={cn(container, {[open]: menu.isOpen})}>
-    <Logo />
+    <div className={content}>
+      <Logo />
 
-    {
-      do {
-        if (isArray(children)) {
-          <List>
-            {children}
-          </List>
+      {
+        do {
+          if (isArray(children)) {
+            <List>
+              {children}
+            </List>
+          }
         }
       }
-    }
 
-    <Footer />
+      <Toggler />
+    </div>
   </div>
 )
 

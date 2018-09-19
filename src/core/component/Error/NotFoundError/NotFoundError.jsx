@@ -18,7 +18,7 @@ const NotFoundError = () => (
           <Image />
         </div>
         <div className={message}>
-          <div>There are no books out there, princess!</div>
+          <div>There is no book out there, princess!</div>
           <div>
             <Link to="/">Let‘s head home?</Link>
           </div>
