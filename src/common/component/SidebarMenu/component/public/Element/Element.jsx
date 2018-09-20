@@ -6,6 +6,8 @@ import withRouter from "react-router-dom/withRouter"
 import Link from "react-router-dom/Link"
 import cn from "classnames"
 
+import Plain from "../../internal/Element"
+
 import {container, active} from "./menu-element.scss"
 
 @withRouter class Element extends Component {
@@ -25,7 +27,9 @@ import {container, active} from "./menu-element.scss"
     return (
       <li className={cn(container, {[active]: this.isActive})}>
         <Link to={this.props.href}>
-          {this.props.children}
+          <Plain>
+            {this.props.children}
+          </Plain>
         </Link>
       </li>
     )

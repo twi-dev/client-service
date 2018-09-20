@@ -3,11 +3,13 @@ import React from "react"
 import {inject, observer} from "mobx-react"
 import {shape, string} from "prop-types"
 
-import Element from "common/component/SidebarMenu/Element"
+import {Element, Icon, Label} from "common/component/SidebarMenu/Element"
 
 const Profile = ({viewer}) => (
   <Element href={`/@${viewer.login.toLowerCase()}`}>
-    User
+    <Icon>Me</Icon>
+
+    <Label>{viewer.login}</Label>
   </Element>
 )
 

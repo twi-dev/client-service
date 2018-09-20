@@ -23,4 +23,6 @@ Label.propTypes = {
   }).isRequired
 }
 
+Label.displayName = "SidebarMenuPlainElementLabel"
+
 export default Label |> observer |> inject("menu")

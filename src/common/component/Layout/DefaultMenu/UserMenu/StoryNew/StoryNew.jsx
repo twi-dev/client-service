@@ -1,10 +1,12 @@
 import React from "react"
 
-import Element from "common/component/SidebarMenu/Element"
+import {Element, Icon, Label} from "common/component/SidebarMenu/Element"
 
 const StoryNew = () => (
   <Element href="/story/new">
-    Fic
+    <Icon>+</Icon>
+
+    <Label>Write a new story</Label>
   </Element>
 )
 

@@ -58,7 +58,7 @@ class Toggler extends Component {
         onClick={this.toggle}
       >
         <Element>
-          <Icon>{isOpen ? "-" : "+"}</Icon>
+          <Icon>{isOpen ? "<<" : ">>"}</Icon>
 
           <Label>Collapse</Label>
         </Element>
