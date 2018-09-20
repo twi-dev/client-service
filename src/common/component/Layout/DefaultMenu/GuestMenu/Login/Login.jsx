@@ -3,7 +3,7 @@ import {shape, string} from "prop-types"
 
 import withRouter from "react-router-dom/withRouter"
 
-import Element from "common/component/SidebarMenu/Element"
+import {Element} from "common/component/SidebarMenu/Element"
 
 const Login = ({match}) => (
   <Element href={`/auth/login?redirect=${match.path}`}>

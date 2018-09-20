@@ -23,6 +23,8 @@ import {field} from "./description-editor.scss"
     onBackspace: () => {}
   }
 
+  ref = createRef()
+
   onBackspace = event => {
     if (event.key.toLowerCase() === "backspace") {
       return void this.props.onBackspace(event)
@@ -31,22 +33,20 @@ import {field} from "./description-editor.scss"
     this.props.onKeyUp(event)
   }
 
-  focus = () => this.__ref.current.textarea.focus()
+  focus = () => this.ref.current.textarea.focus()
 
-  blur = () => this.__ref.current.textarea.blur()
-
-  __ref = createRef()
+  blur = () => this.ref.current.textarea.blur()
 
   render() {
     return (
       <TextArea
         name="description"
-        placeholder="Write the story description here"
+        placeholder="A few more words to explain what is your story about"
         className={field}
         onInput={this.props.onInput}
         value={this.props.description}
         onKeyUp={this.onBackspace}
-        ref={this.__ref}
+        ref={this.ref}
       />
     )
   }
