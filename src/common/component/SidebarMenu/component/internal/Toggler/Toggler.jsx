@@ -30,6 +30,10 @@ class Toggler extends Component {
     onOpen: null
   }
 
+  get label() {
+    return this.props.menu.isOpen ? "Collapse" : "Expand"
+  }
+
   toggle = event => {
     const {menu, onClose, onOpen} = this.props
 
@@ -57,10 +61,10 @@ class Toggler extends Component {
         disabled={isHidden}
         onClick={this.toggle}
       >
-        <Element>
+        <Element title={this.label}>
           <Icon>{isOpen ? "<<" : ">>"}</Icon>
 
-          <Label>Collapse</Label>
+          <Label>{this.label}</Label>
         </Element>
       </Button>
     )

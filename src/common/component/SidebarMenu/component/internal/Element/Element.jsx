@@ -17,10 +17,15 @@ class Element extends Component {
 
   static propTypes = {
     children: oneOfType([arrayOf(element), string, number, element]).isRequired,
+    title: string,
     menu: shape({
       isOpen: bool.isRequired,
       isHidden: bool.isRequired
     }).isRequired
+  }
+
+  static defaultProps = {
+    title: null
   }
 
   get elements() {
@@ -29,27 +34,29 @@ class Element extends Component {
     if (elements.length > 1) {
       return {
         icon: elements[0],
-        text: elements[1]
+        label: elements[1]
       }
     }
 
-    return {icon: null, text: elements[0]}
+    return {icon: null, label: elements[0]}
   }
 
   get icon() {
     return this.elements.icon
   }
 
-  get text() {
-    return this.elements.text
+  get label() {
+    return this.elements.label
   }
 
   render() {
+    const {isOpen} = this.props.menu
+
     return (
-      <div className={cn(container, {[open]: this.props.menu.isOpen})}>
+      <div title={this.props.title} className={cn(container, {[open]: isOpen})}>
         {this.icon}
 
-        {this.text}
+        {this.label}
       </div>
     )
   }
