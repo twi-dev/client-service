@@ -1,22 +1,28 @@
 @use postcss-nested;
 
 .container {
-  overflow: hidden;
   position: relative;
   width: 50px;
   height: 100vh;
-  background: #daade8;
-  box-sizing: border-box;
   user-select: none;
   text-align: center;
-  color: white;
   font-weight: bold;
   text-transform: uppercase;
-  transition: width 150ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
   a {
     color: white;
   }
+}
+
+.panel {
+  position: absolute;
+  overflow: hidden;
+  width: 50px;
+  height: inherit;
+  background: #daade8;
+  color: white;
+  z-index: 2;
+  transition: width 150ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
 .content {
@@ -29,4 +35,24 @@
 .open {
   width: 300px;
   text-align: left;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .450);
+  z-index: 1;
+}
+
+@media (max-width: 300px) {
+  .open, .content {
+    max-width: 300px;
+  }
+
+  .mask {
+    display: none;
+  }
 }

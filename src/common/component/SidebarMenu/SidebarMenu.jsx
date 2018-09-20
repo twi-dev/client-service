@@ -12,28 +12,32 @@ import Toggler from "./component/internal/Toggler"
 
 import Model from "./model/SidebarMenu"
 
-import {container, content, open} from "./sidebar-menu.scss"
+import {container, panel, content, open, mask} from "./sidebar-menu.scss"
 
 const isArray = Array.isArray
 
 const models = () => ({menu: Model.create({})})
 
 const SidebarMenu = ({menu, children}) => (
-  <div className={cn(container, {[open]: menu.isOpen})}>
-    <div className={content}>
-      <Logo />
+  <div className={container}>
+    {menu.isOpen && <div className={mask} />}
 
-      {
-        do {
-          if (isArray(children)) {
-            <List>
-              {children}
-            </List>
+    <div className={cn(panel, {[open]: menu.isOpen})}>
+      <div className={content}>
+        <Logo />
+
+        {
+          do {
+            if (isArray(children)) {
+              <List>
+                {children}
+              </List>
+            }
           }
         }
-      }
 
-      <Toggler />
+        <Toggler />
+      </div>
     </div>
   </div>
 )
