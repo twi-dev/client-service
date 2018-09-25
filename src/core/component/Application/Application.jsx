@@ -2,6 +2,7 @@ import React from "react"
 
 import {hot} from "react-hot-loader"
 
+import Provider from "core/error/Provider"
 import Viewer from "core/component/Viewer"
 
 import Router from "core/component/ApplicationRouter"
@@ -13,9 +14,11 @@ const Application = () => (
   <div className={container}>
     <Title />
 
-    <Viewer>
-      <Router />
-    </Viewer>
+    <Provider>
+      <Viewer>
+        <Router />
+      </Viewer>
+    </Provider>
   </div>
 )
 
