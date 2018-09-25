@@ -1,54 +1,81 @@
-import React from "react"
-import cn from "classnames"
-
-import {arrayOf, shape, element} from "prop-types"
+import React, {Component} from "react"
+import {computed} from "mobx"
 import {inject, observer} from "mobx-react"
+import {arrayOf, shape, element} from "prop-types"
+
+import cn from "classnames"
 
 import connect from "core/model/connect"
 
+import Mask from "./component/internal/Mask"
 import Logo from "./component/internal/Logo"
 import List from "./component/internal/List"
 import Toggler from "./component/internal/Toggler"
 
 import Model from "./model/SidebarMenu"
 
-import {container, panel, content, open, mask} from "./sidebar-menu.scss"
+import {container, panel, content, open} from "./sidebar-menu.scss"
 
 const isArray = Array.isArray
 
 const models = () => ({menu: Model.create({})})
 
-const SidebarMenu = ({menu, children}) => (
-  <div className={container}>
-    {menu.isOpen && <div className={mask} />}
+@connect(models) @inject("viewer") @observer
+class SidebarMenu extends Component {
+  static propTypes = {
+    children: arrayOf(element.isRequired),
+    menu: shape({}).isRequired
+  }
 
-    <div className={cn(panel, {[open]: menu.isOpen})}>
-      <div className={content}>
-        <Logo />
+  static defaultProps = {
+    children: null
+  }
 
-        {
-          do {
-            if (isArray(children)) {
-              <List>
-                {children}
-              </List>
+  componentDidMount() {
+    document.addEventListener("keydown", this.closeOnEsc)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.closeOnEsc)
+  }
+
+  @computed get menu() {
+    return this.props.menu
+  }
+
+  closeOnEsc = ({key}) => {
+    if (key.toLowerCase() === "escape" && this.menu.isOpen) {
+      this.menu.close()
+    }
+  }
+
+  render() {
+    const {children} = this.props
+
+    return (
+      <div className={container}>
+        <Mask />
+
+        <div className={cn(panel, {[open]: this.menu.isOpen})}>
+          <div className={content}>
+            <Logo />
+
+            {
+              do {
+                if (isArray(children)) {
+                  <List>
+                    {children}
+                  </List>
+                }
+              }
             }
-          }
-        }
 
-        <Toggler />
+            <Toggler />
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-)
-
-SidebarMenu.propTypes = {
-  children: arrayOf(element.isRequired),
-  menu: shape({}).isRequired
+    )
+  }
 }
 
-SidebarMenu.defaultProps = {
-  children: null
-}
-
-export default SidebarMenu |> connect(models) |> observer |> inject("viewer")
+export default SidebarMenu

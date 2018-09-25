@@ -16,6 +16,8 @@ class OnKeyDownOutside extends Component {
     onKeyDown: () => {}
   }
 
+  ref = createRef()
+
   componentDidMount() {
     document.body.addEventListener("keydown", this.onKeyDown, true)
   }
@@ -29,8 +31,6 @@ class OnKeyDownOutside extends Component {
       this.props.onKeyDown(event)
     }
   }
-
-  ref = createRef()
 
   render() {
     return cloneElement(this.props.children, {ref: this.ref})

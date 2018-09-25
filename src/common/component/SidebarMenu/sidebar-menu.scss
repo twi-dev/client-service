@@ -37,24 +37,9 @@
   text-align: left;
 }
 
-.mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, .450);
-  cursor: pointer;
-  z-index: 1;
-}
-
 @media (max-width: 320px) {
   .open, .content {
     width: 320px;
     max-width: 320px;
-  }
-
-  .mask {
-    display: none;
   }
 }
