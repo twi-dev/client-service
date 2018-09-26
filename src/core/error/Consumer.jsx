@@ -6,7 +6,7 @@ import Context from "./Context"
 
 const Consumer = ({children}) => (
   <Context.Consumer>
-    {({error}) => children(error)}
+    {children}
   </Context.Consumer>
 )
 

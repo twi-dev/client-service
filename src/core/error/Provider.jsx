@@ -37,7 +37,7 @@ class Provider extends Component {
       const {setMatcher, emitError} = this
 
       return (
-        <Context.Provider value={{error: {setMatcher, emitError}}}>
+        <Context.Provider value={{setMatcher, emitError}}>
           {this.props.children}
         </Context.Provider>
       )
