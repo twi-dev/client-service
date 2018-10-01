@@ -7,6 +7,7 @@ import preventDefault from "core/helper/decorator/preventDefault"
 
 import TitleEditor from "./TitleEditor"
 import DescriptionEditor from "./DescriptionEditor"
+import CoverUploader from "./CoverUploader"
 
 import {container} from "./editor.scss"
 
@@ -21,13 +22,13 @@ import {container} from "./editor.scss"
     }).isRequired
   }
 
-  @computed get story() {
-    return this.props.story
-  }
-
   __titleRef = createRef()
 
   __descriptionRef = createRef()
+
+  @computed get story() {
+    return this.props.story
+  }
 
   @preventDefault jumpToDescription = () => {
     this.__descriptionRef.current.focus()
@@ -45,16 +46,18 @@ import {container} from "./editor.scss"
         <TitleEditor
           ref={this.__titleRef}
           title={this.story.title}
-          onInput={this.story.updateTextField}
+          onChange={this.story.updateTextField}
           onEnter={this.jumpToDescription}
         />
 
         <DescriptionEditor
           ref={this.__descriptionRef}
           description={this.story.description}
-          onInput={this.story.updateTextField}
+          onChange={this.story.updateTextField}
           onBackspace={this.jumpToTitle}
         />
+
+        <CoverUploader />
       </div>
     )
   }

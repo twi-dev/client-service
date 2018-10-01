@@ -15,18 +15,18 @@ import {container, field} from "./title-editor.scss"
 
   static propTypes = {
     title: string.isRequired,
-    onInput: func,
+    onChange: func,
     onEnter: func
   }
 
   static defaultProps = {
-    onInput: () => {},
+    onChange: () => {},
     onEnter: () => {}
   }
 
-  componentDidMount = () => this.__ref.current?.focus()
-
   __ref = createRef()
+
+  componentDidMount = () => this.__ref.current?.focus()
 
   selectFilledInputOnFocue = () => {
     if (this.props.title) {
@@ -48,7 +48,7 @@ import {container, field} from "./title-editor.scss"
           name="title"
           className={field}
           value={this.props.title}
-          onInput={this.props.onInput}
+          onChange={this.props.onChange}
           onFocus={this.selectFilledInputOnFocue}
           onEsc={this.blur}
           onEnter={this.props.onEnter}

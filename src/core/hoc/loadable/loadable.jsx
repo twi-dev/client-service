@@ -70,7 +70,7 @@ const loadable = (options = {}) => {
       super()
 
       this.state = {
-        pastDelay: delay === 0,
+        pastDelay: delay <= 0,
         timedOut: false,
         loaded: null,
         isLoaded: false,

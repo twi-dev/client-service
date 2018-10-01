@@ -7,7 +7,7 @@ import Consumer from "./Consumer"
 const withErrorHandler = Target => {
   const WithErrorHandler = props => (
     <Consumer>
-      {error => <Target {...{...props, error}} />}
+      {errorHandler => <Target {...{...props, errorHandler}} />}
     </Consumer>
   )
 

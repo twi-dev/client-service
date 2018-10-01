@@ -11,14 +11,14 @@ import {field} from "./description-editor.scss"
 
   static propTypes = {
     description: string,
-    onInput: func,
+    onChange: func,
     onKeyUp: func,
     onBackspace: func
   }
 
   static defaultProps = {
     description: "",
-    onInput: () => {},
+    onChange: () => {},
     onKeyUp: () => {},
     onBackspace: () => {}
   }
@@ -43,7 +43,7 @@ import {field} from "./description-editor.scss"
         name="description"
         placeholder="A few more words to explain what is your story about"
         className={field}
-        onInput={this.props.onInput}
+        onChange={this.props.onChange}
         value={this.props.description}
         onKeyUp={this.onBackspace}
         ref={this.ref}

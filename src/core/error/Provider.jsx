@@ -24,7 +24,9 @@ class Provider extends Component {
     this.setState(prev => ({...prev, matcher}))
   }
 
-  emitError = () => {}
+  emitError = error => {
+    this.setState(prev => ({...prev, error}))
+  }
 
   componentDidCatch(error, info) {
     this.setState(prev => ({...prev, error, info}))

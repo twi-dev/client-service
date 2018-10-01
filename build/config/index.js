@@ -2,6 +2,7 @@ const {readdirSync} = require("fs")
 const {join} = require("path")
 
 const UglifyJS = require("uglifyjs-webpack-plugin")
+const Terser = require("terser-webpack-plugin")
 
 const getConfig = require("../helper/getConfig")
 
@@ -56,14 +57,11 @@ const configure = env => ({
   optimization: {
     minimize: !env.dev,
     minimizer: [
-      new UglifyJS({
+      new Terser({
         test: /\.(m?js|jsx)$/,
         parallel: true,
-        uglifyOptions: {
-          output: {
-            ecma: 6,
-            comments: false
-          }
+        terserOptions: {
+          ecma: 6
         }
       })
     ],
