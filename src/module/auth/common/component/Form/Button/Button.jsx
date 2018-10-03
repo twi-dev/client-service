@@ -3,14 +3,14 @@ import cn from "classnames"
 
 import {string, element, oneOfType} from "prop-types"
 
-import {container, primary} from "./button.scss"
+import Primary from "common/component/Button/Primary"
+
+import {container} from "./button.scss"
 
 const Button = ({children, className, ...props}) => (
-  <div className={cn(container, className)}>
-    <button {...props} className={primary}>
-      {children}
-    </button>
-  </div>
+  <Primary {...props} className={cn(container, className)}>
+    {children}
+  </Primary>
 )
 
 Button.propTypes = {

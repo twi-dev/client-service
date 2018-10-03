@@ -41,39 +41,41 @@ import {container, field, button, linkLogin} from "./signup.scss"
     return (
       <Fragment>
         <Title title="Signup" />
-        <Form class={container} onSubmit={this.__signup}>
+        <Form className={container} onSubmit={this.__signup}>
           <Fields>
             <Input
               type="text"
               name="username"
               placeholder="Login..."
               autocomplete="off"
-              class={field}
+              className={field}
               value={username}
-              onInput={signup.updateTextField}
+              onChange={signup.updateTextField}
             />
             <Input
               type="email"
               name="email"
               placeholder="Email..."
               autocomplete="off"
-              class={field}
+              className={field}
               value={email}
-              onInput={signup.updateTextField}
+              onChange={signup.updateTextField}
             />
             <Input
               type="password"
               name="password"
               placeholder="Password..."
               autocomplete="off"
-              class={field}
+              className={field}
               value={password}
-              onInput={signup.updateTextField}
+              onChange={signup.updateTextField}
             />
-            <Button class={button} disabled={!signup.isValid}>Sign up</Button>
+            <Button className={button} disabled={!signup.isValid}>
+              Sign up
+            </Button>
           </Fields>
           <Footer>
-            <Link class={linkLogin} href to="/auth/login">
+            <Link className={linkLogin} href to="/auth/login">
               Already have an account?
             </Link>
           </Footer>

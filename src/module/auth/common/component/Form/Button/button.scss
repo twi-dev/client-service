@@ -2,7 +2,7 @@
 
 .container {
   width: 100%;
-  padding: 8px 0;
+  padding: 16px 40px;
 }
 
 .primary {
@@ -22,9 +22,6 @@
 
 @media screen and (width >= 900px) {
   .container {
-    float: left;
     width: 267px;
-
-    padding: 6px 0;
   }
 }

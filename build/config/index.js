@@ -1,7 +1,6 @@
 const {readdirSync} = require("fs")
 const {join} = require("path")
 
-const UglifyJS = require("uglifyjs-webpack-plugin")
 const Terser = require("terser-webpack-plugin")
 
 const getConfig = require("../helper/getConfig")

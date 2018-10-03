@@ -1,15 +1,14 @@
 import React from "react"
 import cn from "classnames"
-import omit from "lodash/omit"
 import RouterLink from "react-router-dom/Link"
 
 import {PropTypes as types} from "prop-types"
 
 import {container} from "./link.scss"
 
-const Link = props => (
-  <div className={cn(container, props.className)}>
-    <RouterLink {...{...omit(props, "className")}} />
+const Link = ({className, ...props}) => (
+  <div className={cn(container, className)}>
+    <RouterLink {...props} />
   </div>
 )
 

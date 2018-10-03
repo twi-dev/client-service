@@ -2,24 +2,21 @@
 @use postcss-nested;
 
 $containerWidth: 1000px;
-$buttonWidth: 246px;
 $fieldWidth: 240px;
 
 @custom-media --formDesktop (width >= 1000px);
 
-@media (--formDesktop) {
+@media screen and (width >= 1000px) {
   .container {
-    lost-center: $containerWidth;
-
-    width: $containerWidth;
+    width: 1000px;
   }
 
-  .field {
+  .field input {
     width: $fieldWidth;
   }
 
   .button {
-    width: $buttonWidth;
+    width: 246px;
   }
 
   .link {

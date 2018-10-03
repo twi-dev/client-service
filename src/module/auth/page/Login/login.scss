@@ -6,9 +6,7 @@
 $containerWidth: 900px;
 $fieldWidth: 300px;
 
-@custom-media --formDesktop (width >= 900px);
-
-@media (--formDesktop) {
+@media screen and (width >= 900px) {
   .container {
     lost-center: $containerWidth;
 
@@ -17,5 +15,9 @@ $fieldWidth: 300px;
 
   .field {
     width: $fieldWidth;
+  }
+
+  .recover {
+    padding-left: 30px;
   }
 }

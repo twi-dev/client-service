@@ -1,6 +1,10 @@
 .container {
-  lost-utility: clearfix;
-
   width: 100%;
   box-sizing: inherit;
+}
+
+@media screen and (width >= 900px) {
+  .container {
+    display: flex;
+  }
 }

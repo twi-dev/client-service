@@ -5,13 +5,13 @@ import omit from "lodash/omit"
 import {observer} from "mobx-react"
 import {PropTypes as types, boolean} from "prop-types"
 
-import {container, warn} from "./input.scss"
+import Plain from "common/component/Input"
 
-// TODO: Don't forget to finish validation feature
-const Input = props => (
-  <div className={cn(container, props.className)}>
-    <div className={warn}>The username is already taken</div>
-    <input {...(omit(props, "className"))} />
+import {container} from "./input.scss"
+
+const Input = ({className, ...props}) => (
+  <div className={cn(container, className)}>
+    <Plain {...(omit(props, "isValid", "warn"))} />
   </div>
 )
 

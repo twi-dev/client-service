@@ -11,9 +11,10 @@ import Button from "module/auth/common/component/Form/Button"
 import Footer from "module/auth/common/component/Form/Footer"
 import withRedirect from "module/auth/common/hoc/withRedirect"
 
-import {container} from "./login.scss"
+import {container, recover} from "./login.scss"
 
-@withRedirect class Login extends Component {
+@withRedirect
+class Login extends Component {
   static propTypes = {
     onError: func.isRequired,
     login: shape({
@@ -25,7 +26,7 @@ import {container} from "./login.scss"
     }).isRequired
   }
 
-  __login = () => {
+  submit = () => {
     this.props.login.authenticate()
       .then(() => this.props.history.push("/"))
       .catch(this.props.onError)
@@ -38,29 +39,37 @@ import {container} from "./login.scss"
     return (
       <Fragment>
         <Title title="Login" />
-        <Form class={container} onSubmit={this.__login}>
+        <Form className={container} onSubmit={this.submit}>
           <Fields>
             <Input
               type="text"
               name="username"
               placeholder="Login..."
-              autocomplete="username"
+              autoComplete="username"
               value={username}
-              onInput={login.updateTextField}
+              onChange={login.updateTextField}
             />
             <Input
               type="password"
               name="password"
               placeholder="Password..."
-              autocomplete="off"
+              autoComplete="off"
               value={password}
-              onInput={login.updateTextField}
+              onChange={login.updateTextField}
             />
-            <Button disabled={!login.isValid}>Log in</Button>
+
+            <Button type="submit" disabled={!login.isValid}>
+              Log in
+            </Button>
           </Fields>
+
           <Footer>
-            <Link href to="/auth/signup">Have no account yet?</Link>
-            <Link href to="/auth/recover">Forgot your password?</Link>
+            <Link to="/auth/signup">
+              Have no account yet?
+            </Link>
+            <Link to="/auth/recover" className={recover}>
+              Forgot your password?
+            </Link>
           </Footer>
         </Form>
       </Fragment>
