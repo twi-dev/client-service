@@ -1,5 +1,5 @@
 /**
- * A tiny static web server that allow to test Twi's client application
+ * A tiny static web server allows to test Twi's client application
  * on your local machine manually. **Do not use it in production!**
  */
 const {join} = require("path")
@@ -10,6 +10,7 @@ const serve = require("koa-static")
 
 const getConfig = require("../build/helper/getConfig")
 
+const filename = join(__dirname, "..", "static", "index.html")
 const config = getConfig({name: process.env.NODE_ENV || "development"})
 
 const koa = new Koa()
@@ -26,9 +27,7 @@ const serveApplication = (ctx, next) => {
   }
 
   ctx.type = "text/html"
-  ctx.body = createReadStream(
-    join(__dirname, "..", "static", "index.html")
-  )
+  ctx.body = createReadStream(filename)
 }
 
 const onListen = () => console.log("Listening on http://localhost:3034")
