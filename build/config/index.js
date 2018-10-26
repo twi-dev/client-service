@@ -1,5 +1,5 @@
 const {readdirSync} = require("fs")
-const {join} = require("path")
+const {join, extname} = require("path")
 
 const Terser = require("terser-webpack-plugin")
 
@@ -13,6 +13,10 @@ function mapDir(path, fn) {
   const res = []
 
   for (const file of dir) {
+    if (extname(file).slice(1) !== "js") {
+      continue
+    }
+
     const ref = fn(require(join(path, file)), file)
 
     if (ref) {
