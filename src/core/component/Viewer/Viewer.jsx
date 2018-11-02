@@ -1,6 +1,8 @@
 import React, {Fragment} from "react"
 import {oneOfType, arrayOf, element, string} from "prop-types"
 
+import loadViewer from "./loadViewer"
+
 const Viewer = ({children}) => <Fragment>{children}</Fragment>
 
 Viewer.propTypes = {
@@ -10,4 +12,4 @@ Viewer.propTypes = {
   ]).isRequired
 }
 
-export default Viewer
+export default Viewer |> loadViewer

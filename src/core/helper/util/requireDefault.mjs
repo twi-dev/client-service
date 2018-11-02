@@ -1,3 +1,11 @@
-const requireDefault = obj => obj && "__esModule" in obj ? obj.default : obj
+import isObject from "lodash/isObject"
 
-export default requireDefault
+function resquireDefault(value) {
+  if (isObject(value) && "__esModule" in value) {
+    return value.default
+  }
+
+  return value
+}
+
+export default resquireDefault

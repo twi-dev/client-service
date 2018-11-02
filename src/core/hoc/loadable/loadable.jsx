@@ -70,7 +70,7 @@ const loadable = (options = {}) => {
       super()
 
       this.state = {
-        pastDelay: delay <= 0,
+        pastDelay: delay === 0,
         timedOut: false,
         loaded: null,
         isLoaded: false,
@@ -101,7 +101,7 @@ const loadable = (options = {}) => {
 
     __load = () => {
       if (isFunction(loaders)) {
-        return loaders(this.props)
+        return Promise.resolve(loaders(this.props))
           .then(resolve).then(this.__onFulfilled, this.__onRejected)
       }
 
@@ -159,11 +159,15 @@ const loadable = (options = {}) => {
         return render ? render(loaded, this.props) : h(loaded, this.props)
       }
 
+      if (!isPlainObject(loaded)) {
+        return render(loaded, this.props)
+      }
+
       if (keys(loaded).length > 1) {
         return render(loaded, this.props)
       }
 
-      return render(loaded, this.props)
+      return render ? render(loaded, this.props) : h(loaded, this.props)
     }
   }
 

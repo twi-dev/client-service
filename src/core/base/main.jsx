@@ -4,14 +4,17 @@ import {render} from "react-dom"
 // Imprort global styles
 import "core/base/main.scss"
 
-import Application from "core/component/Application"
-
 const target = document.querySelector("#twi-root")
 
-// Init the application
-render(createElement(Application), target)
+function renderApplication() {
+  const Application = require("core/component/Application").default
+
+  render(createElement(Application), target)
+}
 
 // Enable HRM
 if (module.hot) {
-  module.hot.accept()
+  module.hot.accept(["../component/Application"], renderApplication)
 }
+
+renderApplication()
