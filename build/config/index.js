@@ -51,11 +51,12 @@ const configure = env => ({
   mode: env.dev ? "development" : "production",
   devtool: env.dev ? "eval-source-map" : false,
   performance: {
-    hints: env.dev ? false : "error",
+    hints: false
+    // hints: env.dev ? false : "error",
 
     // ~320 KB, don't forget to enable gzip on your server
-    maxEntrypointSize: 320000,
-    maxAssetSize: 320000
+    // maxEntrypointSize: 320000,
+    // maxAssetSize: 320000
   },
   optimization: {
     minimize: !env.dev,
