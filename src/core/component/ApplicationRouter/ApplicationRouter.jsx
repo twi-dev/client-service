@@ -5,21 +5,17 @@ import {BrowserRouter, Switch} from "react-router-dom"
 import NotFoundError from "core/component/Error/NotFoundError"
 
 import getRoutes from "./getRoutes"
-import ApplicationRoute from "./ApplicationRoute"
+import Route from "./ApplicationRoute"
 
 const routes = getRoutes()
 
 const ApplicationRouter = () => (
   <BrowserRouter>
     <Switch>
-      {
-        routes.map(({path, ...props}) => (
-          <ApplicationRoute {...{...props, path}} key={`key::(${path})`} />
-        ))
-      }
+      {routes.map(route => <Route {...route} key={`key::(${route.path})`} />)}
 
       {/* Render 404 error when no page found */}
-      <ApplicationRoute layout={false} component={NotFoundError} />
+      <Route layout={false} component={NotFoundError} />
     </Switch>
   </BrowserRouter>
 )

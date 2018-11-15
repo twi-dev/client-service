@@ -1,107 +1,61 @@
 import {basename, join} from "path"
 
 import isPlainObject from "lodash/isPlainObject"
+import partial from "lodash/partialRight"
 import isEmpty from "lodash/isEmpty"
-import merge from "lodash/merge"
 import find from "lodash/find"
 
 import config from "core/config"
-import isString from "core/helper/is/string"
 import resolve from "core/helper/util/requireDefault"
 import iterator from "core/helper/iterator/objectIterator"
 
-const assign = Object.assign
-const router = config.router || {}
+const ctx = require.context("../../../route", false, /\.mjs$/)
+const home = config.router?.home ?? "home"
+const files = ctx.keys()
+const ext = ".mjs"
 
-class Router {
-  constructor() {
-    this.__ctx = require.context("../../../route", true, /\.json$/)
-    this.__config = merge({}, router, {home: "home"})
+const readFile = filename => {
+  const content = ctx(filename) |> resolve
 
-    this.__rewrites = []
-    this.__routes = []
-    this.__home = []
+  if (isEmpty(content)) {
+    return []
   }
 
-  __readConfig = filename => {
-    const conf = this.__ctx(filename)
-
-    return isPlainObject(conf) ? [conf] : conf
-  }
-
-  __setRoute = (route, prefix) => {
-    if (!isPlainObject(route)) {
-      throw new TypeError("Ruote config must be an object.")
-    }
-
-    let path = route.path
-    if (prefix !== this.__config.home) {
-      path = join("/", prefix, path.replace(/^\//, ""))
-    }
-
-    const component = resolve(require(`module/${prefix}/${route.component}`))
-
-    let layout = route.layout
-    if (isString(layout)) {
-      layout = resolve(require(`layout/${layout}`))
-    }
-
-    return assign({}, route, {prefix, path, component})
-  }
-
-  __combineRoutes = (routes, filename) => {
-    const prefix = basename(filename, ".json")
-
-    const conf = this.__readConfig(filename)
-
-    for (const route of conf) {
-      routes.push(this.__setRoute(route, prefix))
-    }
-
-    return routes
-  }
-
-  __getHomeRoutes = () => {
-    let home = this.__ctx.keys()
-      .find(filename => basename(filename, ".json") === this.__config.home)
-
-    home = this.__ctx(home)
-
-    return this.__home = (isPlainObject(home) ? [home] : home)
-      .map(route => this.__setRoute(route, this.__config.home))
-  }
-
-  __getRoutes = () => {
-    const configs = this.__ctx.keys()
-
-    return this.__routes = configs
-      .filter(filename => basename(filename, ".json") !== this.__config.home)
-      .reduce(this.__combineRoutes, [])
-  }
-
-  __getRewrites = () => {
-    for (const [path, rewrite] of iterator(this.__config.rewrites).entries()) {
-      const route = find(this.__routes, {path})
-
-      if (isPlainObject(route)) {
-        this.__rewrites.push(assign({}, route, {path: rewrite}))
-      }
-    }
-
-    return this.__rewrites
-  }
-
-  getRoutes = () => {
-    const routes = this.__getRoutes()
-    const rewrites = this.__getRewrites()
-    const home = this.__getHomeRoutes()
-
-    return Array.from(new Set([...routes, ...home, ...rewrites]))
-      .filter(route => isEmpty(route) === false)
-      .map(route => assign({}, route, {exact: true}))
-  }
+  return content
 }
 
-const getRoutes = () => new Router().getRoutes()
+const addPrefixes = (routes, filename) => routes.map(({path, ...route}) => ({
+  ...route, path: join("/", basename(filename, ext), path)
+}))
+
+const getMain = routes => routes.concat(
+  ...files
+    .filter(filename => basename(filename, ext) !== home)
+    .map(filename => filename |> readFile |> partial(addPrefixes, filename))
+)
+
+const getHome = routes => routes.concat(
+  ...files.filter(filename => basename(filename, ext) === home).map(readFile)
+)
+
+function getRewrites(routes) {
+  const rewrites = []
+
+  for (const [path, rewrite] of iterator(config.router.rewrites).entries()) {
+    const route = find(routes, {path})
+
+    if (isPlainObject(route)) {
+      rewrites.push({...route, path: rewrite})
+    }
+  }
+
+  return routes.concat(...rewrites)
+}
+
+const getRoutes = () => (
+  Array.from(new Set([] |> getMain |> getHome |> getRewrites))
+    .filter(route => isEmpty(route) === false)
+    .map(route => "exact" in route ? route : ({...route, exact: true}))
+)
 
 export default getRoutes
