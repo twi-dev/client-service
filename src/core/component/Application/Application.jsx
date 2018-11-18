@@ -4,7 +4,7 @@ import React, {Fragment} from "react"
 import Provider from "core/error/Provider"
 import Viewer from "core/component/Viewer"
 
-import Router from "core/component/ApplicationRouter"
+import Router from "core/component/Router"
 import Title from "common/component/Title"
 
 import {container} from "./application.scss"

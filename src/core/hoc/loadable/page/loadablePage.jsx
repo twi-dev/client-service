@@ -1,9 +1,8 @@
 import merge from "core/helper/util/objectFlatMerge"
+import loadingProcess from "core/hoc/loadingProcess"
+import stateful from "core/hoc/loadable/stateful"
+import errorHandler from "core/hoc/errorHandler"
 import Loading from "core/component/Loading"
-
-import stateful from "../statefulComponent"
-import loadingProcess from "../../loadingProcess"
-import errorHandler from "../../errorHandler"
 
 import matchErrors from "./matchErrors"
 
@@ -12,6 +11,6 @@ const loading = loadingProcess({
   onError: errorHandler(matchErrors)
 })
 
-const loadablePage = options => stateful(merge({}, options, {loading}))
+const loadablePage = params => stateful(merge({}, params, {loading}))
 
 export default loadablePage
