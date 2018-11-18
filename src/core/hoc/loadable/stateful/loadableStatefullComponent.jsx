@@ -1,6 +1,7 @@
 import {createElement as h} from "react"
 
 import isFunction from "lodash/isFunction"
+import isEmpty from "lodash/isEmpty"
 import partial from "lodash/partial"
 
 import connect from "core/model/connect"
@@ -21,7 +22,7 @@ const defaults = {
 }
 
 function render({Component, ...state}, props) {
-  if (state) {
+  if (!isEmpty(state)) {
     Component = connect(state)(Component)
   }
 

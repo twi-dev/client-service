@@ -28,7 +28,7 @@ function Route(props) {
   })
 }
 
-Route.displayname = "ApplicationRoute"
+Route.displayName = "ApplicationRoute"
 
 Route.propTypes = {
   page: shape({
