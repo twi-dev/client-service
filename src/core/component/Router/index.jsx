@@ -9,7 +9,7 @@ const LoadingProcess = loadingProcess({
 })
 
 const LoadableApplicationRouter = loadable({
-  loaders: () => import("./ApplicationRouter"),
+  loaders: () => import("./Router"),
 
   loading: LoadingProcess
 })

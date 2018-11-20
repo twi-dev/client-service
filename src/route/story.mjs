@@ -4,11 +4,15 @@ import Story from "module/story/page/Details"
 const story = [
   {
     path: "/new",
-    component: NewStory
+    page: {
+      component: NewStory
+    }
   },
   {
     path: "/:slug",
-    component: Story
+    page: {
+      component: Story
+    }
   }
 ]
 

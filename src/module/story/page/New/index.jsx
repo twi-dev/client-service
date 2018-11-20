@@ -1,13 +1,9 @@
-import loadablePage from "core/hoc/loadable/page"
+import loadable from "core/hoc/loadable/page"
 
-import StoryNew from "./model/StoryNew"
+const StoryNew = loadable({
+  page: () => import("./New"),
 
-const LoadablePage = loadablePage({
-  loaders: {
-    story: () => StoryNew.create({}),
-
-    Component: () => import("./New")
-  }
+  state: () => import("./state")
 })
 
-export default LoadablePage
+export default StoryNew

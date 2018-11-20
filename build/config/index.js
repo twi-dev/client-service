@@ -73,7 +73,8 @@ const configure = env => ({
       name: "runtime"
     },
     splitChunks: {
-      chunks: "all"
+      chunks: "all",
+      automaticNameDelimiter: "."
     }
   },
   resolveLoader: {

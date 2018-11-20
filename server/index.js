@@ -30,7 +30,9 @@ const serveApplication = (ctx, next) => {
   ctx.body = createReadStream(filename)
 }
 
-const onListen = () => console.log("Listening on http://localhost:3034")
+const onListen = () => (
+  console.log("Listening on http://localhost:%s", config.client.port)
+)
 
 const onError = err => console.error(err)
 

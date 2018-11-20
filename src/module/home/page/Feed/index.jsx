@@ -1,9 +1,7 @@
-import loadablePage from "core/hoc/loadable/page"
+import loadable from "core/hoc/loadable/page"
 
-const LoadablePage = loadablePage({
-  loaders: {
-    Component: () => import("./Feed")
-  }
+const Feed = loadable({
+  page: () => import("./Feed")
 })
 
-export default LoadablePage
+export default Feed

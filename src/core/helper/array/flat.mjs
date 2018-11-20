@@ -1,7 +1,7 @@
 const isArray = Array.isArray
 
 /*
- * Creates a new array with all sub-array elements concatted into it recursively
+ * Creates a new array with all sub-array elements concatinated recursively
  */
 function arrayFlat(array) {
   const walk = (prev, next) => (

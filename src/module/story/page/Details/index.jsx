@@ -1,17 +1,11 @@
-import router from "react-router-dom/withRouter"
+import {withRouter as router} from "react-router-dom"
 
-import loadablePage from "core/hoc/loadable/page"
-import create from "core/model/create"
+import loadable from "core/hoc/loadable/page"
 
-import Story from "./model/Story"
-import getStory from "./graphql/query/getStory"
+const Details = loadable({
+  page: () => import("./Details"),
 
-const LoadablePage = loadablePage({
-  loaders: {
-    story: ({match}) => getStory(match.params.slug).then(create(Story)),
-
-    Component: () => import("./Details")
-  }
+  state: () => import("./state")
 })
 
-export default LoadablePage |> router
+export default Details |> router
