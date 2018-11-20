@@ -35,9 +35,7 @@ function loadablePage(params = {}) {
     loaders = props => waterfall([state, resolve]).then(partial(run, props))
   }
 
-  const Target = stateful({...rest, serial, component, loaders, loading})
-
-  return Target
+  return stateful({...rest, serial, component, loaders, loading})
 }
 
 export default loadablePage
