@@ -32,7 +32,8 @@ function render({Component, ...state}, props) {
 /**
  * Patch loaders and return a function that enhances loading process
  *
- * @param {}
+ * @param {Function} component
+ * @param {Function | {[key: string]: Function}} [loaders = undefined]
  *
  * @return {(props: {[key: string]: any}) => Promise<{[key: string]: any}>}
  */
@@ -57,12 +58,12 @@ const patchLoaders = (component, loaders, serial) => props => {
 
   const run = serial.component ? runSerial : runParallel
 
-  const notmalize = loaded => map(loaded, resolve)
+  const normalize = loaded => map(loaded, resolve)
 
   const fulfill = ({state, ...rest}) => ({...rest, ...state})
 
   // Run loaders
-  return waterfall([partial(run, params), notmalize, fulfill])
+  return waterfall([partial(run, params), normalize, fulfill])
 }
 
 const loadableStatefulComponent = params => {
