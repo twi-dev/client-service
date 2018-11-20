@@ -4,25 +4,21 @@ import {Route as BaseRoute} from "react-router-dom"
 
 import DefaultLayout from "common/component/Layout"
 
-import load from "./load"
-
 function Route(props) {
   const {page, serial, ...routeProps} = props
 
-  const {component: Component, layout: Layout, state, loading} = page
-
-  const LoadableComponent = load({Component, state, loading, serial})
+  const {component: Component, layout: Layout} = page
 
   return h(BaseRoute, {
     ...routeProps,
 
     render: targetProps => do {
       if (Layout === false) {
-        h(LoadableComponent, targetProps)
+        h(Component, targetProps)
       } else if (!Layout) {
-        h(DefaultLayout, null, h(LoadableComponent, targetProps))
+        h(DefaultLayout, null, h(Component, targetProps))
       } else {
-        h(Layout, null, h(LoadableComponent, targetProps))
+        h(Layout, null, h(Component, targetProps))
       }
     }
   })

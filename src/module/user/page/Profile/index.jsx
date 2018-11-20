@@ -1,17 +1,11 @@
-import router from "react-router-dom/withRouter"
+import {withRouter as router} from "react-router-dom"
 
-import create from "core/model/create"
-import loadablePage from "core/hoc/loadable/page"
-import User from "common/model/store/user/User"
+import loadable from "core/hoc/loadable/page"
 
-import getUser from "./graphql/query/user"
+const Profile = loadable({
+  page: () => import("./Profile"),
 
-const LoadablePage = loadablePage({
-  loaders: {
-    user: ({match}) => getUser(match.params.login).then(create(User)),
-
-    Component: () => import("./Profile")
-  }
+  state: () => import("./state")
 })
 
-export default LoadablePage |> router
+export default Profile |> router

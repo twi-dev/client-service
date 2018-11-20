@@ -44,7 +44,7 @@ const patchLoaders = (component, loaders, serial) => props => {
     params.state = do {
       if (isFunction(loaders)) {
         // Load state from loader function
-        partial(loaders, [props])
+        partial(loaders, props)
       } else if (serial.state) {
         // ...or load then serial
         partial(runSerial, [loaders, props])

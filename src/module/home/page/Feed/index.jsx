@@ -1,5 +1,7 @@
-const feed = {
-  component: () => import("./Feed")
-}
+import loadable from "core/hoc/loadable/page"
 
-export default feed
+const Feed = loadable({
+  page: () => import("./Feed")
+})
+
+export default Feed

@@ -1,13 +1,9 @@
-import loadablePage from "core/hoc/loadable/page"
+import loadable from "core/hoc/loadable/page"
 
-import Model from "./Model"
+const Login = loadable({
+  page: () => import("./Login"),
 
-const LoadablePage = loadablePage({
-  loaders: {
-    login: () => Model.create({}),
-
-    Component: () => import("./Login")
-  }
+  state: () => import("./state")
 })
 
-export default LoadablePage
+export default Login
