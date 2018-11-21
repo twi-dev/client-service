@@ -1,8 +1,6 @@
 import partial from "lodash/partialRight"
 import isFunction from "lodash/isFunction"
 
-// import merge from "core/helper/util/objectFlatMerge"
-
 import runParallel from "core/helper/object/runParallel"
 import waterfall from "core/helper/array/runWaterfall"
 import resolve from "core/helper/util/requireDefault"

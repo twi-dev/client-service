@@ -1,9 +1,9 @@
 import loadable from "core/hoc/loadable/page"
 
-const Login = loadable({
-  page: () => import("./Login"),
+const page = () => import("./Login")
 
-  state: () => import("./state")
-})
+const state = () => import("./state")
+
+const Login = loadable({state, page})
 
 export default Login

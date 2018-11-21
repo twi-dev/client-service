@@ -2,10 +2,10 @@ import {withRouter as router} from "react-router-dom"
 
 import loadable from "core/hoc/loadable/page"
 
-const Profile = loadable({
-  page: () => import("./Profile"),
+const page = () => import("./Profile")
 
-  state: () => import("./state")
-})
+const state = () => import("./state")
+
+const Profile = loadable({state, page})
 
 export default Profile |> router
