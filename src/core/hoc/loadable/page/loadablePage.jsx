@@ -18,7 +18,7 @@ const createLoadingProcess = ({onLoading, onError} = {}) => loadingProcess({
 })
 
 function loadablePage(params = {}) {
-  const {page: component, state, serial, hoc, ...rest} = params
+  const {page: component, state, serial, name, ...rest} = params
 
   if (state && !isFunction(state)) {
     throw new TypeError("State should be a function.")
@@ -33,7 +33,15 @@ function loadablePage(params = {}) {
     loaders = props => waterfall([state, resolve]).then(partial(run, props))
   }
 
-  return stateful({...rest, serial, component, loaders, loading})
+  const Stateful = stateful({...rest, serial, component, loaders, loading})
+
+  Stateful.displayName = "LoadablePage"
+
+  if (process.env.NODE_ENV !== "production" && name) {
+    Stateful.displayName += `(${name})`
+  }
+
+  return Stateful
 }
 
 export default loadablePage

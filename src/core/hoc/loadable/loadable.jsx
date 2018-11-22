@@ -1,25 +1,25 @@
 import {createElement as h, Component} from "react"
 
 import isPlainObject from "lodash/isPlainObject"
+import isFunction from "lodash/isFunction"
+import isNumber from "lodash/isNumber"
 
-import isNumber from "core/helper/is/number"
-import isFunction from "core/helper/is/function"
 import map from "core/helper/iterator/objectMap"
+import runSerial from "core/helper/object/runSerial"
 import resolve from "core/helper/util/requireDefault"
-import runSerial from "core/helper/promise/objectRunSerial"
-import runParallel from "core/helper/promise/objectRunParallel"
+import runParallel from "core/helper/object/runParallel"
 
 const keys = Object.keys
 
 /**
  * Allow to laod data and React components asynchronously
  *
- * @param {object} options
+ * @param {object} params
  *
  * @return {Loadable} – proxy component for loading data and other components
  */
-const loadable = (options = {}) => {
-  const {delay, timeout, serial, loaders, loading, render} = options
+const loadable = (params = {}) => {
+  const {name, delay, timeout, serial, loaders, loading, render} = params
 
   if (process.env.NODE_ENV !== "production") {
     if (!loaders) {
@@ -169,6 +169,10 @@ const loadable = (options = {}) => {
 
       return render ? render(loaded, this.props) : h(loaded, this.props)
     }
+  }
+
+  if (process.env.NODE_ENV !== "production" && name) {
+    Loadable.displayName = `Loadable(${name})`
   }
 
   return Loadable

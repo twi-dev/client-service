@@ -21,6 +21,7 @@ const createViewer = viewer => ({viewer: viewer ? Model.create(viewer) : null})
 
 const loadViewer = Target => setSession(
   loadable({
+    name: "Viewer",
     delay: 300,
     loading: LoadingProcess,
     loaders: ({session}) => session ? getViewer() : null,

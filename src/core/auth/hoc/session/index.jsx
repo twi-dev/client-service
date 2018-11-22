@@ -35,6 +35,7 @@ async function loadSession() {
 }
 
 const LoadableSession = Target => loadable({
+  name: "Session",
   delay: 300,
   loading: LoadingProcess,
   loaders: {

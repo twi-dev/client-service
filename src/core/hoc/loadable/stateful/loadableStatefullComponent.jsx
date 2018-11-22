@@ -67,11 +67,21 @@ const patchLoaders = (component, loaders, serial) => props => {
 }
 
 const loadableStatefulComponent = params => {
-  const {serial, component, ...options} = merge({}, defaults, params, {render})
+  const {serial, component, name, ...options} = merge(
+    {}, defaults, params, {render}
+  )
 
   options.loaders = patchLoaders(component, options.loaders, serial)
 
-  return loadable(options)
+  const Loadable = loadable(options)
+
+  Loadable.displayName = "LoadableStatefulComponent"
+
+  if (process.env.NODE_ENV !== "production" && name) {
+    Loadable.displayName += `(${name})`
+  }
+
+  return Loadable
 }
 
 export default loadableStatefulComponent
