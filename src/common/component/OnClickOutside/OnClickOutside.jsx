@@ -1,9 +1,11 @@
-import {cloneElement, Component} from "react"
+import {cloneElement, Component, Children} from "react"
 import {element, func} from "prop-types"
 
 import cn from "classnames"
 
 import {proxy} from "./on-click-outside.scss"
+
+const toArray = Children.toArray
 
 class OnClickOutside extends Component {
   static propTypes = {
@@ -21,7 +23,7 @@ class OnClickOutside extends Component {
   }
 
   get children() {
-    return this.props.children[0]
+    return toArray(this.props.children)[0]
   }
 
   __handler = event => {
@@ -37,7 +39,7 @@ class OnClickOutside extends Component {
 
   render() {
     return cloneElement(this.children, {
-      class: cn(proxy, this.children.attributes.class),
+      className: cn(proxy, this.children.attributes.className),
       tabIndex: -1
     })
   }
