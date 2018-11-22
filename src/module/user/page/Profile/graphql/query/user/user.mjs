@@ -4,7 +4,7 @@ import getData from "core/helper/graphql/getData"
 
 import userQuery from "./user.gql"
 
-function getUser(login) {
+function user({login}) {
   const params = {
     query: userQuery,
     variables: {
@@ -15,4 +15,4 @@ function getUser(login) {
   return query(params).then(getData("user"))
 }
 
-export default getUser
+export default user

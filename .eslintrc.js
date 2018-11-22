@@ -31,7 +31,14 @@ module.exports = {
     }],
 
     "no-unused-expressions": 0,
-    "operator-linebreak": ["error", "after"],
+    "operator-linebreak": ["error", "after", {
+      overrides: {
+        "+": "ignore"
+      }
+    }],
+    "func-names": ["error", "always", {
+      generators: "never"
+    }],
 
     "react/destructuring-assignment": 0,
     "react/button-has-type": 0

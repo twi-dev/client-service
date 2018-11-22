@@ -4,7 +4,7 @@ import getData from "core/helper/graphql/getData"
 
 import storyQuery from "./story.gql"
 
-function story(slug) {
+function story({slug}) {
   const options = {
     query: storyQuery,
     variables: {
