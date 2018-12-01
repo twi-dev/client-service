@@ -3,9 +3,7 @@ const isArray = Array.isArray
 /**
  * @private
  */
-const step = (prev, next) => new Promise((resolve, reject) => {
-  Promise.resolve(prev).then(res => resolve(next(res))).catch(reject)
-})
+const step = (prev, next) => Promise.resolve(prev).then(res => next(res))
 
 /**
  * @param {Array<(prev: any) => Promise<any>>}
@@ -20,10 +18,8 @@ function arrayWaterfall(tasks, initial) {
     return Promise.reject(new TypeError("Tasks must be passed as an array."))
   }
 
-  if (tasks.length <= 1) {
-    const [task] = tasks
-
-    return step(initial, task)
+  if (tasks.length === 1) {
+    return step(initial, tasks[0])
   }
 
   return tasks.reduce(step, initial)

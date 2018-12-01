@@ -6,6 +6,6 @@ const page = () => import("./Profile")
 
 const state = () => import("./state")
 
-const Profile = loadable({state, page})
+const Profile = loadable({state, page, name: "Profile"})
 
 export default Profile |> router

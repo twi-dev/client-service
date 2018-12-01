@@ -4,6 +4,6 @@ const state = () => import("./state")
 
 const page = () => import("./New")
 
-const StoryNew = loadable({state, page})
+const StoryNew = loadable({state, page, name: "StoryNew"})
 
 export default StoryNew

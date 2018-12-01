@@ -4,6 +4,6 @@ const page = () => import("./Login")
 
 const state = () => import("./state")
 
-const Login = loadable({state, page})
+const Login = loadable({state, page, name: "Login"})
 
 export default Login

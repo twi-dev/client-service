@@ -11,7 +11,8 @@ const LoadingProcess = loadingProcess({
 const LoadableApplicationRouter = loadable({
   loaders: () => import("./Router"),
 
-  loading: LoadingProcess
+  loading: LoadingProcess,
+  name: "ApplicationRouter"
 })
 
 export default LoadableApplicationRouter

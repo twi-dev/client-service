@@ -5,10 +5,15 @@ import cn from "classnames"
 
 import forwardRef from "core/hoc/forwardRef"
 
-import {container} from "./button.scss"
+import {container, wide} from "./button.scss"
 
 const Button = ({className, children, forwardedRef, ...props}) => (
-  <button {...props} className={cn(container, className)} ref={forwardedRef}>
+  <button
+    {...props}
+
+    ref={forwardedRef}
+    className={cn(container, className, {[wide]: props.wide})}
+  >
     {children}
   </button>
 )

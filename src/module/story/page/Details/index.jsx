@@ -6,6 +6,6 @@ const page = () => import("./Details")
 
 const state = () => import("./state")
 
-const Details = loadable({page, state})
+const Details = loadable({page, state, name: "StoryDetails"})
 
 export default Details |> router
