@@ -1,0 +1,9 @@
+fragment storyMinimal on Story {
+  id
+  title
+  description
+  slug {
+    full
+    short
+  }
+}

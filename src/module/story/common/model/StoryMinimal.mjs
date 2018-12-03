@@ -1,7 +1,5 @@
 import {types} from "mobx-state-tree"
 
-import updateTextField from "common/model/action/updateTextField"
-
 const {model, maybe, string} = types
 
 const schema = {

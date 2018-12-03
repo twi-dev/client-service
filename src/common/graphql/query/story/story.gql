@@ -1,0 +1,15 @@
+#import "common/graphql/fragment/story/minimal.gql"
+
+query GetStory($slug: String!) {
+  story(slug: $slug) {
+    ...storyMinimal
+
+    publisher {
+      login
+    }
+    dates {
+      createdAt
+      updatedAt
+    }
+  }
+}

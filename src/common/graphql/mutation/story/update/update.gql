@@ -1,0 +1,6 @@
+mutation UpdateStory($story: StoryUpdateInput!) {
+  updateStory(story: $story) {
+    id
+    title
+  }
+}

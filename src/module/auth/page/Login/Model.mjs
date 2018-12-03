@@ -1,7 +1,7 @@
 import {types, flow} from "mobx-state-tree"
 
 import saveTokens from "core/auth/helper/saveTokens"
-import updateTextField from "common/model/action/updateTextField"
+import updateTextField from "core/helper/model/updateTextField"
 
 import authenticate from "./graphql/mutation/authenticate"
 

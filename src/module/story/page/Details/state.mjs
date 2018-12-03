@@ -3,8 +3,8 @@ import partial from "lodash/partial"
 import waterfall from "core/helper/array/runWaterfall"
 import create from "core/model/create"
 
-import Story from "./model/Story"
-import query from "./graphql/query/story"
+import query from "common/graphql/query/story"
+import Story from "common/model/Story"
 
 const state = {
   story: ({match}) => waterfall([partial(query, match.params), create(Story)])

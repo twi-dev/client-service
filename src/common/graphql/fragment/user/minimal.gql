@@ -1,0 +1,9 @@
+fragment userMinimal on User {
+  id
+  login
+  dates {
+    registeredAt
+  }
+  role
+  status
+}

@@ -1,6 +1,6 @@
 import {types} from "mobx-state-tree"
 
-import User from "common/model/store/user/User"
+import User from "common/model/User"
 
 const {string} = types
 
