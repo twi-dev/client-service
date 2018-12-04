@@ -8,7 +8,9 @@ const schema = {
 }
 
 const actions = self => ({
-  updateTextField: updateTextField(self),
+  updateTextField({target}) {
+    self.title = target.value
+  },
 
   resetTitle: () => void (self.title = "")
 })
