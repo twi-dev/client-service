@@ -21,7 +21,8 @@ class Editor extends Component {
     story: shape({
       title: string,
       description: string,
-      updateTextField: func.isRequired
+      updateTitleText: func.isRequired,
+      updateDescriptionText: func.isRequired
     }).isRequired
   }
 
@@ -49,14 +50,14 @@ class Editor extends Component {
         <TitleEditor
           ref={this.__titleRef}
           title={this.story.title}
-          onChange={this.story.updateTextField}
+          onChange={this.story.updateTitleText}
           onEnter={this.jumpToDescription}
         />
 
         <DescriptionEditor
           ref={this.__descriptionRef}
           description={this.story.description}
-          onChange={this.story.updateTextField}
+          onChange={this.story.updateDescriptionText}
           onBackspace={this.jumpToTitle}
         />
 

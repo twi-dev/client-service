@@ -10,7 +10,13 @@ const schema = {
 }
 
 const actions = self => ({
-  updateTitleText: warn(self),
+  updateTitleText({target}) {
+    self.title = target.value
+  },
+
+  updateDescriptionText({target}) {
+    self.title = target.value
+  },
 
   updateTitle: warn.flow(self),
 
