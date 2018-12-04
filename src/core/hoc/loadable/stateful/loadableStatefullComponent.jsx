@@ -4,7 +4,7 @@ import isFunction from "lodash/isFunction"
 import isEmpty from "lodash/isEmpty"
 import partial from "lodash/partial"
 
-import connect from "core/model/connect"
+import provider from "core/model/provider"
 import loadable from "core/hoc/loadable"
 import merge from "core/helper/util/objectFlatMerge"
 import runSerial from "core/helper/object/runSerial"
@@ -23,7 +23,7 @@ const defaults = {
 
 function render({Component, ...state}, props) {
   if (!isEmpty(state)) {
-    Component = connect(state)(Component)
+    Component = provider(state)(Component)
   }
 
   return h(Component, props)

@@ -1,8 +1,8 @@
 import React, {Component, createRef} from "react"
 import {shape, string, func} from "prop-types"
-import {observer} from "mobx-react"
 import {computed} from "mobx"
 
+import connect from "core/model/connect"
 import preventDefault from "core/helper/decorator/preventDefault"
 
 import TitleEditor from "./TitleEditor"
@@ -11,7 +11,10 @@ import CoverUploader from "./CoverUploader"
 
 import {container} from "./editor.scss"
 
-@observer class Editor extends Component {
+const mapStoresToProps = ({story}) => ({story})
+
+@connect(mapStoresToProps)
+class Editor extends Component {
   static displayName = "StoryEditor"
 
   static propTypes = {

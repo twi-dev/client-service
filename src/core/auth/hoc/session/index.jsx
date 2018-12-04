@@ -2,7 +2,7 @@ import {createElement as h} from "react"
 
 import loadingProcess from "core/hoc/loadingProcess"
 import loadable from "core/hoc/loadable"
-import connect from "core/model/connect"
+import provider from "core/model/provider"
 import db from "core/db/tokens"
 
 import Loading from "core/component/Loading"
@@ -45,7 +45,7 @@ const LoadableSession = Target => loadable({
   },
 
   render: ({hoc, session}, props) => (
-    h(hoc(Target |> refreshAccessToken |> connect({session})), props)
+    h(hoc(Target |> refreshAccessToken |> provider({session})), props)
   )
 })
 

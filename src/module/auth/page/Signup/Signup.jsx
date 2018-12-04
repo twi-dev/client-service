@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from "react"
 import {shape, func, string} from "prop-types"
 
+import connect from "core/model/connect"
 import Title from "common/component/Title"
 
 import Form from "module/auth/common/component/Form"
@@ -13,7 +14,11 @@ import withRedirect from "module/auth/common/hoc/withRedirect"
 
 import {container, field, button, linkLogin} from "./signup.scss"
 
-@withRedirect class Login extends Component {
+const mapStoresToProps = ({signup}) => ({signup})
+
+@withRedirect
+@connect(mapStoresToProps)
+class Login extends Component {
   static propTypes = {
     onError: func.isRequired,
     signup: shape({
@@ -28,7 +33,7 @@ import {container, field, button, linkLogin} from "./signup.scss"
     }).isRequired
   }
 
-  __signup = () => {
+  submit = () => {
     this.props.signup.createUser()
       .then(() => this.props.history.push("/"))
       .catch(this.props.onError)
@@ -41,7 +46,7 @@ import {container, field, button, linkLogin} from "./signup.scss"
     return (
       <Fragment>
         <Title title="Signup" />
-        <Form className={container} onSubmit={this.__signup}>
+        <Form className={container} onSubmit={this.submit}>
           <Fields>
             <Input
               type="text"

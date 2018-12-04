@@ -2,7 +2,7 @@ import {createElement as h} from "react"
 
 import setSession from "core/auth/hoc/session"
 import loadable from "core/hoc/loadable"
-import connect from "core/model/connect"
+import provider from "core/model/provider"
 import Loading from "core/component/Loading"
 import loadingProcess from "core/hoc/loadingProcess"
 import ApplicationError from "core/component/Error/ApplicationError"
@@ -27,7 +27,7 @@ const loadViewer = Target => setSession(
     loaders: ({session}) => session ? getViewer() : null,
 
     render: (viewer, props) => (
-      h(Target |> connect(viewer |> createViewer), props)
+      h(Target |> provider(viewer |> createViewer), props)
     )
   })
 )

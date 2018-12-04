@@ -1,7 +1,7 @@
-import StoryNew from "./model/StoryNew"
+import StoryLocal from "common/model/Story/StoryLocal"
 
 const state = {
-  story: () => StoryNew.create({}),
+  story: () => StoryLocal.create({}),
 }
 
 export default state

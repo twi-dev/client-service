@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from "react"
 import {shape, func, string} from "prop-types"
 
+import connect from "core/model/connect"
 import Title from "common/component/Title"
 
 import Form from "module/auth/common/component/Form"
@@ -13,7 +14,10 @@ import withRedirect from "module/auth/common/hoc/withRedirect"
 
 import {container, recover} from "./login.scss"
 
+const mapStoresToProps = ({login}) => ({login})
+
 @withRedirect
+@connect(mapStoresToProps)
 class Login extends Component {
   static propTypes = {
     onError: func.isRequired,

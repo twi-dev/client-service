@@ -1,5 +1,0 @@
-mutation AddStory($story: AddStoryInput!) {
-  addStory(story: $story) {
-    slug
-  }
-}

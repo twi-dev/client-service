@@ -5,7 +5,7 @@ import {arrayOf, shape, element} from "prop-types"
 
 import cn from "classnames"
 
-import connect from "core/model/connect"
+import provider from "core/model/provider"
 
 import Mask from "./component/internal/Mask"
 import Logo from "./component/internal/Logo"
@@ -20,7 +20,11 @@ const isArray = Array.isArray
 
 const models = () => ({menu: Model.create({})})
 
-@connect(models) @inject("viewer") @observer
+const mapStoresToProps = ({viewer, menu}) => ({viewer, menu})
+
+@provider(models)
+@inject(mapStoresToProps)
+@observer
 class SidebarMenu extends Component {
   static propTypes = {
     children: arrayOf(element.isRequired),

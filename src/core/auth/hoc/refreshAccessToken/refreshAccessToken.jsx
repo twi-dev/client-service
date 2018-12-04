@@ -1,13 +1,16 @@
 import {createElement, Component} from "react"
 import {shape} from "prop-types"
-import {observer} from "mobx-react"
+import {observer, inject} from "mobx-react"
 
 import ms from "ms"
 
 import getName from "core/helper/component/getName"
 
+const mapStoresToProps = ({session}) => ({session})
+
 const refreshAccessToken = Target => {
-  @observer class RefreshAccessToken extends Component {
+  @inject(mapStoresToProps) @observer
+  class RefreshAccessToken extends Component {
     static displayName = `RefreshAccessToken(${getName(Target)})`
 
     static propTypes = {

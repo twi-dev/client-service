@@ -1,7 +1,10 @@
 import React, {Fragment} from "react"
 import {shape} from "prop-types"
 
+import connect from "core/model/connect"
 import Title from "common/component/Title"
+
+const mapStoresToProps = ({user}) => ({user})
 
 const Profile = ({user}) => (
   <Fragment>
@@ -15,4 +18,4 @@ Profile.propTypes = {
   user: shape({}).isRequired
 }
 
-export default Profile
+export default Profile |> connect(mapStoresToProps)
