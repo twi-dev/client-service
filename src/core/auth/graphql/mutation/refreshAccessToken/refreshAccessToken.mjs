@@ -2,7 +2,7 @@ import {mutate} from "core/transport/graphql"
 
 import getData from "core/helper/graphql/getData"
 import saveTokens from "core/auth/helper/saveTokens"
-import waterfall from "core/helper/promise/arrayRunWaterfall"
+import waterfall from "core/helper/array/runWaterfall"
 
 import refreshMutation from "./refreshAccessToken.gql"
 

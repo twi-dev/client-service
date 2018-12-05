@@ -6,10 +6,12 @@ import isFunction from "lodash/isFunction"
 import getName from "core/helper/component/getName"
 
 const provider = (stores = {}) => Target => {
-  const ProvideStores = props => h(
-    Provider, (isFunction(stores) ? stores(props) : stores),
+  const ProvideStores = props => (
+    h(
+      Provider, (isFunction(stores) ? stores(props) : stores),
 
-    h(Target, props)
+      h(Target, props)
+    )
   )
 
   ProvideStores.displayName = `ProvideStores(${getName(Target)})`

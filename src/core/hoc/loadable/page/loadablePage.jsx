@@ -30,7 +30,7 @@ function loadablePage(params = {}) {
   if (state) {
     const run = serial && serial.state === true ? runSerial : runParallel
 
-    loaders = props => waterfall([state, resolve]).then(partial(run, props))
+    loaders = props => waterfall([state, resolve]).then(partial(run, [props]))
   }
 
   const Stateful = stateful({...rest, serial, component, loaders, loading})

@@ -1,3 +1,5 @@
+const isArray = Array.isArray
+
 /**
  * Run tasks queue serially
  *
@@ -6,10 +8,12 @@
  *
  * @return {Promise<void>}
  */
-function arrayRunSerial(tasks, ...args) {
-  const step = (prev, next) => new Promise((resolve, reject) => {
-    Promise.resolve(prev).then(() => resolve(next(...args))).catch(reject)
-  })
+function arrayRunSerial(tasks, args = []) {
+  if (!isArray(tasks)) {
+    return Promise.reject(new TypeError("Tasks must be passed as an array."))
+  }
+
+  const step = (prev, next) => Promise.resolve(prev).then(() => next(...args))
 
   if (tasks.length >= 1) {
     return step(undefined, tasks[0])

@@ -107,7 +107,7 @@ const loadable = (params = {}) => {
 
       const run = serial === true ? runSerial : runParallel
 
-      run(loaders, this.props)
+      run(loaders, [this.props])
         .then(loaded => map(loaded, resolve))
         .then(this.__onFulfilled, this.__onRejected)
     }

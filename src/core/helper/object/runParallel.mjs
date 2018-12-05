@@ -1,4 +1,5 @@
 import objectFromEntries from "object-deep-from-entries"
+import isPlainObject from "lodash/isPlainObject"
 
 const entries = Object.entries
 
@@ -10,8 +11,10 @@ const entries = Object.entries
  *
  * @return {Promise<object>}
  */
-const objectRunParallel = (src, ...args) => new Promise((resolve, reject) => {
-  const tasks = entries(src)
+const objectRunParallel = (src, args = []) => new Promise((resolve, reject) => {
+  if (!isPlainObject(src)) {
+    return reject(new TypeError("Tasks must be an object."))
+  }
 
   const step = ([key, task]) => (
     Promise.resolve(task(...args)).then(value => [key, value])
@@ -19,7 +22,7 @@ const objectRunParallel = (src, ...args) => new Promise((resolve, reject) => {
 
   const onResult = res => res |> objectFromEntries |> resolve
 
-  Promise.all(tasks.map(step)).then(onResult).catch(reject)
+  Promise.all(entries(src).map(step)).then(onResult).catch(reject)
 })
 
 export default objectRunParallel

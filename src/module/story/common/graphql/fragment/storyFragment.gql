@@ -1,5 +1,0 @@
-fragment StoryFragment on Story {
-  id
-  title
-  description
-}
