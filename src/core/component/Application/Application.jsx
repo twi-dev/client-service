@@ -1,10 +1,11 @@
 import {hot, setConfig} from "react-hot-loader"
 import React, {Fragment} from "react"
 
-import Provider from "core/error/Provider"
 import Viewer from "core/component/Viewer"
 
 import Router from "core/component/Router"
+import ErrorHandler from "core/error/application/ApplicationErrorHandler"
+
 import Title from "common/component/Title"
 
 import {container} from "./application.scss"
@@ -14,11 +15,11 @@ const Application = () => (
     <Title />
 
     <div className={container}>
-      <Provider>
+      <ErrorHandler>
         <Viewer>
           <Router />
         </Viewer>
-      </Provider>
+      </ErrorHandler>
     </div>
   </Fragment>
 )

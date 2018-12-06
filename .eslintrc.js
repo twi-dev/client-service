@@ -33,7 +33,9 @@ module.exports = {
     "no-unused-expressions": 0,
     "operator-linebreak": ["error", "after", {
       overrides: {
-        "+": "ignore"
+        "+": "ignore",
+        "?": "before",
+        ":": "before"
       }
     }],
     "func-names": ["error", "always", {

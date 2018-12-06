@@ -66,8 +66,8 @@ const loadable = (params = {}) => {
 
     __mounted = false
 
-    constructor() {
-      super()
+    constructor(props) {
+      super(props)
 
       this.state = {
         pastDelay: delay === 0,
