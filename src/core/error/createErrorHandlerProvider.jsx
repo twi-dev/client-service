@@ -1,10 +1,22 @@
 import {createElement as h, Component} from "react"
+import {shape, func} from "prop-types"
+
+import isFunction from "lodash/isFunction"
 
 import getName from "core/helper/component/getName"
 
+import applicaitonErrorConsumer from "./application/applicaitonErrorConsumer"
+
+/**
+ * @api private
+ */
 const createErrorHandlerProvider = Provider => Target => {
   class ErrorHandlerProvider extends Component {
     static displayName = `ErrorHandlerProvider(${getName(Target)})`
+
+    static propTypes = {
+      applicationError: shape({report: func.isRequired}).isRequired
+    }
 
     __reporters = new Map()
 
@@ -19,17 +31,21 @@ const createErrorHandlerProvider = Provider => Target => {
     deleteReporter = id => this.__reporters.delete(id)
 
     catchError = ({error, info, id = null} = {}) => {
-      const reporter = do {
-        if (id && this.__reporters.size > 0 && this.__reporters.has(id)) {
-          this.__reporters.get(id)
-        } else {
-          // TODO: Add default reporter
-          () => null
-        }
+      if (!(id || this.__reporters.size > 0 || this.__reporters.has(id))) {
+        return void this.props.applicationError.report({error, info})
       }
 
-      // TODO: Check if returned component is a function
+      const reporter = this.__reporters.get(id)
+
+      if (!isFunction(reporter)) {
+        return void this.props.applicationError.report({error, info})
+      }
+
       const component = reporter({error, info})
+
+      if (component == null) {
+        return void this.props.applicationError.report({error, info})
+      }
 
       this.setState(() => ({component}))
     }
@@ -58,7 +74,7 @@ const createErrorHandlerProvider = Provider => Target => {
     }
   }
 
-  return ErrorHandlerProvider
+  return applicaitonErrorConsumer(ErrorHandlerProvider)
 }
 
 export default createErrorHandlerProvider

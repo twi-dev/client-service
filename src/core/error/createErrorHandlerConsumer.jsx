@@ -7,6 +7,9 @@ import getName from "core/helper/component/getName"
 
 import attachConsumer from "./attachConsumer"
 
+/**
+ * @api private
+ */
 const createErrorHandlerConsumer = Consumer => Target => {
   const name = getName(Target)
 

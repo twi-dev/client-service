@@ -4,6 +4,8 @@ import React, {Fragment} from "react"
 import Viewer from "core/component/Viewer"
 
 import Router from "core/component/Router"
+import ErrorHandler from "core/error/application/ApplicationErrorHandler"
+
 import Title from "common/component/Title"
 
 import {container} from "./application.scss"
@@ -13,9 +15,11 @@ const Application = () => (
     <Title />
 
     <div className={container}>
-      <Viewer>
-        <Router />
-      </Viewer>
+      <ErrorHandler>
+        <Viewer>
+          <Router />
+        </Viewer>
+      </ErrorHandler>
     </div>
   </Fragment>
 )
