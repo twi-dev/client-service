@@ -1,7 +1,6 @@
 import {hot, setConfig} from "react-hot-loader"
 import React, {Fragment} from "react"
 
-import Provider from "core/error/Provider"
 import Viewer from "core/component/Viewer"
 
 import Router from "core/component/Router"
@@ -14,11 +13,9 @@ const Application = () => (
     <Title />
 
     <div className={container}>
-      <Provider>
-        <Viewer>
-          <Router />
-        </Viewer>
-      </Provider>
+      <Viewer>
+        <Router />
+      </Viewer>
     </div>
   </Fragment>
 )
