@@ -1,0 +1,7 @@
+#import "common/graphql/fragment/auth/payload.gql"
+
+mutation AuthSignUp($user: AuthSignUpInput!) {
+  authSignUp(user: $user) {
+    ...authPayload
+  }
+}

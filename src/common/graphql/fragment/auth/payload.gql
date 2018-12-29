@@ -1,0 +1,7 @@
+#import "./accessTokenP.gql"
+#import "./refreshToken.gql"
+
+fragment authPayload on AuthPayload {
+  ...authAccessToken
+  ...authAefreshToken
+}

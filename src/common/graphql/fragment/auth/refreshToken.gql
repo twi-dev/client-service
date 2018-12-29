@@ -1,0 +1,4 @@
+fragment authRefreshToken on AuthRefreshToken {
+  type
+  payload
+}

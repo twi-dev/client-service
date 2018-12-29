@@ -1,0 +1,5 @@
+fragment authAccessToken on AuthAccessToken {
+  type
+  expires
+  payload
+}
