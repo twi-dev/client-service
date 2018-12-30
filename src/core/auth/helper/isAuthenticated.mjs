@@ -28,7 +28,7 @@ async function isAuthenticated() {
 
   // accessToken must be actual, unless it will not be passed on the server.
   // So, check the espiration status.
-  return Boolean(now <= expires)
+  return Boolean(now < expires)
 }
 
 export default isAuthenticated

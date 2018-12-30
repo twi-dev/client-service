@@ -1,8 +1,8 @@
 import {createElement as h} from "react"
 
 import loadingProcess from "core/hoc/loadingProcess"
-import loadable from "core/hoc/loadable"
 import provider from "core/model/provider"
+import loadable from "core/hoc/loadable"
 import db from "core/db/tokens"
 
 import Loading from "core/component/Loading"

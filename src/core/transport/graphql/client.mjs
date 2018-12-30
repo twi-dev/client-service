@@ -8,10 +8,16 @@ import {api} from "config"
 
 import authContext from "./authContext"
 import errorContext from "./errorContext"
+import refreshToken from "./refreshTokenLink"
 
 const formDataLink = createFormDataLink({uri: api.uri})
 
-const link = ApolloLink.from([errorContext, authContext, formDataLink])
+const link = ApolloLink.from([
+  errorContext,
+  refreshToken,
+  authContext,
+  formDataLink
+])
 
 const cache = new Cache()
 
