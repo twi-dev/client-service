@@ -3654,10 +3654,10 @@ damerau-levenshtein@^1.0.4:
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.4.tgz#03191c432cb6eea168bb77f3a55ffdccb8978514"
   integrity sha1-AxkcQyy27qFou3fzpV/9zLiXhRQ=
 
-date-fns@2.0.0-alpha.16:
-  version "2.0.0-alpha.16"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.16.tgz#d249a6c9b799252652fb9e3f25460eaf9de86ac7"
-  integrity sha1-0kmmybeZJSZS+54/JUYOr53oasc=
+date-fns@2.0.0-alpha.26:
+  version "2.0.0-alpha.26"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.26.tgz#e46afd73a2b50e0359446309ee7cb631d7467227"
+  integrity sha512-UAptCZ53MVimUFR8MXTyHED51AVGIqFlBfWgiS/KIoSYiJGrWScx4PYQVNSWfK2Js+43OlokCW1ttnexBTJ5Bg==
 
 date-fns@^1.27.2:
   version "1.29.0"
@@ -3729,14 +3729,14 @@ decode-uri-component@^0.2.0:
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
   integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
 
-decss-loader@^0.3.0:
+decss-loader@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/decss-loader/-/decss-loader-0.3.0.tgz#f33d08bc26d628ac4321e3a16c1633099b103ca1"
   integrity sha512-v4tWrJWTkB9tZVmcLydL5B1JsqyoPdFsB/6E3iktHHq/ih9OY958i+B+YN07FLeSFVnQ7i/2OkDuYe9D6O4wyw==
   dependencies:
     decss "< 1"
 
-"decss@< 1", decss@^0.8.0:
+decss@0.8.0, "decss@< 1":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/decss/-/decss-0.8.0.tgz#825d0f97d7bf2c2849441b4740aefd3f14256c70"
   integrity sha1-gl0Pl9e/LChJRBtHQK79PxQlbHA=
@@ -8576,7 +8576,7 @@ postcss-preset-env@6.5.0:
     postcss-selector-matches "^4.0.0"
     postcss-selector-not "^4.0.0"
 
-postcss-property-lookup@^2.0.0:
+postcss-property-lookup@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/postcss-property-lookup/-/postcss-property-lookup-2.0.0.tgz#c995d1df42a75420f2aea834c2cbe296b2c15922"
   integrity sha512-KUb53a7UZWDMVb0SRODOonc4H1wlbgQ0VfYwmJaR1xWPorhariEz0U7x0ri3W/imFs6HqLYWP7hl2yMvi5Ty+w==
@@ -9064,7 +9064,7 @@ react-dom@16.6.3:
     prop-types "^15.6.2"
     scheduler "^0.11.2"
 
-react-dropzone@^7.0.1:
+react-dropzone@7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-7.0.1.tgz#bc76bc1686fb47ed0c8301f968fffa6aecdff47b"
   integrity sha512-J4rbzhFZPVW7k7K9CVb0OcwSOJGLWa0y+0rvtB4rBLVkvq0agH/o3kPJ0DCkd6ZVzL2K1NFqIOvtQkwQKpmJBA==
@@ -10539,7 +10539,7 @@ term-size@^1.2.0:
   dependencies:
     execa "^0.7.0"
 
-terser-webpack-plugin@^1.1.0:
+terser-webpack-plugin@1.1.0, terser-webpack-plugin@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-1.1.0.tgz#cf7c25a1eee25bf121f4a587bb9e004e3f80e528"
   integrity sha512-61lV0DSxMAZ8AyZG7/A4a3UPlrbOBo8NIQ4tJzLPAdGOQ+yoNC7l5ijEow27lBAL2humer01KLS6bGIMYQxKoA==
@@ -11074,7 +11074,7 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-validate.js@^0.12.0:
+validate.js@0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/validate.js/-/validate.js-0.12.0.tgz#17f989e37c192ea2f826bbf19bf4e97e6e4be68f"
   integrity sha512-/x2RJSvbqEyxKj0RPN4xaRquK+EggjeVXiDDEyrJzsJogjtiZ9ov7lj/svVb4DM5Q5braQF4cooAryQbUwOxlA==
@@ -11165,7 +11165,7 @@ webidl-conversions@^4.0.2:
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
   integrity sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==
 
-webpack-cli@^3.1.2:
+webpack-cli@3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.1.2.tgz#17d7e01b77f89f884a2bbf9db545f0f6a648e746"
   integrity sha512-Cnqo7CeqeSvC6PTdts+dywNi5CRlIPbLx1AoUPK2T6vC1YAugMG3IOoO9DmEscd+Dghw7uRlnzV1KwOe5IrtgQ==
