@@ -34,7 +34,7 @@ class Login extends Component {
   }
 
   submit = () => {
-    this.props.signup.createUser()
+    this.props.signup.submit()
       .then(() => this.props.history.push("/"))
       .catch(this.props.onError)
   }
@@ -46,6 +46,7 @@ class Login extends Component {
     return (
       <Fragment>
         <Title title="Signup" />
+
         <Form className={container} onSubmit={this.submit}>
           <Fields>
             <Input
@@ -55,8 +56,9 @@ class Login extends Component {
               autocomplete="off"
               className={field}
               value={username}
-              onChange={signup.updateTextField}
+              onChange={signup.updateUsername}
             />
+
             <Input
               type="email"
               name="email"
@@ -64,8 +66,9 @@ class Login extends Component {
               autocomplete="off"
               className={field}
               value={email}
-              onChange={signup.updateTextField}
+              onChange={signup.updateEmail}
             />
+
             <Input
               type="password"
               name="password"
@@ -73,17 +76,20 @@ class Login extends Component {
               autocomplete="off"
               className={field}
               value={password}
-              onChange={signup.updateTextField}
+              onChange={signup.updatePassword}
             />
+
             <Button className={button} disabled={!signup.isValid}>
               Sign up
             </Button>
           </Fields>
+
           <Footer>
-            <Link className={linkLogin} href to="/auth/login">
+            <Link className={linkLogin} to="/auth/login">
               Already have an account?
             </Link>
           </Footer>
+
         </Form>
       </Fragment>
     )

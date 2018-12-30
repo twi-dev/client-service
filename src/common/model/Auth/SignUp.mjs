@@ -1,9 +1,10 @@
 import {types, flow} from "mobx-state-tree"
 
 import saveTokens from "core/auth/helper/saveTokens"
+import waterfall from "core/helper/array/runWaterfall"
 import updateTextField from "core/helper/model/updateTextField"
 
-import createUser from "./graphql/mutation/createUser"
+import signUp from "common/graphql/mutation/auth/signUp"
 
 const {model, optional, string} = types
 
@@ -16,16 +17,18 @@ const schema = {
 }
 
 const actions = self => ({
-  updateTextField: updateTextField(self),
+  updateUsername: updateTextField(self, "username"),
+  updateEmail: updateTextField(self, "username"),
+  updatePassword: updateTextField(self, "username"),
 
-  createUser: flow(function* () {
-    const {email, password} = self
+  submit: flow(function* () {
+    const user = {
+      login: self.username,
+      email: self.email,
+      password: self.password
+    }
 
-    const login = self.username
-
-    const tokens = yield createUser({login, email, password})
-
-    yield saveTokens(tokens)
+    yield waterfall([signUp, saveTokens], {user})
   })
 })
 
@@ -37,7 +40,7 @@ const views = self => ({
   get isValid() {
     const {username, email, password} = self
 
-    return !!(String(username) && String(email) && String(password))
+    return !!(username && email && password)
   }
 })
 

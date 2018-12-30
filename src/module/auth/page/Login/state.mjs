@@ -1,7 +1,7 @@
-import Login from "./Model"
+import LogIn from "common/model/Auth/LogIn"
 
 const state = {
-  login: () => Login.create({})
+  logIn: () => LogIn.create({})
 }
 
 export default state

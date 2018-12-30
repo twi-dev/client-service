@@ -1,7 +1,7 @@
-import Signup from "./Model"
+import SignUp from "common/model/Auth/SignUp"
 
 const state = {
-  signup: () => Signup.create({})
+  signUp: () => SignUp.create({})
 }
 
 export default state

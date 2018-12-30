@@ -43,6 +43,7 @@ class Login extends Component {
     return (
       <Fragment>
         <Title title="Login" />
+
         <Form className={container} onSubmit={this.submit}>
           <Fields>
             <Input
@@ -51,15 +52,16 @@ class Login extends Component {
               placeholder="Login..."
               autoComplete="username"
               value={username}
-              onChange={login.updateTextField}
+              onChange={login.updateUsername}
             />
+
             <Input
               type="password"
               name="password"
               placeholder="Password..."
               autoComplete="off"
               value={password}
-              onChange={login.updateTextField}
+              onChange={login.updatePassword}
             />
 
             <Button type="submit" disabled={!login.isValid}>
@@ -71,10 +73,12 @@ class Login extends Component {
             <Link to="/auth/signup">
               Have no account yet?
             </Link>
+
             <Link to="/auth/recover" className={recover}>
               Forgot your password?
             </Link>
           </Footer>
+
         </Form>
       </Fragment>
     )

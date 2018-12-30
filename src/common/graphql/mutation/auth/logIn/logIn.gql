@@ -1,0 +1,7 @@
+#import "common/graphql/fragment/auth/tokens.gql"
+
+mutation AuthLogIn($credentials: AuthLogInInput!) {
+  authLogIn(credentials: $credentials) {
+    ...authTokens
+  }
+}
