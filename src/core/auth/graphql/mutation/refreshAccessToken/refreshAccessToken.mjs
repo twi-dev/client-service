@@ -1,16 +1,18 @@
-import {mutate} from "core/transport/graphql"
+import partial from "lodash/partial"
 
 import getData from "core/helper/graphql/getData"
 import saveTokens from "core/auth/helper/saveTokens"
 import waterfall from "core/helper/array/runWaterfall"
 
+import {mutate} from "core/transport/graphql"
+
 import refreshMutation from "./refreshAccessToken.gql"
 
-const saveToken = accessToken => (
-  saveTokens({accessToken}).then(() => accessToken)
-)
+const read = getData("authRefreshAccessToken")
 
-function refreshAccessToken(refreshToken) {
+const save = accessToken => saveTokens({accessToken}).then(() => accessToken)
+
+function refreshAccessToken({refreshToken}) {
   const params = {
     mutation: refreshMutation,
     variables: {
@@ -18,7 +20,7 @@ function refreshAccessToken(refreshToken) {
     }
   }
 
-  return waterfall([getData("refreshAccessToken"), saveToken], mutate(params))
+  return waterfall([partial(mutate, params), read, save])
 }
 
 export default refreshAccessToken

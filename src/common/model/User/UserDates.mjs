@@ -1,17 +1,14 @@
 import {types} from "mobx-state-tree"
 
-import map from "core/helper/iterator/objectMap"
-import transformDate from "common/model/helper/transformDate"
+import CommonDate from "common/model/Common/Dates/Date"
 
 const {model, maybeNull} = types
 
 const schema = {
-  registeredAt: types.Date,
-  lastVisit: maybeNull(types.Date)
+  registeredAt: CommonDate,
+  lastVisit: maybeNull(CommonDate)
 }
 
-const preProcessSnapshot = snapshot => map(snapshot, transformDate)
-
-const User = model("UserDates", schema).preProcessSnapshot(preProcessSnapshot)
+const User = model("UserDates", schema)
 
 export default User

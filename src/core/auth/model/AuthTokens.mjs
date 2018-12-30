@@ -1,22 +1,23 @@
 import {types, flow} from "mobx-state-tree"
 
 import getTime from "date-fns/getTime"
+import refresh from "core/auth/graphql/mutation/refreshAccessToken"
 
 import AuthAccessToken from "./AuthAccessToken"
 import AuthrefreshToken from "./AuthRefreshToken"
 
-import refreshAccessToken from "../graphql/mutation/refreshAccessToken"
-
-const {model, maybe} = types
+const {model, maybeNull} = types
 
 const schema = {
-  accessToken: maybe(AuthAccessToken),
-  refreshToken: maybe(AuthrefreshToken)
+  accessToken: maybeNull(AuthAccessToken),
+  refreshToken: AuthrefreshToken
 }
 
 const actions = self => ({
   refreshAccessToken: flow(function* () {
-    const accessToken = yield refreshAccessToken(self.refreshToken.payload)
+    const accessToken = yield refresh({
+      refreshToken: self.refreshToken.payload
+    })
 
     self.accessToken = AuthAccessToken.create(accessToken)
   })
@@ -37,8 +38,8 @@ const views = self => ({
   }
 })
 
-const AuthTokenPayload = model("AuthTokenPayload", schema)
+const AuthTokens = model("AuthTokens", schema)
   .actions(actions)
   .views(views)
 
-export default AuthTokenPayload
+export default AuthTokens

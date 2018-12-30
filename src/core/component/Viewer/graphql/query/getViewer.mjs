@@ -3,7 +3,7 @@ import {query} from "core/transport/graphql"
 import getData from "core/helper/graphql/getData"
 import isAuthenticated from "core/auth/helper/isAuthenticated"
 
-import viewerQuery from "./getViewer.gql"
+import document from "./getViewer.gql"
 
 const getViewer = async () => {
   if (!(await isAuthenticated())) {
@@ -11,10 +11,10 @@ const getViewer = async () => {
   }
 
   const options = {
-    query: viewerQuery
+    query: document
   }
 
-  return await query(options) |> getData("viewer")
+  return query(options).then(getData("viewer"))
 }
 
 export default getViewer

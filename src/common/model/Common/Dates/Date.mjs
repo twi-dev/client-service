@@ -41,7 +41,7 @@ const views = self => ({
   }
 })
 
-const before = ({raw} = {}) => ({raw: raw ? toDate(raw) : undefined})
+const before = time => ({raw: time ? toDate(time) : undefined})
 
 const CommonDate = model("CommonDate", schema)
   .preProcessSnapshot(before)

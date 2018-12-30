@@ -3729,6 +3729,18 @@ decode-uri-component@^0.2.0:
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
   integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
 
+decss-loader@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/decss-loader/-/decss-loader-0.3.0.tgz#f33d08bc26d628ac4321e3a16c1633099b103ca1"
+  integrity sha512-v4tWrJWTkB9tZVmcLydL5B1JsqyoPdFsB/6E3iktHHq/ih9OY958i+B+YN07FLeSFVnQ7i/2OkDuYe9D6O4wyw==
+  dependencies:
+    decss "< 1"
+
+"decss@< 1", decss@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/decss/-/decss-0.8.0.tgz#825d0f97d7bf2c2849441b4740aefd3f14256c70"
+  integrity sha1-gl0Pl9e/LChJRBtHQK79PxQlbHA=
+
 dedent@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/dedent/-/dedent-0.7.0.tgz#2495ddbaf6eb874abb0e1be9df22d2e5a544326c"

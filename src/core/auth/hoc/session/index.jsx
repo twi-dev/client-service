@@ -8,8 +8,8 @@ import db from "core/db/tokens"
 import Loading from "core/component/Loading"
 import ApplicationError from "core/component/Error/ApplicationError"
 
-import Session from "../../model/AuthTokenPayload"
-import refreshAccessToken from "../refreshAccessToken"
+import refreshAccessToken from "core/auth/hoc/refreshAccessToken"
+import Session from "core/auth/model/AuthTokens"
 
 const LoadingProcess = loadingProcess({
   onLoading: Loading,
@@ -17,9 +17,12 @@ const LoadingProcess = loadingProcess({
 })
 
 async function loadSession() {
-  const [accessToken, refreshToken] = await Promise.all(
+  let [accessToken, refreshToken] = await Promise.all(
     ["accessToken", "refreshToken"].map(name => db.getItem(name))
   )
+
+  accessToken || (accessToken = undefined)
+  refreshToken || (refreshToken = undefined)
 
   if (!accessToken && !refreshToken) {
     return null

@@ -1,4 +1,4 @@
-#import "./accessTokenP.gql"
+#import "./accessToken.gql"
 #import "./refreshToken.gql"
 
 fragment authTokens on AuthTokens {
