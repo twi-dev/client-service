@@ -1,6 +1,6 @@
 import {flow, getType} from "mobx-state-tree"
 
-import flat from "core/helper/array/flat"
+import words from "core/helper/string/concatWords"
 
 const warnNotImplementedAction = (model, ...messages) => () => {
   const type = getType(model)
@@ -10,7 +10,7 @@ const warnNotImplementedAction = (model, ...messages) => () => {
   )
 
   if (messages.length > 0) {
-    console.warn(flat(messages).join(" "))
+    console.warn(words(messages))
   }
 }
 

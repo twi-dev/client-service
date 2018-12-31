@@ -1,5 +1,7 @@
-import flat from "core/helper/array/flat"
+import flat from "lodash/flatten"
 
-const concatFromArray = (strings, sep = "") => flat(strings).join(sep)
+const concatFromArray = (strings, sep) => (
+  flat(strings, Infinity).join(sep || "")
+)
 
 export default concatFromArray
