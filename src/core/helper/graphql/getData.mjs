@@ -1,9 +1,10 @@
 import pick from "lodash/pick"
+import flat from "lodash/flatten"
 
 const isArray = Array.isArray
 
 const getData = (...keys) => res => {
-  const data = pick(res.data, ...keys)
+  const data = pick(res.data, ...flat(keys, Infinity))
 
   if (keys.length === 1) {
     if (!isArray(keys[0])) {
