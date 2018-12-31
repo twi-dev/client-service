@@ -3,7 +3,7 @@ import partial from "lodash/partial"
 import {print} from "graphql/language/printer"
 import {ApolloLink, Observable} from "apollo-link"
 
-import {api} from "config"
+import {api} from "core/config"
 import {mutation} from "core/auth/graphql/mutation/refreshAccessToken"
 
 import isAuthenticated from "core/auth/helper/isAuthenticated"
