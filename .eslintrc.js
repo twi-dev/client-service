@@ -31,6 +31,9 @@ module.exports = {
     }],
 
     "no-unused-expressions": 0,
+    "no-constant-condition": ["error", {
+      checkLoops: false
+    }],
     "operator-linebreak": ["error", "after", {
       overrides: {
         "+": "ignore",

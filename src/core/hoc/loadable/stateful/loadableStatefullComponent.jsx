@@ -6,7 +6,7 @@ import partial from "lodash/partial"
 
 import provider from "core/model/provider"
 import loadable from "core/hoc/loadable"
-import merge from "core/helper/util/objectFlatMerge"
+import merge from "core/helper/object/flatMerge"
 import runSerial from "core/helper/object/runSerial"
 import runParallel from "core/helper/object/runParallel"
 import waterfall from "core/helper/array/runWaterfall"

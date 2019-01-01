@@ -7,7 +7,7 @@ import Context from "./Context"
 /**
  * @api private
  */
-const applicaitonErrorConsumer = Target => {
+const createApplicaitonErrorConsumer = Target => {
   const ApplicaitonErrorConsumer = props => (
     <Context.Consumer>
       {report => <Target {...{...props}} applicationError={{report}} />}
@@ -21,4 +21,4 @@ const applicaitonErrorConsumer = Target => {
   return ApplicaitonErrorConsumer
 }
 
-export default applicaitonErrorConsumer
+export default createApplicaitonErrorConsumer
