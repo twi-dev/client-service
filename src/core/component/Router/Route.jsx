@@ -2,6 +2,8 @@ import {createElement as h} from "react"
 import {oneOfType, shape, func, string, bool} from "prop-types"
 import {Route as BaseRoute} from "react-router-dom"
 
+import {provider} from "core/error/context/router"
+
 import DefaultLayout from "common/component/Layout"
 
 function Route(props) {
@@ -41,4 +43,4 @@ Route.defaultProps = {
   exact: true
 }
 
-export default Route
+export default Route |> provider

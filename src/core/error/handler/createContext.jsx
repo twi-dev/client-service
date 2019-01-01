@@ -1,7 +1,7 @@
 import {createContext} from "react"
 
-import createErrorHandlerProvider from "./createErrorHandlerProvider"
-import createErrorHandlerConsumer from "./createErrorHandlerConsumer"
+import createErrorHandlerProvider from "./createProvider"
+import createErrorHandlerConsumer from "./createConsumer"
 
 /**
  * @api public

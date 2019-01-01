@@ -10,6 +10,8 @@ import stateful from "core/hoc/loadable/stateful"
 import errorHandler from "core/hoc/errorHandler"
 import Loading from "core/component/Loading"
 
+import {consumer} from "core/error/context/router"
+
 import matchErrors from "./matchErrors"
 
 const createLoadingProcess = ({onLoading, onError} = {}) => loadingProcess({
@@ -44,7 +46,7 @@ function loadablePage(params = {}) {
     Stateful.displayName += `(${name})`
   }
 
-  return Stateful
+  return Stateful |> consumer
 }
 
 export default loadablePage

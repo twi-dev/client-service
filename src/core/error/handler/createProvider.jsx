@@ -1,11 +1,13 @@
 import {createElement as h, Component} from "react"
 import {shape, func} from "prop-types"
 
+import omit from "lodash/omit"
 import isFunction from "lodash/isFunction"
 
 import getName from "core/helper/component/getName"
+import consumer from "core/error/application/createErrorConsumer"
 
-import consumer from "./application/createErrorConsumer"
+const exclude = ["reporter"]
 
 /**
  * @api private
@@ -66,6 +68,8 @@ const createErrorHandlerProvider = Provider => Target => {
     }
 
     render() {
+      const props = omit(this.props, exclude)
+
       const value = {
         set: this.setReporter,
         has: this.hasReporter,
@@ -77,11 +81,11 @@ const createErrorHandlerProvider = Provider => Target => {
         return h(
           Provider, {value},
 
-          h(Target, this.props)
+          h(Target, props)
         )
       }
 
-      return h(this.state.component, this.props)
+      return h(this.state.component, props)
     }
   }
 

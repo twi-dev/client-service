@@ -2,7 +2,7 @@ import {createElement as h} from "react"
 
 import getName from "core/helper/component/getName"
 
-import createContext from "./createErrorHandlerContext"
+import createContext from "./createContext"
 
 const attachHandler = Target => {
   const {provider, consumer} = createContext()
