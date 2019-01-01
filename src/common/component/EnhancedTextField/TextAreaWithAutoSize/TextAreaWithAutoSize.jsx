@@ -11,7 +11,11 @@ const TextAreaWithAutoSize = ({forwardedRef, ...props}) => (
 )
 
 TextAreaWithAutoSize.propTypes = {
-  forwardedRef: shape({}).isRequired
+  forwardedRef: shape({})
+}
+
+TextAreaWithAutoSize.defaultProps = {
+  forwardedRef: null
 }
 
 export default TextAreaWithAutoSize |> forwardRef |> enhance

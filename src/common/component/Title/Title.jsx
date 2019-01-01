@@ -4,7 +4,7 @@ import isString from "lodash/isString"
 
 import {string} from "prop-types"
 
-import {app} from "config"
+import {app} from "core/config"
 
 const Title = ({title}) => <Helmet {...{title}} />
 
