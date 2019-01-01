@@ -7,9 +7,9 @@ module.exports = {
     }]
   ],
   plugins: [
+    "react-hot-loader/babel",
     "@babel/transform-runtime",
     "@babel/syntax-dynamic-import",
-    "react-hot-loader/babel",
     ["@babel/proposal-decorators", {
       legacy: true
     }],

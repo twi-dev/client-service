@@ -4,6 +4,7 @@ const babel = () => ({
   exclude: /node_modules/,
   loader: "babel-loader",
   options: {
+    cacheDirectory: true,
     babelrc: true
   }
 })

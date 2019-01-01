@@ -5,6 +5,7 @@ const svg = () => ({
     {
       loader: "babel-loader",
       options: {
+        cacheDirectory: true,
         babelrc: true,
         presets: [
           ["@babel/react"]

@@ -95,6 +95,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.2.0",
+    "@hot-loader/react-dom": "npm:react-dom",
     "@octetstream/invariant": "1.2.0",
     "@octetstream/object-to-form-data": "1.0.1",
     "@octetstream/promisify": "2.0.1",
@@ -129,6 +130,7 @@
     "react-autosize-textarea": "6.0.0",
     "react-dom": "16.7.0",
     "react-helmet": "5.2.0",
+    "react-is": "^16.7.0",
     "react-lazy-images": "1.1.0",
     "react-router": "4.3.1",
     "react-router-dom": "4.3.1",

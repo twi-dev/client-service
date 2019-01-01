@@ -21,7 +21,10 @@ function loadablePage(params = {}) {
   const {page: component, state, serial, name, ...rest} = params
 
   if (state && !isFunction(state)) {
-    throw new TypeError("State should be a function.")
+    throw new TypeError(
+      "You must provide a function that will import a state: " +
+      "const state = () => import(\"path/to/state\")"
+    )
   }
 
   const loading = createLoadingProcess(params.loading)

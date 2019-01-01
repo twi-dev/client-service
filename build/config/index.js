@@ -91,7 +91,10 @@ const configure = env => ({
     modules: [
       "node_modules",
       join(ROOT, "src")
-    ]
+    ],
+    alias: {
+      "react-dom": "@hot-loader/react-dom"
+    }
   },
   plugins: readPlugins(env),
   module: {

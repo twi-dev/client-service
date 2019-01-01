@@ -1,4 +1,5 @@
-import {hot, setConfig} from "react-hot-loader"
+import {hot} from "react-hot-loader/root"
+
 import React, {Fragment} from "react"
 
 import Viewer from "core/component/Viewer"
@@ -24,10 +25,4 @@ const Application = () => (
   </Fragment>
 )
 
-// if (process.env.NODE_ENV !== "production") {
-//   setConfig({logLevel: "debug"})
-// }
-
-setConfig({logLevel: "no-errors-please"})
-
-export default Application |> hot(module)
+export default Application |> hot
