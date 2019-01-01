@@ -14,6 +14,8 @@ const createErrorHandlerConsumer = Consumer => Target => {
   const name = getName(Target)
 
   class ErrorHandlerConsumer extends Component {
+    static displayName = `ErrorHandlerConsumer(${name})`
+
     static propTypes = {
       reporter: shape({
         set: func.isRequired,
@@ -28,13 +30,17 @@ const createErrorHandlerConsumer = Consumer => Target => {
       this.__id = nanoid()
     }
 
-    setReporter = reporter => {
+    componentWillUnmount() {
+      this.props.reporter.delete(this.__id)
+    }
+
+    setReporter = fn => {
       if (this.props.reporter.has(this.__id) === false) {
-        return this.props.reporter.set(this.__id, reporter)
+        return this.props.reporter.set(this.__id, fn)
       }
 
       if (process.env.NODE_ENV !== "production") {
-        console.warn("Error reporter can be sen only once per consumer.")
+        console.warn("Error reporter can be set only once per consumer.")
         console.warn(
           "Check the %s#componentDidMount or %s constructor " +
           "and remove extra reporter.set( ... ) call(s).", name, name
@@ -46,10 +52,6 @@ const createErrorHandlerConsumer = Consumer => Target => {
       this.props.reporter.catch({error, info, id: this.__id})
     }
 
-    componentDidUnmount() {
-      this.props.reporter.delete(this.__id)
-    }
-
     componentDidCatch(error, info) {
       this.props.reporter.catch({error, info, id: this.__id})
     }
@@ -58,15 +60,15 @@ const createErrorHandlerConsumer = Consumer => Target => {
       const props = {
         ...this.props,
 
-        set: this.setReporter,
-        catch: this.catchError
+        reporter: {
+          set: this.setReporter,
+          catch: this.catchError
+        }
       }
 
       return h(Target, props)
     }
   }
-
-  ErrorHandlerConsumer.displayName = `ErrorHandlerConsumer(${name})`
 
   return ErrorHandlerConsumer |> attachConsumer(Consumer)
 }

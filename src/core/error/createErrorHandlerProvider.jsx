@@ -5,17 +5,22 @@ import isFunction from "lodash/isFunction"
 
 import getName from "core/helper/component/getName"
 
-import applicaitonErrorConsumer from "./application/applicaitonErrorConsumer"
+import consumer from "./application/createErrorConsumer"
 
 /**
  * @api private
  */
 const createErrorHandlerProvider = Provider => Target => {
-  class ErrorHandlerProvider extends Component {
+  @consumer class ErrorHandlerProvider extends Component {
     static displayName = `ErrorHandlerProvider(${getName(Target)})`
 
     static propTypes = {
-      applicationError: shape({report: func.isRequired}).isRequired
+      applicationError: shape({report: func.isRequired}).isRequired,
+      reporter: shape({catch: func.isRequired, set: func.isRequired})
+    }
+
+    static defaultProps = {
+      reporter: null
     }
 
     __reporters = new Map()
@@ -44,7 +49,13 @@ const createErrorHandlerProvider = Provider => Target => {
       const component = reporter({error, info})
 
       if (component == null) {
-        return void this.props.applicationError.report({error, info})
+        if (this.props.reporter) {
+          this.props.reporter.catch({error, info})
+        } else {
+          this.props.applicationError.reporter({error, info})
+        }
+
+        return undefined
       }
 
       this.setState(() => ({component}))
@@ -74,7 +85,7 @@ const createErrorHandlerProvider = Provider => Target => {
     }
   }
 
-  return applicaitonErrorConsumer(ErrorHandlerProvider)
+  return ErrorHandlerProvider
 }
 
 export default createErrorHandlerProvider

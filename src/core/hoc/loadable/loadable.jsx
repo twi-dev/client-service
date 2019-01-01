@@ -8,7 +8,6 @@ import map from "core/helper/iterator/objectMap"
 import runSerial from "core/helper/object/runSerial"
 import resolve from "core/helper/util/requireDefault"
 import runParallel from "core/helper/object/runParallel"
-import consumer from "core/error/application/createErrorConsumer"
 
 const keys = Object.keys
 
@@ -60,7 +59,6 @@ const loadable = (params = {}) => {
     }
   }
 
-  @consumer
   class Loadable extends Component {
     __delayTimer = null
 

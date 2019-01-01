@@ -1,4 +1,4 @@
-import {createElement as h} from "react"
+import {createElement as h, Component} from "react"
 import {bool, instanceOf} from "prop-types"
 
 import isFunction from "lodash/isFunction"
