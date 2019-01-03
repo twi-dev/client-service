@@ -1,23 +1,47 @@
 import partial from "lodash/partialRight"
 import isFunction from "lodash/isFunction"
+import isPlainObject from "lodash/isPlainObject"
 
 import runParallel from "core/helper/object/runParallel"
 import waterfall from "core/helper/array/runWaterfall"
 import resolve from "core/helper/util/requireDefault"
 import runSerial from "core/helper/object/runSerial"
-import loadingProcess from "core/hoc/loadingProcess"
 import stateful from "core/hoc/loadable/stateful"
-import errorHandler from "core/hoc/errorHandler"
 import Loading from "core/component/Loading"
 
 import {consumer} from "core/error/context/router"
 
 import matchErrors from "./matchErrors"
 
-const createLoadingProcess = ({onLoading, onError} = {}) => loadingProcess({
-  onLoading: isFunction(onLoading) ? onLoading : Loading,
-  onError: isFunction(onError) ? onError : errorHandler(matchErrors)
-})
+const isArray = Array.isArray
+
+function createLoadingProcess(loading) {
+  if (isFunction(loading)) {
+    return {
+      onLoading: loading,
+      onError: matchErrors
+    }
+  }
+
+  if (isPlainObject(loading)) {
+    const {onLoading, onError} = loading
+
+    return {
+      onLoading: isFunction(onLoading) ? onLoading : Loading,
+      onError: do {
+        if (isArray(onError)) {
+          [matchErrors].concat(onError)
+        } else if (isFunction(onError)) {
+          [matchErrors].concat([onError])
+        } else {
+          [matchErrors]
+        }
+      }
+    }
+  }
+
+  return {onLoading: Loading, onError: matchErrors}
+}
 
 function loadablePage(params = {}) {
   const {page: component, state, serial, name, ...rest} = params

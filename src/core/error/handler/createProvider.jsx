@@ -2,9 +2,11 @@ import {createElement as h, Component} from "react"
 import {shape, func} from "prop-types"
 
 import omit from "lodash/omit"
+import isEmpty from "lodash/isEmpty"
 import isFunction from "lodash/isFunction"
 
 import getName from "core/helper/component/getName"
+import waterfall from "core/helper/array/runWaterfall"
 import consumer from "core/error/application/createErrorConsumer"
 
 const exclude = ["reporter"]
@@ -31,40 +33,82 @@ const createErrorHandlerProvider = Provider => Target => {
       component: null
     }
 
-    setReporter = (id, reporter) => this.__reporters.set(id, reporter)
+    setReporter = (id, fns) => {
+      if (isFunction(fns)) {
+        fns = [fns]
+      }
+
+      if (this.__reporters.has(id) === false) {
+        this.__reporters.set(id, Array.from(new Set(fns)))
+      }
+
+      const reporters = this.__reporters.get(id)
+
+      reporters.push(...fns)
+      this.__reporters.set(Array.from(new Set(reporters)))
+    }
 
     hasReporter = id => this.__reporters.has(id)
 
-    deleteReporter = id => this.__reporters.delete(id)
-
-    catchError = ({error, info, id = null} = {}) => {
-      if (!(id || this.__reporters.size > 0 || this.__reporters.has(id))) {
-        return void this.props.applicationError.report({error, info})
+    deleteReporter = (id, reporter) => {
+      // Remove all reporters for given ID when no function was specified
+      if (!reporter) {
+        return void this.__reporters.delete(id)
       }
 
-      const reporter = this.__reporters.get(id)
+      const reporters = this.__reporters.get(id)
 
-      if (!isFunction(reporter)) {
-        return void this.props.applicationError.report({error, info})
-      }
-
-      const component = reporter({error, info})
-
-      if (component == null) {
-        if (this.props.reporter) {
-          this.props.reporter.catch({error, info})
+      if (reporters) {
+        if (reporters.includes(reporter) === false) {
+          this.__reporters.delete(id)
         } else {
-          this.props.applicationError.reporter({error, info})
+          this.__reporters.set(id, reporters.filter(fn => fn !== reporter))
         }
-
-        return undefined
       }
-
-      this.setState(() => ({component}))
     }
 
-    componentDidCatch(error, info) {
-      this.catchError({error, info})
+    catchError = ({error, info, id} = {}, reporter) => {
+      let reporters = this.__reporters.get(id)
+
+      if (isEmpty(reporters)) {
+        return void this.props.applicationError.report({error, info})
+      }
+
+      if (reporter) {
+        reporters = reporters.filter(fn => fn === reporter)
+      }
+
+      async function runReporters() {
+        for (const fn of reporters) {
+          const component = await fn({error, info})
+
+          if (isFunction(component)) {
+            return component
+          }
+        }
+
+        return null
+      }
+
+      const setComponent = component => {
+        // If there is no matched component, try to pass error
+        // up to the components hierarchy
+        if (component == null) {
+          if (this.props.reporter) {
+            this.props.reporter.catch({error, info})
+          } else {
+            this.props.applicationError.report({error, info})
+          }
+
+          return undefined
+        }
+
+        this.setState(() => ({component}))
+      }
+
+      const onRejected = err => this.props.applicationError.report({error: err})
+
+      waterfall([runReporters, setComponent]).catch(onRejected)
     }
 
     render() {

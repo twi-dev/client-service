@@ -1,6 +1,10 @@
 import NotFound from "core/component/Error/NotFoundError"
 
-const matchErrors = error => {
+const matchErrors = ({error}) => {
+  if (error.status === 404) {
+    return NotFound
+  }
+
   if (!error.graphQLErrors) {
     return null
   }

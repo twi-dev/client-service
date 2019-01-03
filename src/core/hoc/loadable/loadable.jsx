@@ -1,15 +1,26 @@
 import {createElement as h, Component} from "react"
+import {shape, func} from "prop-types"
 
-import isPlainObject from "lodash/isPlainObject"
-import isFunction from "lodash/isFunction"
+import omit from "lodash/omit"
+import partial from "lodash/partial"
 import isNumber from "lodash/isNumber"
+import isFunction from "lodash/isFunction"
+import partialRight from "lodash/partialRight"
+import isPlainObject from "lodash/isPlainObject"
 
-import map from "core/helper/iterator/objectMap"
-import runSerial from "core/helper/object/runSerial"
-import resolve from "core/helper/util/requireDefault"
+import consumer from "core/error/application/createErrorConsumer"
+import TimeoutError from "core/component/Error/TimeoutError"
 import runParallel from "core/helper/object/runParallel"
+import waterfall from "core/helper/array/runWaterfall"
+import resolve from "core/helper/util/requireDefault"
+import runSerial from "core/helper/object/runSerial"
+import progress from "core/hoc/loadable/progress"
+import map from "core/helper/iterator/objectMap"
 
+// const isArray = Array.isArray
 const keys = Object.keys
+
+const exclude = ["reporter"]
 
 /**
  * Allow to laod data and React components asynchronously
@@ -19,7 +30,8 @@ const keys = Object.keys
  * @return {Loadable} – proxy component for loading data and other components
  */
 const loadable = (params = {}) => {
-  const {name, delay, timeout, serial, loaders, loading, render} = params
+  const {name, delay, timeout, serial, loaders, render} = params
+  let {loading} = params
 
   if (process.env.NODE_ENV !== "production") {
     if (!loaders) {
@@ -39,8 +51,8 @@ const loadable = (params = {}) => {
       )
     }
 
-    if (!isFunction(loading)) {
-      throw new TypeError("Expected \"loading\" component.")
+    if (!(isFunction(loading) || isPlainObject(loading))) {
+      throw new TypeError("Expected \"loading\" parameter.")
     }
 
     if (delay && !isNumber(delay)) {
@@ -59,7 +71,28 @@ const loadable = (params = {}) => {
     }
   }
 
-  class Loadable extends Component {
+  if (isFunction(loading)) {
+    loading = {
+      onLoading: loading,
+      onError: undefined,
+
+      // TODO: Move to a different file
+      onTimeOut: error => h(TimeoutError, {error})
+    }
+  }
+
+  loading.onLoading = progress(loading.onLoading)
+
+  @consumer class Loadable extends Component {
+    static propTypes = {
+      reporter: shape({set: func.isRequired, catch: func.isRequired}),
+      applicationError: shape({report: func.isRequired}).isRequired
+    }
+
+    static defaultProps = {
+      reporter: null
+    }
+
     __delayTimer = null
 
     __timeoutTimer = null
@@ -76,11 +109,21 @@ const loadable = (params = {}) => {
         isLoaded: false,
         error: null
       }
+
+      if (props.reporter) {
+        if (isFunction(loading.onTimeOut)) {
+          props.reporter.set(loading.onTimeOut)
+        }
+
+        if (isFunction(loading.onError)) {
+          props.reporter.set(loading.onError)
+        }
+      }
     }
 
     componentDidMount() {
       if (timeout > 0) {
-        this.__timeoutTimer = setTimeout(this.__afterTimeout, timeout)
+        this.__timeoutTimer = setTimeout(this.__afterTimeOut, timeout)
       }
 
       if (delay > 0) {
@@ -102,14 +145,16 @@ const loadable = (params = {}) => {
     __load = () => {
       if (isFunction(loaders)) {
         return Promise.resolve(loaders(this.props))
-          .then(resolve).then(this.__onFulfilled, this.__onRejected)
+          .then(resolve).then(this.__onFulfilled, this.__onError)
       }
 
-      const run = serial === true ? runSerial : runParallel
+      const run = partial(
+        serial === true ? runSerial : runParallel, loaders, [this.props]
+      )
 
-      run(loaders, [this.props])
-        .then(loaded => map(loaded, resolve))
-        .then(this.__onFulfilled, this.__onRejected)
+      const normalize = partialRight(map, resolve)
+
+      waterfall([run, normalize, this.__onFulfilled]).catch(this.__onError)
     }
 
     __afterDelay = () => {
@@ -118,24 +163,28 @@ const loadable = (params = {}) => {
       }
     }
 
-    __afterTimeout = () => {
+    __afterTimeOut = () => {
       if (this.__mounted) {
-        this.setState(state => ({...state, timedOut: true}))
+        this.__onError(new Error("Request timed out."), loading.onTimeOut)
       }
     }
 
     __onFulfilled = loaded => {
       if (this.__mounted) {
-        this.setState(
-          state => ({...state, loaded, isLoaded: true}),
+        this.__cleanup()
 
-          this.__cleanup
-        )
+        this.setState(state => ({...state, loaded, isLoaded: true}))
       }
     }
 
-    __onRejected = error => {
-      this.setState(state => ({...state, error}), this.__cleanup)
+    __onError = (error, fn) => {
+      this.__cleanup()
+
+      if (this.props.reporter && isFunction(loading.onError)) {
+        this.props.reporter.catch({error}, fn)
+      } else {
+        this.props.applicationError.report({error})
+      }
     }
 
     __cleanup = () => {
@@ -149,25 +198,27 @@ const loadable = (params = {}) => {
     }
 
     render() {
-      const {pastDelay, timedOut, isLoaded, loaded, error} = this.state
+      const {pastDelay, isLoaded, loaded} = this.state
 
-      if (error || !isLoaded) {
-        return h(loading, {error, pastDelay, timedOut, isLoaded})
+      const props = omit(this.props, exclude)
+
+      if (!isLoaded) {
+        return h(loading.onLoading, {pastDelay})
       }
 
       if (isFunction(loaded)) {
-        return render ? render(loaded, this.props) : h(loaded, this.props)
+        return render ? render(loaded, props) : h(loaded, props)
       }
 
       if (!isPlainObject(loaded)) {
-        return render(loaded, this.props)
+        return render(loaded, props)
       }
 
       if (keys(loaded).length > 1) {
-        return render(loaded, this.props)
+        return render(loaded, props)
       }
 
-      return render ? render(loaded, this.props) : h(loaded, this.props)
+      return render ? render(loaded, props) : h(loaded, props)
     }
   }
 

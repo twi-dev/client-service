@@ -34,25 +34,9 @@ const createErrorHandlerConsumer = Consumer => Target => {
       this.props.reporter.delete(this.__id)
     }
 
-    setReporter = fn => {
-      if (this.props.reporter.has(this.__id) === false) {
-        return this.props.reporter.set(this.__id, fn)
-      }
+    setReporter = fns => this.props.reporter.set(this.__id, fns)
 
-      if (process.env.NODE_ENV !== "production") {
-        console.warn("Error reporter can be set only once per consumer.")
-        console.warn(
-          "Check the %s#componentDidMount or %s constructor " +
-          "and remove extra reporter.set( ... ) call(s).", name, name
-        )
-      }
-    }
-
-    catchError = (error, info) => {
-      this.props.reporter.catch({error, info, id: this.__id})
-    }
-
-    componentDidCatch(error, info) {
+    catchError = ({error, info}) => {
       this.props.reporter.catch({error, info, id: this.__id})
     }
 
