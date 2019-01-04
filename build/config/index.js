@@ -101,7 +101,7 @@ const configure = env => ({
     rules: readLoaders(env)
   },
   devServer: {
-    open: env.dev,
+    // open: env.dev,
     hot: true,
     compress: true,
     port: getConfig(env).client.port || 1339,
