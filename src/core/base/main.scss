@@ -1,3 +1,5 @@
+@import "common/style/colors.scss";
+
 @import-normalize;
 
 @use postcss-nested;
@@ -12,7 +14,7 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  color: var(--color-darkBlue);
 }
 
 button, textarea, input {

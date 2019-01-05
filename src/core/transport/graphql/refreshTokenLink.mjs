@@ -6,6 +6,7 @@ import {ApolloLink, Observable} from "apollo-link"
 import {api} from "core/config"
 import {mutation} from "core/auth/graphql/mutation/refreshAccessToken"
 
+import getOperationName from "core/helper/graphql/getOperationName"
 import isAuthenticated from "core/auth/helper/isAuthenticated"
 import waterfall from "core/helper/array/runWaterfall"
 import saveTokens from "core/auth/helper/saveTokens"
@@ -14,11 +15,15 @@ import db from "core/db/tokens"
 
 const read = getData("authRefreshAccessToken")
 
+const shouldUpdate = name => isAuthenticated().then(
+  value => !(value || name === getOperationName(mutation))
+)
+
 const refreshTokenLink = new ApolloLink(
   (operation, forward) => new Observable(observer => {
     let handle = null
 
-    async function request() {
+    async function send() {
       const token = await db.getItem("refreshToken")
 
       const params = {
@@ -27,7 +32,7 @@ const refreshTokenLink = new ApolloLink(
           "content-type": "application/json"
         },
         body: JSON.stringify({
-          operationName: mutation.operationName,
+          operationName: getOperationName(mutation),
           query: print(mutation),
           variables: {
             refreshToken: token.payload
@@ -62,9 +67,10 @@ const refreshTokenLink = new ApolloLink(
       }
     }
 
-    const run = partial(waterfall, [request, parse, read, save, finish])
+    const run = partial(waterfall, [send, parse, read, save, finish])
 
-    isAuthenticated().then(value => value === true ? finish() : run())
+    shouldUpdate(operation.operationName)
+      .then(value => value ? run() : finish())
       .catch(onRejected)
 
     return () => handle && handle.unsubscribe()
