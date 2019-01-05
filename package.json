@@ -10,6 +10,7 @@
     "babel:watch": "node_modules/.bin/babel src -w -d .",
     "m": "yarn make",
     "w": "yarn watch",
+    "wo": "yarn watch --open",
     "stats": "node_modules/.bin/mkdirp runtime/webpack && NODE_ENV=production node_modules/.bin/webpack --config build --profile --json > runtime/webpack/stats.json",
     "cleanup": "node_modules/.bin/rimraf static/assets/js static/assets/css runtime",
     "lint:eslint": "node_modules/.bin/eslint --fix src build",
