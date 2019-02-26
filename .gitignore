@@ -9,6 +9,7 @@ yarn-error.log
 
 /static/assets/js/**/*.js
 /static/assets/css/**/*.css
+/static/assets/img/icons-*
 /test
 /core
 /module
