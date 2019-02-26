@@ -6,19 +6,24 @@ import {InMemoryCache as Cache} from "apollo-cache-inmemory"
 
 import {api} from "core/config"
 
-import authContext from "./authContext"
-import errorContext from "./errorContext"
-import refreshToken from "./refreshTokenLink"
+import auth from "./authContext"
+import error from "./errorContext"
+import refresh from "./refreshTokenLink"
 
 const fd = createFormDataLink({uri: api.uri})
 
-const link = ApolloLink.from([errorContext, refreshToken, authContext, fd])
+const link = ApolloLink.from([error, refresh, auth, fd])
 
 const cache = new Cache()
 
 const client = new Client({link, cache})
 
-const {query, mutate, watchQuery} = client
-
-export {query, mutate, watchQuery, watchQuery as watch}
+export const query = client.query
+export const mutate = client.mutate
+export const watch = client.watchQuery
+export const watchQuery = client.watchQuery
+export const readQuery = client.readQuery
+export const writeQuery = client.writeQuery
+export const readFragment = client.readFragment
+export const writeFragment = client.writeQuery
 export default client
