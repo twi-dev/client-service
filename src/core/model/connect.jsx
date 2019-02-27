@@ -1,22 +1,14 @@
-import {createElement as h} from "react"
 import {observer, inject} from "mobx-react"
-
-import getName from "core/helper/component/getName"
 
 /**
  * Connect Target component with models, subscribe and render.
+ * A shortcut of the injecr(models)(observer(Target))
  *
- * @param {object | function} models – an object of MST model instances or
- *   a function that return the same object
+ * @param {object | function | string} models – an object of MST model
+ *   instances or a function that return the same object
  *
- * @return {(Target: Function | Component) => Component}
+ * @return Function | Component
  */
-const connect = models => Target => {
-  const Connect = props => h(Target |> observer |> inject(models), props)
-
-  Connect.displayName = `$Connect(${getName(Target)})`
-
-  return Connect
-}
+const connect = models => Target => Target |> observer |> inject(models)
 
 export default connect

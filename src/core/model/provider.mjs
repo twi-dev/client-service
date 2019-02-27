@@ -6,17 +6,17 @@ import isFunction from "lodash/isFunction"
 import getName from "core/helper/component/getName"
 
 const provider = (stores = {}) => Target => {
-  const ProvideStores = props => (
+  const ModelsProvider = props => (
     h(
-      Provider, (isFunction(stores) ? stores(props) : stores),
+      Provider, isFunction(stores) ? stores(props) : stores,
 
       h(Target, props)
     )
   )
 
-  ProvideStores.displayName = `ProvideStores(${getName(Target)})`
+  ModelsProvider.displayName = `ModelsProvider(${getName(Target)})`
 
-  return ProvideStores
+  return ModelsProvider
 }
 
 export default provider
