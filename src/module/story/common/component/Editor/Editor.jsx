@@ -7,7 +7,7 @@ import preventDefault from "core/helper/decorator/preventDefault"
 
 import TitleEditor from "./TitleEditor"
 import DescriptionEditor from "./DescriptionEditor"
-import CoverUploader from "./CoverUploader"
+// import CoverUploader from "./CoverUploader"
 
 import {container} from "./editor.scss"
 
@@ -61,7 +61,7 @@ class Editor extends Component {
           onBackspace={this.jumpToTitle}
         />
 
-        <CoverUploader />
+        {/* <CoverUploader /> */}
       </div>
     )
   }

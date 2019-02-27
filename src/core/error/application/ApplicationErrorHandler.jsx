@@ -22,10 +22,6 @@ class ApplicationErrorHandlerProvider extends Component {
     this.setState(prev => ({...prev, error, info}))
   }
 
-  componentDidCatch(error, info) {
-    this.catchError({error, info})
-  }
-
   render() {
     const {error, info} = this.state
 

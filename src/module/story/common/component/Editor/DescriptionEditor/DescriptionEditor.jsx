@@ -41,7 +41,7 @@ import {field} from "./description-editor.scss"
     return (
       <TextArea
         name="description"
-        placeholder="A few more words to explain what is your story about"
+        placeholder="A few words that explains what is your story about"
         className={field}
         onChange={this.props.onChange}
         value={this.props.description}
