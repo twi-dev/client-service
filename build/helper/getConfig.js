@@ -6,16 +6,18 @@ const {safeLoad} = require("js-yaml")
 const freezee = require("js-flock/deepFreeze")
 const merge = require("lodash/merge")
 
+const {prod, name} = require("./env")
+
 const ROOT = join(__dirname, "..", "..")
 
-const getConfig = ({name}) => {
+const getConfig = () => {
   const defConf = safeLoad(readFileSync(join(ROOT, "config", "default.yaml")))
 
   let envConf = {}
   try {
     envConf = safeLoad(readFileSync(join(ROOT, "config", `${name}.yaml`)))
   } catch (err) {
-    if (name === "production") {
+    if (prod) {
       throw err
     }
   }

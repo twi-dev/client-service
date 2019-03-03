@@ -1,18 +1,21 @@
 import {types, flow} from "mobx-state-tree"
 
 import update from "common/graphql/mutation/story/update"
+import Slug from "common/model/Common/Slug"
 
-import StoryMinimal from "./StoryMinimal"
-import StorySlug from "./StorySlug"
+import Base from "./StoryMinimal"
 
 const {identifier, string, optional} = types
 
 const schema = {
   id: identifier,
-  slug: StorySlug,
+  slug: Slug,
   title: string,
   description: string,
 
+  // TODO: Write a middleware to automate this case.
+  // I need something that simply allows to manually update one value
+  // and revert when needed
   initialTitle: optional(string, "")
 }
 
@@ -21,7 +24,11 @@ const actions = self => ({
     const story = yield update({id: self.id, title: self.title})
 
     self.title = story.title
-  })
+  }),
+
+  resetTitle() {
+    self.title = self.initialTitle
+  }
 })
 
 const views = () => ({
@@ -30,9 +37,6 @@ const views = () => ({
   }
 })
 
-const Story = StoryMinimal.named("Story")
-  .props(schema)
-  .actions(actions)
-  .views(views)
+const Story = Base.named("Story").props(schema).actions(actions).views(views)
 
 export default Story

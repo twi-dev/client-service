@@ -7,6 +7,6 @@ const schema = {
   short: frozen(string)
 }
 
-const StorySlug = model("StorySlug", schema)
+const Slug = model("Slug", schema)
 
-export default StorySlug
+export default Slug
