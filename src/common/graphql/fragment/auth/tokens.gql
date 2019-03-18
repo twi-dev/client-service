@@ -2,6 +2,11 @@
 #import "./refreshToken.gql"
 
 fragment authTokens on AuthTokens {
-  ...authAccessToken
-  ...authAefreshToken
+  accessToken {
+    ...authAccessToken
+  }
+
+  refreshToken {
+    ...authAefreshToken
+  }
 }

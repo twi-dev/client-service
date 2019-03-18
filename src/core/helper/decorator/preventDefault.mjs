@@ -30,7 +30,7 @@ const decorator = handler => function preventDefaultDecorator(event) {
  * @param {object} [descriptor = undefined] – a JavaScript property descriptor
  */
 function preventDefault(target, key, descriptor) {
-  if (isFunction(target) || arguments.length <= 1) {
+  if (isFunction(target) || arguments.length === 1) {
     return decorator(target)
   }
 
