@@ -1,0 +1,4 @@
+fragment commonDates on Dates {
+  createdAt
+  updatedAt
+}

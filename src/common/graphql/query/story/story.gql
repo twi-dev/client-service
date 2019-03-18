@@ -1,4 +1,5 @@
 #import "common/graphql/fragment/story/minimal.gql"
+#import "common/graphql/fragment/common/dates.gql"
 
 query GetStory($slug: String!) {
   story(slug: $slug) {
@@ -7,9 +8,9 @@ query GetStory($slug: String!) {
     publisher {
       login
     }
+
     dates {
-      createdAt
-      updatedAt
+      ...commonDates
     }
   }
 }
