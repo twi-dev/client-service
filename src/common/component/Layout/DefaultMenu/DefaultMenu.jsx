@@ -1,11 +1,11 @@
-import {createElement as h} from "react"
+import {createElement} from "react"
 import {inject, observer} from "mobx-react"
 import {shape} from "prop-types"
 
 import GuestMenu from "./GuestMenu"
 import UserMenu from "./UserMenu"
 
-const DefaultMenu = ({session}) => h(session ? UserMenu : GuestMenu)
+const DefaultMenu = ({session}) => createElement(session ? UserMenu : GuestMenu)
 
 DefaultMenu.propTypes = {
   session: shape({})

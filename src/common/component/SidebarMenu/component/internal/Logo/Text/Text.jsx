@@ -1,12 +1,14 @@
-import React from "react"
-import cn from "classnames"
-
 import {observer, inject} from "mobx-react"
+import {createElement} from "react"
 import {shape} from "prop-types"
 
-import {app} from "config"
+import cn from "classnames"
+
+import config from "core/config"
 
 import {container, open} from "./text.scss"
+
+const {app} = config
 
 const Text = ({menu}) => (
   <div className={cn(container, {[open]: menu.isOpen})}>

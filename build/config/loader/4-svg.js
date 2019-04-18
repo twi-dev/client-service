@@ -7,9 +7,7 @@ const svg = () => ({
       options: {
         cacheDirectory: true,
         babelrc: true,
-        presets: [
-          ["@babel/react"]
-        ]
+        presets: ["@babel/react"]
       }
     },
     {

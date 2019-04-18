@@ -1,10 +1,12 @@
-import React from "react"
-import Helmet from "react-helmet"
-import isString from "lodash/isString"
-
+import {createElement} from "react"
 import {string} from "prop-types"
 
-import {app} from "core/config"
+import isString from "lodash/isString"
+import Helmet from "react-helmet"
+
+import config from "core/config"
+
+const {app} = config
 
 const Title = ({title}) => <Helmet {...{title}} />
 

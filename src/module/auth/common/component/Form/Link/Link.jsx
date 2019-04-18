@@ -1,8 +1,9 @@
-import React from "react"
-import cn from "classnames"
-import RouterLink from "react-router-dom/Link"
+import {createElement} from "react"
+import {string} from "prop-types"
 
-import {PropTypes as types} from "prop-types"
+import {RouterLink} from "react-router-dom"
+
+import cn from "classnames"
 
 import {container} from "./link.scss"
 
@@ -13,7 +14,7 @@ const Link = ({className, ...props}) => (
 )
 
 Link.propTypes = {
-  className: types.string
+  className: string
 }
 
 Link.defaultProps = {

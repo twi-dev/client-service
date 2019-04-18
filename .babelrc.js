@@ -1,6 +1,9 @@
 module.exports = {
   presets: [
-    "@babel/react",
+    ["@babel/react", {
+      pragma: "createElement",
+      pragmaFrag: "Fragment"
+    }],
     ["@babel/env", {
       modules: false,
       exclude: ["transform-regenerator"],

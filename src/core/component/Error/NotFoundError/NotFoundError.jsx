@@ -1,4 +1,4 @@
-import React, {Fragment} from "react"
+import {createElement, Fragment} from "react"
 import {Link} from "react-router-dom"
 
 import logErrors from "core/hoc/logErrors"

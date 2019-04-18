@@ -1,11 +1,8 @@
-import React from "react"
-import cn from "classnames"
-
+import {shape, oneOfType, arrayOf, bool, node} from "prop-types"
 import {observer, inject} from "mobx-react"
-import {
-  shape, oneOfType, arrayOf,
-  string, number, element, bool
-} from "prop-types"
+import {createElement} from "react"
+
+import cn from "classnames"
 
 import {container, open} from "./label.scss"
 
@@ -16,7 +13,7 @@ const Label = ({children, menu}) => (
 )
 
 Label.propTypes = {
-  children: oneOfType([arrayOf(element), string, number, element]).isRequired,
+  children: oneOfType([arrayOf(node), node]).isRequired,
   menu: shape({
     isOpen: bool.isRequired,
     isHidden: bool.isRequired

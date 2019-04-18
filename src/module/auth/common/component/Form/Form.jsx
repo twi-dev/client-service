@@ -1,8 +1,8 @@
-import React from "react"
-import cn from "classnames"
-
-import {observer} from "mobx-react"
 import {string, func, element, arrayOf} from "prop-types"
+import {createElement} from "react"
+import {observer} from "mobx-react"
+
+import cn from "classnames"
 
 import preventDefault from "core/helper/decorator/preventDefault"
 

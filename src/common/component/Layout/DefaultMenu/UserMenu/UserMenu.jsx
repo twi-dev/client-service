@@ -1,4 +1,4 @@
-import React from "react"
+import {createElement} from "react"
 
 import Menu from "common/component/SidebarMenu"
 

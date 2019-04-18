@@ -1,6 +1,7 @@
 import {hot} from "react-hot-loader/root"
 
-import React, {Fragment} from "react"
+// React should be bplaced after hot loader
+import {createElement, Fragment} from "react"
 
 import Viewer from "core/component/Viewer"
 

@@ -10,6 +10,10 @@ module.exports = {
     }
   },
   settings: {
+    react: {
+      pragma: "createElement",
+      pragmaFrag: "Fragment"
+    },
     "import/resolver": {
       "babel-module": {
         cwd: __dirname,

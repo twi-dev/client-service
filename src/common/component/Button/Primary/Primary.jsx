@@ -1,4 +1,4 @@
-import React from "react"
+import {createElement} from "react"
 import {shape, oneOfType, arrayOf, string, element} from "prop-types"
 
 import cn from "classnames"

@@ -1,6 +1,5 @@
 import {createRef, cloneElement, Component} from "react"
 import {element, func} from "prop-types"
-import {hot} from "react-hot-loader"
 
 /**
  * Calls given onKeyDown listener when document.activeElement
@@ -37,4 +36,4 @@ class OnKeyDownOutside extends Component {
   }
 }
 
-export default OnKeyDownOutside |> hot(module)
+export default OnKeyDownOutside

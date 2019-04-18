@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react"
+import {createElement, Component, Fragment} from "react"
 import {shape, func, string} from "prop-types"
 
 import connect from "core/model/connect"

@@ -1,7 +1,7 @@
-import React from "react"
-import cn from "classnames"
-
 import {string, element, oneOfType} from "prop-types"
+import {createElement} from "react"
+
+import cn from "classnames"
 
 import Primary from "common/component/Button/Primary"
 

@@ -1,9 +1,9 @@
-import React from "react"
+import {PropTypes as types, boolean} from "prop-types"
+import {createElement} from "react"
+import {observer} from "mobx-react"
+
 import cn from "classnames"
 import omit from "lodash/omit"
-
-import {observer} from "mobx-react"
-import {PropTypes as types, boolean} from "prop-types"
 
 import Plain from "common/component/Input"
 

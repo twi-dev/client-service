@@ -1,6 +1,5 @@
-import React from "react"
-
-import {oneOfType, string, number, element} from "prop-types"
+import {oneOfType, string, number, element, shape} from "prop-types"
+import {createElement} from "react"
 
 import forwardRef from "core/hoc/forwardRef"
 
@@ -11,7 +10,12 @@ const Icon = ({children, forwardedRef, ...props}) => (
 )
 
 Icon.propTypes = {
+  forwardedRef: shape({}),
   children: oneOfType([string, number, element]).isRequired
+}
+
+Icon.defaultProps = {
+  forwardedRef: null
 }
 
 export default Icon |> forwardRef

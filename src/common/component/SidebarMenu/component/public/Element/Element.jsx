@@ -1,9 +1,8 @@
-import React, {Component} from "react"
+import {createElement, Component} from "react"
 import {string, oneOfType, arrayOf, element, shape} from "prop-types"
+import {withRouter, Link} from "react-router-dom"
 import {parse} from "url"
 
-import withRouter from "react-router-dom/withRouter"
-import Link from "react-router-dom/Link"
 import cn from "classnames"
 
 import Plain from "../../internal/Element"

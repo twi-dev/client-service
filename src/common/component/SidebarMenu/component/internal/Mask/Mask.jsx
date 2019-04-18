@@ -1,8 +1,8 @@
-import React from "react"
-import cn from "classnames"
-
-import {shape, func} from "prop-types"
 import {observer, inject} from "mobx-react"
+import {shape, func} from "prop-types"
+import {createElement} from "react"
+
+import cn from "classnames"
 
 import {container, active} from "./mask.scss"
 

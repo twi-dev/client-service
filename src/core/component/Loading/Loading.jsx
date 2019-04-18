@@ -1,4 +1,4 @@
-import React, {Fragment} from "react"
+import {createElement, Fragment} from "react"
 
 import Spinner from "react-spinners/SyncLoader"
 
@@ -9,6 +9,7 @@ import {container} from "./loading.scss"
 const PageLoader = () => (
   <Fragment>
     <Title title="Loading..." />
+
     <div className={container}>
       <Spinner color="#daade8" />
     </div>

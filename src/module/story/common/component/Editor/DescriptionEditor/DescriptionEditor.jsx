@@ -1,6 +1,6 @@
-import React, {Component, createRef} from "react"
-import {observer} from "mobx-react"
+import {createElement, Component, createRef} from "react"
 import {func, string} from "prop-types"
+import {observer} from "mobx-react"
 
 import TextArea from "common/component/EnhancedTextField/TextAreaWithAutoSize"
 

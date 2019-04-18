@@ -1,9 +1,6 @@
-import React, {Component, Children} from "react"
+import {shape, oneOfType, arrayOf, string, bool, node} from "prop-types"
+import {createElement, Component, Children} from "react"
 import {inject, observer} from "mobx-react"
-import {
-  shape, oneOfType, arrayOf,
-  string, number, element, bool
-} from "prop-types"
 
 import cn from "classnames"
 
@@ -16,7 +13,7 @@ class Element extends Component {
   static displayName = "SidebarMenuPlainElement"
 
   static propTypes = {
-    children: oneOfType([arrayOf(element), string, number, element]).isRequired,
+    children: oneOfType([arrayOf(node), node]).isRequired,
     title: string,
     menu: shape({
       isOpen: bool.isRequired,

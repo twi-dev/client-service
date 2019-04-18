@@ -1,4 +1,4 @@
-import React, {Fragment} from "react"
+import {createElement, Fragment} from "react"
 
 import Title from "common/component/Title"
 

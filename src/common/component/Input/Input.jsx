@@ -1,4 +1,4 @@
-import React, {Component, createRef} from "react"
+import {createElement, Component, createRef} from "react"
 import {string, bool} from "prop-types"
 
 import omit from "lodash/omit"

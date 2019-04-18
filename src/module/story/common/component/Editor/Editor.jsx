@@ -1,4 +1,4 @@
-import React, {Component, createRef} from "react"
+import {createElement, Component, createRef} from "react"
 import {shape, string, func} from "prop-types"
 import {computed} from "mobx"
 

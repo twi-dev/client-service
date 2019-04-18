@@ -1,5 +1,4 @@
-import React from "react"
-
+import {createElement} from "react"
 import {shape} from "prop-types"
 
 import forwardRef from "core/hoc/forwardRef"

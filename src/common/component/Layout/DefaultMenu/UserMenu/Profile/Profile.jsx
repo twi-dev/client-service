@@ -1,7 +1,6 @@
-import React from "react"
-
-import {inject, observer} from "mobx-react"
+import {createElement} from "react"
 import {shape, string} from "prop-types"
+import {inject, observer} from "mobx-react"
 
 import {Element, Icon, Label} from "common/component/SidebarMenu/Element"
 

@@ -1,7 +1,7 @@
-import React from "react"
-import TextArea from "react-autosize-textarea"
-
+import {createElement} from "react"
 import {shape} from "prop-types"
+
+import TextArea from "react-autosize-textarea"
 
 import forwardRef from "core/hoc/forwardRef"
 import enhance from "common/hoc/enhanceTextField"

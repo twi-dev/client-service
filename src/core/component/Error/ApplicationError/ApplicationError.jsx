@@ -1,4 +1,4 @@
-import React, {Fragment} from "react"
+import {createElement, Fragment} from "react"
 import {instanceOf} from "prop-types"
 
 import logErrors from "core/hoc/logErrors"

@@ -1,4 +1,4 @@
-import React, {Fragment} from "react"
+import {createElement, Fragment} from "react"
 import {oneOfType, arrayOf, element, string} from "prop-types"
 
 import loadViewer from "./loadViewer"

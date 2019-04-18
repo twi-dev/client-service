@@ -1,9 +1,9 @@
-import {createElement as h} from "react"
+import {createElement} from "react"
 
 import getName from "core/helper/component/getName"
 
 const session = Target => {
-  const Session = props => h(Target, props)
+  const Session = props => createElement(Target, props)
 
   Session.displayName = `SessionProvider(${getName(Target)})`
 

@@ -1,6 +1,5 @@
-import React from "react"
-
 import {element, arrayOf, oneOfType} from "prop-types"
+import {createElement} from "react"
 
 import {container} from "./fields.scss"
 

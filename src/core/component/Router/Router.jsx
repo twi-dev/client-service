@@ -1,5 +1,4 @@
-import React from "react"
-
+import {createElement} from "react"
 import {BrowserRouter, Switch} from "react-router-dom"
 
 import NotFoundError from "core/component/Error/NotFoundError"

@@ -1,4 +1,5 @@
-import React from "react"
+import {createElement} from "react"
+
 import Dropzone from "react-dropzone"
 
 import {container} from "./cover-uploader.scss"

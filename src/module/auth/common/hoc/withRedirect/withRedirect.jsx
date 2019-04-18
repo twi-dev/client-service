@@ -1,6 +1,6 @@
 import {parse} from "query-string"
 
-import React, {createElement as h, Component} from "react"
+import {createElement, createElement as h, Component} from "react"
 import {shape, string, bool} from "prop-types"
 import {observer} from "mobx-react"
 import {Redirect} from "react-router-dom"

@@ -1,4 +1,4 @@
-import React from "react"
+import {createElement} from "react"
 
 import {Element, Icon, Label} from "common/component/SidebarMenu/Element"
 

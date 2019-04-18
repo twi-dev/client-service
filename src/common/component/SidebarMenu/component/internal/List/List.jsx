@@ -1,11 +1,12 @@
-import React from "react"
-
 import {arrayOf, element} from "prop-types"
+import {createElement} from "react"
 
 import {container} from "./menu-list.scss"
 
 const List = ({children}) => (
-  <ul className={container}>{children}</ul>
+  <ul className={container}>
+    {children}
+  </ul>
 )
 
 List.propTypes = {

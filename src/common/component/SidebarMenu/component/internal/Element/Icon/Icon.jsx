@@ -1,6 +1,5 @@
-import React from "react"
-
 import {oneOfType, string, number, element} from "prop-types"
+import {createElement} from "react"
 
 import {container} from "./icon.scss"
 

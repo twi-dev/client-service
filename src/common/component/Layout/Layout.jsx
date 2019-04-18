@@ -1,4 +1,4 @@
-import React, {Component, Children} from "react"
+import {createElement, Component, Children} from "react"
 import {string, element, arrayOf, oneOfType} from "prop-types"
 
 import Menu from "common/component/SidebarMenu"

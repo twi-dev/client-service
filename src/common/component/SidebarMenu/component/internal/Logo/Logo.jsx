@@ -1,7 +1,7 @@
-import React from "react"
-import Link from "react-router-dom/Link"
+import {createElement} from "react"
+import {Link} from "react-router-dom"
 
-import {app} from "core/config"
+import config from "core/config"
 
 import LogoIcon from "common/svg/layout/logo.svg"
 
@@ -10,6 +10,8 @@ import Icon from "../Element/Icon"
 import Label from "../Element/Label"
 
 import {container} from "./logo.scss"
+
+const {app} = config
 
 const Logo = () => (
   <Link to="/" className={container}>
