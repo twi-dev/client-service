@@ -5,23 +5,25 @@ import cn from "classnames"
 import omit from "lodash/omit"
 
 import forwardRef from "core/hoc/forwardRef"
+import Abstract from "core/component/Abstract"
 
 import {container, wide} from "./button.scss"
 
 const except = ["wide"]
 
 const Button = ({className, children, forwardedRef, ...props}) => (
-  <button
-    {...omit(props, except)}
+  <Abstract
+    {...omit(props, except.concat(props.tag === "button" ? [] : ["type"]))}
 
     ref={forwardedRef}
-    className={cn(container, className, {[wide]: props.wide})}
+    className={[container, className, {[wide]: props.wide}]}
   >
     {children}
-  </button>
+  </Abstract>
 )
 
 Button.propTypes = {
+  tag: string,
   type: string,
   wide: bool,
   className: string,
@@ -30,6 +32,7 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
+  tag: "button",
   type: "button",
   wide: false,
   className: null,

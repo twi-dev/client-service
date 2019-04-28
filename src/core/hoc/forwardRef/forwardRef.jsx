@@ -1,11 +1,20 @@
-import {forwardRef as decorator, createElement as h} from "react"
+import {forwardRef as decorate, createElement} from "react"
+import {shape} from "prop-types"
 
 const forwardRef = Target => {
   const ForwardRef = (props, forwardedRef) => (
-    h(Target, {...props, forwardedRef})
+    createElement(Target, {...props, forwardedRef})
   )
 
-  return ForwardRef |> decorator
+  return decorate(ForwardRef)
+}
+
+forwardRef.propTypes = {
+  forwardedRef: shape({})
+}
+
+forwardRef.defaultProps = {
+  forwardedRef: undefined
 }
 
 export default forwardRef
