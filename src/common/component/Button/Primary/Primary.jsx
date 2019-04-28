@@ -1,4 +1,4 @@
-import {shape, oneOfType, arrayOf, string, element} from "prop-types"
+import {shape, string, node} from "prop-types"
 import {createElement} from "react"
 
 import cn from "classnames"
@@ -17,17 +17,17 @@ const Primary = ({className, children, forwardedRef, ...props}) => (
 Primary.displayName = "PrimaryButton"
 
 Primary.propTypes = {
+  ...forwardRef.propTypes,
+
   className: string,
-  children: oneOfType([
-    arrayOf(string), arrayOf(element),
-    string, element
-  ]).isRequired,
-  forwardedRef: shape({})
+  forwardedRef: shape({}),
+  children: node.isRequired,
 }
 
 Primary.defaultProps = {
-  className: null,
-  forwardedRef: null
+  ...forwardRef.defaultProps,
+
+  className: null
 }
 
 export default Primary |> forwardRef

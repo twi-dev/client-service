@@ -1,4 +1,4 @@
-import {PropTypes as types, boolean} from "prop-types"
+import {string, bool} from "prop-types"
 import {createElement} from "react"
 import {observer} from "mobx-react"
 
@@ -16,14 +16,14 @@ const Input = ({className, ...props}) => (
 )
 
 Input.propTypes = {
-  isValid: boolean,
-  warn: types.string,
-  className: types.string
+  warn: string,
+  isValid: bool,
+  className: string
 }
 
 Input.defaultProps = {
+  warn: string,
   isValid: false,
-  warn: types.string,
   className: undefined
 }
 

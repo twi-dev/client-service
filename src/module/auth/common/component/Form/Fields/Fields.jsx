@@ -1,12 +1,16 @@
-import {element, arrayOf, oneOfType} from "prop-types"
 import {createElement} from "react"
+import {node} from "prop-types"
 
 import {container} from "./fields.scss"
 
-const Fields = ({children}) => <div className={container}>{children}</div>
+const Fields = ({children}) => (
+  <div className={container}>
+    {children}
+  </div>
+)
 
 Fields.propTypes = {
-  children: oneOfType([element, arrayOf(element.isRequired)]).isRequired
+  children: node.isRequired
 }
 
 export default Fields

@@ -1,4 +1,4 @@
-import {string, func, element, arrayOf} from "prop-types"
+import {string, func, node} from "prop-types"
 import {createElement} from "react"
 import {observer} from "mobx-react"
 
@@ -21,7 +21,7 @@ const Form = ({children, className, onSubmit}) => (
 Form.propTypes = {
   className: string,
   onSubmit: func.isRequired,
-  children: arrayOf(element.isRequired).isRequired
+  children: node.isRequired
 }
 
 Form.defaultProps = {

@@ -1,5 +1,5 @@
 import {forwardRef as decorate, createElement} from "react"
-import {shape} from "prop-types"
+import {shape, func, oneOfType, instanceOf} from "prop-types"
 
 const forwardRef = Target => {
   const ForwardRef = (props, forwardedRef) => (
@@ -10,7 +10,12 @@ const forwardRef = Target => {
 }
 
 forwardRef.propTypes = {
-  forwardedRef: shape({})
+  forwardedRef: oneOfType([
+    func,
+    shape({
+      current: instanceOf(Element)
+    })
+  ])
 }
 
 forwardRef.defaultProps = {

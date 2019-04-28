@@ -1,4 +1,4 @@
-import {func, shape, element, arrayOf, oneOfType} from "prop-types"
+import {node, func} from "prop-types"
 import {createElement} from "react"
 
 import forwardRef from "core/hoc/forwardRef"
@@ -11,14 +11,16 @@ const Form = ({onSubmit, forwardedRef, children, ...props}) => (
 )
 
 Form.propTypes = {
+  ...forwardRef.propTypes,
+
   onSubmit: func,
-  forwardedRef: shape({}),
-  children: oneOfType([element, arrayOf(element)]).isRequired
+  children: node.isRequired
 }
 
 Form.defaultProps = {
-  onSubmit: null,
-  forwardedRef: null
+  ...forwardRef.defaultProps,
+
+  onSubmit: null
 }
 
 export default Form |> forwardRef

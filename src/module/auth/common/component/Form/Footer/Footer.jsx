@@ -1,12 +1,14 @@
-import {element, arrayOf, oneOfType} from "prop-types"
 import {createElement} from "react"
+import {node} from "prop-types"
 
 import {container} from "./footer.scss"
 
-const Footer = ({children}) => <div className={container}>{children}</div>
+const Footer = ({children}) => (
+  <div className={container}>{children}</div>
+)
 
 Footer.propTypes = {
-  children: oneOfType([element, arrayOf(element.isRequired)]).isRequired
+  children: node.isRequired
 }
 
 export default Footer

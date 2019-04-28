@@ -1,7 +1,6 @@
 import {oneOfType, shape, arrayOf, string, node, bool} from "prop-types"
 import {createElement} from "react"
 
-import cn from "classnames"
 import omit from "lodash/omit"
 
 import forwardRef from "core/hoc/forwardRef"
@@ -23,6 +22,8 @@ const Button = ({className, children, forwardedRef, ...props}) => (
 )
 
 Button.propTypes = {
+  ...forwardRef.propTypes,
+
   tag: string,
   type: string,
   wide: bool,
@@ -32,6 +33,8 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
+  ...forwardRef.defaultProps,
+
   tag: "button",
   type: "button",
   wide: false,

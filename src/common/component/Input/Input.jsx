@@ -19,25 +19,24 @@ class Input extends Component {
     autoFocus: false
   }
 
+  base = createRef()
+
   componentDidMount() {
     if (this.props.autoFocus === true) {
-      // What? Why is this call won't work on current tick?
       setImmediate(() => this.input.focus())
     }
   }
 
   get input() {
-    return this.__ref.current
+    return this.base.current
   }
-
-  __ref = createRef()
 
   render() {
     return (
       <input
         {...omit(this.props, "className")}
 
-        ref={this.__ref}
+        ref={this.base}
         className={cn(this.props.className, container)}
       />
     )

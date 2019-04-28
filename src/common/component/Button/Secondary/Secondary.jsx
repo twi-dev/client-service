@@ -1,4 +1,4 @@
-import {shape, oneOfType, arrayOf, string, element} from "prop-types"
+import {shape, string, node} from "prop-types"
 import {createElement} from "react"
 
 import cn from "classnames"
@@ -18,17 +18,17 @@ const Secondary = ({className, children, forwardedRef, ...props}) => (
 Secondary.displayName = "SecondaryButton"
 
 Secondary.propTypes = {
+  ...forwardRef.propTypes,
+
   className: string,
-  children: oneOfType([
-    arrayOf(string), arrayOf(element),
-    string, element
-  ]).isRequired,
-  forwardedRef: shape({})
+  forwardedRef: shape({}),
+  children: node.isRequired
 }
 
 Secondary.defaultProps = {
-  className: null,
-  forwardedRef: null
+  ...forwardRef.defaultProps,
+
+  className: null
 }
 
 export default Secondary |> forwardRef

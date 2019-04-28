@@ -1,7 +1,7 @@
-import {string, element, oneOfType} from "prop-types"
+import {string, node} from "prop-types"
 import {createElement} from "react"
 
-import cn from "classnames"
+import cn from "classnames/dedupe"
 
 import Primary from "common/component/Button/Primary"
 
@@ -16,7 +16,7 @@ const Button = ({children, className, ...props}) => (
 Button.propTypes = {
   type: string,
   className: string,
-  children: oneOfType([string.isRequired, element.isRequired]).isRequired
+  children: node.isRequired
 }
 
 Button.defaultProps = {
