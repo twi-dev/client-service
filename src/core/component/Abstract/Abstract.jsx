@@ -34,7 +34,7 @@ Abstract.propTypes = {
 
 Abstract.defaultProps = {
   tag: "div",
-  children: null,
+  children: undefined,
   className: undefined,
   forwardedRef: undefined
 }
