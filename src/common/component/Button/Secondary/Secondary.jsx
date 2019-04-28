@@ -1,5 +1,5 @@
-import {createElement} from "react"
 import {shape, oneOfType, arrayOf, string, element} from "prop-types"
+import {createElement} from "react"
 
 import cn from "classnames"
 

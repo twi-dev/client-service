@@ -1,5 +1,5 @@
-import {createElement} from "react"
 import {func, shape, element, arrayOf, oneOfType} from "prop-types"
+import {createElement} from "react"
 
 import forwardRef from "core/hoc/forwardRef"
 import preventDefault from "core/helper/decorator/preventDefault"

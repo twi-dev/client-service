@@ -1,5 +1,5 @@
-import {createElement} from "react"
 import {oneOfType, shape, arrayOf, string, node, bool} from "prop-types"
+import {createElement} from "react"
 
 import cn from "classnames"
 import omit from "lodash/omit"

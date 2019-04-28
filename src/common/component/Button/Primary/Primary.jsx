@@ -1,11 +1,10 @@
-import {createElement} from "react"
 import {shape, oneOfType, arrayOf, string, element} from "prop-types"
+import {createElement} from "react"
 
 import cn from "classnames"
 
 import forwardRef from "core/hoc/forwardRef"
-
-import Plain from "../Button"
+import Plain from "common/component/Button"
 
 import {container} from "./primary.scss"
 
