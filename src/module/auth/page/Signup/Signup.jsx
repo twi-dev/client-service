@@ -14,14 +14,14 @@ import withRedirect from "module/auth/common/hoc/withRedirect"
 
 import {container, field, button, linkLogin} from "./signup.scss"
 
-const mapStoresToProps = ({signup}) => ({signup})
+const mapStoresToProps = ({signUp}) => ({signUp})
 
 @withRedirect
 @connect(mapStoresToProps)
 class Login extends Component {
   static propTypes = {
     onError: func.isRequired,
-    signup: shape({
+    signUp: shape({
       login: string,
       password: string,
       updateLogin: func.isRequired,
@@ -34,14 +34,14 @@ class Login extends Component {
   }
 
   submit = () => {
-    this.props.signup.submit()
+    this.props.signUp.submit()
       .then(() => this.props.history.push("/"))
       .catch(this.props.onError)
   }
 
   render() {
-    const {signup} = this.props
-    const {username, email, password} = signup
+    const {signUp} = this.props
+    const {username, email, password} = signUp
 
     return (
       <Fragment>
@@ -53,10 +53,10 @@ class Login extends Component {
               type="text"
               name="username"
               placeholder="Login..."
-              autocomplete="off"
+              autoComplete="off"
               className={field}
               value={username}
-              onChange={signup.updateUsername}
+              onChange={signUp.updateUsername}
             />
 
             <Input
@@ -66,7 +66,7 @@ class Login extends Component {
               autocomplete="off"
               className={field}
               value={email}
-              onChange={signup.updateEmail}
+              onChange={signUp.updateEmail}
             />
 
             <Input
@@ -76,10 +76,10 @@ class Login extends Component {
               autocomplete="off"
               className={field}
               value={password}
-              onChange={signup.updatePassword}
+              onChange={signUp.updatePassword}
             />
 
-            <Button className={button} disabled={!signup.isValid}>
+            <Button className={button} disabled={!signUp.isValid}>
               Sign up
             </Button>
           </Fields>

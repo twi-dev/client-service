@@ -1,6 +1,7 @@
 import {string, node, shape, arrayOf, oneOfType} from "prop-types"
 import {createElement} from "react"
 
+import omit from "lodash/omit"
 import cn from "classnames/dedupe"
 import isPlainObject from "lodash/isPlainObject"
 
@@ -12,12 +13,14 @@ const setClassName = value => (
   isPlainObject(value) || isArray(value) ? cn(value) : value
 )
 
-const Abstract = ({tag, children, className, forwardedRef, ...props}) => (
-  createElement(tag, {
-    ...props,
+const except = ["className", "forwardedRef", "tag", "className"]
 
-    ref: forwardedRef,
-    className: setClassName(className)
+const Abstract = ({children, omitProps, ...props}) => (
+  createElement(props.tag, {
+    ...omit(props, except.concat(omitProps)),
+
+    ref: props.forwardedRef,
+    className: setClassName(props.className)
   }, children)
 )
 
@@ -27,6 +30,7 @@ Abstract.propTypes = {
   tag: string,
   children: node,
   forwardedRef: shape({}),
+  omitProps: arrayOf(string),
   className: oneOfType([
     string, shape({}), arrayOf(oneOfType([string, shape({})]))
   ])
@@ -34,6 +38,7 @@ Abstract.propTypes = {
 
 Abstract.defaultProps = {
   tag: "div",
+  omitProps: [],
   children: undefined,
   className: undefined,
   forwardedRef: undefined

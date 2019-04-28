@@ -14,14 +14,14 @@ import withRedirect from "module/auth/common/hoc/withRedirect"
 
 import {container, recover} from "./login.scss"
 
-const mapStoresToProps = ({login}) => ({login})
+const mapStoresToProps = ({logIn}) => ({logIn})
 
 @withRedirect
 @connect(mapStoresToProps)
 class Login extends Component {
   static propTypes = {
     onError: func.isRequired,
-    login: shape({
+    logIn: shape({
       login: string,
       password: string,
     }).isRequired,
@@ -31,14 +31,14 @@ class Login extends Component {
   }
 
   submit = () => {
-    this.props.login.authenticate()
+    this.props.logIn.authenticate()
       .then(() => this.props.history.push("/"))
       .catch(this.props.onError)
   }
 
   render() {
-    const {login} = this.props
-    const {username, password} = login
+    const {logIn} = this.props
+    const {username, password} = logIn
 
     return (
       <Fragment>
@@ -52,7 +52,7 @@ class Login extends Component {
               placeholder="Login..."
               autoComplete="username"
               value={username}
-              onChange={login.updateUsername}
+              onChange={logIn.updateUsername}
             />
 
             <Input
@@ -61,10 +61,10 @@ class Login extends Component {
               placeholder="Password..."
               autoComplete="off"
               value={password}
-              onChange={login.updatePassword}
+              onChange={logIn.updatePassword}
             />
 
-            <Button type="submit" disabled={!login.isValid}>
+            <Button type="submit" disabled={!logIn.isValid}>
               Log in
             </Button>
           </Fields>

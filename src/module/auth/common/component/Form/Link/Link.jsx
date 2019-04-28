@@ -1,7 +1,7 @@
 import {createElement} from "react"
 import {string} from "prop-types"
 
-import {RouterLink} from "react-router-dom"
+import {Link as Base} from "react-router-dom"
 
 import cn from "classnames"
 
@@ -9,7 +9,7 @@ import {container} from "./link.scss"
 
 const Link = ({className, ...props}) => (
   <div className={cn(container, className)}>
-    <RouterLink {...props} />
+    <Base {...props} />
   </div>
 )
 
