@@ -26,10 +26,10 @@ Abstract.displayName = "AbstractElement"
 Abstract.propTypes = {
   tag: string,
   children: node,
+  forwardedRef: shape({}),
   className: oneOfType([
     string, shape({}), arrayOf(oneOfType([string, shape({})]))
-  ]),
-  forwardedRef: shape({})
+  ])
 }
 
 Abstract.defaultProps = {
