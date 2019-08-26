@@ -112,7 +112,7 @@
     "apollo-link-form-data": "1.1.0",
     "awaity": "1.0.0",
     "classnames": "2.2.6",
-    "date-fns": "2.0.0-alpha.26",
+    "date-fns": "2.0.0",
     "decss": "0.8.0",
     "draft-js": "0.11.0",
     "graphql": "14.4.2",
