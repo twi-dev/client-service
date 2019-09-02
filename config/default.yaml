@@ -15,6 +15,12 @@ graphql:
 
 router:
   home: "home"
+  rewrites:
+    /user/@:login: /@:login
+    /story/:slug: /:slug
+    /story/:slug/reviews: /:slug/reviews
+    /story/:slug/comments: /:slug/comments
+    /story/:story/chapter/:chapter: /:story/chapter/:slug
 
 # DEPRECATED
 rewrites: null
