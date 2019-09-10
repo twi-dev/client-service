@@ -21,6 +21,3 @@ router:
     /story/:slug/reviews: /:slug/reviews
     /story/:slug/comments: /:slug/comments
     /story/:story/chapter/:chapter: /:story/chapter/:slug
-
-# DEPRECATED
-rewrites: null
