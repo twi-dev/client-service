@@ -14,6 +14,10 @@ const schema = {
   // list: array<T>
 }
 
+const volatile = () => ({
+  isLoading: false
+})
+
 const actions = self => ({
   /**
    * Loads the previous page frame if exists
@@ -118,6 +122,9 @@ const views = self => ({
   }
 })
 
-const Page = model("Page", schema).actions(actions).views(views)
+const Page = model("Page", schema)
+  .volatile(volatile)
+  .actions(actions)
+  .views(views)
 
 export default Page
