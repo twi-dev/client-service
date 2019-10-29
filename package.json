@@ -81,6 +81,7 @@
     "postcss-scss": "2.0.0",
     "postcss-simple-vars": "5.0.2",
     "postcss-use": "3.0.0",
+    "react-dev-utils": "^9.1.0",
     "react-dropzone": "10.1.7",
     "react-hot-loader": "4.12.10",
     "react-svg-loader": "3.0.3",
