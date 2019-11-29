@@ -8,7 +8,6 @@ import isFunction from "lodash/isFunction"
 import partialRight from "lodash/partialRight"
 import isPlainObject from "lodash/isPlainObject"
 
-import consumer from "lib/error/application/createErrorConsumer"
 import TimeoutError from "lib/component/Error/TimeoutError"
 import runParallel from "lib/helper/object/runParallel"
 import waterfall from "lib/helper/array/runWaterfall"
@@ -83,7 +82,7 @@ const loadable = (params = {}) => {
 
   loading.onLoading = progress(loading.onLoading)
 
-  @consumer class Loadable extends Component {
+  class Loadable extends Component {
     __delayTimer = null
 
     __timeoutTimer = null
@@ -91,8 +90,7 @@ const loadable = (params = {}) => {
     __mounted = false
 
     static propTypes = {
-      reporter: shape({set: func.isRequired, catch: func.isRequired}),
-      applicationError: shape({report: func.isRequired}).isRequired
+      reporter: shape({set: func.isRequired, catch: func.isRequired})
     }
 
     static defaultProps = {
@@ -165,7 +163,7 @@ const loadable = (params = {}) => {
 
     __afterTimeOut = () => {
       if (this.__mounted) {
-        this.__onError(new Error("Request timed out."), loading.onTimeOut)
+        this.setState(state => ({...state, timedOut: true}))
       }
     }
 
@@ -177,14 +175,8 @@ const loadable = (params = {}) => {
       }
     }
 
-    __onError = (error, fn) => {
-      this.__cleanup()
-
-      if (this.props.reporter && isFunction(loading.onError)) {
-        this.props.reporter.catch({error}, fn)
-      } else {
-        this.props.applicationError.report({error})
-      }
+    __onError = error => {
+      this.setState(prev => ({...prev, error}), this.__cleanup())
     }
 
     __cleanup = () => {
@@ -198,12 +190,12 @@ const loadable = (params = {}) => {
     }
 
     render() {
-      const {pastDelay, isLoaded, loaded} = this.state
+      const {pastDelay, timedOut, isLoaded, loaded} = this.state
 
       const props = omit(this.props, exclude)
 
-      if (!isLoaded) {
-        return h(loading.onLoading, {pastDelay})
+      if (!isLoaded || pastDelay || timedOut) {
+        return h(loading.onLoading, {pastDelay, timedOut})
       }
 
       if (isFunction(loaded)) {
