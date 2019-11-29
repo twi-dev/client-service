@@ -4,7 +4,7 @@ import {shape} from "prop-types"
 
 import cn from "classnames"
 
-import config from "core/config"
+import config from "lib/config"
 
 import {container, open} from "./text.scss"
 

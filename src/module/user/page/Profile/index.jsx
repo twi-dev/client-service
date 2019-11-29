@@ -1,6 +1,6 @@
 import {withRouter as router} from "react-router-dom"
 
-import loadable from "core/hoc/loadable/page"
+import loadable from "lib/hoc/loadable/page"
 
 const page = () => import("./Profile")
 

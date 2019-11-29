@@ -7,6 +7,8 @@ import cn from "classnames"
 import {container} from "./input.scss"
 
 class Input extends Component {
+  base = createRef()
+
   static propTypes = {
     type: string,
     className: string,
@@ -18,8 +20,6 @@ class Input extends Component {
     className: null,
     autoFocus: false
   }
-
-  base = createRef()
 
   componentDidMount() {
     if (this.props.autoFocus === true) {

@@ -3,8 +3,8 @@ import {func, shape} from "prop-types"
 
 import omit from "lodash/omit"
 
-import getName from "core/helper/component/getName"
-import forward from "core/hoc/forwardRef"
+import forward from "lib/hoc/forwardRef"
+import getName from "lib/helper/component/getName"
 
 const assign = Object.assign
 
@@ -48,11 +48,10 @@ const enhanceTextField = Target => {
       return createElement(
         Target,
 
-        assign({}, omit(this.props, ["onEsc", "onEnter", "forwardedRef"]), {
+        {...omit(this.props, ["onEsc", "onEnter", "forwardedRef"]),
           onKeyPress: this.onEnter,
           onKeyUp: this.onEsc,
-          ref: this.props.forwardedRef
-        })
+          ref: this.props.forwardedRef}
       )
     }
   }

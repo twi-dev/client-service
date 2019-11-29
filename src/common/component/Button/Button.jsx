@@ -3,8 +3,8 @@ import {createElement} from "react"
 
 import omit from "lodash/omit"
 
-import forwardRef from "core/hoc/forwardRef"
-import Abstract from "core/component/Abstract"
+import forwardRef from "lib/hoc/forwardRef"
+import Abstract from "lib/component/Abstract"
 
 import {container, wide} from "./button.scss"
 

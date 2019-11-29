@@ -1,6 +1,6 @@
 import {types} from "mobx-state-tree"
 
-import warn from "core/helper/model/warnNotImplementedAction"
+import warn from "lib/helper/model/warnNotImplementedAction"
 
 const {model, optional, string} = types
 

@@ -1,7 +1,8 @@
 import partial from "lodash/partial"
 
-import waterfall from "core/helper/array/runWaterfall"
-import create from "core/model/create"
+import waterfall from "lib/helper/array/runWaterfall"
+import create from "lib/model/create"
+
 import User from "common/model/User"
 
 import query from "common/graphql/query/user"

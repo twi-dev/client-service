@@ -4,7 +4,7 @@ import {observer} from "mobx-react"
 
 import cn from "classnames"
 
-import preventDefault from "core/helper/decorator/preventDefault"
+import preventDefault from "lib/helper/decorator/preventDefault"
 
 import {container, body, content} from "./form.scss"
 

@@ -1,7 +1,8 @@
 import {createElement} from "react"
 import {shape} from "prop-types"
 
-import forwardRef from "core/hoc/forwardRef"
+import forwardRef from "lib/hoc/forwardRef"
+
 import enhance from "common/hoc/enhanceTextField"
 
 const TextArea = ({forwardedRef, ...props}) => (

@@ -1,8 +1,8 @@
 import {types, flow} from "mobx-state-tree"
 
-import saveTokens from "core/auth/helper/saveTokens"
-import waterfall from "core/helper/array/runWaterfall"
-import updateTextField from "core/helper/model/updateTextField"
+import saveTokens from "lib/auth/helper/saveTokens"
+import waterfall from "lib/helper/array/runWaterfall"
+import updateTextField from "lib/helper/model/updateTextField"
 
 import logIn from "common/graphql/mutation/auth/logIn"
 

@@ -3,7 +3,7 @@ import {createElement} from "react"
 
 import cn from "classnames"
 
-import forwardRef from "core/hoc/forwardRef"
+import forwardRef from "lib/hoc/forwardRef"
 
 import Plain from "../Button"
 

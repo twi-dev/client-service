@@ -1,7 +1,8 @@
 import {createElement, Component, Fragment} from "react"
 import {shape, func, string} from "prop-types"
 
-import connect from "core/model/connect"
+import connect from "lib/model/connect"
+
 import Title from "common/component/Title"
 
 import Form from "module/auth/common/component/Form"
@@ -44,7 +45,7 @@ class Login extends Component {
     const {username, email, password} = signUp
 
     return (
-      <Fragment>
+      <>
         <Title title="Signup" />
 
         <Form className={container} onSubmit={this.submit}>
@@ -91,7 +92,7 @@ class Login extends Component {
           </Footer>
 
         </Form>
-      </Fragment>
+      </>
     )
   }
 }

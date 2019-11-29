@@ -1,7 +1,7 @@
 import {oneOfType, string, number, element, shape} from "prop-types"
 import {createElement} from "react"
 
-import forwardRef from "core/hoc/forwardRef"
+import forwardRef from "lib/hoc/forwardRef"
 
 import Plain from "../../internal/Element/Label"
 

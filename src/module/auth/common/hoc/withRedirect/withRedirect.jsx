@@ -1,9 +1,9 @@
 import {parse} from "query-string"
 
-import {createElement, createElement as h, Component} from "react"
+import {createElement as h, Component} from "react"
 import {shape, string, bool} from "prop-types"
-import {observer} from "mobx-react"
 import {Redirect} from "react-router-dom"
+import {observer} from "mobx-react"
 
 const withRedirect = Target => {
   class AuthRedirect extends Component {
@@ -36,7 +36,7 @@ const withRedirect = Target => {
       const {to} = this
 
       if (session && !session.isAccessExpired) {
-        return <Redirect {...{to}} />
+        return h(Redirect, {to})
       }
 
       return h(observer(Target), this.props)

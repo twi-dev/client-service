@@ -1,11 +1,11 @@
-import {createElement, Component} from "react"
-import {computed} from "mobx"
-import {inject, observer} from "mobx-react"
 import {arrayOf, shape, element} from "prop-types"
+import {createElement, Component} from "react"
+import {inject, observer} from "mobx-react"
+import {computed} from "mobx"
 
 import cn from "classnames"
 
-import provider from "core/model/provider"
+import provider from "lib/model/provider"
 
 import Mask from "./component/internal/Mask"
 import Logo from "./component/internal/Logo"

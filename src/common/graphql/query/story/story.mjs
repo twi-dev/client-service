@@ -1,9 +1,9 @@
 import partial from "lodash/partial"
 
-import getData from "core/helper/graphql/getData"
-import waterfall from "core/helper/array/runWaterfall"
+import getData from "lib/helper/graphql/getData"
+import waterfall from "lib/helper/array/runWaterfall"
 
-import {query} from "core/transport/graphql"
+import {query} from "lib/transport/graphql"
 
 import document from "./story.gql"
 

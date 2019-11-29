@@ -1,7 +1,7 @@
 import {createElement} from "react"
 import {Link} from "react-router-dom"
 
-import config from "core/config"
+import config from "lib/config"
 
 import LogoIcon from "common/svg/layout/logo.svg"
 

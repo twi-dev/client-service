@@ -3,7 +3,8 @@ import {shape} from "prop-types"
 
 import TextArea from "react-autosize-textarea"
 
-import forwardRef from "core/hoc/forwardRef"
+import forwardRef from "lib/hoc/forwardRef"
+
 import enhance from "common/hoc/enhanceTextField"
 
 const TextAreaWithAutoSize = ({forwardedRef, ...props}) => (

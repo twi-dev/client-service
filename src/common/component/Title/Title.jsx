@@ -4,7 +4,7 @@ import {string} from "prop-types"
 import isString from "lodash/isString"
 import Helmet from "react-helmet"
 
-import config from "core/config"
+import config from "lib/config"
 
 const {app} = config
 

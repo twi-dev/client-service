@@ -6,6 +6,8 @@ import {element, func} from "prop-types"
  * is outside of child component
  */
 class OnKeyDownOutside extends Component {
+  ref = createRef()
+
   static propTypes = {
     children: element.isRequired,
     onKeyDown: func
@@ -14,8 +16,6 @@ class OnKeyDownOutside extends Component {
   static defaultProps = {
     onKeyDown: () => {}
   }
-
-  ref = createRef()
 
   componentDidMount() {
     document.body.addEventListener("keydown", this.onKeyDown, true)

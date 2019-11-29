@@ -38,6 +38,7 @@ module.exports = {
     "no-constant-condition": ["error", {
       checkLoops: false
     }],
+
     "operator-linebreak": ["error", "after", {
       overrides: {
         "+": "ignore",
@@ -45,11 +46,16 @@ module.exports = {
         ":": "before"
       }
     }],
+
     "func-names": ["error", "always", {
       generators: "never"
     }],
 
+    "react/static-property-placement": ["error", "static public field"],
+
+    "react/state-in-constructor": 0,
+    "react/button-has-type": 0,
     "react/destructuring-assignment": 0,
-    "react/button-has-type": 0
+    "react/jsx-props-no-spreading": 0
   }
 }

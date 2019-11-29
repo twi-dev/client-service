@@ -2,8 +2,8 @@ import {createElement, Component, createRef} from "react"
 import {shape, string, func} from "prop-types"
 import {computed} from "mobx"
 
-import connect from "core/model/connect"
-import preventDefault from "core/helper/decorator/preventDefault"
+import connect from "lib/model/connect"
+import preventDefault from "lib/helper/decorator/preventDefault"
 
 import TitleEditor from "./TitleEditor"
 import DescriptionEditor from "./DescriptionEditor"
