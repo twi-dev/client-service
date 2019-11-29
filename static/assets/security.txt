@@ -2,7 +2,7 @@ If you have any security issues with Twilight's Library,
 or you have suggestions to improve the project security,
 please consider to contact me from one of those ways:
 
-E-mail: nick.kruchinin@gmail.com
+E-mail: io@octetstream.me
 Twitter: https://twitter.com/octet_stream
 Client app issues: https://github.com/twi-project/client-service/issues
 
