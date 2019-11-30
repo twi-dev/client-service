@@ -29,7 +29,7 @@ const exclude = ["reporter"]
  * @return {Loadable} – proxy component for loading data and other components
  */
 const loadable = (params = {}) => {
-  let {name, delay, timeout, serial, loading, loaders, render} = params
+  const {name, delay, timeout, serial, loading, loaders, render} = params
 
   if (process.env.NODE_ENV !== "production") {
     if (!loaders) {
@@ -66,16 +66,6 @@ const loadable = (params = {}) => {
         "You must resolve a bunch loaded content manually " +
         "by using a custom renderer. So, \"render\" option required."
       )
-    }
-  }
-
-  if (isFunction(loading)) {
-    loading = {
-      onLoading: loading,
-      onError: undefined,
-
-      // TODO: Move to a different file
-      onTimeOut: error => h(TimeoutError, {error})
     }
   }
 
