@@ -29,8 +29,7 @@ const exclude = ["reporter"]
  * @return {Loadable} – proxy component for loading data and other components
  */
 const loadable = (params = {}) => {
-  const {name, delay, timeout, serial, loaders, render} = params
-  let {loading} = params
+  let {name, delay, timeout, serial, loading, loaders, render} = params
 
   if (process.env.NODE_ENV !== "production") {
     if (!loaders) {
@@ -89,10 +88,6 @@ const loadable = (params = {}) => {
 
     __mounted = false
 
-    static propTypes = {
-      reporter: shape({set: func.isRequired, catch: func.isRequired})
-    }
-
     static defaultProps = {
       reporter: null
     }
@@ -106,16 +101,6 @@ const loadable = (params = {}) => {
         loaded: null,
         isLoaded: false,
         error: null
-      }
-
-      if (props.reporter) {
-        if (isFunction(loading.onTimeOut)) {
-          props.reporter.set(loading.onTimeOut)
-        }
-
-        if (isFunction(loading.onError)) {
-          props.reporter.set(loading.onError)
-        }
       }
     }
 
@@ -157,26 +142,28 @@ const loadable = (params = {}) => {
 
     __afterDelay = () => {
       if (this.__mounted) {
-        this.setState(state => ({...state, pastDelay: true}))
+        this.setState(state => ({...state, pastDelay: true}), this.__cleanup)
       }
     }
 
     __afterTimeOut = () => {
       if (this.__mounted) {
-        this.setState(state => ({...state, timedOut: true}))
+        this.setState(state => ({...state, timedOut: true}), this.__cleanup)
       }
     }
 
     __onFulfilled = loaded => {
       if (this.__mounted) {
-        this.__cleanup()
+        this.setState(
+          state => ({...state, loaded, isLoaded: true}),
 
-        this.setState(state => ({...state, loaded, isLoaded: true}))
+          this.__cleanup
+        )
       }
     }
 
     __onError = error => {
-      this.setState(prev => ({...prev, error}), this.__cleanup())
+      this.setState(prev => ({...prev, error}), this.__cleanup)
     }
 
     __cleanup = () => {
@@ -190,12 +177,12 @@ const loadable = (params = {}) => {
     }
 
     render() {
-      const {pastDelay, timedOut, isLoaded, loaded} = this.state
+      const {pastDelay, timedOut, isLoaded, loaded, error} = this.state
 
       const props = omit(this.props, exclude)
 
-      if (!isLoaded || pastDelay || timedOut) {
-        return h(loading.onLoading, {pastDelay, timedOut})
+      if (!isLoaded || error || pastDelay || timedOut) {
+        return h(loading.onLoading, {error, pastDelay, timedOut, isLoaded})
       }
 
       if (isFunction(loaded)) {

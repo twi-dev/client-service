@@ -50,6 +50,9 @@ module.exports = {
     "func-names": ["error", "always", {
       generators: "never"
     }],
+    "prefer-const": ["error", {
+      "destructuring": "all"
+    }],
 
     "react/static-property-placement": ["error", "static public field"],
 
