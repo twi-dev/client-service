@@ -172,7 +172,7 @@ const loadable = (params = {}) => {
       const props = omit(this.props, exclude)
 
       if (!isLoaded || error || pastDelay || timedOut) {
-        return h(loading.onLoading, {error, pastDelay, timedOut, isLoaded})
+        return h(loading, {error, pastDelay, timedOut, isLoaded})
       }
 
       if (isFunction(loaded)) {
