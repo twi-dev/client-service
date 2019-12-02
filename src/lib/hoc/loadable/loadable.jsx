@@ -1,5 +1,4 @@
 import {createElement as h, Component} from "react"
-import {shape, func} from "prop-types"
 
 import omit from "lodash/omit"
 import partial from "lodash/partial"
@@ -8,7 +7,6 @@ import isFunction from "lodash/isFunction"
 import partialRight from "lodash/partialRight"
 import isPlainObject from "lodash/isPlainObject"
 
-import TimeoutError from "lib/component/Error/TimeoutError"
 import runParallel from "lib/helper/object/runParallel"
 import waterfall from "lib/helper/array/runWaterfall"
 import resolve from "lib/helper/util/requireDefault"
@@ -77,10 +75,6 @@ const loadable = (params = {}) => {
     __timeoutTimer = null
 
     __mounted = false
-
-    static defaultProps = {
-      reporter: null
-    }
 
     constructor(props) {
       super(props)
