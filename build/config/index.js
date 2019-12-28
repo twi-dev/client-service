@@ -111,7 +111,7 @@ const configure = (env, argv) => ({
   context: join(ROOT, "src"),
   entry: {
     common: [
-      join(ROOT, "src", "core", "base", "main.jsx")
+      join(ROOT, "src", "base", "main.jsx")
     ]
   },
   output: {

@@ -6,7 +6,7 @@ import cn from "classnames"
 
 import config from "lib/config"
 
-import {container, open} from "./text.scss"
+import {container, open} from "./text.css"
 
 const {app} = config
 

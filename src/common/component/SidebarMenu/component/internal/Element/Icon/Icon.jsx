@@ -1,7 +1,7 @@
 import {oneOfType, string, number, element} from "prop-types"
 import {createElement} from "react"
 
-import {container} from "./icon.scss"
+import {container} from "./icon.css"
 
 const Icon = ({children}) => (
   <div className={container}>

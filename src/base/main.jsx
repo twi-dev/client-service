@@ -2,7 +2,7 @@ import {createElement} from "react"
 import {render} from "react-dom"
 
 // Imprort global styles
-import "lib/base/main.scss"
+import "base/main.css"
 
 const target = document.querySelector("#twi-root")
 
@@ -14,7 +14,7 @@ function renderApplication() {
 
 // Enable HRM
 if (module.hot) {
-  module.hot.accept(["../component/Application"], renderApplication)
+  module.hot.accept(["../lib/component/Application"], renderApplication)
 }
 
 renderApplication()

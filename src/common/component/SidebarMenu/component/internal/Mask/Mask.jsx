@@ -4,7 +4,7 @@ import {createElement} from "react"
 
 import cn from "classnames"
 
-import {container, active} from "./mask.scss"
+import {container, active} from "./mask.css"
 
 const Mask = ({menu}) => (
   // eslint-disable-next-line jsx-a11y/click-events-have-key-events

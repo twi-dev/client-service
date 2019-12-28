@@ -1,7 +1,7 @@
 import {arrayOf, element} from "prop-types"
 import {createElement} from "react"
 
-import {container} from "./menu-list.scss"
+import {container} from "./menu-list.css"
 
 const List = ({children}) => (
   <ul className={container}>

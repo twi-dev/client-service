@@ -4,7 +4,7 @@ import {createElement} from "react"
 
 import cn from "classnames"
 
-import {container, open} from "./label.scss"
+import {container, open} from "./label.css"
 
 const Label = ({children, menu}) => (
   <div className={cn(container, {[open]: menu.isOpen})}>

@@ -4,7 +4,7 @@ import {inject, observer} from "mobx-react"
 
 import cn from "classnames"
 
-import {container, open} from "./element.scss"
+import {container, open} from "./element.css"
 
 const toArray = Children.toArray
 

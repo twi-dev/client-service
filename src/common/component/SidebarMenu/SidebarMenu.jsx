@@ -14,7 +14,7 @@ import Toggler from "./component/internal/Toggler"
 
 import Model from "./model/SidebarMenu"
 
-import {container, panel, content, open} from "./sidebar-menu.scss"
+import {container, panel, content, open} from "./sidebar-menu.css"
 
 const isArray = Array.isArray
 

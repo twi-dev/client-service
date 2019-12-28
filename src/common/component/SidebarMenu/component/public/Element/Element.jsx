@@ -7,7 +7,7 @@ import cn from "classnames"
 
 import Plain from "../../internal/Element"
 
-import {container, active} from "./menu-element.scss"
+import {container, active} from "./menu-element.css"
 
 @withRouter class Element extends Component {
   static displayName = "MenuElement"

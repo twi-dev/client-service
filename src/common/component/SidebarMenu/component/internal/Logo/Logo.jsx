@@ -9,7 +9,7 @@ import Element from "../Element"
 import Icon from "../Element/Icon"
 import Label from "../Element/Label"
 
-import {container} from "./logo.scss"
+import {container} from "./logo.css"
 
 const {app} = config
 

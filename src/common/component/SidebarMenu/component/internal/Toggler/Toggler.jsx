@@ -10,7 +10,7 @@ import Element from "../Element"
 import Icon from "../Element/Icon"
 import Label from "../Element/Label"
 
-import {container} from "./menu-toggler.scss"
+import {container} from "./menu-toggler.css"
 
 @inject("menu") @observer
 class Toggler extends Component {
