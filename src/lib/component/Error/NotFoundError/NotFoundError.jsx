@@ -5,7 +5,7 @@ import logErrors from "lib/hoc/logErrors"
 
 import Title from "common/component/Title"
 
-import {container, content, image, message, code} from "./not-found-error.scss"
+import {container, content, image, message, code} from "./not-found-error.css"
 
 import Image from "./not-found-error.svg"
 

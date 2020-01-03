@@ -4,7 +4,7 @@ import Spinner from "react-spinners/SyncLoader"
 
 import Title from "common/component/Title"
 
-import {container} from "./loading.scss"
+import {container} from "./loading.css"
 
 const PageLoader = () => (
   <>

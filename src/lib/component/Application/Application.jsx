@@ -6,22 +6,19 @@ import {createElement} from "react"
 import Viewer from "lib/component/Viewer"
 
 import Router from "lib/component/Router"
-import ErrorHandler from "lib/error/application/ApplicationErrorHandler"
 
 import Title from "common/component/Title"
 
-import {container} from "./application.scss"
+import {container} from "./application.css"
 
 const Application = () => (
   <>
     <Title />
 
     <div className={container}>
-      <ErrorHandler>
-        <Viewer>
-          <Router />
-        </Viewer>
-      </ErrorHandler>
+      <Viewer>
+        <Router />
+      </Viewer>
     </div>
   </>
 )

@@ -5,7 +5,7 @@ import logErrors from "lib/hoc/logErrors"
 
 import Title from "common/component/Title"
 
-import {container, stack} from "./application-error.scss"
+import {container, stack} from "./application-error.css"
 
 const ApplicationError = ({error}) => (
   <>
