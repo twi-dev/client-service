@@ -1,4 +1,5 @@
-import {createPortal, useEffect} from "react-dom"
+import {createPortal} from "react-dom"
+import {useEffect} from "react"
 import {node} from "prop-types"
 
 function Portal({children}) {
