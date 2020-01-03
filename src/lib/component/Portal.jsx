@@ -1,9 +1,13 @@
+import {node, string, instanceOf, oneOfType} from "prop-types"
 import {createPortal} from "react-dom"
-import {useEffect} from "react"
-import {node} from "prop-types"
+import {useEffect, memo} from "react"
 
-function Portal({children}) {
-  const container = document.createElement("div")
+import isString from "lodash/isString"
+
+function Portal({children, container}) {
+  if (isString(container)) {
+    container = document.createElement(container)
+  }
 
   useEffect(() => {
     document.body.appendChild(container)
@@ -15,7 +19,12 @@ function Portal({children}) {
 }
 
 Portal.propTypes = {
-  children: node.isRequired
+  children: node.isRequired,
+  container: oneOfType([string, instanceOf(HTMLElement)])
 }
 
-export default Portal
+Portal.defaultProps = {
+  container: "div"
+}
+
+export default Portal |> memo
