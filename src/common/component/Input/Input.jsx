@@ -4,7 +4,7 @@ import {string, bool} from "prop-types"
 import omit from "lodash/omit"
 import cn from "classnames"
 
-import {container} from "./input.scss"
+import {container} from "./input.css"
 
 class Input extends Component {
   base = createRef()

@@ -6,8 +6,6 @@ import omit from "lodash/omit"
 import forward from "lib/hoc/forwardRef"
 import getName from "lib/helper/component/getName"
 
-const assign = Object.assign
-
 const enhanceTextField = Target => {
   @forward class EnhanceTextField extends Component {
     static displayName = `EnhanceTextField(${getName(Target)})`
