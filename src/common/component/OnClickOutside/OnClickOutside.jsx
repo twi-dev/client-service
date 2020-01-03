@@ -1,48 +1,39 @@
-import {cloneElement, Component, Children} from "react"
+import {cloneElement, useEffect, useRef} from "react"
 import {element, func} from "prop-types"
 
 import cn from "classnames"
 
 import {proxy} from "./on-click-outside.css"
 
-const toArray = Children.toArray
+function OnClickOutside({children, onClickOutside}) {
+  const ref = useRef(null)
 
-class OnClickOutside extends Component {
-  static propTypes = {
-    onClickOutside: func,
-    children: element.isRequired,
-  }
-
-  static defaultProps = {
-    onClickOutside: () => {}
-  }
-
-  componentDidMount() {
-    document.addEventListener("click", this.__handler, true)
-    document.addEventListener("touchstart", this.__handler, true)
-  }
-
-  get children() {
-    return toArray(this.props.children)[0]
-  }
-
-  __handler = event => {
-    if (this.base && !this.base.contains(document.activeElement)) {
-      this.props.onClickOutside(event)
+  function handler(event) {
+    if (!ref.current.contains(document.activeElement)) {
+      onClickOutside(event)
     }
   }
 
-  componetWillUnmount() {
-    document.removeEventListener("click", this.__handler, true)
-    document.removeEventListener("touchstart", this.__handler, true)
-  }
+  useEffect(() => {
+    window.addEventListener("click", handler, true)
+    window.addEventListener("touchstart", handler, true)
 
-  render() {
-    return cloneElement(this.children, {
-      className: cn(proxy, this.children.attributes.className),
-      tabIndex: -1
-    })
-  }
+    return () => {
+      window.removeEventListener("click", handler, true)
+      window.removeEventListener("touchstart", handler, true)
+    }
+  })
+
+  return cloneElement(children, {
+    className: cn(proxy, this.children.attributes.className),
+    tabIndex: -1,
+    ref
+  })
+}
+
+OnClickOutside.propTypes = {
+  onClickOutside: func.isRequired,
+  children: element.isRequired
 }
 
 export default OnClickOutside

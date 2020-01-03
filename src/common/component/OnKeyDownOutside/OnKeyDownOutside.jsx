@@ -1,39 +1,27 @@
-import {createRef, cloneElement, Component} from "react"
+import {cloneElement, useRef, useEffect} from "react"
 import {element, func} from "prop-types"
 
-/**
- * Calls given onKeyDown listener when document.activeElement
- * is outside of child component
- */
-class OnKeyDownOutside extends Component {
-  ref = createRef()
+function OnKeyDownOutside({children, onKeyDown}) {
+  const ref = useRef(null)
 
-  static propTypes = {
-    children: element.isRequired,
-    onKeyDown: func
-  }
-
-  static defaultProps = {
-    onKeyDown: () => {}
-  }
-
-  componentDidMount() {
-    document.body.addEventListener("keydown", this.onKeyDown, true)
-  }
-
-  componentWillUnmount() {
-    document.body.removeEventListener("keydown", this.onKeyDown, true)
-  }
-
-  onKeyDown = event => {
-    if (this.ref.current?.contains(document.activeElement) === false) {
-      this.props.onKeyDown(event)
+  function handler(event) {
+    if (!ref.current.contains(document.activeElement)) {
+      onKeyDown(event)
     }
   }
 
-  render() {
-    return cloneElement(this.props.children, {ref: this.ref})
-  }
+  useEffect(() => {
+    document.body.addEventListener("keydown", handler, true)
+
+    return () => document.body.removeEventListener("keydown", handler, true)
+  })
+
+  return cloneElement(children, {ref})
+}
+
+OnKeyDownOutside.propTypes = {
+  children: element.isRequired,
+  onKeyDown: func.isRequired
 }
 
 export default OnKeyDownOutside
