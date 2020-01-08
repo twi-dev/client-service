@@ -12,7 +12,7 @@ module.exports = {
   settings: {
     react: {
       pragma: "createElement",
-      pragmaFrag: "Fragment"
+      fragment: "Fragment"
     },
     "import/resolver": {
       "babel-module": {
@@ -39,20 +39,11 @@ module.exports = {
       checkLoops: false
     }],
 
-    "operator-linebreak": ["error", "after", {
-      overrides: {
-        "+": "ignore",
-        "?": "before",
-        ":": "before"
-      }
-    }],
-
+    "operator-linebreak": ["error", "before"],
     "func-names": ["error", "always", {
       generators: "never"
     }],
-    "prefer-const": ["error", {
-      "destructuring": "all"
-    }],
+    "prefer-const": ["error", {"destructuring": "all"}],
 
     "react/static-property-placement": ["error", "static public field"],
 

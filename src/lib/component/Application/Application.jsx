@@ -1,11 +1,10 @@
 import {hot} from "react-hot-loader/root"
 
 // React should be bplaced after hot loader
-import {createElement} from "react"
+import {createElement, Fragment} from "react"
 
-import Viewer from "lib/component/Viewer"
-
-import Router from "lib/component/Router"
+// import Viewer from "lib/component/Viewer"
+// import Router from "lib/component/Router"
 
 import Title from "common/component/Title"
 
@@ -16,9 +15,7 @@ const Application = () => (
     <Title />
 
     <div className={container}>
-      <Viewer>
-        <Router />
-      </Viewer>
+      Foo
     </div>
   </>
 )
