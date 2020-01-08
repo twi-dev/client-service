@@ -3,6 +3,7 @@
   --color-darkBlue: #161f4a;
 }
 
+/**
 @value coatFill: #daade8;
 @value coatFillShadow: #bf96ce;
 @value coatStroke: #a76ebf;
@@ -16,3 +17,4 @@
 // Cutie mark
 @value cutiemarkBigStar: #ef5092;
 @value cutiemarkSmallStars: white;
+**/
