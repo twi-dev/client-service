@@ -10537,7 +10537,7 @@ react-svg-loader@3.0.3:
     loader-utils "^1.2.3"
     react-svg-core "^3.0.3"
 
-react-use@13.14.3:
+react-use@^13.14.3:
   version "13.14.3"
   resolved "https://registry.yarnpkg.com/react-use/-/react-use-13.14.3.tgz#8d39c5c09ba1131e652fc460f2a363f7591d0f89"
   integrity sha512-HTeicdoc6Jre2boKpZh3ie26RcYagirC1T1OsoQ2xcmxd3jEgtfGj8trexWT7wTThkBn0Zw7dcmflMGgARkXSw==
