@@ -2,7 +2,7 @@
 import {hot} from "react-hot-loader/root"
 import {createElement} from "react"
 
-import useTitle from "react-use/lib/useTitle"
+import useTitle from "lib/hook/useTitle"
 
 import config from "lib/config"
 
