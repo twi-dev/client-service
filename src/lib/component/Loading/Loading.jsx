@@ -1,4 +1,4 @@
-import {createElement} from "react"
+import {createElement, Fragment} from "react"
 
 import Spinner from "react-spinners/SyncLoader"
 
@@ -6,14 +6,14 @@ import Title from "common/component/Title"
 
 import {container} from "./loading.css"
 
-const PageLoader = () => (
-  <>
+const PageLoading = () => (
+  <Fragment>
     <Title title="Loading..." />
 
     <div className={container}>
       <Spinner color="#daade8" />
     </div>
-  </>
+  </Fragment>
 )
 
-export default PageLoader
+export default PageLoading

@@ -3,7 +3,6 @@ import {hot} from "react-hot-loader/root"
 import {createElement} from "react"
 
 import useTitle from "lib/hook/useTitle"
-
 import config from "lib/config"
 
 // import Viewer from "lib/component/Viewer"
