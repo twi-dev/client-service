@@ -42,8 +42,8 @@ const loadable = (params = {}) => {
 
     if (isPlainObject(loaders) && !isFunction(render)) {
       throw new Error(
-        "The \"render\" function required when " +
-        "\"loaders\" option is object."
+        "The \"render\" function required when "
+          + "\"loaders\" option is object."
       )
     }
 
