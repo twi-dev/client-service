@@ -30,7 +30,9 @@ function useTitle(options = {}) {
     title = [title]
   }
 
-  delimiter = ` ${delimiter.trim()} `
+  if (delimiter) {
+    delimiter = ` ${String(delimiter).trim()} `
+  }
 
   setTitle([prefix, ...title, suffix].filter(Boolean).join(delimiter))
 }
