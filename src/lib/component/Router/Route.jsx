@@ -4,6 +4,9 @@ import {createElement as h} from "react"
 
 import DefaultLayout from "common/component/Layout"
 
+/**
+ * Extends Route component of react-router-dom with layouts support
+ */
 function Route(props) {
   const {page, serial, ...routeProps} = props
   const {component: Component, layout: Layout} = page

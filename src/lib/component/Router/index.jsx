@@ -1,5 +1,5 @@
-import loadable from "core/hoc/loadable"
-import Loading from "core/component/Loading"
+import Loading from "lib/component/Loading"
+import loadable from "lib/hoc/loadable"
 
 const LoadableApplicationRouter = loadable({
   loaders: () => import("./Router"),

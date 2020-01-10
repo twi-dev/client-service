@@ -1,9 +1,10 @@
-import Feed from "module/home/page/Feed"
+import Feed from "page/Home"
 
 const home = [
   {
     path: "/",
     page: {
+      layout: false,
       component: Feed
     }
   }

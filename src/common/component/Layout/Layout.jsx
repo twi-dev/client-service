@@ -1,42 +1,18 @@
-import {createElement, Component, Children} from "react"
 import {string, element, arrayOf, oneOfType} from "prop-types"
-
-import Menu from "common/component/SidebarMenu"
-
-import DefaultMenu from "./DefaultMenu"
+import {createElement} from "react"
 
 import {container, content} from "./layout.css"
 
-const toArray = Children.toArray
+const Layout = ({children}) => (
+  <div className={container}>
+    <div className={content}>{children}</div>
+  </div>
+)
 
-class Layout extends Component {
-  static propTypes = {
-    children: oneOfType([
-      string, element, arrayOf(element.isRequired)
-    ]).isRequired
-  }
-
-  get hasMenu() {
-    return !!this.menuContents
-  }
-
-  get menuContents() {
-    return toArray(this.props.children).find(({type}) => type === Menu)
-  }
-
-  get pageContent() {
-    return toArray(this.props.children).filter(({type}) => type !== Menu)
-  }
-
-  render() {
-    return (
-      <div className={container}>
-        {this.hasMenu ? this.menuContents : <DefaultMenu />}
-
-        <div className={content}>{this.pageContent}</div>
-      </div>
-    )
-  }
+Layout.propTypes = {
+  children: oneOfType([
+    string, element, arrayOf(element.isRequired)
+  ]).isRequired
 }
 
 export default Layout

@@ -61,13 +61,11 @@ const loadable = (params = {}) => {
 
     if (keys(loaders).length > 1 && !isFunction(render)) {
       throw new TypeError(
-        "You must resolve a bunch loaded content manually " +
-        "by using a custom renderer. So, \"render\" option required."
+        "You must resolve a bunch loaded content manually "
+          + "by using a custom renderer. So, \"render\" option required."
       )
     }
   }
-
-  loading.onLoading = progress(loading.onLoading)
 
   class Loadable extends Component {
     __delayTimer = null
@@ -166,7 +164,7 @@ const loadable = (params = {}) => {
       const props = omit(this.props, exclude)
 
       if (!isLoaded || error || pastDelay || timedOut) {
-        return h(loading, {error, pastDelay, timedOut, isLoaded})
+        return h(progress(loading), {error, pastDelay, timedOut, isLoaded})
       }
 
       if (isFunction(loaded)) {

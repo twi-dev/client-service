@@ -6,7 +6,7 @@ import useTitle from "lib/hook/useTitle"
 import config from "lib/config"
 
 // import Viewer from "lib/component/Viewer"
-// import Router from "lib/component/Router"
+import Router from "lib/component/Router"
 
 import {container} from "./application.css"
 
@@ -15,9 +15,9 @@ function Application() {
 
   return (
     <div className={container}>
-      Foo
+      <Router />
     </div>
   )
 }
 
-export default Application |> hot
+export default hot(Application)
