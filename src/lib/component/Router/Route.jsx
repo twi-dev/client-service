@@ -1,26 +1,23 @@
-import {createElement as h} from "react"
 import {oneOfType, shape, func, string, bool} from "prop-types"
 import {Route as BaseRoute} from "react-router-dom"
-
-import {provider} from "lib/error/context/router"
+import {createElement as h} from "react"
 
 import DefaultLayout from "common/component/Layout"
 
 function Route(props) {
   const {page, serial, ...routeProps} = props
-
   const {component: Component, layout: Layout} = page
 
   return h(BaseRoute, {
     ...routeProps,
 
-    render: targetProps => do {
+    render: renderProps => do {
       if (Layout === false) {
-        h(Component, targetProps)
+        h(Component, renderProps)
       } else if (!Layout) {
-        h(DefaultLayout, null, h(Component, targetProps))
+        h(DefaultLayout, null, h(Component, renderProps))
       } else {
-        h(Layout, null, h(Component, targetProps))
+        h(Layout, null, h(Component, renderProps))
       }
     }
   })
@@ -43,4 +40,4 @@ Route.defaultProps = {
   exact: true
 }
 
-export default Route |> provider
+export default Route
