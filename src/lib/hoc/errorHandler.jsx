@@ -10,8 +10,8 @@ import ApplicationError from "lib/component/Error/ApplicationError"
  * the function must return a component (as a function or class) or nullish
  * value when no errors matched. In this case ApplicationError will be returned.
  *
- * @param {(err: Error) => Reporter} matcher – errors matcher which is
- *   must return a Reporter or nullish value
+ * @param {(error: Error) => Reporter} matcher – errors matcher which is
+ *   returns a Reporter or nullish value
  *
  * @return {Reporter}
  */

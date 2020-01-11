@@ -1,11 +1,11 @@
-import Feed from "page/Home"
+import Home from "page/Home"
 
 const home = [
   {
     path: "/",
     page: {
       layout: false,
-      component: Feed
+      component: Home
     }
   }
 ]
