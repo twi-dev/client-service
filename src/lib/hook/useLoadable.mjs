@@ -20,6 +20,7 @@ const cache = []
  * @throws {Error}
  */
 function useLoadable(tasks, options = {}) {
+  // FIXME: Probably I have to improve tasks comparison somehow
   const index = cache.findIndex(operation => (
     String(operation.tasks) === String(tasks) || equals(operation.taks, tasks)
   ))
