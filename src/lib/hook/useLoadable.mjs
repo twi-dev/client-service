@@ -20,7 +20,9 @@ const cache = []
  * @throws {Error}
  */
 function useLoadable(tasks, options = {}) {
-  const index = cache.findIndex(operation => equals(operation.tasks, tasks))
+  const index = cache.findIndex(operation => (
+    String(operation.tasks) === String(tasks) || equals(operation.taks, tasks)
+  ))
 
   // Try to resolve a result of an operation if found in cache
   if (index >= 0) {
