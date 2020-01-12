@@ -1,4 +1,4 @@
-import eq from "fast-deep-equal"
+import equals from "fast-deep-equal"
 
 import serial from "lib/helper/object/runSerial"
 import parallel from "lib/helper/object/runParallel"
@@ -20,7 +20,7 @@ const cache = []
  * @throws {Error}
  */
 function useLoadable(tasks, options = {}) {
-  const index = cache.findIndex(entry => eq(entry.tasks, tasks))
+  const index = cache.findIndex(operation => equals(operation.tasks, tasks))
 
   // Try to resolve a result of an operation if found in cache
   if (index >= 0) {
