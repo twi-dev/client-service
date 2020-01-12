@@ -2,6 +2,8 @@ import eq from "fast-deep-equal"
 
 import serial from "lib/helper/object/runSerial"
 import parallel from "lib/helper/object/runParallel"
+import resolve from "lib/helper/util/requireDefault"
+import map from "lib/helper/iterator/objectMap"
 
 const cache = []
 
@@ -56,6 +58,8 @@ function useLoadable(tasks, options = {}) {
     error: null,
     result: null,
     suspender: run(tasks)
+      .then(result => map(result, resolve))
+
       .then(result => { operation.result = result })
 
       .catch(error => { operation.error = error })
