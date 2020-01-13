@@ -58,6 +58,7 @@ function useTasksSuspender(executor, tasks, id = undefined) {
   }
 
   const operation = {
+    id,
     tasks,
     error: null,
     result: null,
