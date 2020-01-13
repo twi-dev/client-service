@@ -1,5 +1,4 @@
-import {createElement, lazy, Suspense} from "react"
-import {isLazy} from "react-is"
+import {createElement, Suspense} from "react"
 
 import useSuspender from "lib/hook/useTasksSuspender"
 import parallel from "lib/helper/object/runParallel"
@@ -16,10 +15,6 @@ const createLoadable = (options = {}) => Target => {
 
   const fallback = params.loading ?? params.fallback
   const executor = params.serial ? serial : parallel
-
-  if (!isLazy(Target)) {
-    Target = lazy(Target)
-  }
 
   function Loadable(props) {
     const data = useSuspender(executor, loaders, id)
