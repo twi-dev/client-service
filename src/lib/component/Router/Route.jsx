@@ -14,9 +14,9 @@ function Route(props) {
   let {component: Component, layout: Layout, prepare} = page
 
   Component = Component |> createLoadable({
-    name: "Page",
+    name: "Route",
     loaders: prepare,
-    id: routeProps.path
+    id: `Route::(${routeProps.path})`
   })
 
   return h(
