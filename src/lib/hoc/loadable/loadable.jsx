@@ -17,7 +17,7 @@ const createLoadable = (options = {}) => Target => {
   const executor = params.serial ? serial : parallel
 
   function Loadable(props) {
-    const data = useSuspender(executor, loaders, id)
+    const data = loaders ? useSuspender(executor, loaders, id) : {}
 
     return do {
       if (suspense) {

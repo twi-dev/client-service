@@ -1,11 +1,11 @@
-import Home from "page/Home"
+import {lazy} from "react"
 
 const home = [
   {
     path: "/",
     page: {
       layout: false,
-      component: Home
+      component: lazy(() => import("page/Home"))
     }
   }
 ]

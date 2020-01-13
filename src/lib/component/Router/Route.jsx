@@ -1,6 +1,8 @@
-import {oneOfType, shape, func, string, bool} from "prop-types"
+import {oneOfType, shape, string, bool, node} from "prop-types"
 import {Route as BaseRoute} from "react-router-dom"
 import {createElement as h} from "react"
+
+import createLoadable from "lib/hoc/loadable"
 
 import DefaultLayout from "common/component/Layout"
 
@@ -9,7 +11,15 @@ import DefaultLayout from "common/component/Layout"
  */
 function Route(props) {
   const {page, serial, ...routeProps} = props
-  const {component: Component, layout: Layout} = page
+  let {component: Component, layout: Layout, prepare} = page
+
+  Component = Component |> createLoadable({
+    name: "Page",
+    loaders: prepare,
+    id: routeProps.path,
+    suspense: true,
+    fallback: h("div", null, "Loading...")
+  })
 
   return h(BaseRoute, {
     ...routeProps,
@@ -30,8 +40,8 @@ Route.displayName = "ApplicationRoute"
 
 Route.propTypes = {
   page: shape({
-    layout: oneOfType([func, bool]),
-    component: func.isRequired,
+    layout: oneOfType([node, bool]),
+    component: node,
     state: shape({})
   }).isRequired,
   path: string,
