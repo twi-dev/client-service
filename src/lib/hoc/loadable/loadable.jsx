@@ -12,7 +12,6 @@ import map from "lib/helper/iterator/objectMap"
 
 const defaults = {
   name: undefined,
-  suspense: false,
   serial: false
 }
 

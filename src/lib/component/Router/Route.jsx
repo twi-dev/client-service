@@ -32,10 +32,10 @@ function Route(props) {
       render: renderProps => do {
         if (Layout === false) {
           h(Component, renderProps)
-        } else if (!Layout) {
-          h(DefaultLayout, null, h(Component, renderProps))
-        } else {
+        } else if (Layout) {
           h(Layout, null, h(Component, renderProps))
+        } else {
+          h(DefaultLayout, null, h(Component, renderProps))
         }
       }
     })
