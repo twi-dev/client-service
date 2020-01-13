@@ -29,7 +29,7 @@ const createLoadable = (options = {}) => Target => {
   }
 
   function Loadable(props) {
-    const data = suspender ? useSuspender(suspender, id, [props]) : {}
+    const data = useSuspender(suspender, id, [props]) ?? {}
 
     return createElement(Target, {...props, ...data})
   }

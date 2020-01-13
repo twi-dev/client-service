@@ -18,6 +18,10 @@ const cache = []
  * @throws {Error}
  */
 function useSuspender(suspender, id = undefined, args = []) {
+  if (suspender == null) {
+    return undefined
+  }
+
   if (!isFunction(suspender)) {
     throw new TypeError("Expected suspender to be a function.")
   }
