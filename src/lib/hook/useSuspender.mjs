@@ -19,7 +19,7 @@ const cache = []
  */
 function useSuspender(suspender, id = undefined, args = []) {
   if (!isFunction(suspender)) {
-    throw new TypeError("Tasks suspender must be a function.")
+    throw new TypeError("Expected suspender to be a function.")
   }
 
   if (isArray(id)) {
