@@ -1,5 +1,5 @@
-import {string, element, arrayOf, oneOfType} from "prop-types"
 import {createElement} from "react"
+import {node} from "prop-types"
 
 import {container, content} from "./layout.css"
 
@@ -10,9 +10,7 @@ const Layout = ({children}) => (
 )
 
 Layout.propTypes = {
-  children: oneOfType([
-    string, element, arrayOf(element.isRequired)
-  ]).isRequired
+  children: node.isRequired
 }
 
 export default Layout

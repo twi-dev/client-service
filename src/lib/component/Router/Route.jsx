@@ -4,7 +4,7 @@ import {createElement as h, Suspense} from "react"
 
 import createLoadable from "lib/hoc/loadable"
 
-import DefaultLayout from "common/component/Layout"
+import DefaultLayout from "layout/DefaultLayout"
 
 /**
  * Extends Route component of react-router-dom with layouts support

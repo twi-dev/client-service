@@ -4,7 +4,6 @@ const home = [
   {
     path: "/",
     page: {
-      layout: false,
       component: lazy(() => import("page/Home"))
     }
   }
