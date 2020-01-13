@@ -1,13 +1,12 @@
 import isFunction from "lodash/isFunction"
 import equals from "fast-deep-equal"
 
-import resolve from "lib/helper/util/requireDefault"
-import map from "lib/helper/iterator/objectMap"
+const {isArray} = Array
 
 const cache = []
 
 /**
- * Creates a suspender from given object of tasks.
+ * Creates a suspender from given function.
  * EXPERIMENTAL!!!
  *
  * @param {{[key: string]: Function}} tasks
@@ -18,20 +17,27 @@ const cache = []
  * @throws {Promise}
  * @throws {Error}
  */
-function useTasksSuspender(executor, tasks, id = undefined) {
-  if (!isFunction(executor)) {
-    throw new TypeError("Tasks executor must be a function.")
+function useSuspender(suspender, id = undefined, args = []) {
+  if (!isFunction(suspender)) {
+    throw new TypeError("Tasks suspender must be a function.")
+  }
+
+  if (isArray(id)) {
+    [args, id] = [id, undefined]
   }
 
   // FIXME: Probably I have to improve tasks comparison somehow
   const index = cache.findIndex(operation => (
-    (String(operation.tasks) === String(tasks) || equals(operation.taks, tasks))
+    (
+      String(operation.suspender) === String(suspender)
+        || equals(operation.suspender, suspender)
+    )
       || ((operation.id && id) && operation.id === id)
   ))
 
   // Try to resolve a result of an operation if found in cache
   if (index >= 0) {
-    const {result, error, suspender} = cache[index]
+    const {result, error, ...operation} = cache[index]
 
     if (error) {
       cache.splice(index, 1)
@@ -54,17 +60,14 @@ function useTasksSuspender(executor, tasks, id = undefined) {
 
     // If there's no result neither error then just throw the operation again
     // since we probably still wait for the result
-    throw suspender
+    throw operation.suspender
   }
 
   const operation = {
     id,
-    tasks,
     error: null,
     result: null,
-    suspender: executor(tasks)
-      .then(result => map(result, resolve))
-
+    suspender: suspender(...args)
       .then(result => { operation.result = result })
 
       .catch(error => { operation.error = error })
@@ -77,4 +80,4 @@ function useTasksSuspender(executor, tasks, id = undefined) {
   throw operation.suspender
 }
 
-export default useTasksSuspender
+export default useSuspender

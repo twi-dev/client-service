@@ -1,8 +1,14 @@
-import {createElement, Suspense} from "react"
+import {createElement} from "react"
 
-import useSuspender from "lib/hook/useTasksSuspender"
+import isPlainObject from "lodash/isPlainObject"
+import partial from "lodash/partial"
+
+import useSuspender from "lib/hook/useSuspender"
 import parallel from "lib/helper/object/runParallel"
+import waterfall from "lib/helper/array/runWaterfall"
+import resolve from "lib/helper/util/requireDefault"
 import serial from "lib/helper/object/runSerial"
+import map from "lib/helper/iterator/objectMap"
 
 const defaults = {
   name: undefined,
@@ -11,29 +17,21 @@ const defaults = {
 }
 
 const createLoadable = (options = {}) => Target => {
-  const {name, loaders, suspense, id, ...params} = {...defaults, ...options}
+  let {name, loaders, suspense, id, ...params} = {...defaults, ...options}
 
-  const fallback = params.loading ?? params.fallback
-  const executor = params.serial ? serial : parallel
+  let suspender = null
+  if (loaders) {
+    if (isPlainObject(loaders)) {
+      loaders = params.serial ? serial : parallel
+    }
+
+    suspender = partial(waterfall, [loaders, result => map(result, resolve)])
+  }
 
   function Loadable(props) {
-    const data = loaders ? useSuspender(executor, loaders, id) : {}
+    const data = suspender ? useSuspender(suspender, id, [props]) : {}
 
-    return do {
-      if (suspense) {
-        createElement(
-          Suspense,
-
-          {
-            fallback
-          },
-
-          createElement(Target, {...props, ...data})
-        )
-      } else {
-        createElement(Target, {...props, ...data})
-      }
-    }
+    return createElement(Target, {...props, ...data})
   }
 
   if (process.env.NODE_ENV !== "production" && name) {

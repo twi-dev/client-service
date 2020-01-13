@@ -1,6 +1,6 @@
 import {oneOfType, shape, string, bool, node} from "prop-types"
 import {Route as BaseRoute} from "react-router-dom"
-import {createElement as h} from "react"
+import {createElement as h, Suspense} from "react"
 
 import createLoadable from "lib/hoc/loadable"
 
@@ -16,24 +16,30 @@ function Route(props) {
   Component = Component |> createLoadable({
     name: "Page",
     loaders: prepare,
-    id: routeProps.path,
-    suspense: true,
-    fallback: h("div", null, "Loading...")
+    id: routeProps.path
   })
 
-  return h(BaseRoute, {
-    ...routeProps,
+  return h(
+    Suspense,
 
-    render: renderProps => do {
-      if (Layout === false) {
-        h(Component, renderProps)
-      } else if (!Layout) {
-        h(DefaultLayout, null, h(Component, renderProps))
-      } else {
-        h(Layout, null, h(Component, renderProps))
+    {
+      fallback: h("div", null, "Loading page...")
+    },
+
+    h(BaseRoute, {
+      ...routeProps,
+
+      render: renderProps => do {
+        if (Layout === false) {
+          h(Component, renderProps)
+        } else if (!Layout) {
+          h(DefaultLayout, null, h(Component, renderProps))
+        } else {
+          h(Layout, null, h(Component, renderProps))
+        }
       }
-    }
-  })
+    })
+  )
 }
 
 Route.displayName = "ApplicationRoute"
