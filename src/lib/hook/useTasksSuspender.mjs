@@ -1,7 +1,6 @@
+import isFunction from "lodash/isFunction"
 import equals from "fast-deep-equal"
 
-import serial from "lib/helper/object/runSerial"
-import parallel from "lib/helper/object/runParallel"
 import resolve from "lib/helper/util/requireDefault"
 import map from "lib/helper/iterator/objectMap"
 
@@ -19,10 +18,15 @@ const cache = []
  * @throws {Promise}
  * @throws {Error}
  */
-function useLoadable(tasks, options = {}) {
+function useTasksSuspender(executor, tasks, id = undefined) {
+  if (!isFunction(executor)) {
+    throw new TypeError("Tasks executor must be a function.")
+  }
+
   // FIXME: Probably I have to improve tasks comparison somehow
   const index = cache.findIndex(operation => (
-    String(operation.tasks) === String(tasks) || equals(operation.taks, tasks)
+    (String(operation.tasks) === String(tasks) || equals(operation.taks, tasks))
+      || ((operation.id && id) && operation.id === id)
   ))
 
   // Try to resolve a result of an operation if found in cache
@@ -53,14 +57,11 @@ function useLoadable(tasks, options = {}) {
     throw suspender
   }
 
-  // Decide an operation resolver type depending on options
-  const run = options.serial === true ? serial : parallel
-
   const operation = {
     tasks,
     error: null,
     result: null,
-    suspender: run(tasks)
+    suspender: executor(tasks)
       .then(result => map(result, resolve))
 
       .then(result => { operation.result = result })
@@ -75,4 +76,4 @@ function useLoadable(tasks, options = {}) {
   throw operation.suspender
 }
 
-export default useLoadable
+export default useTasksSuspender
