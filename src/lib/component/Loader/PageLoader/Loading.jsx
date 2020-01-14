@@ -11,6 +11,7 @@ const PageLoading = () => (
     <Title title="Loading..." />
 
     <div className={container}>
+      {/* Check if color parameter can take custom property as a value */}
       <Spinner color="#daade8" />
     </div>
   </Fragment>
