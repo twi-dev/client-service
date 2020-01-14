@@ -43,6 +43,7 @@
     "@babel/preset-env": "7.7.7",
     "@babel/preset-react": "7.7.4",
     "@octetstream/eslint-config": "4.0.0",
+    "@open-wc/webpack-import-meta-loader": "^0.4.1",
     "@svgr/webpack": "5.0.1",
     "autoprefixer": "9.7.3",
     "ava": "2.4.0",
