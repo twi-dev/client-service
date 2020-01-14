@@ -31,7 +31,8 @@ module.exports = {
     }],
     ["module-resolver", {
       root: ["src"],
-    }]
+    }],
+    "emotion"
   ],
   env: {
     production: {

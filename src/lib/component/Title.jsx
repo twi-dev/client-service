@@ -14,7 +14,7 @@ Title.propTypes = {
     shape({
       delimiter: string,
       prefix: string,
-      title: oneOfType([string, arrayOf(string)]),
+      base: oneOfType([string, arrayOf(string)]),
       suffix: string
     })
   ]).isRequired

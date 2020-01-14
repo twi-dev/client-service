@@ -1,5 +1,5 @@
+import {createElement, Fragment} from "react"
 import {Link} from "react-router-dom"
-import {createElement} from "react"
 
 import logErrors from "lib/hoc/logErrors"
 
@@ -10,7 +10,7 @@ import {container, content, image, message, code} from "./not-found-error.css"
 import Image from "./not-found-error.svg"
 
 const NotFoundError = () => (
-  <>
+  <Fragment>
     <Title title="Page Not Found" />
 
     <div className={container}>
@@ -27,7 +27,7 @@ const NotFoundError = () => (
         <div className={code}>404</div>
       </div>
     </div>
-  </>
+  </Fragment>
 )
 
 export default NotFoundError |> logErrors
