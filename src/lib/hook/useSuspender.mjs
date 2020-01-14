@@ -44,7 +44,9 @@ function useSuspender(suspender, id = undefined, args = []) {
     const {result, error, ...operation} = cache[index]
 
     if (error) {
-      cache.splice(index, 1)
+      // Probably I should not clean the cache on error
+      // because react continues to call useSuspender again and again
+      // cache.splice(index, 1)
 
       throw error
     }

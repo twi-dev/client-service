@@ -23,9 +23,7 @@ const refreshTokenLink = new ApolloLink(
   (operation, forward) => new Observable(observer => {
     let handle = null
 
-    async function send() {
-      const token = await db.getItem("refreshToken")
-
+    async function send(token) {
       const params = {
         method: "POST",
         headers: {
@@ -69,8 +67,11 @@ const refreshTokenLink = new ApolloLink(
 
     const run = partial(waterfall, [send, parse, read, save, finish])
 
-    shouldUpdate(operation.operationName)
-      .then(value => value ? run() : finish())
+    Promise.all([
+      shouldUpdate(operation.operationName),
+      db.getItem("refreshToken")
+    ])
+      .then(([active, token]) => active && token ? run(token) : finish())
       .catch(onRejected)
 
     return () => handle && handle.unsubscribe()

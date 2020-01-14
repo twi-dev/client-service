@@ -2,6 +2,7 @@ import {createElement} from "react"
 
 import isPlainObject from "lodash/isPlainObject"
 import partial from "lodash/partial"
+import pipe from "lodash/fp/pipe"
 
 import useSuspender from "lib/hook/useSuspender"
 import parallel from "lib/helper/object/runParallel"
@@ -9,6 +10,8 @@ import waterfall from "lib/helper/array/runWaterfall"
 import resolve from "lib/helper/util/requireDefault"
 import serial from "lib/helper/object/runSerial"
 import map from "lib/helper/iterator/objectMap"
+
+const {of: to} = Array
 
 const defaults = {
   name: undefined,
@@ -21,7 +24,7 @@ const createLoadable = (options = {}) => Target => {
   let suspender = null
   if (loaders) {
     if (isPlainObject(loaders)) {
-      loaders = params.serial ? serial : parallel
+      loaders = pipe([to, partial(params.serial ? serial : parallel, loaders)])
     }
 
     suspender = partial(waterfall, [loaders, result => map(result, resolve)])
