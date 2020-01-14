@@ -2,8 +2,7 @@ import {createElement, Fragment} from "react"
 import {Link} from "react-router-dom"
 
 import logErrors from "lib/hoc/logErrors"
-
-import Title from "common/component/Title"
+import Title from "lib/component/Title"
 
 import {container, content, image, message, code} from "./not-found-error.css"
 

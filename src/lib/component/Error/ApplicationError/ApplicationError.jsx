@@ -1,14 +1,14 @@
-import {createElement} from "react"
+import {createElement, Fragment} from "react"
 import {instanceOf} from "prop-types"
 
 import logErrors from "lib/hoc/logErrors"
 
-import Title from "common/component/Title"
+import Title from "lib/component/Title"
 
 import {container, stack} from "./application-error.css"
 
 const ApplicationError = ({error}) => (
-  <>
+  <Fragment>
     <Title title="Aw, snap!" />
 
     <div className={container}>
@@ -33,7 +33,7 @@ const ApplicationError = ({error}) => (
         }
       }
     </div>
-  </>
+  </Fragment>
 )
 
 ApplicationError.propTypes = {

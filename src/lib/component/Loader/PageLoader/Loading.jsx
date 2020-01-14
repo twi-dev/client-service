@@ -2,7 +2,7 @@ import {createElement, Fragment} from "react"
 
 import Spinner from "react-spinners/SyncLoader"
 
-import Title from "common/component/Title"
+import Title from "lib/component/Title"
 
 import {container} from "./loading.css"
 
