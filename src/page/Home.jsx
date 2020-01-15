@@ -4,9 +4,9 @@ import Title from "lib/component/Title"
 
 const Home = () => (
   <Fragment>
-    <Title title="Home" />
+    <Title title="Feed" />
 
-    <div>Home page</div>
+    <div>User′s feed page will be here</div>
   </Fragment>
 )
 

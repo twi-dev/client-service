@@ -17,6 +17,7 @@ module.exports = ({env, file}) => ({
     lost: {},
     "postcss-normalize": {},
     "postcss-preset-env": {},
+    "postcss-font-magician": {},
     cssnano: env === "production" ? {} : false
   }
 })
