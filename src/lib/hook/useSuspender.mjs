@@ -59,8 +59,8 @@ function useSuspender(id, suspender, args = []) {
       return result
     }
 
-    // If there's no result neither error then just throw the operation again
-    // since we probably still wait for the result
+    // If there's no a result neither an error then just throw the operation
+    // again since we probably still wait for the result
     throw operation.suspender
   }
 
