@@ -20,8 +20,20 @@ const defaults = {
 
 const normalize = result => map(result, resolve)
 
+/**
+ *  Creates a Loadable component that fulfills given loaders object
+ *  and passes their results to given Target
+ *
+ * @param {object} [options = {}]
+ * @param {string} options.id – Suspender's ID (it must be unique at app-wide)
+ * @param {string} [options.name = undefined] – name of a Target component
+ * @param {{[key: string]: Function}} [loaders = undefined]
+ * @param {boolean} [options.serial = false] – if "true", run loaders serially
+ *
+ * @param {(Target: Function) => Function} Loadable
+ */
 const createLoadable = (options = {}) => Target => {
-  let {name, loaders, suspense, id, ...params} = {...defaults, ...options}
+  let {id, name, loaders, ...params} = {...defaults, ...options}
 
   let suspender = null
   if (loaders) {

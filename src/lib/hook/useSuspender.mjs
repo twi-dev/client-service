@@ -3,17 +3,21 @@ import isFunction from "lodash/isFunction"
 const cache = new Map()
 
 /**
- * Creates a suspender from given function.
+ * Executes given suspender function then throws its Promise
+ * to await and consume its result with React.Suspense.
+ *
  * EXPERIMENTAL!!!
  *
  * @param {string} id
- * @param {Function} tasks
+ * @param {() => Promise<any>} suspender
  * @param {Array<any>} [args = []]
  *
  * @return {any}
  *
- * @throws {Promise}
- * @throws {Error}
+ * @throws {Promise} A promise will be thrown when no suspender with
+ *  such ID found in cache.
+ *
+ * @throws {Error} if suspender's Promise has been rejected with an error
  */
 function useSuspender(id, suspender, args = []) {
   if (suspender == null) {
@@ -37,14 +41,14 @@ function useSuspender(id, suspender, args = []) {
     if (error) {
       // Probably I should not clean the cache on error
       // because react continues to call useSuspender again and again
-      // cache.splice(index, 1)
+      // cache.delete(id)
 
       throw error
     }
 
     // Remove entry from the cache then return the result
     if (result) {
-      // FIXME: I think that cache management probably must be reconsidered
+      // NOTE: I think that cache management probably must be reconsidered
       // due to the fact of how such early operation removal might affect
       // on a further Suspense-dependent components re-renders.
       // I almost thing that the closest Suspense is up the component
@@ -63,7 +67,7 @@ function useSuspender(id, suspender, args = []) {
   const operation = {
     error: null,
     result: null,
-    suspender: suspender(...args)
+    suspender: Promise.resolve(suspender(...args))
       .then(result => { operation.result = result })
 
       .catch(error => { operation.error = error })
