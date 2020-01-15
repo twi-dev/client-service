@@ -1,10 +1,10 @@
 import {BrowserRouter, Switch} from "react-router-dom"
-import {createElement} from "react"
-
-import NotFoundError from "lib/component/Error/NotFoundError"
+import {createElement, lazy} from "react"
 
 import getRoutes from "./getRoutes"
 import Route from "./Route"
+
+const NotFoundError = lazy(() => import("lib/component/Error/NotFoundError"))
 
 const routes = getRoutes()
 
