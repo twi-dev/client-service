@@ -18,6 +18,8 @@ const defaults = {
   serial: false
 }
 
+const normalize = result => map(result, resolve)
+
 const createLoadable = (options = {}) => Target => {
   let {name, loaders, suspense, id, ...params} = {...defaults, ...options}
 
@@ -27,7 +29,7 @@ const createLoadable = (options = {}) => Target => {
       loaders = pipe([to, partial(params.serial ? serial : parallel, loaders)])
     }
 
-    suspender = partial(waterfall, [loaders, result => map(result, resolve)])
+    suspender = partial(waterfall, [loaders, normalize])
   }
 
   function Loadable(props) {
