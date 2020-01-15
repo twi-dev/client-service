@@ -1,47 +1,38 @@
 import isFunction from "lodash/isFunction"
-import equals from "fast-deep-equal"
 
-const {isArray} = Array
-
-const cache = []
+const cache = new Map()
 
 /**
  * Creates a suspender from given function.
  * EXPERIMENTAL!!!
  *
- * @param {{[key: string]: Function}} tasks
- * @param {object} [options = {}]
+ * @param {string} id
+ * @param {Function} tasks
+ * @param {Array<any>} [args = []]
  *
  * @return {any}
  *
  * @throws {Promise}
  * @throws {Error}
  */
-function useSuspender(suspender, id = undefined, args = []) {
+function useSuspender(id, suspender, args = []) {
   if (suspender == null) {
     return undefined
+  }
+
+  if (!id) {
+    throw new Error("Suspender ID is required.")
   }
 
   if (!isFunction(suspender)) {
     throw new TypeError("Expected suspender to be a function.")
   }
 
-  if (isArray(id)) {
-    [args, id] = [id, undefined]
-  }
-
-  // FIXME: Probably I have to improve tasks comparison somehow
-  const index = cache.findIndex(operation => (
-    (
-      String(operation.suspender) === String(suspender)
-        || equals(operation.suspender, suspender)
-    )
-      || ((operation.id && id) && operation.id === id)
-  ))
+  id = String(id)
 
   // Try to resolve a result of an operation if found in cache
-  if (index >= 0) {
-    const {result, error, ...operation} = cache[index]
+  if (cache.has(id)) {
+    const {result, error, ...operation} = cache.get(id)
 
     if (error) {
       // Probably I should not clean the cache on error
@@ -59,7 +50,7 @@ function useSuspender(suspender, id = undefined, args = []) {
       // I almost thing that the closest Suspense is up the component
       // that called this function, React may call the component again
       // which will cause unnecessary operation's runs.
-      cache.splice(index, 1)
+      cache.delete(id)
 
       return result
     }
@@ -70,7 +61,6 @@ function useSuspender(suspender, id = undefined, args = []) {
   }
 
   const operation = {
-    id,
     error: null,
     result: null,
     suspender: suspender(...args)
@@ -80,7 +70,7 @@ function useSuspender(suspender, id = undefined, args = []) {
   }
 
   // Cache the operation
-  cache.push(operation)
+  cache.set(id, operation)
 
   // Notify React.Suspense
   throw operation.suspender
