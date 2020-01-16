@@ -21,7 +21,7 @@ function objectFlatMerge(target, ...sources) {
     const source = sources.shift()
 
     // Ignore all nullish values and array-like objects
-    if (source == null || isArray(target)) {
+    if (source == null || isArray(source)) {
       continue
     }
 
