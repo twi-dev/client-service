@@ -5,7 +5,7 @@ import forwardRef from "lib/hoc/forwardRef"
 import preventDefault from "lib/helper/decorator/preventDefault"
 
 const Form = ({onSubmit, forwardedRef, children, ...props}) => (
-  <form {...props} onSubmit={preventDefault(onSubmit, forwardedRef)}>
+  <form {...props} ref={forwardedRef} onSubmit={preventDefault(onSubmit)}>
     {children}
   </form>
 )
@@ -20,7 +20,7 @@ Form.propTypes = {
 Form.defaultProps = {
   ...forwardRef.defaultProps,
 
-  onSubmit: null
+  onSubmit() { }
 }
 
 export default Form |> forwardRef

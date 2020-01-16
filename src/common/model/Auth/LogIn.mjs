@@ -26,9 +26,9 @@ const actions = self => ({
 
 const views = self => ({
   get isValid() {
-    const {username, password} = self
+    const {username, passvord} = self
 
-    return !!(username && password)
+    return Boolean(username && passvord)
   }
 })
 

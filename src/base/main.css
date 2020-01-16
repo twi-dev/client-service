@@ -7,15 +7,17 @@
 }
 
 html, body {
-  font: 14px Roboto, sans-serif;
+  font: 400 14px Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--color-dark-blue);
   margin: 0;
   padding: 0;
-  color: var(--color-dark-blue);
 }
 
 button, textarea, input {
+  font: inherit;
+
   &:focus, &:active {
     outline: none;
   }

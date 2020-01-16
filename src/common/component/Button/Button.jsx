@@ -6,7 +6,7 @@ import omit from "lodash/omit"
 import forwardRef from "lib/hoc/forwardRef"
 import Abstract from "lib/component/Abstract"
 
-import {container, wide} from "./button.scss"
+import {container, wide} from "./button.css"
 
 const except = ["wide"]
 

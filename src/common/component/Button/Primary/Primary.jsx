@@ -7,7 +7,7 @@ import forwardRef from "lib/hoc/forwardRef"
 
 import Plain from "common/component/Button"
 
-import {container} from "./primary.scss"
+import {container} from "./primary.css"
 
 const Primary = ({className, children, forwardedRef, ...props}) => (
   <Plain {...props} className={cn(container, className)} ref={forwardedRef}>

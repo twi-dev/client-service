@@ -1,5 +1,4 @@
-// import Signup from "module/auth/page/Signup"
-// import Login from "module/auth/page/Login"
+import {lazy} from "react"
 
 const auth = [
   // {
@@ -9,13 +8,13 @@ const auth = [
   //     layout: false
   //   },
   // },
-  // {
-  //   path: "/login",
-  //   page: {
-  //     component: Login,
-  //     layout: false
-  //   },
-  // }
+  {
+    path: "/login",
+    page: {
+      layout: false,
+      component: lazy(() => import("page/Auth/LogIn"))
+    },
+  }
 ]
 
 export default auth

@@ -2,11 +2,11 @@
 
 .container {
   background: white;
-  color: #653089;
+  color: var(--color-primary);
   text-transform: uppercase;
   font-weight: 700;
   border: none;
-  padding: 12px 26px;
+  padding: 16px 24px;
   cursor: pointer;
 
   &:disabled {
