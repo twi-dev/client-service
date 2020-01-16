@@ -7,7 +7,9 @@ import useUnmount from "react-use/lib/useUnmount"
 
 import {light, dark} from "./colors.css"
 
-function Theme({children}) {
+import Context from "./Context"
+
+function DarkMode({children}) {
   const darkMode = matchMedia("(prefers-color-scheme: dark)")
   const [isOn, toggle] = useState(darkMode.matches)
 
@@ -23,13 +25,15 @@ function Theme({children}) {
         <body className={isOn ? dark : light} />
       </Helmet>
 
-      {children}
+      <Context.Provider value={isOn}>
+        {children}
+      </Context.Provider>
     </Fragment>
   )
 }
 
-Theme.propTypes = {
+DarkMode.propTypes = {
   children: node.isRequired
 }
 
-export default Theme
+export default DarkMode

@@ -5,7 +5,7 @@ import {createElement} from "react"
 import useTitle from "lib/hook/useTitle"
 import config from "lib/config"
 
-import Theme from "lib/component/Theme"
+import DarkMode from "lib/component/DarkMode"
 import Router from "lib/component/Router"
 
 import {container} from "./application.css"
@@ -14,11 +14,11 @@ function Application() {
   useTitle(config.app.name)
 
   return (
-    <Theme>
+    <DarkMode>
       <div className={container}>
         <Router />
       </div>
-    </Theme>
+    </DarkMode>
   )
 }
 
