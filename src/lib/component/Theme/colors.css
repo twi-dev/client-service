@@ -1,6 +1,17 @@
+/* deprecated */
 :root {
   --color-primary: #a76ebf;
   --color-darkBlue: #161f4a;
+}
+
+.light {
+  --color-primary: #a76ebf;
+  --color-dark-blue: #161f4a;
+}
+
+.dark {
+  --color-primary: #a76ebf;
+  --color-dark-blue: #161f4a;
 }
 
 /**

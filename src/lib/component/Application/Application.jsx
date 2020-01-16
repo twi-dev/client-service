@@ -5,7 +5,7 @@ import {createElement} from "react"
 import useTitle from "lib/hook/useTitle"
 import config from "lib/config"
 
-// import Viewer from "lib/component/Viewer"
+import Theme from "lib/component/Theme"
 import Router from "lib/component/Router"
 
 import {container} from "./application.css"
@@ -14,9 +14,11 @@ function Application() {
   useTitle(config.app.name)
 
   return (
-    <div className={container}>
-      <Router />
-    </div>
+    <Theme>
+      <div className={container}>
+        <Router />
+      </div>
+    </Theme>
   )
 }
 
