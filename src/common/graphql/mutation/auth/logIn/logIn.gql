@@ -1,7 +1,14 @@
-#import "common/graphql/fragment/auth/tokens.gql"
+#import "common/graphql/fragment/auth/accessToken.gql"
+#import "common/graphql/fragment/auth/refreshToken.gql"
 
-mutation AuthLogIn($credentials: AuthLogInInput!) {
-  authLogIn(credentials: $credentials) {
-    ...authTokens
+mutation AuthLogIn($user: AuthLogInInput!) {
+  authLogIn(user: $user) {
+    accessToken {
+      ...authAccessToken
+    }
+
+    refreshToken {
+      ...authAefreshToken
+    }
   }
 }

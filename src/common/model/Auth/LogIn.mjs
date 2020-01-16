@@ -18,9 +18,9 @@ const actions = self => ({
   updatePassword: updateTextField(self, "password"),
 
   submit: flow(function* () {
-    const credentials = {login: self.username, password: self.password}
+    const user = {login: self.username, password: self.password}
 
-    yield waterfall([logIn, saveTokens], {credentials})
+    yield waterfall([logIn, saveTokens], {user})
   })
 })
 

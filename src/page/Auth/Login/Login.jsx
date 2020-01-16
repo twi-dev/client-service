@@ -1,4 +1,5 @@
 import {observer, useLocalStore} from "mobx-react-lite"
+import {useHistory} from "react-router-dom"
 import {createElement} from "react"
 
 import useTitle from "lib/hook/useTitle"
@@ -14,16 +15,25 @@ import {container, box, field, actions} from "./login.css"
 function Login() {
   useTitle("Login")
 
+  const history = useHistory()
+
   const {
     username,
     updateUsername,
     password,
     updatePassword,
+    submit: logIn
   } = useLocalStore(() => Model.create())
+
+  function submit() {
+    logIn()
+      .then(() => history.push("/home"))
+      .catch(console.error)
+  }
 
   return (
     <div className={container}>
-      <Form className={box}>
+      <Form className={box} onSubmit={submit}>
         <div className={field}>
           <Input
             required
