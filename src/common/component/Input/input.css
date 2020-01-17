@@ -1,5 +1,12 @@
+@use postcss-nested;
+
 .container {
   width: 100%;
   border: 1px solid #ebecf0;
   padding: 16px;
+  transition: border-color 190ms linear;
+
+  &:focus {
+    border-color: var(--color-primary)
+  }
 }

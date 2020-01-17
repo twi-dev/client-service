@@ -37,6 +37,7 @@ function Login() {
         <div className={field}>
           <Input
             required
+            id="username"
             type="email"
             name="username"
             placeholder="Email or login"
@@ -48,6 +49,7 @@ function Login() {
         <div className={field}>
           <Input
             required
+            id="password"
             type="password"
             name="password"
             placeholder="Password"

@@ -7,7 +7,7 @@
 }
 
 .box {
-  width: 290px;
+  width: 280px;
 }
 
 .field {
@@ -18,4 +18,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* .links {} */
+
+@media screen and (width > 1000px) {
+  .box {
+    display: flex;
+    width: 900px;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .field {
+    margin-right: 16px;
+    margin-bottom: initial;
+  }
 }
