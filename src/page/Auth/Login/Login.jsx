@@ -67,7 +67,7 @@ function Login() {
         </div>
         <div className={links}>
           <Link className={link} to="/auth/signup">
-            Don′t have an account yet?
+            Have no account yet?
           </Link>
 
           <Link className={link} to="/auth/recover">
