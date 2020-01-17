@@ -1,6 +1,6 @@
 import {oneOfType, shape, string, bool, node, object} from "prop-types"
 import {Route as BaseRoute} from "react-router-dom"
-import {createElement as h, Suspense} from "react"
+import {createElement as h, Suspense, lazy} from "react"
 
 import partial from "lodash/partial"
 
@@ -9,7 +9,7 @@ import createLoadable from "lib/hoc/loadable"
 import getName from "lib/helper/component/getName"
 import Loader from "lib/component/Loader/PageLoader"
 
-import DefaultLayout from "layout/DefaultLayout"
+const DefaultLayout = lazy(() => import("layout/DefaultLayout"))
 
 /**
  * Extends Route component of react-router-dom with layouts support

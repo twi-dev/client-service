@@ -12,7 +12,6 @@ module.exports = {
   plugins: [
     "react-hot-loader/babel",
     "@babel/transform-runtime",
-    "@babel/syntax-dynamic-import",
     ["@babel/proposal-decorators", {
       legacy: true
     }],
@@ -24,8 +23,6 @@ module.exports = {
     }],
     "@babel/proposal-optional-catch-binding",
     "@babel/proposal-do-expressions",
-    "@babel/proposal-nullish-coalescing-operator",
-    "@babel/proposal-optional-chaining",
     ["@babel/proposal-object-rest-spread", {
       useBuiltIns: true,
     }],

@@ -1,4 +1,4 @@
-import {node, string, number, oneOftype} from "prop-types"
+import {node, string, number, oneOfType} from "prop-types"
 import {useState} from "react"
 
 import useUnmount from "react-use/lib/useUnmount"
@@ -28,11 +28,11 @@ function Delay({children, amount}) {
 
 Delay.propTypes = {
   children: node.isRequired,
-  amount: oneOftype([string, number])
+  amount: oneOfType([string, number])
 }
 
 Delay.defaultProps = {
-  amount: undefined
+  amount: 300
 }
 
 export default Delay
