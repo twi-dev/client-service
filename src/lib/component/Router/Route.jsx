@@ -4,27 +4,28 @@ import {createElement as h, Suspense} from "react"
 
 import partial from "lodash/partial"
 
+import Delay from "lib/component/Delay"
 import createLoadable from "lib/hoc/loadable"
 import getName from "lib/helper/component/getName"
 import Loader from "lib/component/Loader/PageLoader"
 
 import DefaultLayout from "layout/DefaultLayout"
 
-const suspense = partial(h, Suspense, {
-  fallback: h(Loader)
-})
-
 /**
  * Extends Route component of react-router-dom with layouts support
  */
 function Route(props) {
-  const {id = getName(Route), page, serial, ...routeProps} = props
+  const {id = getName(Route), delay, page, serial, ...routeProps} = props
   let {component: Component, layout: Layout, prepare} = page
 
   Component = Component |> createLoadable({
     name: "Route",
     loaders: prepare,
-    id: JSON.stringify({id, path: routeProps.path})
+    id: {id, path: routeProps.path}
+  })
+
+  const suspense = partial(h, Suspense, {
+    fallback: h(Delay, {amount: delay}, h(Loader))
   })
 
   return suspense(

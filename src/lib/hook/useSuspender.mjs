@@ -1,4 +1,5 @@
 import isFunction from "lodash/isFunction"
+import isObject from "lodash/isObject"
 
 const cache = new Map()
 
@@ -32,7 +33,7 @@ function useSuspender(id, suspender, args = []) {
     throw new TypeError("Expected suspender to be a function.")
   }
 
-  id = String(id)
+  id = isObject(id) ? JSON.stringify(id) : String(id)
 
   // Try to resolve a result of an operation if found in cache
   if (cache.has(id)) {
