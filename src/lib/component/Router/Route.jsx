@@ -4,6 +4,7 @@ import {createElement as h, Suspense, lazy} from "react"
 
 import partial from "lodash/partial"
 
+import useTitle from "lib/hook/useTitle"
 import Delay from "lib/component/Delay"
 import createLoadable from "lib/hoc/loadable"
 import getName from "lib/helper/component/getName"
@@ -16,7 +17,7 @@ const DefaultLayout = lazy(() => import("layout/DefaultLayout"))
  */
 function Route(props) {
   const {id = getName(Route), delay, page, serial, ...routeProps} = props
-  let {component: Component, layout: Layout, prepare} = page
+  let {component: Component, layout: Layout, prepare, title} = page
 
   Component = Component |> createLoadable({
     name: "Route",
@@ -27,6 +28,8 @@ function Route(props) {
   const suspense = partial(h, Suspense, {
     fallback: h(Delay, {amount: delay}, h(Loader))
   })
+
+  useTitle(title)
 
   return suspense(
     h(BaseRoute, {
