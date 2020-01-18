@@ -8,7 +8,7 @@ mutation AuthLogIn($user: AuthLogInInput!) {
     }
 
     refreshToken {
-      ...authAefreshToken
+      ...authRefreshToken
     }
   }
 }

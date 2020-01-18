@@ -27,7 +27,7 @@ function Login() {
 
   function submit() {
     logIn()
-      .then(() => history.push("/home"))
+      .then(() => history.push("/"))
       .catch(console.error)
   }
 
@@ -39,7 +39,7 @@ function Login() {
             <Input
               required
               id="username"
-              type="email"
+              type="text"
               name="username"
               placeholder="Email or login"
               value={username}

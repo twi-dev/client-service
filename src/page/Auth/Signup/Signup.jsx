@@ -29,7 +29,7 @@ function Signup() {
 
   function submit() {
     logIn()
-      .then(() => history.push("/home"))
+      .then(() => history.push("/"))
       .catch(console.error)
   }
 
