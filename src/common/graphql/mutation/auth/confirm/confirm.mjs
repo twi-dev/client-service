@@ -2,6 +2,7 @@ import partial from "lodash/partial"
 
 import getData from "lib/helper/graphql/getData"
 import waterfall from "lib/helper/array/runWaterfall"
+import saveTokens from "lib/auth/helper/saveTokens"
 
 import {mutate} from "lib/transport/graphql"
 
@@ -20,13 +21,13 @@ async function confirm(hash) {
   let result = false
 
   try {
-    result = await waterfall([partial(mutate, params), read])
+    await waterfall([partial(mutate, params), read, saveTokens])
+
+    result = true
   } catch (err) {
     if (err.networkError) {
       throw err
     }
-
-    result = false
   }
 
   return result
