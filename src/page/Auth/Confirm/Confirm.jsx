@@ -39,7 +39,7 @@ function Confirm() {
             } else {
               <Fragment>
                 <div>Cannot activate your account.</div>
-                <div>Probably the activation email has been expired.</div>
+                <div>Probably the activation link has been expired.</div>
               </Fragment>
             }
           }
