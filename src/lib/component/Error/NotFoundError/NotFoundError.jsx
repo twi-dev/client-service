@@ -10,7 +10,7 @@ import Image from "./not-found-error.svg"
 
 const NotFoundError = () => (
   <Fragment>
-    <Title title="Page Not Found" />
+    <Title title="Oops..." />
 
     <div className={container}>
       <div className={content}>
