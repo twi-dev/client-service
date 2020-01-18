@@ -1,8 +1,9 @@
+import {useParams, Redirect} from "react-router-dom"
 import {createElement, Fragment} from "react"
-import {useParams} from "react-router-dom"
 
 import cn from "classnames"
 
+import Delay from "lib/component/Delay"
 import useTitle from "lib/hook/useTitle"
 import useSuspender from "lib/hook/useSuspender"
 
@@ -35,6 +36,10 @@ function Confirm() {
                 <div>
                   You will be redirected to the home page in a moment.
                 </div>
+
+                <Delay amount="5s">
+                  <Redirect to="/" />
+                </Delay>
               </Fragment>
             } else {
               <Fragment>
