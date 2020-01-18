@@ -1,0 +1,13 @@
+mutation ConfirmEmail($hash: String!) {
+  authConfirmEmail(hash: $hash) {
+    accessToken {
+      type
+      expires
+      payload
+    }
+    refreshToken {
+      type
+      payload
+    }
+  }
+}

@@ -4,8 +4,8 @@ const auth = [
   {
     path: "/signup",
     page: {
-      component: lazy(() => import("page/Auth/Signup")),
-      layout: false
+      layout: false,
+      component: lazy(() => import("page/Auth/Signup"))
     },
   },
   {
@@ -13,7 +13,14 @@ const auth = [
     page: {
       layout: false,
       component: lazy(() => import("page/Auth/Login"))
-    },
+    }
+  },
+  {
+    path: "/confirm/:hash",
+    page: {
+      layout: false,
+      component: lazy(() => import("page/Auth/Confirm"))
+    }
   }
 ]
 

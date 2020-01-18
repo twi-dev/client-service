@@ -9,11 +9,11 @@ import document from "./logIn.gql"
 
 const read = getData("authLogIn")
 
-function logIn({credentials}) {
+function logIn({user}) {
   const params = {
     mutation: document,
     variables: {
-      credentials
+      user
     }
   }
 
