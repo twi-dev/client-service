@@ -11,7 +11,7 @@ import Context from "./Context"
 
 function DarkMode({children}) {
   const darkMode = matchMedia("(prefers-color-scheme: dark)")
-  const [isOn, toggle] = useState(darkMode.matches)
+  const [isActive, toggle] = useState(darkMode.matches)
 
   const onModeChange = ({matches}) => toggle(matches)
 
@@ -22,10 +22,10 @@ function DarkMode({children}) {
   return (
     <Fragment>
       <Helmet>
-        <body className={isOn ? dark : light} />
+        <body className={isActive ? dark : light} />
       </Helmet>
 
-      <Context.Provider value={isOn}>
+      <Context.Provider value={{isActive, toggle}}>
         {children}
       </Context.Provider>
     </Fragment>
