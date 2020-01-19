@@ -9,6 +9,11 @@ import {light, dark} from "./colors.css"
 
 import Context from "./Context"
 
+/**
+ * Manages an application wide dark mode by injecting
+ * .light or .dark class to <body> tag. It uses prefers-color-scheme to
+ * check whether the dark mode on or off in a system's preferences.
+ */
 function DarkMode({children}) {
   const darkMode = matchMedia("(prefers-color-scheme: dark)")
   const [isActive, toggle] = useState(darkMode.matches)
