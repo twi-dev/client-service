@@ -1,22 +1,39 @@
 import partial from "lodash/partial"
+import gql from "graphql-tag"
 
 import {print} from "graphql/language/printer"
 import {ApolloLink, Observable} from "apollo-link"
 
 import {api} from "lib/config"
-import {mutation} from "lib/auth/graphql/mutation/refreshAccessToken"
 
 import getOperationName from "lib/helper/graphql/getOperationName"
 import isAuthenticated from "lib/auth/helper/isAuthenticated"
 import waterfall from "lib/helper/array/runWaterfall"
-import saveTokens from "lib/auth/helper/saveTokens"
 import getData from "lib/helper/graphql/getData"
+import save from "lib/auth/helper/saveTokens"
 import db from "lib/db/tokens"
 
-const read = getData("authRefreshAccessToken")
+const read = getData("authRefreshTokens")
+
+const document = gql`
+  mutation RefreshTokens {
+    authRefreshTokens($refreshToken: String!) {
+      accessToken {
+        type
+        expires
+        payload
+      }
+
+      refreshToken {
+        type
+        payload
+      }
+    }
+  }
+`
 
 const shouldUpdate = name => isAuthenticated().then(
-  value => !(value || name === getOperationName(mutation))
+  value => !(value || name === getOperationName(document))
 )
 
 const refreshTokenLink = new ApolloLink(
@@ -30,8 +47,8 @@ const refreshTokenLink = new ApolloLink(
           "content-type": "application/json"
         },
         body: JSON.stringify({
-          operationName: getOperationName(mutation),
-          query: print(mutation),
+          operationName: getOperationName(document),
+          query: print(document),
           variables: {
             refreshToken: token.payload
           }
@@ -48,8 +65,6 @@ const refreshTokenLink = new ApolloLink(
 
       return response.json()
     }
-
-    const save = accessToken => saveTokens({accessToken})
 
     function finish() {
       handle = forward(operation).subscribe({

@@ -8,7 +8,7 @@ import {api} from "lib/config"
 
 import auth from "./authContext"
 import error from "./errorContext"
-import refresh from "./refreshTokenLink"
+import refresh from "./refreshTokensLink"
 
 const fd = createFormDataLink({uri: api.uri})
 
