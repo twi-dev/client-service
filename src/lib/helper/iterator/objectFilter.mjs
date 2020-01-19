@@ -4,7 +4,7 @@ function objectFilter(iterable, cb, ctx = null) {
   const res = {}
 
   for (const [key, value] of iterator.entries(iterable)) {
-    if (Boolean(cb.call(ctx, value, key, iterable)) === true) {
+    if (cb.call(ctx, value, key, iterable)) {
       res[key] = value
     }
   }
