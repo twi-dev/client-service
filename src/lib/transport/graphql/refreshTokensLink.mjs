@@ -7,8 +7,8 @@ import {ApolloLink, Observable} from "apollo-link"
 import {api} from "lib/config"
 
 import getOperationName from "lib/helper/graphql/getOperationName"
-import isAuthenticated from "lib/auth/helper/isAuthenticated"
 import waterfall from "lib/helper/array/runWaterfall"
+import isExpired from "lib/auth/helper/isExpired"
 import getData from "lib/helper/graphql/getData"
 import save from "lib/auth/helper/saveTokens"
 import db from "lib/db/tokens"
@@ -31,10 +31,6 @@ const document = gql`
     }
   }
 `
-
-const shouldUpdate = name => isAuthenticated().then(
-  value => !(value || name === getOperationName(document))
-)
 
 const refreshTokenLink = new ApolloLink(
   (operation, forward) => new Observable(observer => {
@@ -82,12 +78,20 @@ const refreshTokenLink = new ApolloLink(
 
     const run = partial(waterfall, [send, parse, read, save, finish])
 
-    Promise.all([
-      shouldUpdate(operation.operationName),
-      db.getItem("refreshToken")
-    ])
-      .then(([active, token]) => active && token ? run(token) : finish())
-      .catch(onRejected)
+    async function performOperation() {
+      const [accessToken, refreshToken] = await Promise.all([
+        db.getItem("accessToken"), db.getItem("refreshToken")
+      ])
+
+      // Probably user is not authenticated, so we can just do nothing
+      if (isExpired(accessToken) || !refreshToken) {
+        return finish()
+      }
+
+      return run(refreshToken)
+    }
+
+    performOperation().catch(onRejected)
 
     return () => handle && handle.unsubscribe()
   })
