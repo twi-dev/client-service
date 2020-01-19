@@ -32,7 +32,7 @@ const document = gql`
   }
 `
 
-const refreshTokenLink = new ApolloLink(
+const refreshTokensLink = new ApolloLink(
   (operation, forward) => new Observable(observer => {
     let handle = null
 
@@ -97,4 +97,4 @@ const refreshTokenLink = new ApolloLink(
   })
 )
 
-export default refreshTokenLink
+export default refreshTokensLink
