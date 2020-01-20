@@ -18,7 +18,7 @@ const defaults = {
   serial: false
 }
 
-const normalize = result => map(result, resolve)
+const normalize = result => result ? map(result, resolve) : result
 
 /**
  *  Creates a Loadable component that fulfills given loaders object

@@ -37,9 +37,9 @@ function useSuspender(id, suspender, args = []) {
 
   // Try to resolve a result of an operation if found in cache
   if (cache.has(id)) {
-    const {result, error, ...operation} = cache.get(id)
+    const {result, error, state, ...operation} = cache.get(id)
 
-    if (error instanceof Error) {
+    if (state === "errored") {
       // Probably I should not clean the cache on error
       // because react continues to call useSuspender again and again
       // cache.delete(id)
@@ -48,8 +48,7 @@ function useSuspender(id, suspender, args = []) {
     }
 
     // Remove entry from the cache then return the result
-    // Not to not return undefined here :)
-    if (result !== undefined) {
+    if (state === "resolved") {
       // NOTE: I think that cache management probably must be reconsidered
       // due to the fact of how such early operation removal might affect
       // on a further Suspense-dependent components re-renders.
@@ -69,10 +68,17 @@ function useSuspender(id, suspender, args = []) {
   const operation = {
     error: null,
     result: null,
+    state: "pending",
     suspender: Promise.resolve(suspender(...args))
-      .then(result => { operation.result = result })
+      .then(result => {
+        operation.result = result
+        operation.state = "resolved"
+      })
 
-      .catch(error => { operation.error = error })
+      .catch(error => {
+        operation.error = error
+        operation.state = "errored"
+      })
   }
 
   // Cache the operation
