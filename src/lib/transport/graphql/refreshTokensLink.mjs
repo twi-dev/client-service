@@ -16,8 +16,8 @@ import db from "lib/db/tokens"
 const read = getData("authRefreshTokens")
 
 const document = gql`
-  mutation RefreshTokens {
-    authRefreshTokens($refreshToken: String!) {
+  mutation RefreshTokens($token: String!) {
+    authRefreshTokens(refreshToken: $token) {
       accessToken {
         type
         expires
@@ -46,7 +46,7 @@ const refreshTokensLink = new ApolloLink(
           operationName: getOperationName(document),
           query: print(document),
           variables: {
-            refreshToken: token.payload
+            token: token.payload
           }
         })
       }

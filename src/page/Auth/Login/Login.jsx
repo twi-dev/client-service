@@ -18,6 +18,7 @@ function Login() {
   const history = useHistory()
 
   const {
+    isValid,
     username,
     updateUsername,
     password,
@@ -60,7 +61,7 @@ function Login() {
           </div>
 
           <div className={actions}>
-            <Button wide type="submit">
+            <Button wide type="submit" disabled={!isValid}>
               Log in
             </Button>
           </div>

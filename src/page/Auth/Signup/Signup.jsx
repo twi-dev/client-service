@@ -18,6 +18,7 @@ function Signup() {
   const history = useHistory()
 
   const {
+    isValid,
     username,
     updateUsername,
     email,
@@ -74,7 +75,7 @@ function Signup() {
           </div>
 
           <div className={actions}>
-            <Button wide type="submit">
+            <Button wide type="submit" disabled={!isValid}>
               Sign up
             </Button>
           </div>
