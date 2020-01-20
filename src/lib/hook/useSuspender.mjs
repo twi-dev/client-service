@@ -9,7 +9,7 @@ const cache = new Map()
  *
  * EXPERIMENTAL!!!
  *
- * @param {string} id
+ * @param {string | {[key: string]: any}} id
  * @param {() => Promise<any>} suspender
  * @param {Array<any>} [args = []]
  *
