@@ -47,7 +47,7 @@ function readPlugins(env) {
   return plugins
 }
 
-const configure = (env, argv) => ({
+const configure = env => ({
   mode: env.dev ? "development" : "production",
   devtool: env.dev ? "eval-source-map" : false,
   performance: {
@@ -101,7 +101,6 @@ const configure = (env, argv) => ({
     rules: readLoaders(env)
   },
   devServer: {
-    open: "open" in argv,
     hot: true,
     compress: true,
     port: getConfig(env).client.port || 1339,
