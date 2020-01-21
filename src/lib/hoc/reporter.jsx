@@ -10,13 +10,13 @@ import ApplicationError from "lib/component/Error/ApplicationError"
  * the function must return a component (as a function or class) or nullish
  * value when no errors matched. In this case ApplicationError will be returned.
  *
- * @param {(error: Error) => Reporter} matcher – errors matcher which is
+ * @param {(error: Error) => Component} matcher – errors matcher which is
  *   returns a Reporter or nullish value
  *
  * @return {Reporter}
  */
-const errorHandler = matcher => {
-  function ErrorHandler({error}) {
+const createErrorReporter = matcher => {
+  function ErrorReporter({error}) {
     if (!isFunction(matcher)) {
       return h(ApplicationError, {error})
     }
@@ -30,11 +30,11 @@ const errorHandler = matcher => {
     return h(Reporter, {error})
   }
 
-  ErrorHandler.propTypes = {
+  ErrorReporter.propTypes = {
     error: instanceOf(Error).isRequired
   }
 
-  return ErrorHandler
+  return ErrorReporter
 }
 
-export default errorHandler
+export default createErrorReporter
