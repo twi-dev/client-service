@@ -1,6 +1,9 @@
 import {createElement, Component} from "react"
 import {node, func} from "prop-types"
 
+import isObject from "lodash/isObject"
+import isFunction from "lodash/isFunction"
+
 class ErrorBoundary extends Component {
   static propTypes = {
     children: node.isRequired,
@@ -25,7 +28,9 @@ class ErrorBoundary extends Component {
     }
 
     // Throw suspenders further
-    if (error instanceof Promise) {
+    if (
+      error instanceof Promise || (isObject(error) && isFunction(error.then))
+    ) {
       throw error
     }
 
