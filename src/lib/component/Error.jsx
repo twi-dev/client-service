@@ -28,6 +28,7 @@ class ErrorBoundary extends Component {
     }
 
     // Throw suspenders further
+    // NOTE: Check if React.Suspense supports thenables
     if (
       error instanceof Promise || (isObject(error) && isFunction(error.then))
     ) {
