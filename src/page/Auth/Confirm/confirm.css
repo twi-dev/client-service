@@ -10,6 +10,8 @@
 .message {
   text-align: center;
   border: 1px green solid;
+  border-left: none;
+  border-right: none;
   padding: 24px;
 }
 
