@@ -8,9 +8,9 @@ yarn-error.log
 /config/**/*.yaml
 /config/**/*.yml
 
-/static/assets/js/**/*.js
-/static/assets/css/**/*.css
-/static/assets/img/icon/**
+/static/assets/js
+/static/assets/css
+/static/assets/img/icon
 /test
 /core
 /module
