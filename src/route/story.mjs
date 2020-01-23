@@ -1,13 +1,15 @@
-// import NewStory from "module/story/page/New"
-// import Story from "module/story/page/Details"
+import {lazy} from "react"
+
+const id = import.meta.url
 
 const story = [
-  // {
-  //   path: "/new",
-  //   page: {
-  //     component: NewStory
-  //   }
-  // },
+  {
+    id,
+    path: "/new",
+    page: {
+      component: lazy(() => import("page/Story/New"))
+    }
+  },
   // {
   //   path: "/:slug",
   //   page: {

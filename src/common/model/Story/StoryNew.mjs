@@ -11,13 +11,13 @@ const actions = self => ({
 })
 
 const views = () => ({
-  get isLocal() {
+  get isNew() {
     return true
   }
 })
 
-const StoryLocal = StoryMinimal.named("StoryLocal")
+const StoryNew = StoryMinimal.named("StoryNew")
   .actions(actions)
   .views(views)
 
-export default StoryLocal
+export default StoryNew

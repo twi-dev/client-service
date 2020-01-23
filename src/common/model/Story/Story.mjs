@@ -32,7 +32,7 @@ const actions = self => ({
 })
 
 const views = () => ({
-  get isLocal() {
+  get isNew() {
     return false
   }
 })

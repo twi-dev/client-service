@@ -17,6 +17,7 @@ router:
   home: "home"
   rewrites:
     /user/@:login: /@:login
+    /story/new: /new
     /story/:slug: /:slug
     /story/:slug/reviews: /:slug/reviews
     /story/:slug/comments: /:slug/comments
