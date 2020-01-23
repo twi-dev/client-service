@@ -44,7 +44,7 @@ function Signup() {
               id="username"
               type="text"
               name="username"
-              placeholder="Email or login"
+              placeholder="Login"
               value={username}
               onChange={updateUsername}
             />
@@ -56,7 +56,7 @@ function Signup() {
               id="email"
               type="email"
               name="email"
-              placeholder="Email or login"
+              placeholder="Email"
               value={email}
               onChange={updateEmail}
             />
