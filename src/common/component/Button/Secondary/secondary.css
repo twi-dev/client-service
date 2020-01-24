@@ -1,5 +1,5 @@
 .container {
-  color: #653089;
   background: white;
-  border: solid #653089 1px;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
 }

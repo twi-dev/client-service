@@ -1,12 +1,10 @@
 @use postcss-nested;
 
 .container {
-  background: white;
-  color: var(--color-primary);
   text-transform: uppercase;
   font-weight: 700;
   border: none;
-  padding: 16px 24px;
+  padding: var(--spacing-s) var(--spacing-m);
   cursor: pointer;
 
   &:disabled {
