@@ -19,7 +19,7 @@
 }
 
 .field {
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-s);
 }
 
 .actions {
@@ -36,7 +36,7 @@
 .link {
   justify-content: center;
   display: flex;
-  margin-top: 8px;
+  margin-top: var(--spacing-xs);
 }
 
 @media screen and (width > 1000px) {
@@ -51,18 +51,18 @@
   }
 
   .field {
-    margin-right: 16px;
+    margin-right: var(--spacing-s);
     margin-bottom: initial;
   }
 
   .links {
-    margin: 8px 0;
+    margin: var(--spacing-xs) 0;
     flex-direction: row;
   }
 
   .link {
     width: 180px;
-    margin-right: 16px;
+    margin-right: var(--spacing-s);
     margin-top: 0;
     justify-content: initial;
   }
