@@ -22,7 +22,7 @@ function OnClickOutside({children, onClickOutside}) {
       window.removeEventListener("click", handler, true)
       window.removeEventListener("touchstart", handler, true)
     }
-  })
+  }, [])
 
   return cloneElement(children, {
     className: cn(proxy, this.children.attributes.className),
