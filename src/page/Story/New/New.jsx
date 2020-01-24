@@ -4,6 +4,9 @@ import {createElement} from "react"
 import useTitle from "lib/hook/useTitle"
 
 import Story from "common/model/Story//StoryNew"
+import Input from "common/component/Input"
+
+import {container, title} from "./new.css"
 
 function StoryNew() {
   const story = useLocalStore(() => Story.create())
@@ -11,11 +14,13 @@ function StoryNew() {
   useTitle(story.title || "Add a new story")
 
   return (
-    <div>
-      <input
+    <div className={container}>
+      <Input
         type="text"
+        className={title}
         value={story.title}
         onChange={story.updateTitleText}
+        placeholder="Story title..."
       />
     </div>
   )
