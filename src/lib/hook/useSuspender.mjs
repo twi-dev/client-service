@@ -39,7 +39,7 @@ function useSuspender(id, suspender, args = []) {
   if (cache.has(id)) {
     const {result, error, state, ...operation} = cache.get(id)
 
-    if (state === "errored") {
+    if (state === "rejected") {
       // Probably I should not clean the cache on error
       // because react continues to call useSuspender again and again
       // cache.delete(id)
@@ -77,7 +77,7 @@ function useSuspender(id, suspender, args = []) {
 
       .catch(error => {
         operation.error = error
-        operation.state = "errored"
+        operation.state = "rejected"
       })
   }
 
