@@ -1,5 +1,5 @@
-mutation ConfirmEmail($hash: String!) {
-  authConfirmEmail(hash: $hash) {
+mutation ConfirmEmail($hash: String!, $token: String) {
+  authConfirmEmail(hash: $hash, refreshToken: $token) {
     accessToken {
       type
       expires
