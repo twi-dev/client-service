@@ -60,6 +60,10 @@ function useSuspender(id, suspender, args = []) {
       return result
     }
 
+    // Be careful to use this hook when something in a component may throw an
+    // error. I probably must put some error boundary to prevent infinite
+    // re-renders in such use cases.
+
     // If there's no result neither error then just throw the operation
     // again since we probably still wait for the result
     throw operation.suspender

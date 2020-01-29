@@ -84,11 +84,15 @@ const refreshTokensLink = new ApolloLink(
       ])
 
       // Probably user is not authenticated, so we can just do nothing
-      if (isExpired(accessToken) || !refreshToken) {
+      if (!refreshToken && !accessToken) {
         return finish()
       }
 
-      return run(refreshToken)
+      if (isExpired(accessToken)) {
+        return run(refreshToken)
+      }
+
+      return finish()
     }
 
     performOperation().catch(onRejected)

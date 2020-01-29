@@ -2,6 +2,7 @@ import {types} from "mobx-state-tree"
 
 import toDate from "date-fns/toDate"
 import format from "date-fns/format"
+import parseISO from "date-fns/parseISO"
 import formatRelative from "date-fns/formatRelative"
 import formatDistance from "date-fns/formatDistance"
 import differenceInDays from "date-fns/differenceInCalendarDays"
@@ -41,7 +42,7 @@ const views = self => ({
   }
 })
 
-const before = time => ({raw: time ? toDate(time) : undefined})
+const before = time => ({raw: time ? toDate(parseISO(time)) : undefined})
 
 const CommonDate = model("CommonDate", schema)
   .preProcessSnapshot(before)

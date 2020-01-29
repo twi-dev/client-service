@@ -10,7 +10,7 @@ import isString from "lodash/isString"
  * @return {boolean}
  */
 function isExpired(accessToken) {
-  if (!(accessToken || accessToken.expires)) {
+  if (!accessToken?.expires) {
     return true
   }
 

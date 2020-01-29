@@ -3,8 +3,12 @@ import flat from "lodash/flatten"
 
 const isArray = Array.isArray
 
-const getData = (...keys) => res => {
-  const data = pick(res.data, ...flat(keys, Infinity))
+const getData = (...keys) => response => {
+  if (!response.data) {
+    return null
+  }
+
+  const data = pick(response.data, ...flat(keys, Infinity))
 
   if (keys.length === 1) {
     if (!isArray(keys[0])) {
