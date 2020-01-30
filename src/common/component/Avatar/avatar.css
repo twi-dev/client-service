@@ -1,0 +1,39 @@
+.container {
+  overflow: hidden;
+  border-radius: 50%;
+  user-select: none;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.fallback {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.small {
+  width: 24px;
+  height: 24px;
+}
+
+.medium {
+  width: 48px;
+  height: 48px;
+}
+
+.big {
+  width: 60px;
+  height: 60px;
+}
+
+.large {
+  width: 80px;
+  height: 80px;
+}
