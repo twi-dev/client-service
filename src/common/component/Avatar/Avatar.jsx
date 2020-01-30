@@ -1,5 +1,5 @@
+import {string, node} from "prop-types"
 import {createElement} from "react"
-import {string} from "prop-types"
 
 import cn from "classnames"
 
@@ -12,8 +12,8 @@ const sizes = {
   large
 }
 
-const Avatar = ({path, size, alt}) => (
-  <div className={cn(container, sizes[size])}>
+const Avatar = ({className, children, path, size, alt}) => (
+  <div className={cn(container, sizes[size], className)}>
     {
       do {
         if (path) {
@@ -25,18 +25,24 @@ const Avatar = ({path, size, alt}) => (
         }
       }
     }
+
+    {children}
   </div>
 )
 
 Avatar.propTypes = {
   alt: string.isRequired,
   path: string,
-  size: string
+  size: string,
+  className: string,
+  children: node
 }
 
 Avatar.defaultProps = {
   path: null,
-  size: "medium"
+  size: "medium",
+  className: null,
+  children: null
 }
 
 export default Avatar
