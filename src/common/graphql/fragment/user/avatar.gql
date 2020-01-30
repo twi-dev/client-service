@@ -1,0 +1,6 @@
+fragment userAvatarFragment on User {
+  id
+  path
+  size
+  mime
+}

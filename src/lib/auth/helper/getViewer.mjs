@@ -15,8 +15,17 @@ const document = gql`
       status
       role
 
+      avatar {
+        id
+        path
+        size
+        mime
+      }
+
       dates {
         registeredAt
+        lastVisited
+        updatedAt
       }
     }
   }
