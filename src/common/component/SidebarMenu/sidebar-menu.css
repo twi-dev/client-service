@@ -1,0 +1,6 @@
+.container {
+  width: 50px;
+  height: 100vh;
+  color: white;
+  background: var(--color-primary);
+}
