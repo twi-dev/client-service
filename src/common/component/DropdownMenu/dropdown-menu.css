@@ -1,0 +1,16 @@
+.container {
+  position: relative;
+}
+
+.list {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 200px;
+  border: 1px solid black;
+  padding: var(--spacing-xs) var(--spacing-s);
+}
+
+.hidden {
+  display: none;
+}
