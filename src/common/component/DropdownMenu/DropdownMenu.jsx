@@ -1,14 +1,18 @@
 import {createElement, useState, useRef, useEffect} from "react"
+import {string, node, bool, oneOfType, func} from "prop-types"
 import {useClickOutside, useHover} from "use-events"
-import {string, node, bool} from "prop-types"
 
 import cn from "classnames"
 
+import RenderFrom from "lib/component/RenderFrom"
+
 import Button from "common/component/Button/Secondary"
 
-import {container, hidden, list} from "./dropdown-menu.css"
+import List from "./List"
 
-function DropdownMenu({children, className, ...props}) {
+import {container} from "./dropdown-menu.css"
+
+function DropdownMenu({button, list, children, className, ...props}) {
   const base = useRef(null)
 
   const [isMouseOver, bind] = useHover()
@@ -34,13 +38,33 @@ function DropdownMenu({children, className, ...props}) {
 
   return (
     <div {...bind} ref={base} className={cn(container, className)}>
-      <Button onClick={toggle}>
-        Open
-      </Button>
+      <RenderFrom onClick={toggle}>
+        {
+          do {
+            if (button) {
+              button
+            } else {
+              <Button>
+                Open
+              </Button>
+            }
+          }
+        }
+      </RenderFrom>
 
-      <div className={cn(list, {[hidden]: !isVisible})}>
-        {children}
-      </div>
+      <RenderFrom isVisible={isVisible}>
+        {
+          do {
+            if (list) {
+              list
+            } else {
+              <List>
+                {children}
+              </List>
+            }
+          }
+        }
+      </RenderFrom>
     </div>
   )
 }
@@ -48,12 +72,16 @@ function DropdownMenu({children, className, ...props}) {
 DropdownMenu.propTypes = {
   opensOnHover: bool,
   className: string,
-  children: node.isRequired
+  children: node.isRequired,
+  button: oneOfType([node, func]),
+  list: oneOfType([node, func])
 }
 
 DropdownMenu.defaultProps = {
   opensOnHover: false,
-  className: undefined
+  className: undefined,
+  button: undefined,
+  list: undefined
 }
 
 export default DropdownMenu
