@@ -52,19 +52,17 @@ function DropdownMenu({button, list, children, className, ...props}) {
         }
       </RenderFrom>
 
-      <RenderFrom isVisible={isVisible}>
-        {
-          do {
-            if (list) {
-              list
-            } else {
-              <List>
-                {children}
-              </List>
-            }
+      {
+        do {
+          if (list) {
+            createElement(list, {isVisible}, children)
+          } else {
+            <List isVisible={isVisible}>
+              {children}
+            </List>
           }
         }
-      </RenderFrom>
+      }
     </div>
   )
 }
@@ -74,7 +72,7 @@ DropdownMenu.propTypes = {
   className: string,
   children: node.isRequired,
   button: oneOfType([node, func]),
-  list: oneOfType([node, func])
+  list: func
 }
 
 DropdownMenu.defaultProps = {
