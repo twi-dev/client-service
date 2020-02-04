@@ -46,7 +46,6 @@ module.exports = {
     "prefer-const": ["error", {"destructuring": "all"}],
 
     "react/static-property-placement": ["error", "static public field"],
-
     "react/state-in-constructor": 0,
     "react/button-has-type": 0,
     "react/destructuring-assignment": 0,

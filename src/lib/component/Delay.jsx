@@ -1,9 +1,9 @@
 import {node, string, number, oneOfType} from "prop-types"
 import {useState} from "react"
 
-import useEffectOnce from "react-use/lib/useEffectOnce"
-import isNumber from "lodash/isNumber"
 import ms from "ms"
+import isNumber from "lodash/isNumber"
+import useEffectOnce from "react-use/lib/useEffectOnce"
 
 function Delay({children, amount}) {
   const [passed, update] = useState(false)
