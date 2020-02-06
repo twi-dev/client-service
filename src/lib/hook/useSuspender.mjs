@@ -65,7 +65,7 @@ function useSuspender(id, suspender, args = []) {
     // re-renders in such use cases.
 
     // If there's no result neither error then just throw the operation
-    // again since we probably still wait for the result
+    // again since we probably still waiting for the result
     throw operation.suspender
   }
 
