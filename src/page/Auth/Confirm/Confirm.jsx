@@ -1,29 +1,24 @@
 import {useParams, Redirect} from "react-router-dom"
 import {createElement, Fragment} from "react"
 
+import createSuspender from "use-suspender"
 import cn from "classnames"
 
 import Delay from "lib/component/Delay"
 import useTitle from "lib/hook/useTitle"
-import useSuspender from "lib/hook/useSuspender"
 
 import confirm from "common/graphql/mutation/auth/confirm"
 
 import {container, message, failed} from "./confirm.css"
+
+const useConfirm = createSuspender(confirm)
 
 function Confirm() {
   const {hash} = useParams()
 
   useTitle("Account confirmation")
 
-  const isActivated = useSuspender(
-    {
-      hash,
-      url: import.meta.url
-    },
-
-    () => confirm(hash)
-  )
+  const isActivated = useConfirm(hash)
 
   return (
     <div className={container}>

@@ -1,47 +1,47 @@
 import {oneOfType, shape, string, bool, node, object} from "prop-types"
 import {Route as BaseRoute} from "react-router-dom"
-import {createElement as h, Suspense, lazy} from "react"
+import {createElement as h, Suspense} from "react"
 
+import createSuspender from "use-suspender"
+
+import noop from "lodash/noop"
 import partial from "lodash/partial"
 
-import useTitle from "lib/hook/useTitle"
-import Delay from "lib/component/Delay"
-import createLoadable from "lib/hoc/loadable"
-import getName from "lib/helper/component/getName"
 import Loader from "lib/component/Loader/PageLoader"
+import DefaultLayout from "layout/DefaultLayout"
+import createLoadable from "../../hoc/loadable"
 
-const DefaultLayout = lazy(() => import("layout/DefaultLayout"))
+const suspense = partial(h, Suspense, {fallback: h(Loader)})
+
+const usePrepare = createSuspender((prepare, props) => prepare(props))
 
 /**
  * Extends Route component of react-router-dom with layouts support
  */
 function Route(props) {
-  const {id = getName(Route), delay, page, serial, ...routeProps} = props
-  let {component: Component, layout: Layout, prepare, title} = page
+  const {page, serial, ...routeProps} = props
+  let {component: Component, layout: Layout, prepare = noop} = page
 
-  Component = Component |> createLoadable({
-    name: "Route",
-    loaders: prepare,
-    id: {id, path: routeProps.path}
-  })
-
-  const suspense = partial(h, Suspense, {
-    fallback: h(Delay, {amount: delay}, h(Loader))
-  })
-
-  useTitle(title)
+  Component = createLoadable({
+    name: "Router",
+    loaderHook: usePrepare
+  })(Component)
 
   return suspense(
     h(BaseRoute, {
       ...routeProps,
 
-      render: renderProps => do {
-        if (Layout === false) {
-          h(Component, renderProps)
-        } else if (Layout) {
-          suspense(h(Layout, null, h(Component, renderProps)))
-        } else {
-          suspense(h(DefaultLayout, null, h(Component, renderProps)))
+      render(renderProps) {
+        renderProps = {...renderProps, loaders: prepare}
+
+        return do {
+          if (Layout === false) {
+            h(Component, renderProps)
+          } else if (Layout) {
+            suspense(h(Layout, null, h(Component, renderProps)))
+          } else {
+            suspense(h(DefaultLayout, null, h(Component, renderProps)))
+          }
         }
       }
     })
