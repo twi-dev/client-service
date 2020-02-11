@@ -45,6 +45,7 @@ function Signup() {
         <div className={fields}>
           <div className={field}>
             <Input
+              autoFocus
               id="login"
               type="text"
               name="login"
