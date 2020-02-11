@@ -6,7 +6,12 @@
   padding: var(--spacing-s);
   transition: border-color 190ms linear;
 
-  &:focus {
+  &:focus:not(.invalid) {
     border-color: var(--color-primary)
   }
+}
+
+/* TODO: Add colors for red */
+.invalid {
+  border-color: red;
 }

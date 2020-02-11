@@ -1,5 +1,5 @@
-import {observer, useLocalStore} from "mobx-react-lite"
 import {useHistory, Link} from "react-router-dom"
+import {useForm} from "react-hook-form"
 import {createElement} from "react"
 
 import useTitle from "lib/hook/useTitle"
@@ -8,7 +8,7 @@ import Form from "common/component/Form"
 import Input from "common/component/Input"
 import Button from "common/component/Button/Primary"
 
-import Model from "common/model/Auth/LogIn"
+import logIn from "common/graphql/mutation/auth/logIn"
 
 import {container, box, fields, field, actions, links, link} from "./login.css"
 
@@ -17,51 +17,46 @@ function Login() {
 
   const history = useHistory()
 
-  const {
-    isValid,
-    username,
-    updateUsername,
-    password,
-    updatePassword,
-    submit: logIn
-  } = useLocalStore(() => Model.create())
+  const {register, handleSubmit, errors, formState: state} = useForm({
+    nativeValidation: true,
+    mode: "onChange"
+  })
 
-  function submit() {
-    logIn()
+  function submit(user) {
+    logIn(user)
       .then(() => history.push("/"))
       .catch(console.error)
   }
 
   return (
     <div className={container}>
-      <Form className={box} onSubmit={submit}>
+      <Form className={box} onSubmit={handleSubmit(submit)}>
         <div className={fields}>
           <div className={field}>
             <Input
-              required
+              autoFocus
               id="username"
               type="text"
               name="username"
               placeholder="Email or login"
-              value={username}
-              onChange={updateUsername}
+              invalid={"username" in errors}
+              ref={register({required: true})}
             />
           </div>
 
           <div className={field}>
             <Input
-              required
               id="password"
               type="password"
               name="password"
               placeholder="Password"
-              value={password}
-              onChange={updatePassword}
+              invalid={"password" in errors}
+              ref={register({required: true})}
             />
           </div>
 
           <div className={actions}>
-            <Button wide type="submit" disabled={!isValid}>
+            <Button wide type="submit" disabled={!state.isValid}>
               Log in
             </Button>
           </div>
@@ -80,4 +75,4 @@ function Login() {
   )
 }
 
-export default Login |> observer
+export default Login

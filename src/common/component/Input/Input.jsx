@@ -1,46 +1,36 @@
-import {createElement, Component, createRef} from "react"
 import {string, bool} from "prop-types"
+import {createElement} from "react"
 
 import omit from "lodash/omit"
 import cn from "classnames"
 
-import {container} from "./input.css"
+import forwardRef from "lib/hoc/forwardRef"
 
-class Input extends Component {
-  base = createRef()
+import {container, invalid} from "./input.css"
 
-  static propTypes = {
-    type: string,
-    className: string,
-    autoFocus: bool
-  }
+const except = ["className", "invalid"]
 
-  static defaultProps = {
-    type: "text",
-    className: null,
-    autoFocus: false
-  }
+const Input = ({className, forwardedRef, ...props}) => (
+  <input
+    {...omit(props, except)}
 
-  componentDidMount() {
-    if (this.props.autoFocus === true) {
-      setImmediate(() => this.input.focus())
-    }
-  }
+    ref={forwardedRef}
+    className={cn(container, {[invalid]: props.invalid}, className)}
+  />
+)
 
-  get input() {
-    return this.base.current
-  }
+Input.propTypes = {
+  ...forwardRef.propTypes,
 
-  render() {
-    return (
-      <input
-        {...omit(this.props, "className")}
-
-        ref={this.base}
-        className={cn(this.props.className, container)}
-      />
-    )
-  }
+  className: string,
+  invalid: bool
 }
 
-export default Input
+Input.defaultProps = {
+  ...forwardRef.defaultProps,
+
+  className: undefined,
+  invalid: false
+}
+
+export default Input |> forwardRef
