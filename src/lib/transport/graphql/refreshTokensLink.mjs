@@ -32,6 +32,8 @@ const document = gql`
   }
 `
 
+const name = getOperationName(document)
+
 const refreshTokensLink = new ApolloLink(
   (operation, forward) => new Observable(observer => {
     let handle = null
@@ -43,7 +45,7 @@ const refreshTokensLink = new ApolloLink(
           "content-type": "application/json"
         },
         body: JSON.stringify({
-          operationName: getOperationName(document),
+          operationName: name,
           query: print(document),
           variables: {
             token: token.payload
