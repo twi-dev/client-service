@@ -38,7 +38,7 @@ const refreshTokensLink = new ApolloLink(
   (operation, forward) => new Observable(observer => {
     let handle = null
 
-    async function send(token) {
+    function send(token) {
       const params = {
         method: "POST",
         headers: {
@@ -56,7 +56,7 @@ const refreshTokensLink = new ApolloLink(
       return fetch(api.uri, params)
     }
 
-    async function parse(response) {
+    function parse(response) {
       if (response.status >= 300) {
         throw new Error(`Network error: ${response.status}`)
       }
