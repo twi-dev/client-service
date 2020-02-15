@@ -149,7 +149,7 @@
     "react-spinners": "0.8.0",
     "react-use": "13.24.0",
     "use-events": "^1.4.1",
-    "use-suspender": "^0.2.0",
+    "use-suspender": "^0.3.0",
     "validate.js": "0.13.1",
     "whatwg-fetch": "3.0.0",
     "whatwg-url": "8.0.0",

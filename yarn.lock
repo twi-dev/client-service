@@ -13591,10 +13591,10 @@ use-events@^1.4.1:
   dependencies:
     resize-observer-polyfill "1.5.1"
 
-use-suspender@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/use-suspender/-/use-suspender-0.2.0.tgz#28a4b9a1be64978364446730f6922f7d726a716d"
-  integrity sha512-Lmgidadd2reQ6w5ZuKvhq7wXcCX/tsQlAkcQZJGbdHpuNtL+0VFcg/qWIHggeZ5N7auFNWWLOTeGPN9yJ5gfwQ==
+use-suspender@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/use-suspender/-/use-suspender-0.3.0.tgz#f020b4aceaf5f112a6c1fabad179418d85cd25c5"
+  integrity sha512-NP6zqwyEeyIY+JtwQYvlgZ+0raMrduqsfzb1gsqm8ZX2d9DNlq5tK8wN7DNk7aqLpIP+AnzDrjgoNFouealgiA==
 
 use@^3.1.0:
   version "3.1.1"
