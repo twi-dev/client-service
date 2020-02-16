@@ -19,7 +19,7 @@ function Login() {
 
   const {register, handleSubmit, errors, formState: state} = useForm({
     nativeValidation: true,
-    mode: "onChange"
+    mode: "onBlur"
   })
 
   function submit(user) {

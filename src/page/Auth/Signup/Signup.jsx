@@ -26,7 +26,7 @@ function Signup() {
 
   const {register, handleSubmit, errors, formState: state} = useForm({
     nativeValidation: true,
-    mode: "onChange",
+    mode: "onBlur",
 
     // FIXME: Will be deprecated in the next major version of react-hook-form
     // Probably need to be replaces with validationResolver or so.
