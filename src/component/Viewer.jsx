@@ -11,8 +11,8 @@ import Session from "model/User/Viewer/Session"
 const useGetViewer = createSuspender(getViewer)
 
 function Viewer({children}) {
-  const data = useGetViewer(getViewer)
-  const session = Session.create(data)
+  const viewer = useGetViewer(getViewer)
+  const session = Session.create(viewer)
 
   return createElement(Context.Provider, {value: session}, children)
 }
