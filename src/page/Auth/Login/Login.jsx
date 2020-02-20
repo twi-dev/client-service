@@ -8,7 +8,7 @@ import Form from "component/Form"
 import Input from "component/Input"
 import Button from "component/Button/Primary"
 
-import logIn from "graphql/mutation/auth/logIn"
+import logIn from "api/mutation/auth/logIn"
 
 import {container, box, fields, field, actions, links, link} from "./login.css"
 

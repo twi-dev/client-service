@@ -1,6 +1,6 @@
 import {types, flow} from "mobx-state-tree"
 
-import update from "graphql/mutation/story/update"
+import update from "api/mutation/story/update"
 import Slug from "model/Common/Slug"
 
 import Base from "./StoryMinimal"

@@ -9,7 +9,7 @@ import Form from "component/Form"
 import Input from "component/Input"
 import Button from "component/Button/Primary"
 
-import signUp from "graphql/mutation/auth/signUp"
+import signUp from "api/mutation/auth/signUp"
 
 import {container, box, fields, field, actions, links, link} from "./signup.css"
 

@@ -1,5 +1,5 @@
-#import "graphql/fragment/story/minimal.gql"
-#import "graphql/fragment/common/dates.gql"
+#import "api/fragment/story/minimal.gql"
+#import "api/fragment/common/dates.gql"
 
 query GetStory($slug: String!) {
   story(slug: $slug) {

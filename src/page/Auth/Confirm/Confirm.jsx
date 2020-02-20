@@ -7,7 +7,7 @@ import cn from "classnames"
 import Delay from "lib/component/Delay"
 import useTitle from "lib/hook/useTitle"
 
-import confirm from "graphql/mutation/auth/confirm"
+import confirm from "api/mutation/auth/confirm"
 
 import {container, message, failed} from "./confirm.css"
 
