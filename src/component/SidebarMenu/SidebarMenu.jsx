@@ -8,14 +8,20 @@ import Viewer from "model/User/Viewer/Context"
 import {container} from "./sidebar-menu.css"
 
 function SidebarMenu() {
-  const viewer = useContext(Viewer)
+  const {viewer, isSigned} = useContext(Viewer)
 
   return (
     <div className={container}>
-      <Avatar
-        path={viewer.avatar?.path}
-        alt={viewer.login}
-      />
+      {
+        do {
+          if (isSigned) {
+            <Avatar
+              path={viewer.avatar?.path}
+              alt={viewer.login}
+            />
+          }
+        }
+      }
     </div>
   )
 }

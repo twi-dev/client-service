@@ -6,15 +6,15 @@ import createSuspender from "use-suspender"
 import getViewer from "lib/auth/helper/getViewer"
 
 import Context from "model/User/Viewer/Context"
-import Model from "model/User/Viewer"
+import Session from "model/User/Viewer/Session"
 
 const useGetViewer = createSuspender(getViewer)
 
 function Viewer({children}) {
   const data = useGetViewer(getViewer)
-  const viewer = data ? Model.create(data) : null
+  const session = Session.create(data)
 
-  return createElement(Context.Provider, {value: viewer}, children)
+  return createElement(Context.Provider, {value: session}, children)
 }
 
 Viewer.propTypes = {
