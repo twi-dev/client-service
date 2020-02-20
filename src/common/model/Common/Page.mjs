@@ -23,7 +23,7 @@ const actions = self => ({
    * Loads the previous page frame if exists
    *
    * @param {object} params – additional query parameters
-   * @param {object} options – query options
+   * @param {object} options – navigation options
    */
   prev: warn.flow(self),
 
@@ -31,7 +31,7 @@ const actions = self => ({
    * Loads the next page frame if exists
    *
    * @param {object} params – additional query parameters
-   * @param {object} options – query options
+   * @param {object} options – navigation options
    */
   next: warn.flow(self),
 

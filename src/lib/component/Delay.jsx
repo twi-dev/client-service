@@ -10,11 +10,11 @@ function Delay({children, amount}) {
 
   useEffectOnce(() => {
     let timer = null
-    if (amount) {
+    if (amount != null) {
       timer = setTimeout(
         () => update(true),
 
-        isNumber(amount) ? amount : ms(amount)
+        isNumber(amount) ? Math.abs(amount) : ms(amount)
       )
     }
 
