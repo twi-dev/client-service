@@ -1,8 +1,8 @@
 import {createElement} from "react"
 import {node} from "prop-types"
 
-import Viewer from "common/component/Viewer"
-import SidebarMenu from "common/component/SidebarMenu"
+import Viewer from "component/Viewer"
+import SidebarMenu from "component/SidebarMenu"
 
 import {container, content} from "./layout.css"
 

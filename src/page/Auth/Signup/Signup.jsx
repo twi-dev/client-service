@@ -5,11 +5,11 @@ import {object, string} from "yup"
 
 import useTitle from "lib/hook/useTitle"
 
-import Form from "common/component/Form"
-import Input from "common/component/Input"
-import Button from "common/component/Button/Primary"
+import Form from "component/Form"
+import Input from "component/Input"
+import Button from "component/Button/Primary"
 
-import signUp from "common/graphql/mutation/auth/signUp"
+import signUp from "graphql/mutation/auth/signUp"
 
 import {container, box, fields, field, actions, links, link} from "./signup.css"
 

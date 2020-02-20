@@ -1,7 +1,0 @@
-#import "common/graphql/fragment/user/minimal.gql"
-
-query GetUser($login: Login!) {
-  user(login: $login) {
-    ...userMinimal
-  }
-}

@@ -1,0 +1,14 @@
+#import "graphql/fragment/auth/refreshToken.gql"
+#import "graphql/fragment/auth/accessToken.gql"
+
+mutation AuthSignUp($user: AuthSignUpInput!) {
+  authSignUp(user: $user) {
+    accessToken {
+      ...authAccessToken
+    }
+
+    refreshToken {
+      ...authRefreshToken
+    }
+  }
+}

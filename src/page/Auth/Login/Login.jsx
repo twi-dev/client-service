@@ -4,11 +4,11 @@ import {createElement} from "react"
 
 import useTitle from "lib/hook/useTitle"
 
-import Form from "common/component/Form"
-import Input from "common/component/Input"
-import Button from "common/component/Button/Primary"
+import Form from "component/Form"
+import Input from "component/Input"
+import Button from "component/Button/Primary"
 
-import logIn from "common/graphql/mutation/auth/logIn"
+import logIn from "graphql/mutation/auth/logIn"
 
 import {container, box, fields, field, actions, links, link} from "./login.css"
 
