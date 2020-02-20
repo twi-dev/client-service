@@ -16,6 +16,8 @@ function Delay({children, amount}) {
 
         isNumber(amount) ? Math.abs(amount) : ms(amount)
       )
+    } else {
+      update(true)
     }
 
     return () => timer && clearTimeout(timer)
