@@ -11,12 +11,10 @@ const schema = {
   offset: number,
   current: number,
   last: number
-  // list: array<T>
+  // list: Array<T>
 }
 
-const volatile = () => ({
-  isLoading: false
-})
+const volatile = () => ({isLoading: false})
 
 const actions = self => ({
   /**
@@ -54,9 +52,14 @@ const actions = self => ({
      *
      * @param {number} page
      * @param {any} params
-     * @param {object} options
      */
-    const frame = yield query(page, params, options)
+    const frame = yield query(page, params)
+
+    if (options.push) {
+      self.add(undefined, frame.list)
+    } else {
+      self.list = frame.list
+    }
 
     self.hasNext = frame.hasNext
     self.offset = frame.offset
@@ -64,7 +67,6 @@ const actions = self => ({
     self.count = frame.count
     self.current = frame.current
     self.last = frame.last
-    self.list = frame.list
   }),
 
   /**
