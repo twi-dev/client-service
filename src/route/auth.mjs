@@ -40,7 +40,7 @@ const auth = [
     path: "/confirm/:hash",
     page: {
       layout: false,
-      component: lazy(() => import("page/Auth/Confirm") |> action)
+      component: lazy(() => import("page/Auth/Confirm"))
     }
   }
 ]
