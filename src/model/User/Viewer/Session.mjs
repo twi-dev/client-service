@@ -7,20 +7,18 @@ const schema = {
   viewer: t.maybeNull(Viewer)
 }
 
-const actions = self => ({
-  setViewer(viewer) {
+const actions = self => {
+  function setViewer(viewer) {
     self.isSigned = Boolean(viewer)
     self.viewer = viewer
-  },
-
-  sign(viewer) {
-    self.setViewer(viewer)
-  },
-
-  unsign() {
-    self.setViewer(null)
   }
-})
+
+  const sign = viewer => setViewer(viewer)
+
+  const unsign = () => setViewer(null)
+
+  return {sign, unsign}
+}
 
 const before = viewer => ({viewer: viewer ?? null, isSigned: Boolean(viewer)})
 
