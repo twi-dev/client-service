@@ -5,13 +5,15 @@ import Avatar from "component/Avatar"
 
 import Viewer from "model/User/Viewer/Context"
 
-import {container} from "./sidebar-menu.css"
+import {container, spacing} from "./sidebar-menu.css"
 
 function SidebarMenu() {
   const {viewer, isSigned} = useContext(Viewer)
 
   return (
     <div className={container}>
+      <div className={spacing} />
+
       {
         do {
           if (isSigned) {

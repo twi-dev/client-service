@@ -1,6 +1,14 @@
 .container {
-  width: 48px; /** TODO: Update with **/
+  display: flex;
+  flex-direction: column;
+  width: 48px; /* TODO: Update with */
   height: 100vh;
   color: white;
   background: var(--color-primary);
+}
+
+/* FIXME: replace with actual elements */
+.spacing {
+  display: flex;
+  flex: 1;
 }

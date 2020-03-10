@@ -7,9 +7,9 @@ import createSuspender from "use-suspender"
 import noop from "lodash/noop"
 import partial from "lodash/partial"
 
-import Loader from "lib/component/Loader/PageLoader"
 import DefaultLayout from "layout/DefaultLayout"
-import createLoadable from "../../hoc/loadable"
+import Loader from "lib/component/Loader/PageLoader"
+import createLoadable from "lib/hoc/loadable"
 
 const suspense = partial(h, Suspense, {fallback: h(Loader)})
 
