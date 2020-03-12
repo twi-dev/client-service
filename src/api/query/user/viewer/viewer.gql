@@ -1,0 +1,22 @@
+query GetViewer {
+  viewer {
+    id
+    email
+    login
+    status
+    role
+
+    avatar {
+      id
+      path
+      size
+      mime
+    }
+
+    dates {
+      registeredAt
+      lastVisited
+      updatedAt
+    }
+  }
+}

@@ -1,18 +1,23 @@
+import {useLocalStore} from "mobx-react"
 import {createElement} from "react"
 import {node} from "prop-types"
 
 import createSuspender from "use-suspender"
 
-import getViewer from "lib/auth/helper/getViewer"
+import getViewer from "api/query/user/viewer"
 
 import Context from "model/User/Viewer/Context"
 import Session from "model/User/Viewer/Session"
 
 const useGetViewer = createSuspender(getViewer)
 
+/**
+ * Creates a Viewer model context alloving the applications to share
+ * the current user's information.
+ */
 function Viewer({children}) {
   const viewer = useGetViewer(getViewer)
-  const session = Session.create(viewer)
+  const session = useLocalStore(() => Session.create(viewer))
 
   return createElement(Context.Provider, {value: session}, children)
 }

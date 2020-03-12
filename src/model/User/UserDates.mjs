@@ -6,7 +6,8 @@ const {model, maybeNull} = types
 
 const schema = {
   registeredAt: CommonDate,
-  lastVisit: maybeNull(CommonDate)
+  updatedAt: maybeNull(CommonDate),
+  lastVisited: maybeNull(CommonDate),
 }
 
 const User = model("UserDates", schema)
