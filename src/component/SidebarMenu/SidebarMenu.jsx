@@ -3,6 +3,7 @@ import {observer} from "mobx-react"
 
 import useStore from "lib/hook/useStore"
 
+import Link from "component/Link"
 import Avatar from "component/Avatar"
 import Viewer from "model/User/Viewer/Context"
 
@@ -13,6 +14,10 @@ function SidebarMenu() {
 
   return (
     <div className={container}>
+      <Link to="/" color="secondary">
+        Home
+      </Link>
+
       <div className={spacing} />
 
       {
