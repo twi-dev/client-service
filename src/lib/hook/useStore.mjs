@@ -2,6 +2,14 @@ import {useContext} from "react"
 
 import getName from "lib/helper/component/getName"
 
+/**
+ * Takes a store from a given Context.
+ * Ensures the store is used within <Context.Provider>
+ *
+ * @param {React.Context} Context
+ *
+ * @return {object} MobX State Tree store
+ */
 function useStore(Context) {
   const store = useContext(Context)
 
