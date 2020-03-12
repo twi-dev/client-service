@@ -1,3 +1,7 @@
 import {createContext} from "react"
 
-export default createContext()
+const Context = createContext()
+
+Context.displayName = "Viewer"
+
+export default Context
