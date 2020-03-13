@@ -15,6 +15,10 @@
   height: var(--base-size); /* TODO: Update with */
   align-items: center;
   justify-content: center;
+  background: transparent;
+  color: inherit;
+  border: none;
+  cursor: pointer;
 }
 
 /* FIXME: replace with actual elements */

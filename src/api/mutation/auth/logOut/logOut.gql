@@ -1,0 +1,3 @@
+mutation AuthLogOut($token: String!) {
+  authLogOut(refreshToken: $token)
+}

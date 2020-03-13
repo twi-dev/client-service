@@ -2,12 +2,14 @@ import {createElement} from "react"
 import {observer} from "mobx-react"
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faHome} from "@fortawesome/free-solid-svg-icons"
+import {faHome, faSignOutAlt} from "@fortawesome/free-solid-svg-icons"
 
 import useStore from "lib/hook/useStore"
 
 import Link from "component/Link"
 import Avatar from "component/Avatar"
+import LogOut from "component/LogOut"
+
 import Viewer from "model/User/Viewer/Context"
 
 import {container, item, spacing} from "./sidebar-menu.css"
@@ -23,15 +25,27 @@ function SidebarMenu() {
         </div>
       </Link>
 
+      {
+        do {
+          if (isSigned) {
+            <div className={item}>
+              <Avatar
+                path={viewer.avatar?.path}
+                alt={viewer.login}
+              />
+            </div>
+          }
+        }
+      }
+
       <div className={spacing} />
 
       {
         do {
           if (isSigned) {
-            <Avatar
-              path={viewer.avatar?.path}
-              alt={viewer.login}
-            />
+            <LogOut className={item}>
+              <FontAwesomeIcon icon={faSignOutAlt} size="2x" />
+            </LogOut>
           }
         }
       }
