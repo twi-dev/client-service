@@ -1,5 +1,6 @@
 import partial from "lodash/partial"
 
+import save from "lib/auth/helper/saveTokens"
 import getData from "lib/helper/graphql/getData"
 import waterfall from "lib/helper/array/runWaterfall"
 
@@ -17,7 +18,7 @@ function logIn(user) {
     }
   }
 
-  return waterfall([partial(mutate, params), read])
+  return waterfall([partial(mutate, params), read, save])
 }
 
 export default logIn

@@ -8,8 +8,6 @@ import db from "lib/db/tokens"
 function saveTokens(tokens) {
   tokens = filter(tokens, (_, key) => key !== "__typename")
 
-  // console.log(tokens)
-
   return Promise.all(map(tokens, (token, name) => db.setItem(name, token)))
 }
 
