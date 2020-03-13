@@ -1,7 +1,14 @@
+@use postcss-nested;
+
 .primary {
-  color: var(--color-interactive);
+
+  &, &:hover {
+    color: var(--color-interactive);
+  }
 }
 
 .secondary {
-  color: white;
+  &, &:hover {
+    color: white;
+  }
 }

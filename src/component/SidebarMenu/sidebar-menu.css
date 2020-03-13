@@ -1,10 +1,20 @@
 .container {
+  --base-size: 48px;
+
   display: flex;
   flex-direction: column;
-  width: 48px; /* TODO: Update with */
+  width: var(--base-size); /* TODO: Update with */
   height: 100vh;
   color: white;
   background: var(--color-primary);
+}
+
+.item {
+  display: flex;
+  width: var(--base-size);
+  height: var(--base-size); /* TODO: Update with */
+  align-items: center;
+  justify-content: center;
 }
 
 /* FIXME: replace with actual elements */
