@@ -1,4 +1,4 @@
-import {func, string, node, oneOfType} from "prop-types"
+import {func, string, oneOfType} from "prop-types"
 import {createElement, useState} from "react"
 
 import useStore from "lib/hook/useStore"
@@ -11,7 +11,7 @@ function LogOut({onError, button, ...props}) {
 
   const {unsign} = useStore(Context)
 
-  function handleLogOut() {
+  function exec() {
     function onFulfilled() {
       set(false)
       unsign()
@@ -20,26 +20,22 @@ function LogOut({onError, button, ...props}) {
     logOut().then(onFulfilled).catch(onError)
   }
 
-  return createElement(
-    "button",
+  return createElement(button, {
+    ...props,
 
-    {
-      ...props,
-
-      disabled: isLoading,
-      onClick: handleLogOut
-    }
-  )
+    disabled: isLoading,
+    onClick: exec
+  })
 }
 
 LogOut.propTypes = {
   onError: func,
-  button: oneOfType([string, node]),
+  button: oneOfType([string, func]),
 }
 
 LogOut.defaultProps = {
   onError: console.error,
-  button: undefined
+  button: "button"
 }
 
 export default LogOut
