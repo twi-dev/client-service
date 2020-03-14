@@ -8,7 +8,7 @@ import forwardRef from "lib/hoc/forwardRef"
 
 import {container, invalid} from "./input.css"
 
-const except = ["className", "invalid"]
+const except = ["invalid"]
 
 const Input = ({className, forwardedRef, ...props}) => (
   <input
