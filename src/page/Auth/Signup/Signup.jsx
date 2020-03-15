@@ -22,8 +22,6 @@ const validationSchema = object().shape({
 function Signup() {
   useTitle("Signup")
 
-  const history = useHistory()
-
   const {register, handleSubmit, errors, formState: state} = useForm({
     nativeValidation: true,
     mode: "onBlur",
@@ -35,7 +33,7 @@ function Signup() {
 
   function submit(user) {
     signUp(user)
-      .then(() => history.push("/"))
+      .then(() => window.location.reload())
       .catch(console.error)
   }
 

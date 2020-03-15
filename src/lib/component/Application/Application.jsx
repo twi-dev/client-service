@@ -8,6 +8,8 @@ import config from "lib/config"
 import Loader from "lib/component/Loader/PageLoader"
 import DarkMode from "lib/component/DarkMode"
 import Router from "lib/component/Router"
+import Delay from "lib/component/Delay"
+
 import Viewer from "component/Viewer"
 
 import {container} from "./application.css"
@@ -17,7 +19,13 @@ function Application() {
 
   return (
     <div className={container}>
-      <Suspense fallback={<Loader />}>
+      <Suspense
+        fallback={(
+          <Delay>
+            <Loader />
+          </Delay>
+        )}
+      >
         <Viewer>
           <DarkMode>
             <Router />

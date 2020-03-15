@@ -1,5 +1,5 @@
-import {useHistory, Link} from "react-router-dom"
 import {useForm} from "react-hook-form"
+import {Link} from "react-router-dom"
 import {createElement} from "react"
 
 import useTitle from "lib/hook/useTitle"
@@ -15,8 +15,6 @@ import {container, box, fields, field, actions, links, link} from "./login.css"
 function Login() {
   useTitle("Login")
 
-  const history = useHistory()
-
   const {register, handleSubmit, errors, formState: state} = useForm({
     nativeValidation: true,
     mode: "onBlur"
@@ -24,7 +22,7 @@ function Login() {
 
   function submit(user) {
     logIn(user)
-      .then(() => history.push("/"))
+      .then(() => window.location.reload())
       .catch(console.error)
   }
 
