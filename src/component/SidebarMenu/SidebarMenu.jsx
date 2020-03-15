@@ -1,8 +1,8 @@
-import {createElement} from "react"
+import {createElement, Fragment} from "react"
 import {observer} from "mobx-react"
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faHome, faSignOutAlt} from "@fortawesome/free-solid-svg-icons"
+import {faHome, faSignOutAlt, faPlus} from "@fortawesome/free-solid-svg-icons"
 
 import useStore from "lib/hook/useStore"
 
@@ -28,12 +28,20 @@ function SidebarMenu() {
       {
         do {
           if (isSigned) {
-            <div className={item}>
-              <Avatar
-                path={viewer.avatar?.path}
-                alt={viewer.login}
-              />
-            </div>
+            <Fragment>
+              <div className={item}>
+                <Avatar
+                  path={viewer.avatar?.path}
+                  alt={viewer.login}
+                />
+              </div>
+
+              <Link to="/new">
+                <div className={item}>
+                  <FontAwesomeIcon icon={faPlus} size="2x" />
+                </div>
+              </Link>
+            </Fragment>
           }
         }
       }

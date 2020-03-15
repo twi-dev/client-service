@@ -2,7 +2,7 @@
 
 .container {
   width: 100%;
-  border: 1px solid #ebecf0;
+  border: 1px solid var(--color-gray);
   padding: var(--spacing-s);
   transition: border-color 190ms linear;
 

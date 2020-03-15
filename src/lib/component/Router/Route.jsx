@@ -27,25 +27,23 @@ function Route(props) {
     loaderHook: usePrepare
   })(Component)
 
-  return suspense(
-    h(BaseRoute, {
-      ...routeProps,
+  return h(BaseRoute, {
+    ...routeProps,
 
-      render(renderProps) {
-        renderProps = {...renderProps, loaders: prepare}
+    render(renderProps) {
+      renderProps = {...renderProps, loaders: prepare}
 
-        return do {
-          if (Layout === false) {
-            h(Component, renderProps)
-          } else if (Layout) {
-            suspense(h(Layout, null, h(Component, renderProps)))
-          } else {
-            suspense(h(DefaultLayout, null, h(Component, renderProps)))
-          }
+      return do {
+        if (Layout === false) {
+          h(Component, renderProps)
+        } else if (Layout) {
+          h(Layout, null, suspense(h(Component, renderProps)))
+        } else {
+          h(DefaultLayout, null, suspense(h(Component, renderProps)))
         }
       }
-    })
-  )
+    }
+  })
 }
 
 Route.displayName = "ApplicationRoute"
