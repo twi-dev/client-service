@@ -13,7 +13,7 @@ const setClassName = value => (
   isPlainObject(value) || isArray(value) ? cn(value) : value
 )
 
-const except = ["className", "forwardedRef", "tag", "className"]
+const except = ["className", "forwardedRef", "tag"]
 
 const Abstract = ({children, omitProps, ...props}) => (
   createElement(props.tag, {

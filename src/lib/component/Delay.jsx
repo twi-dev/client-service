@@ -5,6 +5,9 @@ import ms from "ms"
 import isNumber from "lodash/isNumber"
 import useEffectOnce from "react-use/lib/useEffectOnce"
 
+/**
+ * Renders a children component once the given amount of time passes
+ */
 function Delay({children, amount}) {
   const [passed, update] = useState(false)
 
