@@ -16,15 +16,15 @@ function Application() {
   useTitle(config.app.name)
 
   return (
-    <Suspense fallback={<Loader />}>
-      <Viewer>
-        <DarkMode>
-          <div className={container}>
+    <div className={container}>
+      <Suspense fallback={<Loader />}>
+        <Viewer>
+          <DarkMode>
             <Router />
-          </div>
-        </DarkMode>
-      </Viewer>
-    </Suspense>
+          </DarkMode>
+        </Viewer>
+      </Suspense>
+    </div>
   )
 }
 
