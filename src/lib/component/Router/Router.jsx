@@ -11,7 +11,7 @@ const routes = getRoutes()
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      {routes.map(route => <Route {...route} key={`key::(${route.path})`} />)}
+      {routes.map(route => <Route {...route} key={`path::(${route.path})`} />)}
 
       {/* Render 404 error when no page found */}
       <Route page={{layout: false, component: NotFoundError}} />

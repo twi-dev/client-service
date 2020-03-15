@@ -12,11 +12,12 @@ import Session from "model/User/Viewer/Session"
 const useGetViewer = createSuspender(getViewer)
 
 /**
- * Creates a Viewer model context alloving the applications to share
+ * Creates a Viewer model context alloving the application to share
  * the current user's information.
  */
 function Viewer({children}) {
   const viewer = useGetViewer(getViewer)
+
   const session = useLocalStore(() => Session.create(viewer))
 
   return createElement(Context.Provider, {value: session}, children)
