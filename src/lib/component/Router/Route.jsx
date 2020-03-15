@@ -7,11 +7,13 @@ import createSuspender from "use-suspender"
 import noop from "lodash/noop"
 import partial from "lodash/partial"
 
-import DefaultLayout from "layout/DefaultLayout"
-import Loader from "lib/component/Loader/PageLoader"
+import Delay from "lib/component/Delay"
 import createLoadable from "lib/hoc/loadable"
+import Loader from "lib/component/Loader/PageLoader"
 
-const suspense = partial(h, Suspense, {fallback: h(Loader)})
+import DefaultLayout from "layout/DefaultLayout"
+
+const suspense = partial(h, Suspense, {fallback: h(Delay, null, h(Loader))})
 
 const usePrepare = createSuspender((prepare, props) => prepare(props))
 
