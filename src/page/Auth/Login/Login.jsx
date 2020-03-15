@@ -1,9 +1,9 @@
 import {useForm} from "react-hook-form"
-import {Link} from "react-router-dom"
 import {createElement} from "react"
 
 import useTitle from "lib/hook/useTitle"
 
+import Link from "component/Link"
 import Form from "component/Form"
 import Input from "component/Input"
 import Button from "component/Button/Primary"
@@ -15,7 +15,7 @@ import {container, box, fields, field, actions, links, link} from "./login.css"
 function Login() {
   useTitle("Login")
 
-  const {register, handleSubmit, errors, formState: state} = useForm({
+  const {register, handleSubmit, errors} = useForm({
     nativeValidation: true,
     mode: "onBlur"
   })
@@ -54,7 +54,7 @@ function Login() {
           </div>
 
           <div className={actions}>
-            <Button wide type="submit" disabled={!state.isValid}>
+            <Button wide type="submit">
               Log in
             </Button>
           </div>

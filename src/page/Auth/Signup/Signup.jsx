@@ -1,10 +1,10 @@
-import {Link} from "react-router-dom"
 import {useForm} from "react-hook-form"
 import {createElement} from "react"
 import {object, string} from "yup"
 
 import useTitle from "lib/hook/useTitle"
 
+import Link from "component/Link"
 import Form from "component/Form"
 import Input from "component/Input"
 import Button from "component/Button/Primary"
@@ -22,7 +22,7 @@ const validationSchema = object().shape({
 function Signup() {
   useTitle("Signup")
 
-  const {register, handleSubmit, errors, formState: state} = useForm({
+  const {register, handleSubmit, errors} = useForm({
     nativeValidation: true,
     mode: "onBlur",
 
@@ -76,7 +76,7 @@ function Signup() {
           </div>
 
           <div className={actions}>
-            <Button wide type="submit" disabled={!state.isValid}>
+            <Button wide type="submit">
               Sign up
             </Button>
           </div>
