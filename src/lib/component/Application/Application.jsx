@@ -5,10 +5,12 @@ import {createElement, Suspense} from "react"
 import useTitle from "lib/hook/useTitle"
 import config from "lib/config"
 
+import ApplicationError from "lib/component/Error/ApplicationError"
 import Loader from "lib/component/Loader/PageLoader"
 import DarkMode from "lib/component/DarkMode"
 import Router from "lib/component/Router"
 import Delay from "lib/component/Delay"
+import Error from "lib/component/Error"
 
 import Viewer from "component/Viewer"
 
@@ -26,11 +28,13 @@ function Application() {
           </Delay>
         )}
       >
-        <Viewer>
-          <DarkMode>
-            <Router />
-          </DarkMode>
-        </Viewer>
+        <Error fallback={ApplicationError}>
+          <Viewer>
+            <DarkMode>
+              <Router />
+            </DarkMode>
+          </Viewer>
+        </Error>
       </Suspense>
     </div>
   )

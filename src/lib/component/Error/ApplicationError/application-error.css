@@ -1,14 +1,8 @@
-@lost flexbox flex;
-
 .container {
-  lost-center: 400px;
-  lost-align: middle-center;
-
-  width: 400px;
+  width: 100%;
+  display: flex;
   text-align: center;
   box-sizing: border-box;
-}
-
-.stack {
-  text-align: left;
+  align-items: center;
+  justify-content: center;
 }

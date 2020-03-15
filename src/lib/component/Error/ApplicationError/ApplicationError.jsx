@@ -5,7 +5,7 @@ import logErrors from "lib/hoc/logErrors"
 
 import Title from "lib/component/Title"
 
-import {container, stack} from "./application-error.css"
+import {container} from "./application-error.css"
 
 const ApplicationError = ({error}) => (
   <Fragment>
@@ -15,10 +15,7 @@ const ApplicationError = ({error}) => (
       {
         do {
           if (process.env.NODE_ENV !== "production") {
-            <div>
-              <h4>{error.message}</h4>
-              <div className={stack}>{String(error.stack)}</div>
-            </div>
+            <div>{error.message}</div>
           } else {
             <div>
               <h4>I just don’t know what went wrong...</h4>

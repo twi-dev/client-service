@@ -7,14 +7,16 @@ import isFunction from "lodash/isFunction"
 class ErrorBoundary extends Component {
   static propTypes = {
     children: node.isRequired,
-    reporter: func.isRequired
+    fallback: func.isRequired
   }
 
   static getDerivedStateFromError = error => ({error})
 
-  componentDidCatch(error, info) {
-    console.error(error)
+  state = {
+    error: null
+  }
 
+  componentDidCatch(error, info) {
     if (process.env.NODE_ENV !== "production" && info) {
       console.error(info)
     }
@@ -35,7 +37,7 @@ class ErrorBoundary extends Component {
       throw error
     }
 
-    return createElement(this.props.reporter, {error})
+    return createElement(this.props.fallback, {error})
   }
 }
 
