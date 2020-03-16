@@ -10089,7 +10089,7 @@ picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.0.7, picomatch@^2.2.1:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.2.1.tgz#21bac888b6ed8601f831ce7816e335bc779f0a4a"
   integrity sha512-ISBaA8xQNmwELC7eOjqFKMESB2VIqt4PPDD0nsS95b/9dZXvVKOlz9keMSnoGGKcOHXfTvDD6WMaRoSc9UuhRA==
 
-pify@^2.0.0, pify@^2.3.0:
+pify@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
   integrity sha1-7RQaasBDqEnqWISY59yosVMw6Qw=
@@ -10412,16 +10412,6 @@ postcss-image-set-function@^3.0.1:
   dependencies:
     postcss "^7.0.2"
     postcss-values-parser "^2.0.0"
-
-postcss-import@12.0.1:
-  version "12.0.1"
-  resolved "https://registry.yarnpkg.com/postcss-import/-/postcss-import-12.0.1.tgz#cf8c7ab0b5ccab5649024536e565f841928b7153"
-  integrity sha512-3Gti33dmCjyKBgimqGxL3vcV8w9+bsHwO5UrBawp796+jdardbcFl4RP5w/76BwNL7aGzpKstIfF9I+kdE8pTw==
-  dependencies:
-    postcss "^7.0.1"
-    postcss-value-parser "^3.2.3"
-    read-cache "^1.0.0"
-    resolve "^1.1.7"
 
 postcss-initial@^3.0.0:
   version "3.0.2"
@@ -10849,7 +10839,7 @@ postcss-sass@^0.4.2:
     gonzales-pe "^4.2.4"
     postcss "^7.0.21"
 
-postcss-scss@2.0.0, postcss-scss@^2.0.0:
+postcss-scss@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/postcss-scss/-/postcss-scss-2.0.0.tgz#248b0a28af77ea7b32b1011aba0f738bda27dea1"
   integrity sha512-um9zdGKaDZirMm+kZFKKVsnKPF7zF7qBAtIfTSnZXD1jZ0JNZIxdB6TxQOjCnlSzLRInVl2v3YdBh/M881C4ug==
@@ -10899,13 +10889,6 @@ postcss-selector-parser@^6.0.0, postcss-selector-parser@^6.0.2:
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
-postcss-simple-vars@5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/postcss-simple-vars/-/postcss-simple-vars-5.0.2.tgz#e2f81b3d0847ddd4169816b6d141b91d51e6e22e"
-  integrity sha512-xWIufxBoINJv6JiLb7jl5oElgp+6puJwvT5zZHliUSydoLz4DADRB3NDDsYgfKVwojn4TDLiseoC65MuS8oGGg==
-  dependencies:
-    postcss "^7.0.14"
-
 postcss-svgo@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/postcss-svgo/-/postcss-svgo-4.0.2.tgz#17b997bc711b333bab143aaed3b8d3d6e3d38258"
@@ -10938,7 +10921,7 @@ postcss-use@3.0.0:
     postcss "^6.0.17"
     resolve-from "^4.0.0"
 
-postcss-value-parser@^3.0.0, postcss-value-parser@^3.2.3, postcss-value-parser@^3.3.1:
+postcss-value-parser@^3.0.0, postcss-value-parser@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-3.3.1.tgz#9ff822547e2893213cf1c30efa51ac5fd1ba8281"
   integrity sha512-pISE66AbVkp4fDQ7VHBwRNXzAAKJjw4Vw7nWI/+Q3vuly7SNfgYXvm6i5IgFylHGK5sP/xHAbB7N49OS4gWNyQ==
@@ -11525,13 +11508,6 @@ react@16.13.0:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
 
-read-cache@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/read-cache/-/read-cache-1.0.0.tgz#e664ef31161166c9751cdbe8dbcf86b5fb58f774"
-  integrity sha1-5mTvMRYRZsl1HNvo28+GtftY93Q=
-  dependencies:
-    pify "^2.3.0"
-
 read-chunk@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/read-chunk/-/read-chunk-1.0.1.tgz#5f68cab307e663f19993527d9b589cace4661194"
@@ -11947,7 +11923,7 @@ resolve-url@^0.2.1:
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
 
-resolve@^1.1.7, resolve@^1.10.0, resolve@^1.11.0, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.3.2, resolve@^1.5.0, resolve@^1.8.1:
+resolve@^1.10.0, resolve@^1.11.0, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.3.2, resolve@^1.5.0, resolve@^1.8.1:
   version "1.14.2"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.14.2.tgz#dbf31d0fa98b1f29aa5169783b9c290cb865fea2"
   integrity sha512-EjlOBLBO1kxsUxsKjLt7TAECyKW6fOh1VRkykQkKGzcBbjjPIxBqGh0jf7GJ3k/f5mxMqW3htMD3WdTUVtW8HQ==

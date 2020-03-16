@@ -1,13 +1,31 @@
-import {lazy} from "react"
+import {lazy, useContext} from "react"
 
-const id = import.meta.url
+import partial from "lodash/partial"
+
+import redirect from "lib/hoc/redirect"
+import waterfall from "lib/helper/array/runWaterfall"
+import toDefault from "lib/helper/util/interopRequireDefault"
+import resolve from "lib/helper/util/requireDefault"
+
+import Context from "model/User/Viewer/Context"
+
+const withRedirect = redirect({
+  getUrl() {
+    const {isSigned} = useContext(Context)
+
+    if (!isSigned) {
+      return "/"
+    }
+  }
+})
+
+const action = partial(waterfall, [resolve, withRedirect, toDefault])
 
 const story = [
   {
-    id,
     path: "/new",
     page: {
-      component: lazy(() => import("page/Story/New"))
+      component: lazy(() => action(import("page/Story/New")))
     }
   },
   // {
