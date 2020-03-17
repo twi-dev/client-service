@@ -1,6 +1,6 @@
-{
-  "extends": "stylelint-config-recommended",
-  "rules": {
+module.exports = {
+  extends: "stylelint-config-recommended",
+  rules: {
     "property-no-unknown": [
       true, {
         "ignoreProperties": [
@@ -17,7 +17,7 @@
     ],
     "selector-pseudo-class-no-unknown": [
       true, {
-        "ignorePseudoClasses": ["global"]
+        "ignorePseudoClasses": ["global", "local"]
       }
     ]
   }
