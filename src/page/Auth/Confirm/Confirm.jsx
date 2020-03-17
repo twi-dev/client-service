@@ -14,9 +14,9 @@ import {container, message, failed} from "./confirm.css"
 const useConfirm = createSuspender(confirm)
 
 function Confirm() {
-  const {hash} = useParams()
-
   useTitle("Account confirmation")
+
+  const {hash} = useParams()
 
   const isActivated = useConfirm(hash)
 
