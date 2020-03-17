@@ -1,69 +1,51 @@
 .container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+  composes: container from "~style/auth.css";
 }
 
 .box {
-  display: flex;
-  flex-direction: column;
-  width: 280px;
+  composes: box from "~style/auth.css";
 }
 
 .fields {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  composes: fields from "~style/auth.css";
 }
 
 .field {
-  margin-bottom: var(--spacing-s);
+  composes: field from "~style/auth.css";
 }
 
 .actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  composes: actions from "~style/auth.css";
 }
 
 .links {
-  display: flex;
-  flex-direction: column;
+  composes: links from "~style/auth.css";
 }
 
 .link {
-  justify-content: center;
-  display: flex;
-  margin-top: var(--spacing-xs);
+  composes: link from "~style/auth.css";
 }
 
 @media screen and (width > 1000px) {
   .box {
+    composes: box from "~style/auth.css";
+
     width: 691px;
-    justify-content: center;
   }
 
   .fields {
-    flex-direction: row;
-    justify-content: center;
+    composes: fields from "~style/auth.css";
   }
 
   .field {
-    margin-right: var(--spacing-s);
-    margin-bottom: initial;
+    composes: field from "~style/auth.css";
   }
 
   .links {
-    margin: var(--spacing-xs) 0;
-    flex-direction: row;
+    composes: links from "~style/auth.css";
   }
 
   .link {
-    width: 180px;
-    margin-right: var(--spacing-s);
-    margin-top: 0;
-    justify-content: initial;
+    composes: link from "~style/auth.css";
   }
 }
