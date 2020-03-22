@@ -1,0 +1,13 @@
+mutation AuthConfirmPasswordReset($confirm: AuthConfirmPasswordResetInput!) {
+  authConfirmPasswordReset(confirm: $confirm) {
+    accessToken {
+      type
+      expires
+      payload
+    }
+    refreshToken {
+      type
+      payload
+    }
+  }
+}

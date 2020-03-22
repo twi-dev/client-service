@@ -1,0 +1,3 @@
+mutation authRequestPasswordReset($email: Email!) {
+  authRequestPasswordReset(email: $email)
+}

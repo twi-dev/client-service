@@ -9,17 +9,17 @@ import {mutate} from "lib/transport/graphql"
 
 import document from "./confirm.gql"
 
-const read = getData("authConfirmEmail")
+const read = getData("authConfirmPasswordReset")
 
-async function confirm(hash) {
+async function confirm({password, hash}) {
   const token = db.getItem("refreshToken")
 
   const params = {
     mutation: document,
     variables: {
-      hash,
-
-      token: token ? token.payload : null
+      confirm: {
+        password, hash, token: token ? token.payload : null
+      },
     }
   }
 

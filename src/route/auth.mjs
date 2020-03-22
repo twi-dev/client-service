@@ -38,6 +38,20 @@ const auth = [
     }
   },
   {
+    path: "/reset",
+    page: {
+      layout: false,
+      component: lazy(() => import("page/Auth/Reset/Request") |> action)
+    }
+  },
+  {
+    path: "/reset/:hash",
+    page: {
+      layout: false,
+      component: lazy(() => import("page/Auth/Reset/Confirm") |> action)
+    }
+  },
+  {
     path: "/confirm/:hash",
     page: {
       layout: false,

@@ -1,9 +1,9 @@
 .container {
-  --base-size: 48px;
+  --base-size: 48px; /* TODO: Update with */
 
   display: flex;
   flex-direction: column;
-  width: var(--base-size); /* TODO: Update with */
+  width: var(--base-size);
   height: 100vh;
   color: white;
   background: var(--color-primary);
@@ -13,7 +13,7 @@
 .item {
   display: flex;
   width: var(--base-size);
-  height: var(--base-size); /* TODO: Update with */
+  height: var(--base-size);
   align-items: center;
   justify-content: center;
   background: transparent;

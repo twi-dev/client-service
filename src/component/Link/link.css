@@ -1,7 +1,6 @@
 @use postcss-nested;
 
 .primary {
-
   &, &:hover {
     color: var(--color-interactive);
   }
