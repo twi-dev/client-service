@@ -23,19 +23,7 @@ async function confirm({password, hash}) {
     }
   }
 
-  let result = false
-
-  try {
-    await waterfall([partial(mutate, params), read, save])
-
-    result = true
-  } catch (err) {
-    if (err.networkError) {
-      throw err
-    }
-  }
-
-  return result
+  await waterfall([partial(mutate, params), read, save])
 }
 
 export default confirm
