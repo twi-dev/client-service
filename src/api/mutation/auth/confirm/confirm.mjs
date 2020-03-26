@@ -1,6 +1,5 @@
 import partial from "lodash/partial"
 
-import db from "lib/db/tokens"
 import getData from "lib/helper/graphql/getData"
 import waterfall from "lib/helper/array/runWaterfall"
 import save from "lib/auth/helper/saveTokens"
@@ -12,14 +11,10 @@ import document from "./confirm.gql"
 const read = getData("authConfirmEmail")
 
 async function confirm(hash) {
-  const token = db.getItem("refreshToken")
-
   const params = {
     mutation: document,
     variables: {
-      hash,
-
-      token: token ? token.payload : null
+      hash
     }
   }
 
