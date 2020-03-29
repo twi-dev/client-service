@@ -8964,10 +8964,10 @@ nano-css@^5.2.1:
     stacktrace-js "^2.0.0"
     stylis "3.5.0"
 
-nanoid@2.1.11:
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.1.11.tgz#ec24b8a758d591561531b4176a01e3ab4f0f0280"
-  integrity sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==
+nanoid@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.0.0.tgz#760f6d7e076935d086aa3c790e0272cab41abbcb"
+  integrity sha512-5lU+F2QpTW1JLwlXxnu2/jkpTipIuYZL3Za6TQzM16HYDzZQqlthbXYSW0H2KzZu1UQPGHDPbCl1TS3xOKfqEQ==
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -13529,10 +13529,10 @@ use-events@1.4.1:
   dependencies:
     resize-observer-polyfill "1.5.1"
 
-use-suspender@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/use-suspender/-/use-suspender-0.3.0.tgz#f020b4aceaf5f112a6c1fabad179418d85cd25c5"
-  integrity sha512-NP6zqwyEeyIY+JtwQYvlgZ+0raMrduqsfzb1gsqm8ZX2d9DNlq5tK8wN7DNk7aqLpIP+AnzDrjgoNFouealgiA==
+use-suspender@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/use-suspender/-/use-suspender-0.3.1.tgz#adc5920167c5e76b916aa64fd167d50f98b970ef"
+  integrity sha512-6arPXQHT4RA813itWzpY499S0zjlwCEpOWG4JVx2id7LwCXA55jqQUmwso85X4Sok/rjJOP7r3brohkep+vLbg==
 
 use@^3.1.0:
   version "3.1.1"
