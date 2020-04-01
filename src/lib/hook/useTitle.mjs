@@ -13,18 +13,18 @@ const defaults = {
 /**
  * Enhances the `useTitle` hook from `react-use` library with optional params.
  *
- * @param {object | string} options – when set as string, will be used as title
- * @param {string | array} [options.base = undefined] – a page title section(s)
- * @param {string} [options.prefix = undefined] – title prefix
- * @param {string} [options.suffix = undefined] – title suffix
- * @param {string} [options.delimiter = "-"] – title sections delimiter
+ * @param {object | string} params – when set as string, will be used as title
+ * @param {string | array} [params.base = undefined] – a page title section(s)
+ * @param {string} [params.prefix = undefined] – title prefix
+ * @param {string} [params.suffix = undefined] – title suffix
+ * @param {string} [params.delimiter = "-"] – title sections delimiter
  */
-function useTitle(options = {}) {
-  if (isString(options)) {
-    options = {base: options}
+function useTitle(params = {}) {
+  if (isString(params)) {
+    params = {base: params}
   }
 
-  let {prefix, base: title, suffix, delimiter} = {...defaults, ...options}
+  let {prefix, base: title, suffix, delimiter} = {...defaults, ...params}
 
   if (!isArray(title)) {
     title = [title]
