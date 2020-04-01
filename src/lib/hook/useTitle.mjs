@@ -34,7 +34,9 @@ function useTitle(options = {}) {
     delimiter = ` ${String(delimiter).trim()} `
   }
 
-  setTitle([prefix, ...title, suffix].filter(Boolean).join(delimiter))
+  setTitle([prefix, ...title, suffix].filter(Boolean).join(delimiter), {
+    restoreOnUnmount: true
+  })
 }
 
 export default useTitle
