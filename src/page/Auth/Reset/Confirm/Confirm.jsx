@@ -9,7 +9,7 @@ import Button from "component/Button/Primary"
 import confirm from "api/mutation/auth/reset/confirm"
 
 function Confirm() {
-  const {register, handleSubmit: handle} = useForm({model: "onBlur"})
+  const {register, handleSubmit: handle} = useForm({mode: "onBlur"})
   const {hash} = useParams()
 
   const history = useHistory()

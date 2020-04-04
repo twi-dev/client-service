@@ -1,0 +1,15 @@
+{
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "noImplicitAny": false,
+    // "checkJs": true, // Turn this on when MS add .mjs files support
+    "moduleResolution": "Node",
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"]
+    }
+  }
+}
