@@ -1,22 +1,20 @@
-import {types, flow} from "mobx-state-tree"
+import {types as t, flow} from "mobx-state-tree"
 
 import update from "api/mutation/story/update"
 import Slug from "model/Common/Slug"
 
 import Base from "./StoryMinimal"
 
-const {identifier, string, optional} = types
-
 const schema = {
-  id: identifier,
+  id: t.identifier,
   slug: Slug,
-  title: string,
-  description: string,
+  title: t.string,
+  description: t.string,
 
   // TODO: Write a middleware to automate this case.
   // I need something that simply allows to manually update one value
   // and revert when needed
-  initialTitle: optional(string, "")
+  initialTitle: t.optional(t.string, "")
 }
 
 const actions = self => ({

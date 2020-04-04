@@ -1,12 +1,10 @@
-import {types} from "mobx-state-tree"
+import {types as t} from "mobx-state-tree"
 
 import warn from "lib/helper/model/warnNotImplementedAction"
 
-const {model, optional, string} = types
-
 const schema = {
-  title: optional(string, ""),
-  description: optional(string, "")
+  title: t.optional(t.string, ""),
+  description: t.optional(t.string, "")
 }
 
 const actions = self => ({
@@ -23,6 +21,6 @@ const actions = self => ({
   resetTitle: warn(self)
 })
 
-const StoryMinimal = model("StoryMinimal", schema).actions(actions)
+const StoryMinimal = t.model("StoryMinimal", schema).actions(actions)
 
 export default StoryMinimal

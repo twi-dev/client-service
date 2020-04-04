@@ -1,19 +1,17 @@
-import {types} from "mobx-state-tree"
+import {types as t} from "mobx-state-tree"
 
 import UserContacts from "./UserContacts"
 import UserDates from "./UserDates"
 
-const {model, string, identifier, optional} = types
-
 const schema = {
-  id: identifier,
-  login: string,
-  role: string,
-  status: string,
+  id: t.identifier,
+  login: t.string,
+  role: t.string,
+  status: t.string,
   dates: UserDates,
-  contacts: optional(UserContacts, {})
+  contacts: t.optional(UserContacts, {})
 }
 
-const User = model("User", schema)
+const User = t.model("User", schema)
 
 export default User

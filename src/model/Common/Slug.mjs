@@ -1,12 +1,8 @@
-import {types} from "mobx-state-tree"
+import {types as t} from "mobx-state-tree"
 
-const {model, frozen, string} = types
-
-const schema = {
-  full: frozen(string),
-  short: frozen(string)
-}
-
-const Slug = model("Slug", schema)
+const Slug = t.model("Slug", {
+  full: t.frozen(t.string),
+  short: t.frozen(t.string)
+})
 
 export default Slug

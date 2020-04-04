@@ -8,6 +8,9 @@ const schema = {
 }
 
 const actions = self => {
+  /**
+   * @param {object} viewer
+   */
   function setViewer(viewer) {
     self.isSigned = Boolean(viewer)
     self.viewer = viewer

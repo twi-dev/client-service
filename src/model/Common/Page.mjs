@@ -1,16 +1,14 @@
-import {types, flow} from "mobx-state-tree"
+import {types as t, flow} from "mobx-state-tree"
 
 import warn from "lib/helper/model/warnNotImplementedAction"
 
-const {model, boolean, number} = types
-
 const schema = {
-  hasNext: boolean,
-  count: number,
-  limit: number,
-  offset: number,
-  current: number,
-  last: number
+  hasNext: t.boolean,
+  count: t.number,
+  limit: t.number,
+  offset: t.number,
+  current: t.number,
+  last: t.number
   // list: Array<T>
 }
 
@@ -124,7 +122,7 @@ const views = self => ({
   }
 })
 
-const Page = model("Page", schema)
+const Page = t.model("Page", schema)
   .volatile(volatile)
   .actions(actions)
   .views(views)

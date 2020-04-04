@@ -1,14 +1,10 @@
-import {types} from "mobx-state-tree"
+import {types as t} from "mobx-state-tree"
 
 import CommonDate from "./Date"
 
-const {model, maybeNull} = types
-
-const schema = {
+const CommonDates = t.model("CommonDates", {
   createdAt: CommonDate,
-  updatedAt: maybeNull(CommonDate)
-}
-
-const CommonDates = model("CommonDates", schema)
+  updatedAt: t.maybeNull(CommonDate)
+})
 
 export default CommonDates
