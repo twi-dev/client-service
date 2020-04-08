@@ -12,7 +12,7 @@ import iterator from "lib/helper/iterator/objectIterator"
 const ctx = require.context("../../../route", false, /\.mjs$/)
 const home = config.router?.home ?? "home"
 const files = ctx.keys()
-const ext = ".mjs"
+const ext = ".js"
 
 const readFile = filename => {
   const content = ctx(filename) |> resolve
