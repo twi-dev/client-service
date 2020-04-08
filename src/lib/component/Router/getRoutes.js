@@ -9,7 +9,7 @@ import config from "lib/config"
 import resolve from "lib/helper/util/requireDefault"
 import iterator from "lib/helper/iterator/objectIterator"
 
-const ctx = require.context("../../../route", false, /\.mjs$/)
+const ctx = require.context("../../../route", false, /\.js$/)
 const home = config.router?.home ?? "home"
 const files = ctx.keys()
 const ext = ".js"
