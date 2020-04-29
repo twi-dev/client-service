@@ -13,7 +13,7 @@ const defaults = {
 /**
  * Enhances the `useTitle` hook from `react-use` library with optional params.
  *
- * @param {object | string} params – when set as string, will be used as title
+ * @param {Object<string, any> | string} params – when set as string, will be used as title
  * @param {string | array} [params.base = undefined] – a page title section(s)
  * @param {string} [params.prefix = undefined] – title prefix
  * @param {string} [params.suffix = undefined] – title suffix

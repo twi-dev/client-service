@@ -7,11 +7,11 @@ import waterfall from "lib/helper/array/runWaterfall"
 import toDefault from "lib/helper/util/interopRequireDefault"
 import resolve from "lib/helper/util/requireDefault"
 
-import Context from "model/User/Viewer/Context"
+import Session from "model/User/Viewer/Context"
 
 const redirect = createRedirect({
   getUrl() {
-    const {isSigned} = useContext(Context)
+    const {isSigned} = useContext(Session)
 
     if (isSigned) {
       return "/"

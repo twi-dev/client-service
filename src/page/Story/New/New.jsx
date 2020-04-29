@@ -3,7 +3,7 @@ import {createElement} from "react"
 
 import useTitle from "lib/hook/useTitle"
 
-import Story from "model/Story//StoryNew"
+import Story from "model/Story/StoryNew"
 import Input from "component/Input"
 
 import {container, title} from "./new.css"
