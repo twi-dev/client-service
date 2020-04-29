@@ -9,7 +9,6 @@ import resolve from "lib/helper/util/requireDefault"
 
 import Context from "model/User/Viewer/Context"
 
-// TODO: Actually I'll better to render 403 error here instead
 const redirect = createRedirect({
   getUrl() {
     const {isSigned} = useContext(Context)
