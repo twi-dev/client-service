@@ -28,6 +28,10 @@ module.exports = {
     "@octetstream"
   ],
   rules: {
+    "max-len": ["error", {
+      ignoreComments: true,
+      code: 80
+    }],
     "jsx-a11y/anchor-is-valid": ["error", {
       components: ["Link"],
       specialLink: ["to", "hrefLeft", "hrefRight"],

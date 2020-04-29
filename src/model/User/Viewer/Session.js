@@ -2,31 +2,31 @@ import {types as t} from "mobx-state-tree"
 
 import Viewer from "./Viewer"
 
-const schema = {
-  isSigned: t.boolean,
-  viewer: t.maybeNull(Viewer)
-}
+const Session = t.model("Viewer", {viewer: t.maybeNull(Viewer)})
+  .preProcessSnapshot(viewer => ({viewer: viewer ?? null}))
+  .actions(self => {
+    /**
+     * @param {Viewer} viewer
+     *
+     * @private
+     */
+    function setViewer(viewer) {
+      self.viewer = viewer
+    }
 
-const actions = self => {
-  /**
-   * @param {object} viewer
-   */
-  function setViewer(viewer) {
-    self.isSigned = Boolean(viewer)
-    self.viewer = viewer
-  }
+    /**
+     * @param {Viewer} viewer
+     */
+    const sign = viewer => setViewer(viewer)
 
-  const sign = viewer => setViewer(viewer)
+    const unsign = () => setViewer(null)
 
-  const unsign = () => setViewer(null)
-
-  return {sign, unsign}
-}
-
-const before = viewer => ({viewer: viewer ?? null, isSigned: Boolean(viewer)})
-
-const Session = t.model("Viewer", schema)
-  .preProcessSnapshot(before)
-  .actions(actions)
+    return {sign, unsign}
+  })
+  .views(self => ({
+    get isSigned() {
+      return !!self.viewer
+    }
+  }))
 
 export default Session

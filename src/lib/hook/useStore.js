@@ -8,7 +8,7 @@ import getName from "lib/helper/component/getName"
  *
  * @param {React.Context} Context
  *
- * @return {object} MobX State Tree store
+ * @return {Object<string, any>} MobX State Tree store
  */
 function useStore(Context) {
   const store = useContext(Context)

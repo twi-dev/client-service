@@ -2,7 +2,7 @@ import {lazy, useContext} from "react"
 
 import partial from "lodash/partial"
 
-import redirect from "lib/hoc/redirect"
+import createRedirect from "lib/hoc/redirect"
 import waterfall from "lib/helper/array/runWaterfall"
 import toDefault from "lib/helper/util/interopRequireDefault"
 import resolve from "lib/helper/util/requireDefault"
@@ -10,7 +10,7 @@ import resolve from "lib/helper/util/requireDefault"
 import Context from "model/User/Viewer/Context"
 
 // TODO: Actually I'll better to render 403 error here instead
-const withRedirect = redirect({
+const redirect = createRedirect({
   getUrl() {
     const {isSigned} = useContext(Context)
 
@@ -20,7 +20,7 @@ const withRedirect = redirect({
   }
 })
 
-const action = partial(waterfall, [resolve, withRedirect, toDefault])
+const action = partial(waterfall, [resolve, redirect, toDefault])
 
 const auth = [
   {
