@@ -30,11 +30,13 @@ function Delay({children, amount}) {
 }
 
 Delay.propTypes = {
+  fallback: node,
   children: node.isRequired,
   amount: oneOfType([string, number])
 }
 
 Delay.defaultProps = {
+  fallback: null,
   amount: 300
 }
 
