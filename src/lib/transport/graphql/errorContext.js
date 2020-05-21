@@ -1,11 +1,16 @@
 import {onError} from "apollo-link-error"
 
-const errorContext = onError(({response, graphQLErrors}) => {
-  // console.log(
-  //   graphQLErrors.find(({code}) => code === "HTTP_NOT_FOUND_EXCEPTION")
-  // )
+const errorLink = onError(({networkError, graphQLErrors}) => {
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({message, locations, path}) => console.warn(
+      `[GraphQL error]: Message: ${message}, `
+        + `Location: ${locations}, Path: ${path}`
+    ))
+  }
 
-  // response.errors = [new Error("Foo")]
+  if (networkError) {
+    console.warn(`[Network error]: ${networkError}`)
+  }
 })
 
-export default errorContext
+export default errorLink
